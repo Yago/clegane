@@ -1,6 +1,6 @@
 ![Clegane](clegane.jpg)
 
-### Your badass TV Shows manager
+### Your badass TV Shows assistant
 
 > This is a playground application to learn and experiment NodeJS, Express, AngularJS and MongoDB !
 
