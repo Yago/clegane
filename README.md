@@ -4,6 +4,8 @@
 
 > This is a playground application to learn and experiment NodeJS, Express, AngularJS and MongoDB !
 
+* updates : Discover the [design](http://invis.io/DA1XJFUS8) !
+
 ## Guidelines
 
 Each new features and modifications have to be well documented in an issue, commit or inside the wiki.
@@ -35,7 +37,7 @@ and open [localhost:9000](http://localhost:9000) in your favorite browser !
 
 ## Roadmap
 
-- [ ] UX/UI Design
+- [x] UX/UI Design
 - [ ] Use Gulp instead of Grunt
 - [ ] Implement [IMDB js api](https://github.com/worr/node-imdb-api)
 - [ ] TV Shows library view
