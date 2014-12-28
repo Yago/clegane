@@ -4,7 +4,7 @@
 
 > This is a playground application to learn and experiment NodeJS, Express, AngularJS and MongoDB !
 
-##### * updates : Discover the [design](http://invis.io/DA1XJFUS8) !
+##### * 28.12.14 updates : Discover the [design](http://invis.io/DA1XJFUS8) !
 
 ## Guidelines
 
