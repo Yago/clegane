@@ -6,6 +6,7 @@ dist
 Gemfile.lock
 bower_components
 test/bower_components
+/app/config/local.env.js
 
 app/config.js
 styleguide

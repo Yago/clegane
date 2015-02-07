@@ -21,8 +21,8 @@ Install project :
 ```shell
 $ sudo npm install
 $ bower install
-$ cp app/sample-config.js app/config.js
-$ edit app/config.js
+$ cp app/config/local.env.sample.js app/config/local.env.js
+$ edit app/config/local.env.js
 ```
 
 
