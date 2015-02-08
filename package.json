@@ -1,7 +1,7 @@
 {
   "name": "clegane",
   "author": "frontend",
-  "version": "0.0.0",
+  "version": "0.0.1-alpha.1",
   "main": "app/server.js",
   "repository": {
     "type": "git",
