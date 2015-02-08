@@ -1,4 +1,4 @@
-![Clegane](clegane.jpg)
+![Clegane](public/assets/img/clegane.jpg)
 
 ### Your badass TV Shows assistant
 
