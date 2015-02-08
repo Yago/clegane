@@ -33,7 +33,14 @@ gulp.task('vendors', function() {
 
   gulp.src([
       'public/bower_components/angular/angular.js',
-      'public/bower_components/angular-ui-router/release/angular-ui-router.js'
+      'public/bower_components/angular-mocks/angular-mocks.js',
+      'public/bower_components/angular-scenario/angular-scenario.js',
+      'public/bower_components/angular-cookies/angular-cookies.js',
+      'public/bower_components/angular-resource/angular-resource.js',
+      'public/bower_components/angular-sanitize/angular-sanitize.js',
+      'public/bower_components/angular-ui-router/release/angular-ui-router.js',
+      'public/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+      'public/bower_components/angular-bootstrap/ui-bootstrap.js'
     ])
     .pipe($.concat('vendors.min.js'))
     .pipe($.uglify())
@@ -46,6 +53,7 @@ gulp.task('vendors', function() {
    */
   gulp.src([
       'public/bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
+      'public/bower_components/font-awesome/fonts',
       'public/assets/fonts/*'
     ])
     .pipe(gulp.dest('public/build/fonts'));
@@ -55,6 +63,8 @@ gulp.task('vendors', function() {
    * Various polyfills required for old IE
    */
   gulp.src([
+      'public/bower_components/es5-shim/es5-shim.js',
+      'public/bower_components/json3/lib/json3.js',
       'public/bower_components/html5shiv/dist/html5shiv.js',
       'public/bower_components/respond/dest/respond.src.js'
     ])
@@ -123,14 +133,31 @@ gulp.task('scripts', function() {
 });
 
 /**
+ * Build AngularJS
+ * With error reporting on compiling (so that there's no crash)
+ * And jshint check to highlight errors as we go.
+ */
+gulp.task('angular-scripts', function() {
+  return gulp.src(['public/app/*.js', 'public/app/**/*.js'])
+    .pipe($.jshint())
+    .pipe($.jshint.reporter('jshint-stylish'))
+    .pipe($.ngAnnotate())
+    .pipe($.concat('app.js'))
+    .pipe(gulp.dest('public/build/js'))
+    .pipe($.rename({ suffix: '.min' }))
+    .pipe($.uglify())
+    .pipe(gulp.dest('public/build/js'));
+});
+
+
+
+/**
  * Build Hologram Styleguide
  */
 gulp.task('styleguide', function () {
   return gulp.src('hologram_config.yml')
     .pipe($.hologram());
 });
-
-
 
 /**
  * Clean output directories
@@ -156,13 +183,15 @@ gulp.task('serve', ['styles', 'scripts'], function () {
   gulp.watch(['public/assets/js/**/*.js'], function() {
     runSequence('scripts', reload);
   });
-  
+  gulp.watch(['public/app/**/*.js'], function() {
+    runSequence('angular-scripts', reload);
+  });
 });
+
 
 /**
  * Deploy to GH pages
  */
-
 gulp.task('deploy', function () {
   gulp.src("styleguide/**/*")
     .pipe($.ghPages());
@@ -173,7 +202,7 @@ gulp.task('deploy', function () {
  */
 gulp.task('build',['clean'], function() {
     argv.production = true;
-    runSequence('vendors', 'styles', 'img', 'scripts');
+    runSequence('vendors', 'styles', 'img', 'scripts', 'angular-scripts');
 });
 
 /**
@@ -181,6 +210,6 @@ gulp.task('build',['clean'], function() {
  */
 gulp.task('default', ['clean'], function(cb) {
   var styleguide_styles = argv.production ? '' : 'styleguide-styles';
-  runSequence('vendors', 'styles', 'img', 'scripts', 'styleguide', styleguide_styles, cb);
+  runSequence('vendors', 'styles', 'img', 'scripts', 'angular-scripts', 'styleguide', styleguide_styles, cb);
 });
 
