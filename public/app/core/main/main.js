@@ -5,7 +5,7 @@ angular.module('cleganeApp')
     $stateProvider
       .state('main', {
         url: '/',
-        templateUrl: 'app/main/main.html',
+        templateUrl: 'app/core/main/main.html',
         controller: 'MainCtrl'
       });
   });

@@ -5,7 +5,7 @@ angular.module('cleganeApp')
     $stateProvider
       .state('admin', {
         url: '/admin',
-        templateUrl: 'app/admin/admin.html',
+        templateUrl: 'app/core/admin/admin.html',
         controller: 'AdminCtrl'
       });
   });
