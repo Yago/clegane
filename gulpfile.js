@@ -167,7 +167,7 @@ gulp.task('clean', del.bind(null, ['public/build', 'styleguide']));
 /**
  * Serve
  */
-gulp.task('serve', ['styles', 'scripts'], function () {
+gulp.task('serve', ['styles', 'scripts', 'nodemon'], function () {
   browserSync({
     server: {
       baseDir: ['public'],
@@ -185,6 +185,32 @@ gulp.task('serve', ['styles', 'scripts'], function () {
   });
   gulp.watch(['public/app/**/*.js'], function() {
     runSequence('angular-scripts', reload);
+  });
+});
+
+/**
+ * Nodemon
+ */
+gulp.task('nodemon', function (cb) {
+  var called = false;
+  return $.nodemon({
+    script: 'app/server.js',
+    ignore: [
+      'gulpfile.js',
+      'node_modules/',
+      'public/'
+    ]
+  })
+  .on('start', function () {
+    if (!called) {
+      called = true;
+      cb();
+    }
+  })
+  .on('restart', function () {
+    setTimeout(function () {
+      reload({ stream: false });
+    }, 1000);
   });
 });
 
