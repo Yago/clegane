@@ -1,3 +1,5 @@
+'use strict';
+
 var express  			= require('express'),
     app      			= express(),
     port     			= process.env.PORT || 3010,
@@ -11,12 +13,9 @@ var express  			= require('express'),
     session      	= require('express-session'),
     MongoStore   	= require('connect-mongo')(session),
     swig 					= require('swig'),
-    filters       = require('./app/filters'),
-    User 					= require('./app/models/user.model');
+    filters       = require('./app/filters');
 
-var config 				= require('./config/config.js'),
-    skills        = require('./config/skills.json'),
-    chartConfig   = require('./config/chart.js');
+var config 				= require('./config/config.js');
 
 // Connect to database
 mongoose.connect(config.db);
@@ -63,8 +62,6 @@ app.use(flash());
 app.use(function(req, res, next) {
   res.locals.req = req;
   res.locals.user = req.user;
-  res.locals.skills = skills;
-  res.locals.chartConfig = chartConfig;
   res.locals.isAuthenticated = req.isAuthenticated();
   res.locals.is_granted = function (role) {
     return req.isAuthenticated() && req.user.roles.indexOf(role) >= 0;
@@ -79,8 +76,6 @@ app.use(express.static(__dirname + '/build'));
 
 // routes ======================================================================
 require('./app/routes/user.routes')(app, passport);
-require('./app/routes/player.routes')(app, passport);
-require('./app/routes/match.routes')(app, passport);
 
 // launch ======================================================================
 app.listen(port);
