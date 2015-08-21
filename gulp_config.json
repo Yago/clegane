@@ -6,7 +6,7 @@
   },
   "vendors": {
     "css": [
-      ""
+      "node_modules/angular-ui-bootstrap/ui-bootstrap-csp.css"
     ],
     "js": [
       "node_modules/jquery/dist/jquery.js",
@@ -25,7 +25,9 @@
     ],
     "angular": [
       "node_modules/angular/angular.js",
-      "node_modules/lub-tmdb/build/lub-tmdb.js"
+      "node_modules/angular-sanitize/angular-sanitize.js",
+      "node_modules/angular-ui-bootstrap/ui-bootstrap.js",
+      "node_modules/angular-ui-bootstrap/ui-bootstrap-tpls.js"
     ],
     "fonts": [
       "node_modules/bootstrap-sass/assets/fonts/bootstrap/*",

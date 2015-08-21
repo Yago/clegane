@@ -2,8 +2,8 @@
 
 /* global angular */
 
-var app = angular.module('CleganeApp', ['lub-tmdb-api'])
-            .value('lubTmdbApiKey','API_KEY_HERE');
+var app = angular.module('CleganeApp',
+            ['ngSanitize', 'ui.bootstrap']);
 
 app.config(function($interpolateProvider){
     $interpolateProvider.startSymbol('[[').endSymbol(']]');
