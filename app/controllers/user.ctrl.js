@@ -32,16 +32,17 @@ exports.index = function(req, res, next) {
  */
 exports.create = function (req, res) {
   var newUser = new User();
-  newUser.username = req.body.username;
-  newUser.password = createHash(req.body.password);
-  newUser.email = req.body.email;
-  newUser.save(function(err) {
-    if (err){
-      req.flash('error', 'Error in Saving user:  ' + err);
-      return err;
-    }
-    res.redirect('/signup/completed');
-  });
+      newUser.username = req.body.username;
+      newUser.password = createHash(req.body.password);
+      newUser.email = req.body.email;
+      newUser.country = req.body.country;
+      newUser.save(function(err) {
+        if (err){
+          req.flash('error', 'Error in Saving user:  ' + err);
+          return err;
+        }
+        res.redirect('/signup/completed');
+      });
 };
 
 /*
@@ -135,17 +136,6 @@ exports.update = function(req, res) {
  * Render dashboard page
  */
 exports.dashboard = function(req, res) {
-  var rawPlayers = res.locals.user.players,
-      players = [];
-  rawPlayers.forEach(function(player){
-    if (player.status === true) {
-      players.push(player);
-    }
-  });
-  players.sort(function(a, b){
-    return b.points-a.points;
-  });
-  res.locals.players = players;
   res.render('dashboard');
 };
 

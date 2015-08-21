@@ -49,7 +49,7 @@
     {% if flashes %}
       <div class="messages">
         {% if flashes.error %}
-          <div class="alert alert-danger" role="alert">{{ flashes.error }}</div>
+          <div class="alert alert-danger" role="alert">{{ flashes.error }} {{ flashes.truc }}</div>
         {% endif %}
         {% if flashes.success %}
           <div class="alert alert-success" role="alert">{{ flashes.success }}</div>
