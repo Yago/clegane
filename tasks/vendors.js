@@ -28,6 +28,17 @@ module.exports = function() {
       .pipe(gulp.dest(config.build + 'js'));
   });
 
+  /*
+   * Angular Vendors
+   */
+   gulp.task('angular-vendors', function() {
+     return gulp.src(config.vendors.angular)
+       .pipe($.concat('angular-vendors.min.js'))
+       .pipe($.uglify())
+       .pipe($.size({title: 'ANGULAR VENDORS', showFiles: true}))
+       .pipe(gulp.dest(config.build + 'js'));
+   });
+
  /*
   * Fonts Sources
   */

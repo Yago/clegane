@@ -23,6 +23,10 @@
       "node_modules/bootstrap-sass/assets/javascripts/bootstrap/tab.js",
       "node_modules/bootstrap-sass/assets/javascripts/bootstrap/transition.js"
     ],
+    "angular": [
+      "node_modules/angular/angular.js",
+      "node_modules/lub-tmdb/build/lub-tmdb.js"
+    ],
     "fonts": [
       "node_modules/bootstrap-sass/assets/fonts/bootstrap/*",
       "assets/fonts/*"
