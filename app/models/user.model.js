@@ -21,6 +21,13 @@ var userSchema = mongoose.Schema({
     required: false,
     unique: false,
   },
+  movies: [{
+    name: {
+      type: String,
+      unique: false,
+      required: true,
+    },
+  }],
   roles: {
     type: Array,
     default: ['ROLE_AUTHENTICATED']

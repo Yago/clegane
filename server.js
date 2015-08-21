@@ -76,6 +76,7 @@ app.use(express.static(__dirname + '/build'));
 
 // routes ======================================================================
 require('./app/routes/user.routes')(app, passport);
+require('./app/routes/movie.routes')(app, passport);
 
 // launch ======================================================================
 app.listen(port);

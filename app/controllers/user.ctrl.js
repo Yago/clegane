@@ -35,7 +35,6 @@ exports.create = function (req, res) {
       newUser.username = req.body.username;
       newUser.password = createHash(req.body.password);
       newUser.email = req.body.email;
-      newUser.country = req.body.country;
       newUser.save(function(err) {
         if (err){
           req.flash('error', 'Error in Saving user:  ' + err);
