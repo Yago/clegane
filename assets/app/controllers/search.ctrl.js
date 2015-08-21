@@ -5,8 +5,6 @@
 app.controller('searchCtrl', function($http) {
   var that = this;
 
-  that.searchResults = 'some stuff...';
-
   that.onSelect = function ($item, $model, $label) {
     window.location.replace('/movie/' + $item.id);
   };
@@ -22,6 +20,10 @@ app.controller('searchCtrl', function($http) {
     }).then(function(res){
       return res.data.results;
     });
+  };
+
+  that.formAction = function (keywords) {
+    return "/search/" + keywords;
   };
 
 });
