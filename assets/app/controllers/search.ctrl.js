@@ -23,7 +23,7 @@ app.controller('searchCtrl', function($http) {
   };
 
   that.formAction = function (keywords) {
-    return "/search/" + keywords;
+    return '/search/' + keywords;
   };
 
 });
