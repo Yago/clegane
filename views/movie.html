@@ -1,5 +1,70 @@
 {% extends 'layout.html' %}
 
+{% block wrapper-class %}{% endblock %}
+
 {% block content %}
-  <h1>{{ movie.title }}</h1>
+  <div style="max-height:400px;overflow:hidden;">
+    <img src="{{api.images}}{{movie.backdrop_path}}" class="img-responsive">
+  </div>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-2 col-sm-offset-1">
+
+        <img src="{{api.images}}{{movie.poster_path}}" class="img-responsive">
+        <br>
+
+        <ul class="list-unstyled">
+          <li><b>Release</b> :<br> {{movie.release_date}}</li>
+          <li><b>Countries</b> :<br> {% for country in movie.production_countries %}{{country.name}}{% if not loop.last %}, {% endif %}{% endfor %}</li>
+        </ul>
+      </div>
+      <div class="col-sm-8">
+
+        <h1>
+          {{movie.title}} <small class="text-muted">({{movie.original_title}})</small>
+        </h1>
+
+        <p class="lead">“{{movie.tagline}}”</p>
+
+        {% for genre in movie.genres %}
+          <a href="/genres/{{genre.id}}">
+            {{genre.name}}
+          </a>
+          {% if not loop.last %} | {% endif %}
+        {% endfor %}
+        <br>
+
+        <br>
+        <a href="http://www.imdb.com/title/{{movie.imdb_id}}">IMDB</a>
+        <br><br>
+
+        <p>{{movie.overview}}</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <h2>Cast</h2>
+    <div class="row">
+      {% for cast in credits.cast %}
+        {% if loop.key <= 3 %}
+        <div class="col-sm-3">
+          {% if cast.profile_path %}
+          <a href="/person/{{cast.id}}">
+            <img src="{{api.images}}{{cast.profile_path}}" class="img-responsive">
+          </a>
+          {% endif %}
+          <a href="/person/{{cast.id}}">
+            <h3>{{cast.name}}</h3>
+          </a>
+          <b>{{cast.character}}</b>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <hr>
+
+  </div>
 {% endblock %}

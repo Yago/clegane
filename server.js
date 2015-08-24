@@ -1,21 +1,22 @@
 'use strict';
 
-var express  			= require('express'),
-    app      			= express(),
-    port     			= process.env.PORT || 3010,
-    mongoose 			= require('mongoose'),
-    passport 			= require('passport'),
-    flash    			= require('connect-flash'),
-    compression 	= require('compression'),
-    morgan       	= require('morgan'),
-    cookieParser 	= require('cookie-parser'),
-    bodyParser   	= require('body-parser'),
-    session      	= require('express-session'),
-    MongoStore   	= require('connect-mongo')(session),
-    swig 					= require('swig'),
+var express       = require('express'),
+    app           = express(),
+    port          = process.env.PORT || 3010,
+    mongoose      = require('mongoose'),
+    passport      = require('passport'),
+    flash         = require('connect-flash'),
+    compression   = require('compression'),
+    morgan        = require('morgan'),
+    cookieParser  = require('cookie-parser'),
+    bodyParser    = require('body-parser'),
+    session       = require('express-session'),
+    MongoStore    = require('connect-mongo')(session),
+    swig          = require('swig'),
     filters       = require('./app/filters');
 
-var config 				= require('./config/config.js');
+var config        = require('./config/config.js'),
+    api           = require('./config/api.js');
 
 // Connect to database
 mongoose.connect(config.db);
@@ -62,6 +63,7 @@ app.use(flash());
 app.use(function(req, res, next) {
   res.locals.req = req;
   res.locals.user = req.user;
+  res.locals.api = api;
   res.locals.isAuthenticated = req.isAuthenticated();
   res.locals.is_granted = function (role) {
     return req.isAuthenticated() && req.user.roles.indexOf(role) >= 0;
