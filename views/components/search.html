@@ -1,9 +1,11 @@
-<form ng-controller="searchCtrl as search" action="[[search.formAction(search.keywords)]]" method="post">
+<form ng-submit="search.submit()">
   <div class="form-group">
     <div class="input-group input-group-lg">
 
       <input
         type="text"
+        name="keywords"
+        autocomplete="off"
         ng-model="search.keywords"
         placeholder="Search a Movie, a TV Show or a Person"
         typeahead="data as data.original_title for data in search.getResults($viewValue)"

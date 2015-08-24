@@ -5,14 +5,10 @@
 app.controller('searchCtrl', function($http) {
   var that = this;
 
-  that.type = 'movie';
+  that.results = [];
 
   that.formAction = function (keywords) {
     return '/search/' + keywords;
-  };
-
-  that.string = function (type) {
-    return type.toLowerCase();
   };
 
   that.onSelect = function ($item, $model, $label) {
@@ -28,6 +24,20 @@ app.controller('searchCtrl', function($http) {
       }
     }).then(function(res){
       return res.data.results;
+    });
+  };
+
+  that.submit = function () {
+    return $http.get('http://api.themoviedb.org/3/search/multi', {
+      params: {
+        api_key: 'API_KEY_HERE',
+        query: this.keywords
+      }
+    }).then(function(res){
+      that.results = res.data.results;
+      // res.data.results.forEach(function(result){
+      //   that.results += '<li>'+result.title+'</li>';
+      // });
     });
   };
 
