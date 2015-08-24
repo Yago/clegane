@@ -1,4 +1,5 @@
 {% extends 'layout.html' %}
+{% import 'components/thumbnails.html' as thumbnail %}
 
 {% block wrapper-class %}{% endblock %}
 
@@ -69,15 +70,7 @@
       {% for cast in credits.cast %}
         {% if loop.key <= 3 %}
         <div class="col-sm-3">
-          {% if cast.profile_path %}
-          <a href="/person/{{cast.id}}">
-            <img src="{{api.images}}{{cast.profile_path}}" class="img-responsive">
-          </a>
-          {% endif %}
-          <a href="/person/{{cast.id}}">
-            <h3>{{cast.name}}</h3>
-          </a>
-          <b>{{cast.character}}</b>
+          {{ thumbnail.cast(cast) }}
         </div>
         {% endif %}
       {% endfor %}
@@ -85,21 +78,18 @@
 
     <hr>
 
+    {% if similar.length %}
     <h2>Similar</h2>
     <div class="row">
-    {% if similar %}
       {% for movie in similar %}
         {% if loop.key <= 3 %}
           <div class="col-sm-3">
-            <a href="/movie/{{movie.id}}">
-              <img src="{{api.images}}{{movie.poster_path}}" class="img-responsive">
-              <h3>{{movie.title}}</h3>
-            </a>
+            {{ thumbnail.movie(movie) }}
           </div>
         {% endif %}
       {% endfor %}
-    {% endif %}
     </div>
+    {% endif %}
 
   </div>
 {% endblock %}

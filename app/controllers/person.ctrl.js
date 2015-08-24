@@ -1,28 +1,42 @@
 'use strict';
 
-var User     = require('../models/user.model'),
-    api      = require('./../../config/api.js'),
-    request  = require('superagent');
+var User        = require('../models/user.model'),
+    apiCtrl     = require('./api.ctrl.js');
 
 /*
  * Display movie page
  */
 exports.display = function(req, res) {
   var userId = req.body.userId,
-      movieId = req.params.id;
+      personId = req.params.id;
 
-  request
-    .get(api.url+'/person/'+movieId)
-    .query({
-      api_key: api.key,
-      language: api.lang
-    })
-    .set('Accept', 'application/json')
-    .end(function(err, resp){
-      if (err) {
-        req.flash('error', 'The person couldn\'t be found');
-      }
-      res.locals.person = resp.body;
-      res.render('person');
+  // Request main movie informations
+  apiCtrl.get('/person/'+personId,
+    function (main) {
+
+      // Request main movie informations
+      apiCtrl.get('/person/'+personId+'/combined_credits',
+        function (credits) {
+
+          // Request cover images
+          apiCtrl.get('/person/'+personId+'/tagged_images',
+            function (images) {
+              res.locals.person = main;
+              res.locals.credits = credits;
+              res.locals.images = images.results;
+              res.render('person');
+            }, function (err) {
+              res.locals.person = main;
+              res.locals.credits = credits;
+              res.render('person');
+            });
+
+        }, function (err) {
+          res.locals.person = main;
+          res.render('person');
+        });
+
+    }, function (err) {
+      res.send('The person couldn\'t be found');
     });
 };

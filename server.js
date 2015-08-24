@@ -34,11 +34,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
-swig.setFilter('rank', filters.rank);
-swig.setFilter('name', filters.name);
-swig.setFilter('level', filters.level);
-swig.setFilter('modulo', filters.modulo);
-swig.setFilter('length', filters.length);
+swig.setFilter('recent', filters.recent);
 
 // disable cache
 if (config.debug) {

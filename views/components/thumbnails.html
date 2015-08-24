@@ -1,0 +1,25 @@
+{% macro movie(content) %}
+<a href="/movie/{{content.id}}">
+  <img src="{{api.images}}{{content.poster_path}}" class="img-responsive">
+  <h3>{{content.title}}</h3>
+</a>
+{% endmacro %}
+
+{% macro tv(content) %}
+<a href="/tv/{{content.id}}">
+  <img src="{{api.images}}{{content.poster_path}}" class="img-responsive">
+  <h3>{{content.name}}</h3>
+</a>
+{% endmacro %}
+
+{% macro cast(content) %}
+{% if content.profile_path %}
+<a href="/person/{{content.id}}">
+  <img src="{{api.images}}{{content.profile_path}}" class="img-responsive">
+</a>
+{% endif %}
+<a href="/person/{{content.id}}">
+  <h3>{{content.name}}</h3>
+</a>
+<b>{{content.character}}</b>
+{% endmacro %}
