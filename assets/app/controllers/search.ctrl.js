@@ -5,25 +5,31 @@
 app.controller('searchCtrl', function($http) {
   var that = this;
 
+  that.type = 'movie';
+
+  that.formAction = function (keywords) {
+    return '/search/' + keywords;
+  };
+
+  that.string = function (type) {
+    return type.toLowerCase();
+  };
+
   that.onSelect = function ($item, $model, $label) {
-    window.location.replace('/movie/' + $item.id);
+    window.location.replace('/' + $item.media_type + '/' + $item.id);
   };
 
   that.selected = undefined;
-  that.getLocation = function(value) {
-    return $http.get('https://api.themoviedb.org/3/search/movie', {
+  that.getResults = function(value) {
+    return $http.get('http://api.themoviedb.org/3/search/multi', {
       params: {
         api_key: 'API_KEY_HERE',
-        query: value,
-        search_type: 'ngram'
+        query: value
       }
     }).then(function(res){
       return res.data.results;
     });
   };
 
-  that.formAction = function (keywords) {
-    return '/search/' + keywords;
-  };
 
 });

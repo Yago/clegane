@@ -1,0 +1,38 @@
+@font-face {
+  font-family: "cleganicon";
+  src: url('../fonts/cleganicon.eot');
+  src: url('../fonts/cleganicon.eot?#iefix') format('eot'),
+    url('../fonts/cleganicon.woff') format('woff'),
+    url('../fonts/cleganicon.ttf') format('truetype'),
+    url('../fonts/cleganicon.svg#cleganicon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.cleganicon:before {
+  display: inline-block;
+  font-family: "cleganicon";
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.cleganicon-lg {
+  font-size: 1.3333333333333333em;
+  line-height: 0.75em;
+  vertical-align: -15%;
+}
+.cleganicon-2x { font-size: 2em; }
+.cleganicon-3x { font-size: 3em; }
+.cleganicon-4x { font-size: 4em; }
+.cleganicon-5x { font-size: 5em; }
+.cleganicon-fw {
+  width: 1.2857142857142858em;
+  text-align: center;
+}
+
+.cleganicon-clap:before { content: "\EA01" }
+.cleganicon-oscar:before { content: "\EA02" }
+.cleganicon-television:before { content: "\EA03" }

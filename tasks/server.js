@@ -38,6 +38,7 @@ module.exports = function() {
     gulp.watch([config.assets + 'app/**/*.js'], function() {
       runSequence('angular', 'angular', 'styleguide', reload);
     });
+    gulp.watch(['views/**/*.html'], reload);
     gulp.watch([
       config.assets + 'components/**/*.{html,hbs,md}',
       config.assets + 'templates/**/*.html',
