@@ -4,17 +4,17 @@ var User        = require('../models/user.model'),
     apiCtrl     = require('./api.ctrl.js');
 
 /*
- * Display movie page
+ * Display person page
  */
 exports.display = function(req, res) {
   var userId = req.body.userId,
       personId = req.params.id;
 
-  // Request main movie informations
+  // Request main person informations
   apiCtrl.get('/person/'+personId,
     function (main) {
 
-      // Request main movie informations
+      // Request main person informations
       apiCtrl.get('/person/'+personId+'/combined_credits',
         function (credits) {
 

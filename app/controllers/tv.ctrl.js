@@ -1,28 +1,67 @@
 'use strict';
 
 var User        = require('../models/user.model'),
-    api         = require('./../../config/api.js'),
-    request     = require('superagent');
+    apiCtrl     = require('./api.ctrl.js');
 
 /*
- * Display movie page
+ * Display tv page
  */
 exports.display = function(req, res) {
   var userId = req.body.userId,
       tvId = req.params.id;
 
-  request
-    .get(api.url+'/tv/'+tvId)
-    .query({
-      api_key: api.key,
-      language: api.lang
-    })
-    .set('Accept', 'application/json')
-    .end(function(err, resp){
-      if (err) {
-        req.flash('error', 'The tv show couldn\'t be found');
-      }
-      res.locals.tv = resp.body;
-      res.render('tv');
+  // Request main tv informations
+  apiCtrl.get('/tv/'+tvId,
+    function (main) {
+
+      // Request credits
+      apiCtrl.get('/tv/'+tvId+'/credits',
+        function (credits) {
+
+          // Request videos
+          apiCtrl.get('/tv/'+tvId+'/videos',
+            function (videos) {
+
+              // Request similars
+              apiCtrl.get('/tv/'+tvId+'/similar',
+                function (similar) {
+
+                  // Request imdb id
+                  apiCtrl.get('/tv/'+tvId+'/external_ids',
+                    function (ids) {
+                      res.locals.tv = main;
+                      res.locals.credits = credits;
+                      res.locals.videos = videos.results;
+                      res.locals.similar = similar.results;
+                      res.locals.ids = ids;
+                      res.render('tv');
+                    }, function (err) {
+                      res.locals.tv = main;
+                      res.locals.credits = credits;
+                      res.locals.videos = videos.results;
+                      res.locals.similar = similar.results;
+                      res.render('tv');
+                    });
+
+                }, function (err) {
+                  res.locals.tv = main;
+                  res.locals.credits = credits;
+                  res.locals.videos = videos.results;
+                  res.render('tv');
+                });
+
+            }, function (err) {
+              res.locals.tv = main;
+              res.locals.credits = credits;
+              res.render('tv');
+            });
+
+        }, function (err) {
+          res.locals.tv = main;
+          res.render('tv');
+        });
+
+    }, function (err) {
+      res.send('The tv show couldn\'t be found');
     });
 };
