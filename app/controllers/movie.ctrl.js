@@ -1,8 +1,7 @@
 'use strict';
 
 var User        = require('../models/user.model'),
-    api         = require('./../../config/api.js'),
-    request     = require('superagent');
+    apiCtrl     = require('./api.ctrl.js');
 
 /*
  * Display movie page
@@ -12,36 +11,21 @@ exports.display = function(req, res) {
       movieId = req.params.id;
 
   // Request main movie informations
-  request
-    .get(api.url+'/movie/'+movieId)
-    .query({
-      api_key: api.key,
-      language: api.lang
-    })
-    .set('Accept', 'application/json')
-    .end(function(err, main){
-      if (err) {
-        req.flash('error', 'The movie couldn\'t be found');
-      }
+  apiCtrl.get('/movie/'+movieId,
+    function (main) {
 
       // Request credits
-      request
-        .get(api.url+'/movie/'+movieId+'/credits')
-        .query({
-          api_key: api.key,
-          language: api.lang
-        })
-        .set('Accept', 'application/json')
-        .end(function(err, credits){
-          if (err) {
-            console.log('error');
-            res.locals.movie = main.body;
-            res.render('movie');
-          }
-          res.locals.movie = main.body;
-          res.locals.credits = credits.body;
+      apiCtrl.get('/movie/'+movieId+'/credits',
+        function (credits) {
+          res.locals.movie = main;
+          res.locals.credits = credits;
           res.render('movie');
-        }); // End credits
+        }, function (err) {
+          res.locals.movie = main;
+          res.render('movie');
+        });
 
-    }); // End main informations
+    }, function (err) {
+      res.send('The movie couldn\'t be found');
+    });
 };
