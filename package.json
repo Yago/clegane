@@ -87,7 +87,6 @@
     "slug": "^0.9.1",
     "superagent": "^1.3.0",
     "swig": "^1.4.2",
-    "themoviedb": "^0.1.0",
     "toolbox-utils": "0.0.1",
     "yargs": "^3.13.0"
   },

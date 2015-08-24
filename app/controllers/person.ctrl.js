@@ -1,8 +1,8 @@
 'use strict';
 
-var User        = require('../models/user.model'),
-    api         = require('./../../config/api.js'),
-    request     = require('superagent');
+var User     = require('../models/user.model'),
+    api      = require('./../../config/api.js'),
+    request  = require('superagent');
 
 /*
  * Display movie page
@@ -12,7 +12,7 @@ exports.display = function(req, res) {
       movieId = req.params.id;
 
   request
-    .get(api.url+'/movie/'+movieId)
+    .get(api.url+'/person/'+movieId)
     .query({
       api_key: api.key,
       language: api.lang
@@ -20,9 +20,9 @@ exports.display = function(req, res) {
     .set('Accept', 'application/json')
     .end(function(err, resp){
       if (err) {
-        req.flash('error', 'The movie couldn\'t be found');
+        req.flash('error', 'The person couldn\'t be found');
       }
-      res.locals.movie = resp.body;
-      res.render('movie');
+      res.locals.person = resp.body;
+      res.render('person');
     });
 };

@@ -9,10 +9,10 @@ var User        = require('../models/user.model'),
  */
 exports.display = function(req, res) {
   var userId = req.body.userId,
-      movieId = req.params.id;
+      tvId = req.params.id;
 
   request
-    .get(api.url+'/movie/'+movieId)
+    .get(api.url+'/tv/'+tvId)
     .query({
       api_key: api.key,
       language: api.lang
@@ -20,9 +20,9 @@ exports.display = function(req, res) {
     .set('Accept', 'application/json')
     .end(function(err, resp){
       if (err) {
-        req.flash('error', 'The movie couldn\'t be found');
+        req.flash('error', 'The tv show couldn\'t be found');
       }
-      res.locals.movie = resp.body;
-      res.render('movie');
+      res.locals.tv = resp.body;
+      res.render('tv');
     });
 };
