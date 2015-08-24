@@ -18,6 +18,13 @@
           <li><b>Release</b> :<br> {{movie.release_date}}</li>
           <li><b>Countries</b> :<br> {% for country in movie.production_countries %}{{country.name}}{% if not loop.last %}, {% endif %}{% endfor %}</li>
         </ul>
+        <br>
+
+        {% if keywords %}
+          {% for keyword in keywords %}
+            <a href="/tags/{{keyword.id}}">{{keyword.name}}</a>{% if not loop.last %},{% endif %}
+          {% endfor %}
+        {% endif %}
       </div>
       <div class="col-sm-8">
 
@@ -40,6 +47,18 @@
         <br><br>
 
         <p>{{movie.overview}}</p>
+
+        <br>
+        {% if videos %}
+          {% for video in videos %}
+            {% if video.site === 'YouTube' && loop.key === 0 %}
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{video.key}}" frameborder="0" allowfullscreen></iframe>
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+
       </div>
     </div>
 
@@ -65,6 +84,22 @@
     </div>
 
     <hr>
+
+    <h2>Similar</h2>
+    <div class="row">
+    {% if similar %}
+      {% for movie in similar %}
+        {% if loop.key <= 3 %}
+          <div class="col-sm-3">
+            <a href="/movie/{{movie.id}}">
+              <img src="{{api.images}}{{movie.poster_path}}" class="img-responsive">
+              <h3>{{movie.title}}</h3>
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    </div>
 
   </div>
 {% endblock %}
