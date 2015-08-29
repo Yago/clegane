@@ -4,8 +4,10 @@
 
 {% block content %}
 
+  <h1>{{query}} - {{data.total_results}} Results</h1>
+
   <div class="row">
-    {% for result in results %}
+    {% for result in data.results %}
       <div class="col-sm-3">
         {% if result.media_type === 'movie' %}
           {{ thumbnail.movie(result) }}
@@ -15,5 +17,23 @@
       </div>
     {% endfor %}
   </div>
+
+  <nav class="text-center">
+    <ul class="pagination">
+      <li{% if data.page === 1 %} class="disabled"{% endif %}>
+        <a href="/search/{{query}}/{{data.page|previous}}" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      {% for i in data.total_pages|numberArray %}
+        <li{% if data.page === i %} class="active"{% endif %}><a href="/search/{{query}}/{{i}}">{{i}}</a></li>
+      {% endfor %}
+      <li{% if data.page === data.total_pages %} class="disabled"{% endif %}>
+        <a href="/search/{{query}}/{{data.page|next(data.total_pages)}}" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
 
 {% endblock %}

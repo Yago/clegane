@@ -13,9 +13,10 @@ exports.results = function(req, res) {
 
   // Request main movie informations
   apiCtrl.search('multi', query, page,
-    function (main) {
+    function (data) {
 
-      res.locals.results = main.results;
+      res.locals.data = data;
+      res.locals.query = query;
       res.render('results');
 
     }, function (err) {

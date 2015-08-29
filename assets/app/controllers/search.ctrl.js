@@ -42,14 +42,7 @@ app.controller('searchCtrl', function($http) {
   };
 
   that.submit = function () {
-    return $http.get('http://api.themoviedb.org/3/search/multi', {
-      params: {
-        api_key: 'API_KEY_HERE',
-        query: this.keywords
-      }
-    }).then(function(res){
-      that.results = res.data.results;
-    });
+    window.location.replace('/search/' + this.keywords+ '/1');
   };
 
 
