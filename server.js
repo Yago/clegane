@@ -38,6 +38,7 @@ swig.setFilter('recent', filters.recent);
 swig.setFilter('previous', filters.previous);
 swig.setFilter('next', filters.next);
 swig.setFilter('numberArray', filters.numberArray);
+swig.setFilter('paginationArray', filters.paginationArray);
 
 // disable cache
 if (config.debug) {

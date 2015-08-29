@@ -36,7 +36,7 @@
         <p class="lead">“{{movie.tagline}}”</p>
 
         {% for genre in movie.genres %}
-          <a href="/genres/{{genre.id}}">
+          <a href="/genres/{{genre.id}}/1">
             {{genre.name}}
           </a>
           {% if not loop.last %} | {% endif %}

@@ -42,3 +42,16 @@ exports.numberArray = function (number) {
   }
   return array;
 };
+
+/*
+ * Return an array from a number for pagination
+ */
+exports.paginationArray = function (total, current) {
+  var array = [];
+  for (var i = current - 5; i <= current + 5; i++) {
+    if (i >= 1 && i <= total) {
+      array.push(i);
+    }
+  }
+  return array;
+};
