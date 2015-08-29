@@ -7,15 +7,16 @@ app.controller('searchCtrl', function($http) {
 
   that.results = [];
 
-  that.formAction = function (keywords) {
-    return '/search/' + keywords;
-  };
-
   that.onSelect = function ($item, $model, $label) {
-    window.location.replace('/' + $item.media_type + '/' + $item.id);
+    if ($item.id === 'all') {
+      window.location.replace('/search/' + that.keywords);
+    } else {
+      window.location.replace('/' + $item.media_type + '/' + $item.id);
+    }
   };
 
   that.selected = undefined;
+
   that.getResults = function(value) {
     return $http.get('http://api.themoviedb.org/3/search/multi', {
       params: {
@@ -23,7 +24,20 @@ app.controller('searchCtrl', function($http) {
         query: value
       }
     }).then(function(res){
-      return res.data.results;
+      var results = [];
+      if (res.data.results.length > 0) {
+        results = [{
+          "id": "all",
+          "title": "See all results",
+          "display": that.keywords
+        }];
+      }
+      res.data.results.forEach(function(result){
+        if (result.original_title) {result.display = result.original_title;}
+        if (result.name) {result.display = result.name;}
+        results.push(result);
+      });
+      return results;
     });
   };
 
@@ -35,9 +49,6 @@ app.controller('searchCtrl', function($http) {
       }
     }).then(function(res){
       that.results = res.data.results;
-      // res.data.results.forEach(function(result){
-      //   that.results += '<li>'+result.title+'</li>';
-      // });
     });
   };
 

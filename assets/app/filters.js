@@ -15,3 +15,11 @@ app.filter('loopbreak', function() {
     }
   };
 });
+
+app.filter('typeaheadid', function() {
+  return function(input) {
+    var inputs = input.split('-'),
+        id = inputs[inputs.length-1];
+    return id;
+  };
+});

@@ -1,29 +1,13 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<div ng-app="CleganeApp" ng-cloak>
+<div>
   <h1 class="text-center">{{ user.username }}'s dashboard</h1>
 
   <br><br><br>
 
 
-  <div ng-controller="searchCtrl as search">
-    <div class="row">
-      <div class="col-sm-8 col-sm-offset-2">
-        {% include "./components/search.html" %}
-      </div>
-    </div>
-    <br><br>
-    <div class="col-sm-10 col-sm-offset-1">
-      {% include "./components/results.html" %}
-    </div>
-  </div>
+
 
 </div>
-{% endblock %}
-
-{% block scripts %}
-  {% parent %}
-  <script src="/js/angular-vendors.min.js"></script>
-  <script src="/js/angular-app.js"></script>
 {% endblock %}

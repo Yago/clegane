@@ -1,30 +1,29 @@
-<form ng-submit="search.submit()">
+<form ng-submit="search.submit()" class="navbar-form navbar-left">
   <div class="form-group">
-    <div class="input-group input-group-lg">
+    <div class="input-group">
 
       <input
         type="text"
         name="keywords"
         autocomplete="off"
         ng-model="search.keywords"
-        placeholder="Search a Movie, a TV Show or a Person"
-        typeahead="data as data.original_title for data in search.getResults($viewValue)"
-        typeahead-loading="loadingLocations"
+        placeholder="Search something"
+        typeahead="data as data.display for data in search.getResults($viewValue)"
+        typeahead-loading="loadingResults"
         typeahead-no-results="noResults"
         typeahead-template-url="result-template.html"
         typeahead-on-select="search.onSelect($item, $model, $label)"
-        typeahead-wait-ms="500"
+        typeahead-wait-ms="100"
         class="form-control"
         >
 
       <span class="input-group-btn">
-        <input type="submit" value="Search" class="btn btn-lg btn-primary"/>
+        <button type="submit" class="btn btn-primary" ng-class="noResults ? 'btn-danger' : 'btn-success'">
+          <i ng-hide="loadingResults || noResults" class="glyphicon glyphicon-search"></i>
+          <i ng-show="loadingResults" class="glyphicon glyphicon-refresh"></i>
+          <i ng-show="noResults" class="glyphicon glyphicon-remove"></i>
+        </button>
       </span>
-    </div>
-
-    <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
-    <div ng-show="noResults">
-      <i class="glyphicon glyphicon-remove"></i> No Results Found
     </div>
   </div>
 </form>
@@ -43,11 +42,11 @@
     <span ng-if="match.model.first_air_date">
       - [[match.model.first_air_date|year]]
     </span>
-    <span ng-if="match.model.original_title">
+    <!-- <span ng-if="match.model.original_title">
       ([[match.model.original_title]])
     </span>
     <span ng-if="match.model.original_name">
       ([[match.model.original_name]])
-    </span>
+    </span> -->
   </a>
 </script>
