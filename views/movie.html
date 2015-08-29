@@ -23,7 +23,7 @@
 
         {% if keywords %}
           {% for keyword in keywords %}
-            <a href="/tags/{{keyword.id}}">{{keyword.name}}</a>{% if not loop.last %},{% endif %}
+            <a href="/tag/{{keyword.id}}/1">{{keyword.name}}</a>{% if not loop.last %},{% endif %}
           {% endfor %}
         {% endif %}
       </div>
@@ -36,7 +36,7 @@
         <p class="lead">“{{movie.tagline}}”</p>
 
         {% for genre in movie.genres %}
-          <a href="/genres/{{genre.id}}/1">
+          <a href="/genre/{{genre.id}}/1">
             {{genre.name}}
           </a>
           {% if not loop.last %} | {% endif %}
