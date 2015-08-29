@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% import 'components/thumbnails.html' as thumbnail %}
+
+{% block content %}
+
+  <div class="row">
+    {% for result in results %}
+      <div class="col-sm-3">
+        {% if result.media_type === 'movie' %}
+          {{ thumbnail.movie(result) }}
+        {% else %}
+          {{ thumbnail.tv(result) }}
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+
+{% endblock %}

@@ -9,7 +9,7 @@ app.controller('searchCtrl', function($http) {
 
   that.onSelect = function ($item, $model, $label) {
     if ($item.id === 'all') {
-      window.location.replace('/search/' + that.keywords);
+      window.location.replace('/search/' + $label + '/1');
     } else {
       window.location.replace('/' + $item.media_type + '/' + $item.id);
     }
