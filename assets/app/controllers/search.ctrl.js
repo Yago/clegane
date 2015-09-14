@@ -28,7 +28,7 @@ app.controller('searchCtrl', function($http) {
       if (res.data.results.length > 0) {
         results = [{
           "id": "all",
-          "title": "See all results",
+          "title": "SEE ALL RESULTS",
           "display": that.keywords
         }];
       }

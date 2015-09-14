@@ -5,8 +5,12 @@
 @import 'bootstrap';
 
 // atoms:
+@import 'atoms/typography';
+@import 'atoms/inputs';
+@import 'atoms/buttons';
 
 // molecules:
+@import 'molecules/search-form';
 
 // organisms:
 @import 'organisms/sidebar';

@@ -1,4 +1,4 @@
-<form ng-submit="search.submit()" class="navbar-form navbar-left">
+<form ng-submit="search.submit()" class="search-form">
   <div class="form-group">
     <div class="input-group">
 
@@ -7,7 +7,7 @@
         name="keywords"
         autocomplete="off"
         ng-model="search.keywords"
-        placeholder="Search something"
+        placeholder="Movie, TV Show, People,..."
         typeahead="data as data.display for data in search.getResults($viewValue)"
         typeahead-loading="loadingResults"
         typeahead-no-results="noResults"
@@ -18,7 +18,7 @@
         >
 
       <span class="input-group-btn">
-        <button type="submit" class="btn btn-success" ng-class="noResults ? 'btn-danger' : 'btn-success'">
+        <button type="submit" class="btn btn-primary" ng-class="noResults ? 'btn-danger' : 'btn-primary'">
           <i ng-hide="loadingResults || noResults" class="glyphicon glyphicon-search"></i>
           <i ng-show="loadingResults" class="glyphicon glyphicon-refresh"></i>
           <i ng-show="noResults" class="glyphicon glyphicon-remove"></i>
@@ -37,10 +37,10 @@
       [[match.model.name]]
     </strong>
     <span ng-if="match.model.release_date">
-      - [[match.model.release_date|year]]
+     <b class="text-primary"> - </b>[[match.model.release_date|year]]
     </span>
     <span ng-if="match.model.first_air_date">
-      - [[match.model.first_air_date|year]]
+     <b class="text-primary"> - </b>[[match.model.first_air_date|year]]
     </span>
     <!-- <span ng-if="match.model.original_title">
       ([[match.model.original_title]])

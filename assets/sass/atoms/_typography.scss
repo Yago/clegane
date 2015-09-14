@@ -1,0 +1,15 @@
+body {
+  font-weight: 300;
+}
+
+h5, h6 {
+  font-weight: 300;
+}
+
+a {
+  text-decoration: none;
+  transition: color 0.3s;
+  &:hover {
+    text-decoration: none;
+  }
+}

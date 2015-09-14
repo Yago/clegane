@@ -1,0 +1,22 @@
+.form-control {
+  box-shadow: none;
+  border: none;
+}
+
+::-webkit-input-placeholder {
+  color: $silver-chalice;
+  font-style: italic;
+}
+:-moz-placeholder {
+  color: $silver-chalice;
+  font-style: italic;
+}
+::-moz-placeholder {
+  color: $silver-chalice;
+  font-style: italic;
+}
+:-ms-input-placeholder {
+  color: $silver-chalice;
+  font-style: italic;
+}
+
