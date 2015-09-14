@@ -1,0 +1,13 @@
+.main-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.content-wrapper {
+  background: $cod-gray;
+  flex-grow: 1;
+  //width: 80%;
+  float: right;
+  box-sizing: border-box;
+  min-height: 100vh;
+}

@@ -1,0 +1,16 @@
+.sidebar {
+  background: $gallery;
+  //width: 20%;
+  float: left;
+  box-sizing: border-box;
+  width: 250px;
+  min-height: 100vh;
+}
+
+header {
+  background: $supernova;
+  height: 100px;
+  box-sizing: border-box;
+  line-height: 117px;
+  a, a:hover, a:focus, a:active {color: $cod-gray;}
+}
