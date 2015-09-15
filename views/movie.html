@@ -1,37 +1,48 @@
 {% extends 'layout.html' %}
 {% import 'components/molecules/thumbnails.html' as thumbnail %}
+{% import 'components/atoms/pictures.html' as picture %}
 
 {% block wrapper-class %}{% endblock %}
 
 {% block content %}
-  <div style="max-height:400px;overflow:hidden;">
-    <img src="{{api.images}}{{movie.backdrop_path}}" class="img-responsive">
-  </div>
-  <br>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-2 col-sm-offset-1">
+  <div class="cover">
+    {% set cover = api.images + movie.backdrop_path %}
+    {{picture.default(cover, 5, 2.38, 'center', 'img-responsive', movie.title)}}
+    <div class="cover-content">
+      <div class="content-container">
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="poster-wrapper">
+              {% set poster = api.images + movie.poster_path %}
+              {{picture.default(poster, 1, 0.66, 'none', 'img-responsive', movie.title)}}
 
-        <img src="{{api.images}}{{movie.poster_path}}" class="img-responsive">
-        <br>
+              <ul class="list-unstyled">
+                <li><b>Release</b> :<br> {{movie.release_date}}</li>
+                <li><b>Countries</b> :<br> {% for country in movie.production_countries %}{{country.name}}{% if not loop.last %}, {% endif %}{% endfor %}</li>
+              </ul>
+              <br>
 
-        <ul class="list-unstyled">
-          <li><b>Release</b> :<br> {{movie.release_date}}</li>
-          <li><b>Countries</b> :<br> {% for country in movie.production_countries %}{{country.name}}{% if not loop.last %}, {% endif %}{% endfor %}</li>
-        </ul>
-        <br>
+              {% if keywords %}
+                {% for keyword in keywords %}
+                  <a href="/tag/{{keyword.id}}/1">{{keyword.name}}</a>{% if not loop.last %},{% endif %}
+                {% endfor %}
+              {% endif %}
 
-        {% if keywords %}
-          {% for keyword in keywords %}
-            <a href="/tag/{{keyword.id}}/1">{{keyword.name}}</a>{% if not loop.last %},{% endif %}
-          {% endfor %}
-        {% endif %}
+            </div>
+          </div>
+          <div class="col-sm-9">
+            <h1>
+              {{movie.title}} <small class="text-muted">({{movie.original_title}})</small>
+            </h1>
+          </div>
+        </div>
       </div>
-      <div class="col-sm-8">
+    </div>
+  </div>
 
-        <h1>
-          {{movie.title}} <small class="text-muted">({{movie.original_title}})</small>
-        </h1>
+  <div class="content-container">
+    <div class="row">
+      <div class="col-sm-9 col-sm-offset-3">
 
         <p class="lead">“{{movie.tagline}}”</p>
 
