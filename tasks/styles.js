@@ -18,7 +18,7 @@ module.exports = function() {
     if (argv.production) { console.log('[styles] Production mode' ); }
     else { console.log('[styles] Dev mode'); }
 
-    gulp.src([config.assets + 'sass/' + iconFontName + '.scss', config.assets + 'sass/main.scss'])
+    return gulp.src([config.assets + 'sass/' + iconFontName + '.scss', config.assets + 'sass/main.scss'])
       .pipe($.if(!argv.production, $.sourcemaps.init()))
       .pipe($.sass({
         outputStyle: 'nested', // libsass doesn't support expanded yet
