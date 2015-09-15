@@ -1,0 +1,30 @@
+{% macro default(original, size, ratio, classes) %}
+<picture>
+  {%if size >= '5'%}
+  <source
+    media="(min-width: 1200px)"
+    srcset="{{ratio|firesize('1920')}}/{{original}} 1x, {{ratio|firesize('2880')}}/{{original}} 2x">
+  {% endif %}
+  {%if size >= '4'%}
+  <source
+    media="(min-width: 980px)"
+    srcset="{{ratio|firesize('1200')}}/{{original}} 1x, {{ratio|firesize('2400')}}/{{original}} 2x">
+  {% endif %}
+  {%if size >= '3'%}
+  <source
+    media="(min-width: 770px)"
+    srcset="{{ratio|firesize('980')}}/{{original}} 1x, {{ratio|firesize('1960')}}/{{original}} 2x">
+  {% endif %}
+  {%if size >= '2'%}
+  <source
+    media="(min-width: 401px)"
+    srcset="{{ratio|firesize('770')}}/{{original}} 1x, {{ratio|firesize('1440')}}/{{original}} 2x">
+  {% endif %}
+  {%if size >= '1'%}
+  <source
+     media="(max-width: 400px)"
+     srcset="{{ratio|firesize('400')}}/{{original}} 1x, {{ratio|firesize('800')}}/{{original}} 2x">
+  {% endif %}
+  <img src="{%if size >= '4'%}{{ratio|firesize('1920')}}/{{original}}{% else %}{{ratio|firesize('800')}}/{{original}}{% endif %}" alt="Image description" class="{{classes}}">
+</picture>
+{% endmacro %}

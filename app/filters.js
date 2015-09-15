@@ -1,5 +1,7 @@
 'use strict';
 
+var config = require('./../config/config.js');
+
 /*
  * Return player's rank based on player.id and user object
  */
@@ -55,3 +57,13 @@ exports.paginationArray = function (total, current) {
   }
   return array;
 };
+
+
+/*
+ * Return Firesize url
+ */
+exports.firesize = function (ratio, width) {
+  var height = Math.round(parseFloat(width)/parseFloat(ratio));
+  return 'https://'+config.firesize+'.firesize.com/'+width + 'x' + height+'/g_center';
+};
+
