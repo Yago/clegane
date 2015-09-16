@@ -14,11 +14,11 @@
 
 {% macro cast(content) %}
 {% if content.profile_path %}
-<a href="/person/{{content.id}}">
+<a href="/people/{{content.id}}">
   <img src="{{api.images}}{{content.profile_path}}" class="img-responsive">
 </a>
 {% endif %}
-<a href="/person/{{content.id}}">
+<a href="/people/{{content.id}}">
   <h3>{{content.name}}</h3>
 </a>
 <b>{{content.character}}</b>

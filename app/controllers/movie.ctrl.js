@@ -5,6 +5,7 @@ var User        = require('../models/user.model'),
 
 /*
  * Display movie page
+ * Get data set one by one and if one fail, render the page with the well retrieved data.
  */
 exports.display = function(req, res) {
   var userId = req.body.userId,
@@ -26,7 +27,7 @@ exports.display = function(req, res) {
               apiCtrl.get('/movie/'+movieId+'/videos',
                 function (videos) {
 
-                  // Request videos
+                  // Request keywords
                   apiCtrl.get('/movie/'+movieId+'/keywords',
                     function (keywords) {
                       res.locals.movie = main;

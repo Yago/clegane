@@ -26,7 +26,7 @@ exports.get = function (url, done, error) {
 
 /*
  * Used for retrieve data from tmdb api with page
- * apiCtrl.get(url,page,done(data),error(err));
+ * apiCtrl.getpage(url,page,done(data),error(err));
  */
 exports.getpage = function (url, page, done, error) {
   request
