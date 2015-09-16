@@ -22,6 +22,9 @@
   {% endif %}
   {%if size >= '1'%}
   <source
+     srcset="{{ratio|firesize('400')}}{{gravity}}/{{original}} 1x, {{ratio|firesize('800')}}{{gravity}}/{{original}} 2x">
+  {% else %}
+  <source
      media="(max-width: 400px)"
      srcset="{{ratio|firesize('400')}}{{gravity}}/{{original}} 1x, {{ratio|firesize('800')}}{{gravity}}/{{original}} 2x">
   {% endif %}
