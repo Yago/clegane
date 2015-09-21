@@ -5,6 +5,8 @@ var User        = require('../models/user.model'),
 
 /*
  * Display tv page
+ * Get data set one by one and if one fail, render the page with the well retrieved data.
+ * Season and Episodes data will be get by AngularJS in front
  */
 exports.display = function(req, res) {
   var userId = req.body.userId,

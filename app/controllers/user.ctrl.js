@@ -1,10 +1,10 @@
 'use strict';
 
-var User 				= require('../models/user.model'),
+var User        = require('../models/user.model'),
     crypto      = require('crypto'),
     algorithm   = 'aes-256-ctr';
 
-var config 				 = require('../../config/config.js');
+var config      = require('../../config/config.js');
 
 var createHash = function(password){
   var cipher = crypto.createCipher(algorithm, config.secret),
