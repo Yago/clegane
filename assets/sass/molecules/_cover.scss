@@ -15,6 +15,7 @@
   }
   h1 {margin-bottom: 0.4em;}
   h3 {color: $mercury;}
+  h1, h3 {margin-left: $grid-gutter-width*1.5;}
   h1 small {
     font-size: 1em;
     font-weight: 300;
@@ -30,7 +31,7 @@
   padding: 0 $grid-gutter-width/2;
   color: $white;
   ul {margin-top: $grid-gutter-width;}
-  li {padding: $grid-gutter-width/4 0;}
+  li {padding: $grid-gutter-width 0;}
   img {box-shadow: 4px 8px 11px rgba(0, 0, 0, 0.5);}
   a {
     color: $supernova;

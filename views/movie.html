@@ -100,14 +100,15 @@
       </div>
     </div>
 
-    <hr>
+    <div class="spacer"></div>
 
     {% if similar.length %}
-    <h2>Similar</h2>
+    <h2 class="text-inverse">Similar movies</h2>
+    <div class="spacer spacer-xs"></div>
     <div class="row">
       {% for movie in similar %}
-        {% if loop.key <= 3 %}
-          <div class="col-sm-3">
+        {% if loop.key <= 4 %}
+          <div class="col-sm-5">
             {{ thumbnail.movie(movie) }}
           </div>
         {% endif %}

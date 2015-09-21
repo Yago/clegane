@@ -2,8 +2,8 @@
 
 {% macro movie(content) %}
 <a href="/movie/{{content.id}}">
-  <img src="{{api.images}}{{content.poster_path}}" class="img-responsive">
-  <h3>{{content.title}}</h3>
+  {% set profile = api.images + content.poster_path %}
+  {{picture.default(profile, 1, 0.66, 'none', 'img-responsive', content.title)}}
 </a>
 {% endmacro %}
 
