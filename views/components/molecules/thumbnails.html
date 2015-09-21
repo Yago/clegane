@@ -2,8 +2,7 @@
 
 {% macro movie(content) %}
 <a href="/movie/{{content.id}}">
-  {% set profile = api.images + content.poster_path %}
-  {{picture.default(profile, 1, 0.66, 'none', 'img-responsive', content.title)}}
+  {{picture.default(content.poster_path, 1, 0.66, 'none', 'img-responsive', content.title)}}
 </a>
 {% endmacro %}
 
@@ -18,8 +17,7 @@
 <div class="cast-thumb">
   {% if content.profile_path %}
   <a href="/people/{{content.id}}">
-    {% set profile = api.images + content.profile_path %}
-    {{picture.default(profile, 1, 0.66, 'none', 'img-responsive', content.name)}}
+    {{picture.default(content.profile_path, 1, 0.66, 'none', 'img-responsive', content.name)}}
   </a>
   {% endif %}
   <a href="/people/{{content.id}}">

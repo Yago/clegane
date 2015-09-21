@@ -64,6 +64,7 @@ exports.paginationArray = function (total, current) {
  */
 exports.firesize = function (ratio, width) {
   var height = Math.round(parseFloat(width)/parseFloat(ratio));
-  return 'https://'+config.firesize+'.firesize.com/'+width+'x'+height+'/g_';
+  //return 'https://'+config.firesize+'.firesize.com/'+width+'x'+height+'/g_';
+  return 'https://firesize.com/'+width+'x'+height+'/g_';
 };
 

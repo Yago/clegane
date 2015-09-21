@@ -1,37 +1,47 @@
 {% extends 'layout.html' %}
+{% import 'components/atoms/pictures.html' as picture %}
 {% import 'components/molecules/thumbnails.html' as thumbnail %}
 
 {% block wrapper-class %}{% endblock %}
 
 {% block content %}
-  <div style="max-height:400px;overflow:hidden;">
-    {% if images[0] %}
-    <img src="{{api.images}}{{images[0].file_path}}" class="img-responsive">
-    {% endif %}
-  </div>
-  <br>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-2 col-sm-offset-1">
-
-        <img src="{{api.images}}{{people.profile_path}}" class="img-responsive">
-
+  {% if images[0] %}
+    <div class="cover">
+      {{picture.default(images[0].file_path, 5, 2.38, 'center', 'img-responsive', people.name)}}
+      <div class="cover-avatar">
+        {{picture.default(people.profile_path, 1, 1, 'center', 'img-responsive img-circle', people.name)}}
       </div>
-      <div class="col-sm-8">
+    </div>
+  {% endif %}
+  <div class="content-container content-container-people">
+    <div class="whity">
+      {% if images[0] %}
+      <div class="spacer"></div>
+      {% else %}
+        {% if people.profile_path %}
+          <div class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+              <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                  {{picture.default(people.profile_path, 1, 1, 'center', 'img-responsive img-circle', people.name)}}
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endif %}
 
-        <h1>
-          {{people.name}}
-        </h1>
-
-        <p class="lead">{{people.birthday}}</p>
-
-        <a href="http://www.imdb.com/name/{{people.imdb_id}}">IMDB</a>
-        <br><br>
-
-
-        <p>{{people.biography}}</p>
-
+      <div class="text-center">
+        <h1>{{people.name}}</h1>
+        <p>{{people.birthday}}{% if people.imdb_id %} - <a href="http://www.imdb.com/name/{{people.imdb_id}}">IMDB</a>{% endif %}</p>
       </div>
+      <div class="spacer spacer-sm"></div>
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+          <p>{{people.biography}}</p>
+        </div>
+      </div>
+
     </div>
 
     <hr>

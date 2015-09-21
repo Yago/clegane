@@ -23,6 +23,16 @@
   }
 }
 
+.cover-avatar {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  left: 50%;
+  margin-left: -75px;
+  bottom: -75px;
+  z-index: 200;
+}
+
 .poster-wrapper {
   position: absolute;
   top: 0;

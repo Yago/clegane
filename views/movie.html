@@ -7,15 +7,13 @@
 
 {% block content %}
   <div class="cover">
-    {% set cover = api.images + movie.backdrop_path %}
-    {{picture.default(cover, 5, 2.38, 'center', 'img-responsive', movie.title)}}
+    {{picture.default(movie.backdrop_path, 5, 2.38, 'center', 'img-responsive', movie.title)}}
     <div class="cover-content">
       <div class="content-container">
         <div class="row">
           <div class="col-sm-3">
             <div class="poster-wrapper">
-              {% set poster = api.images + movie.poster_path %}
-              {{picture.default(poster, 1, 0.66, 'none', 'img-responsive', movie.title)}}
+              {{picture.default(movie.poster_path, 1, 0.66, 'none', 'img-responsive', movie.title)}}
 
               <ul class="list-unstyled">
                 {% if movie.release_date %}
