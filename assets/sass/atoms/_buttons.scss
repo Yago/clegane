@@ -2,3 +2,21 @@
   border: none;
   transition: background 0.3s ease-out;
 }
+
+.btn-link {
+  font-weight: 300;
+  text-decoration: none;
+  padding: 0;
+  &:hover {
+    color: $link-hover-color;
+    text-decoration: none;
+  }
+  &:active, &:focus {
+    outline: none !important;
+    text-decoration: none;
+  }
+  &[aria-expanded="true"] .caret {
+    border-top: none;
+    border-bottom: 4px solid $electric-violet;
+  }
+}

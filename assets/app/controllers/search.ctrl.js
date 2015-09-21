@@ -2,7 +2,7 @@
 
 /* global app, angular */
 
-app.controller('searchCtrl', function($http) {
+app.controller('SearchCtrl', function($http) {
   var that = this;
 
   that.results = [];

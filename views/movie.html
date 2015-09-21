@@ -1,6 +1,7 @@
 {% extends 'layout.html' %}
-{% import 'components/molecules/thumbnails.html' as thumbnail %}
 {% import 'components/atoms/pictures.html' as picture %}
+{% import 'components/molecules/thumbnails.html' as thumbnail %}
+{% import 'components/organisms/cast.html' as cast %}
 
 {% block wrapper-class %}{% endblock %}
 
@@ -81,6 +82,7 @@
 
           <p>{{movie.overview}}</p>
         </div>
+
         {% if videos %}
           {% for video in videos %}
             {% if video.site === 'YouTube' && loop.key === 0 %}
@@ -90,19 +92,11 @@
             {% endif %}
           {% endfor %}
         {% endif %}
+
         <div class="whity">
           <h2>Cast</h2>
-          <div class="row">
-            {% for cast in credits.cast %}
-              {% if loop.key <= 3 %}
-              <div class="col-sm-3">
-                {{ thumbnail.cast(cast) }}
-              </div>
-              {% endif %}
-            {% endfor %}
-          </div>
+          {{cast.default(credits)}}
         </div>
-
       </div>
     </div>
 
