@@ -11,7 +11,11 @@ app.controller('searchCtrl', function($http) {
     if ($item.id === 'all') {
       window.location.replace('/search/' + $label + '/1');
     } else {
-      window.location.replace('/' + $item.media_type + '/' + $item.id);
+      if ($item.media_type === 'person') {
+        window.location.replace('/people/' + $item.id);
+      } else {
+        window.location.replace('/' + $item.media_type + '/' + $item.id);
+      }
     }
   };
 
