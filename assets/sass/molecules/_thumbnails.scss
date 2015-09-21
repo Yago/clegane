@@ -3,3 +3,27 @@
   h4 {margin-bottom: 0;}
   a {color: $cod-gray;}
 }
+
+.thumb {
+  position: relative;
+  display: block;
+  img {transition: filter 0.3s ease-out}
+  &:hover .thumb-info {opacity: 1;}
+  &:hover img {filter: grayscale(100%);}
+}
+
+.thumb-info {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: $white;
+  padding: $grid-gutter-width*2;
+  transition: opacity 0.3s ease-out;
+  h1, h2, h3, h4, h5 {
+    margin: 0.2em 0;
+  }
+}

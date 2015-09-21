@@ -42,24 +42,67 @@
         </div>
       </div>
 
-    </div>
-
-    <hr>
-
-    <h2>Cast</h2>
-    <div class="row">
-      {% for movie in credits.cast %}
-        {% if loop.key <= 3 %}
-        <div class="col-sm-3">
-          {% if movie.media_type === 'movie' %}
-            {{ thumbnail.movie(movie) }}
-          {% else %}
-            {{ thumbnail.tv(movie) }}
+      <h2>Known For</h2>
+      <div class="row">
+        {% for media in credits.cast %}
+          {% if loop.key <= 4 %}
+            <div class="col-sm-5">
+              {% if media.media_type === 'movie' %}
+                {{ thumbnail.movie(media) }}
+              {% else %}
+                {{ thumbnail.tv(media) }}
+              {% endif %}
+            </div>
           {% endif %}
-        </div>
-        {% endif %}
-      {% endfor %}
-    </div>
+        {% endfor %}
+      </div>
 
+      <div class="cast-wrapper">
+        {% if credits.cast %}
+          <h3>Actor</h3>
+          <table class="table table-striped table-hover">
+            <tbody>
+              {% for media in credits.cast|recent %}
+                {% if loop.key >= 5 %}
+                  <tr>
+                    <td>{% if media.year === 0 %}-{% else %}{{media.year}}{% endif %}</td>
+                    <td><a href="/{{media.media_type}}/{{media.id}}">{{media.heading}}</a> <span class="text-muted">({{media.media_type}})</span></td>
+                    <td>
+                      {% if media.character %}
+                        {{media.character}}
+                      {% else %}
+                        <em>unknown</em>
+                      {% endif %}
+                    </td>
+                  </tr>
+                {% endif %}
+              {% endfor %}
+            </tbody>
+          </table>
+        {% endif %}
+
+        {% if credits.crew.length > 0 %}
+          <h3>Crew</h3>
+          <table class="table table-striped table-hover">
+            <tbody>
+              {% for media in credits.crew|recent %}
+                <tr>
+                  <td>{% if media.year === 0 %}-{% else %}{{media.year}}{% endif %}</td>
+                  <td><a href="/{{media.media_type}}/{{media.id}}">{{media.heading}}</a> <span class="text-muted">({{media.media_type}})</span></td>
+                  <td>
+                    {% if media.job %}
+                      {{media.job}}
+                    {% else %}
+                      <em>unknown</em>
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% endif %}
+      </div>
+
+    </div>
   </div>
 {% endblock %}

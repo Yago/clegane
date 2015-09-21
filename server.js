@@ -40,6 +40,7 @@ swig.setFilter('next', filters.next);
 swig.setFilter('numberArray', filters.numberArray);
 swig.setFilter('paginationArray', filters.paginationArray);
 swig.setFilter('firesize', filters.firesize);
+swig.setFilter('year', filters.year);
 
 // disable cache
 if (config.debug) {

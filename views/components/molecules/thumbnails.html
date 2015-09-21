@@ -1,15 +1,22 @@
 {% import '../atoms/pictures.html' as picture %}
 
 {% macro movie(content) %}
-<a href="/movie/{{content.id}}">
+<a class="thumb" href="/movie/{{content.id}}">
   {{picture.default(content.poster_path, 1, 0.66, 'none', 'img-responsive', content.title)}}
+  <span class="thumb-info">
+    <h5>{{content.media_type}}</h5>
+    <h3>{{content.title}}</h3>
+  </span>
 </a>
 {% endmacro %}
 
 {% macro tv(content) %}
-<a href="/tv/{{content.id}}">
-  <img src="{{api.images}}{{content.poster_path}}" class="img-responsive">
-  <h3>{{content.name}}</h3>
+<a class="thumb" href="/tv/{{content.id}}">
+  {{picture.default(content.poster_path, 1, 0.66, 'none', 'img-responsive', content.name)}}
+  <span class="thumb-info">
+    <h5>{{content.media_type}}</h5>
+    <h3>{{content.name}}</h3>
+  </span>
 </a>
 {% endmacro %}
 
