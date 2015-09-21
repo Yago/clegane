@@ -17,22 +17,43 @@
               {{picture.default(poster, 1, 0.66, 'none', 'img-responsive', movie.title)}}
 
               <ul class="list-unstyled">
-                <li><b>Release</b> :<br> {{movie.release_date}}</li>
-                <li><b>Countries</b> :<br> {% for country in movie.production_countries %}{{country.name}}{% if not loop.last %}, {% endif %}{% endfor %}</li>
+                {% if movie.release_date %}
+                  <li>
+                    <h4>Release</h4>
+                    {{movie.release_date}}
+                  </li>
+                {% endif %}
+                {% if movie.production_countries %}
+                  <li>
+                    <h4>Countries</h4>
+                    {% for country in movie.production_countries %}{{country.name}}{% if not loop.last %}, {% endif %}{% endfor %}
+                  </li>
+                {% endif %}
+                {% if keywords %}
+                  <li>
+                    <h4>Keywords</h4>
+                    {% for keyword in keywords %}
+                      <a href="/tag/{{keyword.id}}/1">{{keyword.name}}</a>{% if not loop.last %},{% endif %}
+                    {% endfor %}
+                  </li>
+                {% endif %}
+                {% if movie.imdb_id %}
+                  <li>
+                    <h4>Links</h4>
+                    <a href="http://www.imdb.com/title/{{movie.imdb_id}}">IMDB</a>
+                  </li>
+                {% endif %}
               </ul>
-              <br>
-
-              {% if keywords %}
-                {% for keyword in keywords %}
-                  <a href="/tag/{{keyword.id}}/1">{{keyword.name}}</a>{% if not loop.last %},{% endif %}
-                {% endfor %}
-              {% endif %}
 
             </div>
           </div>
           <div class="col-sm-9">
+            <h3>Movie</h3>
             <h1>
-              {{movie.title}} <small class="text-muted">({{movie.original_title}})</small>
+              {{movie.title}}
+              {% if movie.title != movie.original_title %}
+                <small>({{movie.original_title}})</small>
+              {% endif %}
             </h1>
           </div>
         </div>
@@ -44,23 +65,22 @@
     <div class="row">
       <div class="col-sm-9 col-sm-offset-3">
 
-        <p class="lead">“{{movie.tagline}}”</p>
+        <div class="whity">
+          {% if movie.tagline %}
+            <p class="lead">“{{movie.tagline}}”</p>
+          {% endif %}
 
-        {% for genre in movie.genres %}
-          <a href="/genre/{{genre.id}}/1">
-            {{genre.name}}
-          </a>
-          {% if not loop.last %} | {% endif %}
-        {% endfor %}
-        <br>
+          <p>
+            {% for genre in movie.genres %}
+              <a href="/genre/{{genre.id}}/1">
+                {{genre.name}}
+              </a>
+              {% if not loop.last %} | {% endif %}
+            {% endfor %}
+          </p>
 
-        <br>
-        <a href="http://www.imdb.com/title/{{movie.imdb_id}}">IMDB</a>
-        <br><br>
-
-        <p>{{movie.overview}}</p>
-
-        <br>
+          <p>{{movie.overview}}</p>
+        </div>
         {% if videos %}
           {% for video in videos %}
             {% if video.site === 'YouTube' && loop.key === 0 %}
@@ -70,21 +90,20 @@
             {% endif %}
           {% endfor %}
         {% endif %}
+        <div class="whity">
+          <h2>Cast</h2>
+          <div class="row">
+            {% for cast in credits.cast %}
+              {% if loop.key <= 3 %}
+              <div class="col-sm-3">
+                {{ thumbnail.cast(cast) }}
+              </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
 
       </div>
-    </div>
-
-    <hr>
-
-    <h2>Cast</h2>
-    <div class="row">
-      {% for cast in credits.cast %}
-        {% if loop.key <= 3 %}
-        <div class="col-sm-3">
-          {{ thumbnail.cast(cast) }}
-        </div>
-        {% endif %}
-      {% endfor %}
     </div>
 
     <hr>

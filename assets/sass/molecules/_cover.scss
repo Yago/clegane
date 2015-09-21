@@ -8,7 +8,18 @@
   left: 0;
   width: 100%;
   [class*="col-"] {position: relative;}
-  h1 {margin-top: 0;}
+  h1, h2, h3, h4, h5 {
+    margin: 0;
+    color: $white;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  }
+  h1 {margin-bottom: 0.4em;}
+  h3 {color: $mercury;}
+  h1 small {
+    font-size: 1em;
+    font-weight: 300;
+    color: $white;
+  }
 }
 
 .poster-wrapper {
@@ -16,4 +27,13 @@
   top: 0;
   left: 0;
   width: 100%;
+  padding: 0 $grid-gutter-width/2;
+  color: $white;
+  ul {margin-top: $grid-gutter-width;}
+  li {padding: $grid-gutter-width/4 0;}
+  img {box-shadow: 4px 8px 11px rgba(0, 0, 0, 0.5);}
+  a {
+    color: $supernova;
+    &:hover {color: $web-orange;}
+  }
 }

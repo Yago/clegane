@@ -1,3 +1,5 @@
+{% import '../atoms/pictures.html' as picture %}
+
 {% macro movie(content) %}
 <a href="/movie/{{content.id}}">
   <img src="{{api.images}}{{content.poster_path}}" class="img-responsive">
@@ -13,13 +15,16 @@
 {% endmacro %}
 
 {% macro cast(content) %}
-{% if content.profile_path %}
-<a href="/people/{{content.id}}">
-  <img src="{{api.images}}{{content.profile_path}}" class="img-responsive">
-</a>
-{% endif %}
-<a href="/people/{{content.id}}">
-  <h3>{{content.name}}</h3>
-</a>
-<b>{{content.character}}</b>
+<div class="cast-thumb">
+  {% if content.profile_path %}
+  <a href="/people/{{content.id}}">
+    {% set profile = api.images + content.profile_path %}
+    {{picture.default(profile, 1, 0.66, 'none', 'img-responsive', content.name)}}
+  </a>
+  {% endif %}
+  <a href="/people/{{content.id}}">
+    <h4>{{content.name}}</h4>
+  </a>
+  <small>{{content.character}}</small>
+</div>
 {% endmacro %}
