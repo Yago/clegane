@@ -4,6 +4,14 @@
   width: $sidebar-width;
   min-height: 100vh;
   flex-shrink: 0;
+  position: relative;
+}
+
+.sidebar-content {
+  position: fixed;
+  width: $sidebar-width;
+  top: 0;
+  left: 0;
 }
 
 header {
