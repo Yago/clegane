@@ -1,109 +1,125 @@
 {% extends 'layout.html' %}
+{% import 'components/atoms/pictures.html' as picture %}
 {% import 'components/molecules/thumbnails.html' as thumbnail %}
+{% import 'components/organisms/cast.html' as cast %}
 
 {% block wrapper-class %}{% endblock %}
 
 {% block content %}
-  <div style="max-height:400px;overflow:hidden;">
-    <img src="{{api.images}}{{tv.backdrop_path}}" class="img-responsive">
-  </div>
-  <br>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-2 col-sm-offset-1">
+  <div class="cover">
+    {{picture.default(tv.backdrop_path, 5, 2.38, 'center', 'img-responsive', tv.title)}}
+    <div class="cover-content">
+      <div class="content-container">
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="poster-wrapper">
+              {{picture.default(tv.poster_path, 1, 0.66, 'none', 'img-responsive', tv.title)}}
 
-        <img src="{{api.images}}{{tv.poster_path}}" class="img-responsive">
-        <br>
+              <ul class="list-unstyled">
+                {% if tv.first_air_date %}
+                  <li>
+                    <h4>Release</h4>
+                    {{tv.first_air_date}}
+                  </li>
+                {% endif %}
+                {% if tv.production_countries %}
+                  <li>
+                    <h4>Countries</h4>
+                    {% for country in tv.origin_country %}{{country.name}}{% if not loop.last %}, {% endif %}{% endfor %}
+                  </li>
+                {% endif %}
+                {% if keywords %}
+                  <li>
+                    <h4>Keywords</h4>
+                    {% for keyword in keywords %}
+                      <a href="/tag/{{keyword.id}}/1">{{keyword.name}}</a>{% if not loop.last %},{% endif %}
+                    {% endfor %}
+                  </li>
+                {% endif %}
+                {% if ids.imdb_id %}
+                  <li>
+                    <h4>Links</h4>
+                    <a href="http://www.imdb.com/title/{{ids.imdb_id}}">IMDB</a>
+                  </li>
+                {% endif %}
+              </ul>
 
-        <ul class="list-unstyled">
-          <li><b>Release</b> :<br> {{tv.first_air_date}}</li>
-          <li><b>Countries</b> :<br> {% for country in tv.origin_country %}{{country}}{% if not loop.last %}, {% endif %}{% endfor %}</li>
-        </ul>
-        <br>
-
-        {% if keywords %}
-          {% for keyword in keywords %}
-            <a href="/tags/{{keyword.id}}">{{keyword.name}}</a>{% if not loop.last %},{% endif %}
-          {% endfor %}
-        {% endif %}
+            </div>
+          </div>
+          <div class="col-sm-9">
+            <h3>TV Show</h3>
+            <h1>
+              {{tv.name}}
+              {% if tv.name != tv.original_name %}
+                <small>({{tv.original_name}})</small>
+              {% endif %}
+            </h1>
+          </div>
+        </div>
       </div>
-      <div class="col-sm-8">
+    </div>
+  </div>
 
-        <h1>
-          {{tv.name}} <small class="text-muted">({{tv.original_name}})</small>
-        </h1>
+  <div class="content-container">
+    <div class="row">
+      <div class="col-sm-9 col-sm-offset-3">
 
-        {% for genre in tv.genres %}
-          <a href="/genres/{{genre.id}}">
-            {{genre.name}}
-          </a>
-          {% if not loop.last %} | {% endif %}
-        {% endfor %}
-        <br>
+        <div class="whity">
+          <p>
+            {% for genre in tv.genres %}
+              <a href="/genre/{{genre.id}}/1">
+                {{genre.name}}
+              </a>
+              {% if not loop.last %} | {% endif %}
+            {% endfor %}
+          </p>
 
-        <br>
-        <a href="http://www.imdb.com/title/{{ids.imdb_id}}">IMDB</a>
-        <br><br>
+          <p>{{tv.overview}}</p>
+        </div>
 
-        <p>{{tv.overview}}</p>
-
-        <br>
-        {% set index = 0 %}
         {% if videos %}
           {% for video in videos %}
-            {% if video.site == 'YouTube' && index === 0 && video.type == 'Trailer'%}
+            {% if video.site === 'YouTube' && loop.key === 0 %}
               <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{video.key}}" frameborder="0" allowfullscreen></iframe>
               </div>
-              {% set index = 1 %}
             {% endif %}
           {% endfor %}
         {% endif %}
 
+        <div class="whity">
+          <table class="table table-striped">
+            <tr>
+              <th>id</th>
+              <th>episodes</th>
+              <th>date</th>
+            </tr>
+            {% for season in tv.seasons %}
+              {% if season.season_number !== 0 %}
+              <tr>
+                <td>Season {{season.season_number}}</td>
+                <td>{{season.episode_count}} episode(s)</td>
+                <td>{{season.air_date}}</td>
+              </tr>
+              {% endif %}
+            {% endfor %}
+          </table>
+
+          <h2>Cast</h2>
+          {{cast.default(credits)}}
+        </div>
       </div>
     </div>
 
-    <hr>
-
-
-    <table class="table table-striped">
-      <tr>
-        <th>id</th>
-        <th>episodes</th>
-        <th>date</th>
-      </tr>
-      {% for season in tv.seasons %}
-        {% if season.season_number !== 0 %}
-        <tr>
-          <td>Season {{season.season_number}}</td>
-          <td>{{season.episode_count}} episode(s)</td>
-          <td>{{season.air_date}}</td>
-        </tr>
-        {% endif %}
-      {% endfor %}
-    </table>
-
-    <hr>
-
-    <h2>Cast</h2>
-    <div class="row">
-      {% for cast in credits.cast %}
-        {% if loop.key <= 3 %}
-        <div class="col-sm-3">
-          {{ thumbnail.cast(cast) }}
-        </div>
-        {% endif %}
-      {% endfor %}
-    </div>
-
-    <hr>
+    <div class="spacer"></div>
 
     {% if similar.length %}
-    <h2>Similar</h2>
+    <h2 class="text-inverse">Similar TV Shows</h2>
+    <div class="spacer spacer-xs"></div>
     <div class="row">
       {% for tv in similar %}
-        {% if loop.key <= 3 %}
-          <div class="col-sm-3">
+        {% if loop.key <= 4 %}
+          <div class="col-sm-5">
             {{ thumbnail.tv(tv) }}
           </div>
         {% endif %}
