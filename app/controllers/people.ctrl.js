@@ -18,7 +18,7 @@ function addInformations (item) {
     if (media.title) {
       media.heading = media.title;
     } else {
-      media.heading = 'unknown';
+      media.heading = '-';
     }
   } else {
     if (media.first_air_date) {
@@ -29,7 +29,7 @@ function addInformations (item) {
     if (media.name) {
       media.heading = media.name;
     } else {
-      media.heading = 'unknown';
+      media.heading = '-';
     }
   }
 
