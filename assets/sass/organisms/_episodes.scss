@@ -1,30 +1,96 @@
 .episodes-wrapper {
+  > div[type="tabs"] {
+    display: flex;
+    flex-wrap: nowrap;
+    > .tab-content {
+      width: calc(75% - 18px);
+      float: left;
+      flex: 3 0 calc(75% - 18px);
+      transition: all 0.3s ease-in-out;
+    }
+  }
+
+  .tab-content div[type="tabs"] {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  ul.nav {
+    transition: all 0.3s ease-in-out;
+    background: $supernova;
+    float: left;
+    border: none;
+    li {margin: 0;}
+    a {
+      border: none !important;
+      margin: 0 !important;
+      color: $black;
+      transition: background 0.3s ease-in-out,
+                  color 0.3s ease-in-out;
+    }
+    .active a {color: $white;}
+  }
 
   // Seasons tabs
   > div[type="tabs"] > ul.nav {
-    width: 30%;
-    float: left;
-    transition: width 0.3s ease-in-out;
+    width: calc(25% + 18px);
+    flex: 1 0 calc(25% + 18px);
+    background: $selective-yellow;
+    a {
+      font-size: 25px;
+      font-weight: 700;
+      height: 120px;
+      line-height: 100px;
+      &:hover {
+        background: $web-orange;
+      }
+    }
+    .active a {background: $web-orange;}
   }
 
   // Episodes tabs
   > div[type="tabs"] .tab-content ul.nav {
-    width: 60%;
-    float: left;
-    transition: width 0.3s ease-in-out;
+    width: 100%;
+    flex: 1 0 100%;
+    a {
+      font-size: 20px;
+      font-weight: 700;
+      height: 60px;
+      line-height: 40px;
+      &:hover {
+        background: $selective-yellow;
+      }
+    }
+    .active a {background: $selective-yellow;}
   }
 
   // Episode content
   .tab-content .tab-content {
-    width: 0%;
+    width: 0;
     float: left;
-    transition: width 0.3s ease-in-out;
+    flex: 0 1 0;
+    transition: all 0.3s ease-in-out;
     background: $white;
   }
 
   &.in {
-    > div[type="tabs"] > ul.nav {width: 15%;}
-    > div[type="tabs"] .tab-content ul.nav {width: 15%;}
-    .tab-content .tab-content {width: 60%;}
+    > div[type="tabs"] > .tab-content {
+      width: calc(87.5% - 18px);
+      flex: 7 0 calc(87.5% - 18px);
+    }
+    > div[type="tabs"] > ul.nav {
+      width: calc(12.5% + 18px);
+      flex: 1 0 calc(12.5% + 18px);
+      text-align: center;
+    }
+    > div[type="tabs"] .tab-content ul.nav {
+      width: 14.25%;
+      flex: 1 0 14.5%;
+    }
+    .tab-content .tab-content {
+      width: 85.7%;
+      padding: 10px;
+      flex: 6 0 85.5%;
+    }
   }
 }
