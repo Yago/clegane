@@ -44,8 +44,9 @@
 
       <h2>Known For</h2>
       <div class="row">
+        {% set thumbindex = 0 %}
         {% for media in credits.cast|recent %}
-          {% if loop.key <= 4 %}
+          {% if thumbindex <= 4 and media.poster_path and media.year < currentyear %}
             <div class="col-sm-5">
               {% if media.media_type === 'movie' %}
                 {{ thumbnail.movie(media) }}
@@ -53,6 +54,7 @@
                 {{ thumbnail.tv(media) }}
               {% endif %}
             </div>
+            {% set thumbindex = thumbindex + 1 %}
           {% endif %}
         {% endfor %}
       </div>

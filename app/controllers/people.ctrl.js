@@ -78,15 +78,18 @@ exports.display = function(req, res) {
               res.locals.people = main;
               res.locals.credits = prepareCredits(credits);
               res.locals.images = images.results;
+              res.locals.currentyear = new Date().getFullYear();
               res.render('people');
             }, function (err) {
               res.locals.people = main;
               res.locals.credits = prepareCredits(credits);
+              res.locals.currentyear = new Date().getFullYear();
               res.render('people');
             });
 
         }, function (err) {
           res.locals.people = main;
+          res.locals.currentyear = new Date().getFullYear();
           res.render('people');
         });
 
