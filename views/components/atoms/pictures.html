@@ -1,33 +1,38 @@
 {% macro default(original, size, ratio, gravity, classes, alt) %}
+{% if original %}
+  {% set image = api.images + original %}
+{% else %}
+  {% set image = 'http://photo.yago.io/photos/i-9g6sLJT/0/O/i-9g6sLJT.png' %}
+{% endif %}
 <picture>
   {%if size >= '5'%}
   <source
     media="(min-width: 1200px)"
-    srcset="{{ratio|firesize('1920')}}{#{{gravity}}#}/{{api.images}}{{original}} 1x, {{ratio|firesize('2880')}}{#{{gravity}}#}/{{api.images}}{{original}} 2x">
+    srcset="{{ratio|firesize('1920')}}{#{{gravity}}#}/{{image}} 1x, {{ratio|firesize('2880')}}{#{{gravity}}#}/{{image}} 2x">
   {% endif %}
   {%if size >= '4'%}
   <source
     media="(min-width: 980px)"
-    srcset="{{ratio|firesize('1200')}}{#{{gravity}}#}/{{api.images}}{{original}} 1x, {{ratio|firesize('2400')}}{#{{gravity}}#}/{{api.images}}{{original}} 2x">
+    srcset="{{ratio|firesize('1200')}}{#{{gravity}}#}/{{image}} 1x, {{ratio|firesize('2400')}}{#{{gravity}}#}/{{image}} 2x">
   {% endif %}
   {%if size >= '3'%}
   <source
     media="(min-width: 770px)"
-    srcset="{{ratio|firesize('980')}}{#{{gravity}}#}/{{api.images}}{{original}} 1x, {{ratio|firesize('1960')}}{#{{gravity}}#}/{{api.images}}{{original}} 2x">
+    srcset="{{ratio|firesize('980')}}{#{{gravity}}#}/{{image}} 1x, {{ratio|firesize('1960')}}{#{{gravity}}#}/{{image}} 2x">
   {% endif %}
   {%if size >= '2'%}
   <source
     media="(min-width: 401px)"
-    srcset="{{ratio|firesize('770')}}{#{{gravity}}#}/{{api.images}}{{original}} 1x, {{ratio|firesize('1440')}}{#{{gravity}}#}/{{api.images}}{{original}} 2x">
+    srcset="{{ratio|firesize('770')}}{#{{gravity}}#}/{{image}} 1x, {{ratio|firesize('1440')}}{#{{gravity}}#}/{{image}} 2x">
   {% endif %}
   {%if size >= '1'%}
   <source
-     srcset="{{ratio|firesize('400')}}{#{{gravity}}#}/{{api.images}}{{original}} 1x, {{ratio|firesize('800')}}{#{{gravity}}#}/{{api.images}}{{original}} 2x">
+     srcset="{{ratio|firesize('400')}}{#{{gravity}}#}/{{image}} 1x, {{ratio|firesize('800')}}{#{{gravity}}#}/{{image}} 2x">
   {% else %}
   <source
      media="(max-width: 400px)"
-     srcset="{{ratio|firesize('400')}}{#{{gravity}}#}/{{api.images}}{{original}} 1x, {{ratio|firesize('800')}}{#{{gravity}}#}/{{api.images}}{{original}} 2x">
+     srcset="{{ratio|firesize('400')}}{#{{gravity}}#}/{{image}} 1x, {{ratio|firesize('800')}}{#{{gravity}}#}/{{image}} 2x">
   {% endif %}
-  <img src="{%if size >= '5'%}{{ratio|firesize('1920')}}{#{{gravity}}#}/{{api.images}}{{original}}{% elseif size >= '4'%}{{ratio|firesize('1200')}}{#{{gravity}}#}/{{api.images}}{{original}}{% elseif size >= '3'%}{{ratio|firesize('980')}}{#{{gravity}}#}/{{api.images}}{{original}}{% elseif size >= '2'%}{{ratio|firesize('770')}}{#{{gravity}}#}/{{api.images}}{{original}}{% else %}{{ratio|firesize('400')}}{#{{gravity}}#}/{{api.images}}{{original}}{% endif %}" alt="{{alt}}" class="{{classes}}">
+  <img src="{%if size >= '5'%}{{ratio|firesize('1920')}}{#{{gravity}}#}/{{image}}{% elseif size >= '4'%}{{ratio|firesize('1200')}}{#{{gravity}}#}/{{image}}{% elseif size >= '3'%}{{ratio|firesize('980')}}{#{{gravity}}#}/{{image}}{% elseif size >= '2'%}{{ratio|firesize('770')}}{#{{gravity}}#}/{{image}}{% else %}{{ratio|firesize('400')}}{#{{gravity}}#}/{{image}}{% endif %}" alt="{{alt}}" class="{{classes}}">
 </picture>
 {% endmacro %}
