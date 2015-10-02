@@ -80,3 +80,21 @@ exports.year = function (date) {
   return date.split('-')[0];
 };
 
+/*
+ * Return zero from episode/season number
+ */
+exports.zero = function (number) {
+  if (number < 10) {
+    return '0'+number;
+  } else {
+    return number;
+  }
+};
+
+/*
+ * Return array length
+ */
+exports.length = function (array) {
+  return array.length;
+};
+

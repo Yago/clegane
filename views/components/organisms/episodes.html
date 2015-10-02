@@ -1,0 +1,27 @@
+{% macro default(tv) %}
+<div class="episodes-wrapper" ng-class="{in: episodes.episodeOpen}" ng-controller="EpisodesCtrl as episodes" ng-init="episodes.init({{tv.seasons|length}})">
+  <tabset vertical="true" type="tabs">
+    {% for season in tv.seasons %}
+      {% if season.season_number !== 0 and season.episode_count > 0 %}
+        <tab select="episodes.selectSeason({{tv.id}}, {{season.season_number}})">
+          <tab-heading>
+            s<span ng-hide="episodes.episodeOpen">eason </span>{{season.season_number|zero}}
+          </tab-heading>
+          <div>
+            <tabset vertical="true" type="tabs">
+              {% for episode in season.episode_count|numberArray %}
+                <tab active="{% if loop.index == 1 %}episodes.seasonOpen[{{season.season_number}}]{% else %}false{% endif %}" select="episodes.selectEpisode({{tv.id}}, {{season.season_number}}, {{loop.index}})">
+                  <tab-heading>
+                    e<span ng-hide="episodes.episodeOpen">pisode </span>{{loop.index|zero}}
+                  </tab-heading>
+                  <h3>s[[episodes.seasonnumber]]e[[episodes.number]]. [[episodes.title]]</h3>
+                </tab>
+              {% endfor %}
+            </tabset>
+          </div>
+        </tab>
+      {% endif %}
+    {% endfor %}
+  </tabset>
+</div>
+{% endmacro %}

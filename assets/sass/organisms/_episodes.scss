@@ -1,0 +1,30 @@
+.episodes-wrapper {
+
+  // Seasons tabs
+  > div[type="tabs"] > ul.nav {
+    width: 30%;
+    float: left;
+    transition: width 0.3s ease-in-out;
+  }
+
+  // Episodes tabs
+  > div[type="tabs"] .tab-content ul.nav {
+    width: 60%;
+    float: left;
+    transition: width 0.3s ease-in-out;
+  }
+
+  // Episode content
+  .tab-content .tab-content {
+    width: 0%;
+    float: left;
+    transition: width 0.3s ease-in-out;
+    background: $white;
+  }
+
+  &.in {
+    > div[type="tabs"] > ul.nav {width: 15%;}
+    > div[type="tabs"] .tab-content ul.nav {width: 15%;}
+    .tab-content .tab-content {width: 60%;}
+  }
+}

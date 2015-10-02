@@ -1,13 +1,14 @@
 {% extends 'layout.html' %}
 {% import 'components/atoms/pictures.html' as picture %}
 {% import 'components/molecules/thumbnails.html' as thumbnail %}
+{% import 'components/organisms/episodes.html' as episodes %}
 {% import 'components/organisms/cast.html' as cast %}
 
 {% block wrapper-class %}{% endblock %}
 
 {% block content %}
   <div class="cover">
-    {{picture.default(tv.backdrop_path, 5, 2.38, 'center', 'img-responsive', tv.title)}}
+    {{picture.default(tv.backdrop_path, 5, 2.38, 'center', 'img-responsive img-full', tv.title)}}
     <div class="cover-content">
       <div class="content-container">
         <div class="row">
@@ -86,25 +87,16 @@
             {% endif %}
           {% endfor %}
         {% endif %}
+      </div>
+    </div>
+  </div>
 
+  {{episodes.default(tv)}}
+
+  <div class="content-container">
+    <div class="row">
+      <div class="col-sm-9 col-sm-offset-3">
         <div class="whity">
-          <table class="table table-striped">
-            <tr>
-              <th>id</th>
-              <th>episodes</th>
-              <th>date</th>
-            </tr>
-            {% for season in tv.seasons %}
-              {% if season.season_number !== 0 %}
-              <tr>
-                <td>Season {{season.season_number}}</td>
-                <td>{{season.episode_count}} episode(s)</td>
-                <td>{{season.air_date}}</td>
-              </tr>
-              {% endif %}
-            {% endfor %}
-          </table>
-
           <h2>Cast</h2>
           {{cast.default(credits)}}
         </div>
