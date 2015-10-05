@@ -44,4 +44,8 @@ app.controller('EpisodesCtrl', function($http) {
     that.getData(id, season, episode);
   };
 
+  that.toggleWatch = function () {
+    console.log('toggle');
+  };
+
 });

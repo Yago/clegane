@@ -12,7 +12,10 @@
               {% for episode in season.episode_count|numberArray %}
                 <tab active="{% if loop.index == 1 %}episodes.seasonOpen[{{season.season_number}}]{% else %}false{% endif %}" select="episodes.selectEpisode({{tv.id}}, {{season.season_number}}, {{loop.index}})">
                   <tab-heading>
-                    e<span ng-hide="episodes.episodeOpen">pisode </span>{{loop.index|zero}}
+                    <span class="watch-toggle">
+                      <input type="checkbox" ng-click="episodes.toggleWatch(); $event.stopPropagation();">
+                      <i class="cleganicon cleganicon-eye"></i>
+                    </span> e<span ng-hide="episodes.episodeOpen">pisode </span>{{loop.index|zero}}
                   </tab-heading>
                   <h3>s[[episodes.seasonnumber]]e[[episodes.number]]. [[episodes.title]]</h3>
                 </tab>

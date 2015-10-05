@@ -28,7 +28,7 @@
       transition: background 0.3s ease-in-out,
                   color 0.3s ease-in-out;
     }
-    .active a {color: $white;}
+    .active a, a:active, a:focus {color: $white;}
   }
 
   // Seasons tabs
@@ -39,13 +39,13 @@
     a {
       font-size: 25px;
       font-weight: 700;
-      height: 120px;
-      line-height: 100px;
-      &:hover {
+      height: 100px;
+      line-height: 80px;
+      &:hover, &:focus, &:active {
         background: $web-orange;
       }
     }
-    .active a {background: $web-orange;}
+    .active a, a:active, a:focus {background: $web-orange;}
   }
 
   // Episodes tabs
@@ -55,13 +55,37 @@
     a {
       font-size: 20px;
       font-weight: 700;
-      height: 60px;
-      line-height: 40px;
-      &:hover {
+      height: 50px;
+      line-height: 30px;
+      &:hover, &:focus, &:active {
         background: $selective-yellow;
       }
     }
-    .active a {background: $selective-yellow;}
+    .active a, a:active, a:focus {background: $selective-yellow;}
+  }
+
+  .watch-toggle {
+    position: relative;
+    input[type="checkbox"] {
+      position: absolute;
+      top: -15px;
+      left: -15px;
+      z-index: 100;
+      opacity: 0;
+      height: 50px;
+      width: 50px;
+      line-height: 30px;
+    }
+    .cleganicon {
+      font-size: 14px;
+      position: relative;
+      top: 2px;
+      padding-right: 10px;
+      color: $black;
+    }
+    input[type="checkbox"]:checked + .cleganicon {
+      color: $white;
+    }
   }
 
   // Episode content
@@ -70,27 +94,27 @@
     float: left;
     flex: 0 1 0;
     transition: all 0.3s ease-in-out;
-    background: $white;
+    background: $gallery;
   }
 
   &.in {
     > div[type="tabs"] > .tab-content {
-      width: calc(87.5% - 18px);
-      flex: 7 0 calc(87.5% - 18px);
+      width: 87.5%;
+      flex: 7 0 87.5%;
     }
     > div[type="tabs"] > ul.nav {
-      width: calc(12.5% + 18px);
-      flex: 1 0 calc(12.5% + 18px);
+      width: 12.5%;
+      flex: 1 0 12.5%;
       text-align: center;
     }
     > div[type="tabs"] .tab-content ul.nav {
-      width: 14.25%;
-      flex: 1 0 14.5%;
+      width:  calc(14.25% + 18px);
+      flex: 1 0 calc(14.5% + 16px);
     }
     .tab-content .tab-content {
-      width: 85.7%;
+      width:  calc(85.7% - 18px);
       padding: 10px;
-      flex: 6 0 85.5%;
+      flex: 6 0 calc(85.5% - 16px);
     }
   }
 }
