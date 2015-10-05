@@ -1,4 +1,5 @@
 .episodes-wrapper {
+  position: relative;
   > div[type="tabs"] {
     display: flex;
     flex-wrap: nowrap;
@@ -86,11 +87,11 @@
       position: absolute;
       top: -15px;
       left: -15px;
-      z-index: 100;
       opacity: 0;
       height: 45px;
       width: 50px;
       line-height: 30px;
+      z-index: 200;
     }
     .cleganicon {
       font-size: 14px;
