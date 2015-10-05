@@ -10,7 +10,21 @@
     }
   }
 
-  .tab-content div[type="tabs"] {
+  > .ng-isolate-scope > .tab-content {
+    background: $supernova;
+    position: relative;
+    > .tab-pane,
+    > .tab-pane > .ng-scope,
+    > .tab-pane > .ng-scope > .ng-isolate-scope {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+  }
+
+  .tab-content
+  div[type="tabs"] {
     display: flex;
     flex-wrap: nowrap;
   }
