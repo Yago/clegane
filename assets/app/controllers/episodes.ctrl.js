@@ -11,16 +11,32 @@ app.controller('EpisodesCtrl', function($http) {
   that.title = '';
   that.number = 0;
   that.seasonnumber = 0;
+  that.air_date = '';
+  that.description = '';
+  that.images = [];
 
   that.getData = function (id, season, episode) {
+    that.number = episode;
+    that.seasonnumber = season;
+
+    // Get base informations
     $http.get('http://api.themoviedb.org/3/tv/'+id+'/season/'+season+'/episode/'+episode+'?api_key=6d83177ea3e67b870ab80fa72f06cbbd', {
       params: {
         api_key: 'API_KEY_HERE'
       }
     }).then(function(res){
       that.title = res.data.name;
-      that.number = episode;
-      that.seasonnumber = season;
+      that.air_date = res.data.air_date;
+      that.description = res.data.overview;
+    });
+
+    // Get episode images
+    $http.get('http://api.themoviedb.org/3/tv/'+id+'/season/'+season+'/episode/'+episode+'/images?api_key=6d83177ea3e67b870ab80fa72f06cbbd', {
+      params: {
+        api_key: 'API_KEY_HERE'
+      }
+    }).then(function(res){
+      that.images = res.data.stills;
     });
   };
 
@@ -39,9 +55,10 @@ app.controller('EpisodesCtrl', function($http) {
   };
 
   that.selectEpisode = function (id, season, episode) {
-    console.log('s'+season+'e'+episode);
     that.episodeOpen = true;
-    that.getData(id, season, episode);
+    setTimeout(function(){
+      that.getData(id, season, episode);
+    }, 1000);
   };
 
   that.toggleWatch = function () {

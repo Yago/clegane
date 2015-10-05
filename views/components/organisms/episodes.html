@@ -17,7 +17,19 @@
                       <i class="cleganicon cleganicon-eye"></i>
                     </span> e<span ng-hide="episodes.episodeOpen">pisode </span>{{loop.index|zero}}
                   </tab-heading>
-                  <h3>s[[episodes.seasonnumber]]e[[episodes.number]]. [[episodes.title]]</h3>
+                  <h3>Season [[episodes.seasonnumber]], Episode [[episodes.number]] : [[episodes.title]] <small>([[episodes.air_date]])</small></h3>
+                  <div class="spacer spacer-xs"></div>
+                  <div class="episode-gallery">
+                    <div class="episode-gallery-container">
+                      <div ng-repeat="(key, image) in episodes.images">
+                        {{picture.default('[[image.file_path]]', 1, 1.77, 'none', 'img-responsive', 'Season [[episodes.seasonnumber]], Episode [[episodes.number]] : [[episodes.title]]')}}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="spacer spacer-sm"></div>
+                  <p>
+                    [[episodes.description]]
+                  </p>
                 </tab>
               {% endfor %}
             </tabset>
