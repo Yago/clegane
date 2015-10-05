@@ -1,7 +1,6 @@
 {% extends 'layout.html' %}
 {% import 'components/atoms/pictures.html' as picture %}
 {% import 'components/molecules/thumbnails.html' as thumbnail %}
-{% import 'components/organisms/episodes.html' as episodes %}
 {% import 'components/organisms/cast.html' as cast %}
 
 {% block wrapper-class %}{% endblock %}
@@ -82,14 +81,14 @@
           {% for video in videos %}
             {% if video.site === 'YouTube' && loop.key === 0 %}
               <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{video.key}}" frameborder="0" allowfullscreen></iframe>
-              </div>
+{#                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{video.key}}" frameborder="0" allowfullscreen></iframe>
+ #}              </div>
             {% endif %}
           {% endfor %}
         {% endif %}
       </div>
     </div>
-  {{episodes.default(tv)}}
+    {% include "./components/organisms/episodes.html" %}
   </div>
 
 
@@ -120,4 +119,5 @@
     {% endif %}
 
   </div>
+  {% include "./components/organisms/photoswipe-wrapper.html" %}
 {% endblock %}

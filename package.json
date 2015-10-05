@@ -78,6 +78,7 @@
     "passport-twitter": "^1.0.3",
     "password-maker": "^1.0.5",
     "phantomcss": "^0.10.1",
+    "photoswipe": "^4.1.0",
     "q": "^1.4.1",
     "request": "^2.58.0",
     "respond.js": "^1.4.2",

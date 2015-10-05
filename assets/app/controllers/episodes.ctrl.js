@@ -1,6 +1,6 @@
 'use strict';
 
-/* global app */
+/* global app, PhotoSwipe, PhotoSwipeUI_Default, jQuery */
 
 app.controller('EpisodesCtrl', function($http) {
   var that = this;
@@ -14,6 +14,7 @@ app.controller('EpisodesCtrl', function($http) {
   that.air_date = '';
   that.description = '';
   that.images = [];
+  that.gallery = [];
 
   that.getData = function (id, season, episode) {
     that.number = episode;
@@ -37,6 +38,15 @@ app.controller('EpisodesCtrl', function($http) {
       }
     }).then(function(res){
       that.images = res.data.stills;
+      that. gallery = [];
+      res.data.stills.forEach(function(image){
+        var item = {
+          src : 'https://image.tmdb.org/t/p/original'+image.file_path,
+          w   : image.width,
+          h   : image.height
+        };
+        that.gallery.push(item);
+      });
     });
   };
 
@@ -44,7 +54,6 @@ app.controller('EpisodesCtrl', function($http) {
     for (var i = 0; i <= seasons; i++) {
       that.seasonOpen[i] = false;
     }
-    console.log(that.seasonOpen);
   };
 
   that.selectSeason = function (id, season) {
@@ -56,13 +65,27 @@ app.controller('EpisodesCtrl', function($http) {
 
   that.selectEpisode = function (id, season, episode) {
     that.episodeOpen = true;
+
     setTimeout(function(){
       that.getData(id, season, episode);
-    }, 1000);
+    }, 300);
   };
 
   that.toggleWatch = function () {
     console.log('toggle');
+  };
+
+  that.openGallery = function (index) {
+    var $pswp = $('.pswp')[0],
+        options = {
+          index: index,
+          bgOpacity: 0.85,
+          showHideOpacity: true
+        };
+
+    // Initialize PhotoSwipe
+    var gallery = new PhotoSwipe($pswp, PhotoSwipeUI_Default, that.gallery, options);
+    gallery.init();
   };
 
 });
