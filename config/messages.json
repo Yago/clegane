@@ -5,6 +5,9 @@
     "movie_exist": "This movie already exist."
   },
   "success": {
-    "movie_added": "Movie successfully added !"
+    "movie_added": "Movie successfully added !",
+    "movie_watched": "Movie successfully set as watched !",
+    "movie_unwatched": "Movie successfully set as unwatched !",
+    "movie_removed": "Movie successfully removed !"
   }
 }

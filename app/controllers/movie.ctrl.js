@@ -70,6 +70,7 @@ exports.display = function(req, res) {
 
 /*
  * Add a Movie to User
+ * Params: key, name, imdb_id
  */
 exports.add = function(req, res) {
   var userId = req.body.userId;
@@ -103,7 +104,50 @@ exports.add = function(req, res) {
 };
 
 /*
+ * Toggle watch of a Movie
+ * Params: key, watch (boolean)
+ */
+exports.watchToggle = function(req, res) {
+  var userId = req.body.userId;
+
+  User.findOneAndUpdate({_id:userId, 'movies.tmdb_id': req.params.id},
+    {
+      $set : {
+        'movies.$.watched': req.body.watch
+      }
+    }, function (err, user) {
+      if (err) {return res.send(messages.errors.default_error);}
+      if (!user) {return res.send(messages.errors.user_notfound);}
+      res.send(messages.success.movie_watched);
+    });
+
+};
+
+/*
+ * Remove a Movie from User
+ * Params: key
+ */
+exports.remove = function(req, res) {
+  var userId = req.body.userId;
+
+  User.findOneAndUpdate({_id:userId},
+      {
+        $pull : {
+          movies : {
+            tmdb_id: req.params.id
+          }
+        }
+      }, function (err, user) {
+        if (err) {return res.send(messages.errors.default_error);}
+        if (!user) {return res.send(messages.errors.user_notfound);}
+        res.send(messages.success.movie_removed);
+      });
+
+};
+
+/*
  * List User's movies
+ * Params: key
  */
 exports.list = function(req, res) {
   var userId = req.body.userId;
