@@ -21,12 +21,78 @@ var userSchema = mongoose.Schema({
     required: false,
     unique: false,
   },
+  peoples: [{
+    name: {
+      type: String,
+      unique: false,
+      required: true,
+    },
+    imdb_id: {
+      type: String,
+      unique: false,
+      required: true,
+    }
+  }],
   movies: [{
     name: {
       type: String,
       unique: false,
       required: true,
     },
+    imdb_id: {
+      type: String,
+      unique: false,
+      required: true,
+    },
+    watched: {
+      type: Boolean,
+      required: false,
+      unique: false,
+      default: false
+    }
+  }],
+  tvs: [{
+    name: {
+      type: String,
+      unique: false,
+      required: true,
+    },
+    imdb_id: {
+      type: String,
+      unique: false,
+      required: true,
+    },
+    episodes: [{
+      season: {
+        type: Number,
+        unique: false,
+        required: true,
+      },
+      episode: {
+        type: Number,
+        unique: false,
+        required: true,
+      },
+      name: {
+        type: String,
+        unique: false,
+        required: true,
+      }
+    }]
+  }],
+  lists: [{
+    name: {
+      type: String,
+      unique: false,
+      required: true,
+    },
+    items: [{
+      item: {
+        type: String,
+        unique: false,
+        required: true,
+      }
+    }],
   }],
   roles: {
     type: Array,
