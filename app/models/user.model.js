@@ -27,6 +27,11 @@ var userSchema = mongoose.Schema({
       unique: false,
       required: true,
     },
+    tmdb_id: {
+      type: String,
+      unique: false,
+      required: true,
+    },
     imdb_id: {
       type: String,
       unique: false,
@@ -35,6 +40,11 @@ var userSchema = mongoose.Schema({
   }],
   movies: [{
     name: {
+      type: String,
+      unique: false,
+      required: true,
+    },
+    tmdb_id: {
       type: String,
       unique: false,
       required: true,
@@ -53,6 +63,11 @@ var userSchema = mongoose.Schema({
   }],
   tvs: [{
     name: {
+      type: String,
+      unique: false,
+      required: true,
+    },
+    tmdb_id: {
       type: String,
       unique: false,
       required: true,
