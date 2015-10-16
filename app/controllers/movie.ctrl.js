@@ -1,7 +1,8 @@
 'use strict';
 
 var User        = require('../models/user.model'),
-    apiCtrl     = require('./api.ctrl.js');
+    apiCtrl     = require('./api.ctrl.js'),
+    messages    = require('../../config/messages.json');
 
 /*
  * Display movie page
@@ -66,3 +67,26 @@ exports.display = function(req, res) {
       res.send('The movie couldn\'t be found');
     });
 };
+
+/*
+ * Add a Movie to User
+ */
+exports.add = function(req, res) {
+  var userId = req.body.userId;
+
+  User.findOneAndUpdate({_id:userId},
+    {
+      $push : {
+        movies : {
+          name: req.params.name,
+          tmdb_id: req.params.id,
+          imdb_id: req.params.imdb_id
+        }
+      }
+    }, function (err, user) {
+      if (err) {return res.send(messages.errors.default_error);}
+      if (!user) {return res.send(messages.errors.user_notfound);}
+      res.send(messages.success.movie_added);
+    });
+
+}

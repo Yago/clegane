@@ -1,0 +1,9 @@
+{
+  "errors": {
+    "default_error": "Something bad happened, try later.",
+    "user_notfound": "The user cannot be found."
+  },
+  "success": {
+    "movie_added": "Movie successfully added !"
+  }
+}
