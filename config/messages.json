@@ -1,7 +1,8 @@
 {
   "errors": {
     "default_error": "Something bad happened, try later.",
-    "user_notfound": "The user cannot be found."
+    "user_notfound": "The user cannot be found.",
+    "movie_exist": "This movie already exist."
   },
   "success": {
     "movie_added": "Movie successfully added !"

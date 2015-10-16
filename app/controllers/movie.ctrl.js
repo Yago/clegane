@@ -74,19 +74,44 @@ exports.display = function(req, res) {
 exports.add = function(req, res) {
   var userId = req.body.userId;
 
-  User.findOneAndUpdate({_id:userId},
-    {
-      $push : {
-        movies : {
-          name: req.params.name,
-          tmdb_id: req.params.id,
-          imdb_id: req.params.imdb_id
-        }
+  User.findOne({_id:userId, 'movies.tmdb_id': req.params.id},
+    function (err, user) {
+      if (err) {return res.send(messages.errors.default_error);}
+
+      // Check if movie already exist in User
+      if (!user) {
+
+        // Add movie
+        User.findOneAndUpdate({_id:userId},
+          {
+            $push : {
+              movies : {
+                name: req.body.name,
+                tmdb_id: req.params.id,
+                imdb_id: req.body.imdb_id
+              }
+            }
+          }, function (err, user) {
+            if (err) {return res.send(messages.errors.default_error);}
+            if (!user) {return res.send(messages.errors.user_notfound);}
+            res.send(messages.success.movie_added);
+          });
+      } else {
+        res.send(messages.errors.movie_exist);
       }
-    }, function (err, user) {
+    });
+};
+
+/*
+ * List User's movies
+ */
+exports.list = function(req, res) {
+  var userId = req.body.userId;
+
+  User.findOne({_id:userId},
+    function (err, user) {
       if (err) {return res.send(messages.errors.default_error);}
       if (!user) {return res.send(messages.errors.user_notfound);}
-      res.send(messages.success.movie_added);
+      res.send(user.movies);
     });
-
-}
+};
