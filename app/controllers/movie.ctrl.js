@@ -73,7 +73,12 @@ exports.display = function(req, res) {
  * Params: key, name, imdb_id
  */
 exports.add = function(req, res) {
-  var userId = req.body.userId;
+  var userId  = req.body.userId,
+      watched = false;
+
+  if (req.body.watch) {
+    watched = req.body.watch;
+  }
 
   User.findOne({_id:userId, 'movies.tmdb_id': req.params.id},
     function (err, user) {
@@ -89,7 +94,8 @@ exports.add = function(req, res) {
               movies : {
                 name: req.body.name,
                 tmdb_id: req.params.id,
-                imdb_id: req.body.imdb_id
+                imdb_id: req.body.imdb_id,
+                watched: watched
               }
             }
           }, function (err, user) {
@@ -105,7 +111,7 @@ exports.add = function(req, res) {
 
 /*
  * Toggle watch of a Movie
- * Params: key, watch (boolean)
+ * Params: key, name, imdb_id, watch (boolean)
  */
 exports.watchToggle = function(req, res) {
   var userId = req.body.userId;
@@ -117,8 +123,14 @@ exports.watchToggle = function(req, res) {
       }
     }, function (err, user) {
       if (err) {return res.send(messages.errors.default_error);}
-      if (!user) {return res.send(messages.errors.user_notfound);}
-      res.send(messages.success.movie_watched);
+
+      // If no movie exist, create one watched
+      if (!user) {
+        module.exports.add(req, res);
+      } else {
+        res.send(messages.success.movie_watched);
+      }
+
     });
 
 };
