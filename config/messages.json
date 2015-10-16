@@ -3,6 +3,7 @@
     "default_error": "Something bad happened, try later.",
     "user_notfound": "The user cannot be found.",
     "movie_exist": "This movie already exist.",
+    "tv_exist": "This TV show already exist.",
     "people_exist": "This people already exist."
   },
   "success": {
@@ -10,6 +11,8 @@
     "movie_watched": "Movie successfully set as watched !",
     "movie_unwatched": "Movie successfully set as unwatched !",
     "movie_removed": "Movie successfully removed !",
+    "tv_added": "TV Show successfully added !",
+    "tv_removed": "TV Show successfully removed !",
     "people_added": "People successfully added !",
     "people_removed": "People successfully removed !"
   }

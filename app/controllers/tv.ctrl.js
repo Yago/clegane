@@ -1,7 +1,8 @@
 'use strict';
 
 var User        = require('../models/user.model'),
-    apiCtrl     = require('./api.ctrl.js');
+    apiCtrl     = require('./api.ctrl.js'),
+    messages    = require('../../config/messages.json');
 
 /*
  * Display tv page
@@ -65,5 +66,77 @@ exports.display = function(req, res) {
 
     }, function (err) {
       res.send('The tv show couldn\'t be found');
+    });
+};
+
+/*
+ * Add a show to User
+ * Params: key, name, imdb_id
+ */
+exports.add = function(req, res) {
+  var userId  = req.body.userId;
+
+  User.findOne({_id:userId, 'tvs.tmdb_id': req.params.id},
+    function (err, user) {
+      if (err) {return res.send(messages.errors.default_error);}
+
+      // Check if show already exist in User
+      if (!user) {
+
+        // Add show
+        User.findOneAndUpdate({_id:userId},
+          {
+            $push : {
+              tvs : {
+                name: req.body.name,
+                tmdb_id: req.params.id,
+                imdb_id: req.body.imdb_id
+              }
+            }
+          }, function (err, user) {
+            if (err) {return res.send(messages.errors.default_error);}
+            if (!user) {return res.send(messages.errors.user_notfound);}
+            res.send(messages.success.tv_added);
+          });
+      } else {
+        res.send(messages.errors.tv_exist);
+      }
+    });
+};
+
+/*
+ * Remove a show from User
+ * Params: key
+ */
+exports.remove = function(req, res) {
+  var userId = req.body.userId;
+
+  User.findOneAndUpdate({_id:userId},
+      {
+        $pull : {
+          tvs : {
+            tmdb_id: req.params.id
+          }
+        }
+      }, function (err, user) {
+        if (err) {return res.send(messages.errors.default_error);}
+        if (!user) {return res.send(messages.errors.user_notfound);}
+        res.send(messages.success.tv_removed);
+      });
+
+};
+
+/*
+ * List User's TV shows
+ * Params: key
+ */
+exports.list = function(req, res) {
+  var userId = req.body.userId;
+
+  User.findOne({_id:userId},
+    function (err, user) {
+      if (err) {return res.send(messages.errors.default_error);}
+      if (!user) {return res.send(messages.errors.user_notfound);}
+      res.send(user.tvs);
     });
 };
