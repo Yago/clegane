@@ -47,7 +47,13 @@
             </div>
           </div>
           <div class="col-sm-9">
-            <h3>Movie</h3>
+            <h3>
+              <button class="btn-link btn-watch">
+                <i class="cleganicon cleganicon-unwatched"></i>
+                <i class="cleganicon cleganicon-eye"></i>
+              </button>
+              Movie
+            </h3>
             <h1>
               {{movie.title}}
               {% if movie.title != movie.original_title %}
@@ -65,6 +71,9 @@
       <div class="col-sm-9 col-sm-offset-3">
 
         <div class="whity">
+          <button class="btn btn-primary btn-corner">
+            <i class="cleganicon cleganicon-add"></i>
+          </button>
           {% if movie.tagline %}
             <p class="lead">“{{movie.tagline}}”</p>
           {% endif %}
