@@ -1,7 +1,8 @@
 'use strict';
 
 var User        = require('../models/user.model'),
-    apiCtrl     = require('./api.ctrl.js');
+    apiCtrl     = require('./api.ctrl.js'),
+    messages    = require('../../config/messages.json');
 
 /*
  * Add year and heading informations instead of inside template
@@ -95,5 +96,77 @@ exports.display = function(req, res) {
 
     }, function (err) {
       res.send('The people couldn\'t be found');
+    });
+};
+
+/*
+ * Add a People to User
+ * Params: key, name, imdb_id
+ */
+exports.add = function(req, res) {
+  var userId = req.body.userId;
+
+  User.findOne({_id:userId, 'peoples.tmdb_id': req.params.id},
+    function (err, user) {
+      if (err) {return res.send(messages.errors.default_error);}
+
+      // Check if people already exist in User
+      if (!user) {
+
+        // Add movie
+        User.findOneAndUpdate({_id:userId},
+          {
+            $push : {
+              peoples : {
+                name: req.body.name,
+                tmdb_id: req.params.id,
+                imdb_id: req.body.imdb_id
+              }
+            }
+          }, function (err, user) {
+            if (err) {return res.send(messages.errors.default_error);}
+            if (!user) {return res.send(messages.errors.user_notfound);}
+            res.send(messages.success.people_added);
+          });
+      } else {
+        res.send(messages.errors.people_exist);
+      }
+    });
+};
+
+/*
+ * Remove a People from User
+ * Params: key
+ */
+exports.remove = function(req, res) {
+  var userId = req.body.userId;
+
+  User.findOneAndUpdate({_id:userId},
+      {
+        $pull : {
+          peoples : {
+            tmdb_id: req.params.id
+          }
+        }
+      }, function (err, user) {
+        if (err) {return res.send(messages.errors.default_error);}
+        if (!user) {return res.send(messages.errors.user_notfound);}
+        res.send(messages.success.people_removed);
+      });
+
+};
+
+/*
+ * List User's peoples
+ * Params: key
+ */
+exports.list = function(req, res) {
+  var userId = req.body.userId;
+
+  User.findOne({_id:userId},
+    function (err, user) {
+      if (err) {return res.send(messages.errors.default_error);}
+      if (!user) {return res.send(messages.errors.user_notfound);}
+      res.send(user.peoples);
     });
 };
