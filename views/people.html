@@ -47,7 +47,7 @@
         {% set thumbindex = 0 %}
         {% for media in credits.cast|recent %}
           {% if thumbindex <= 4 and media.poster_path and media.year < currentyear %}
-            <div class="col-sm-5">
+            <div class="col-sm-2-4">
               {% if media.media_type === 'movie' %}
                 {{ thumbnail.movie(media) }}
               {% else %}

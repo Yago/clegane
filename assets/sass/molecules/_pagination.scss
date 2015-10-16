@@ -1,0 +1,11 @@
+.pagination {
+  border: 1px solid $supernova;
+  margin: $grid-gutter-width * 4 0;
+  font-weight: 700;
+  a {
+    border: none !important;
+    line-height: 2em !important;
+    transition: background 0.3s ease-out,
+                color 0.3s ease-in;
+  }
+}

@@ -2,9 +2,9 @@
 {% if original %}
   {% set image = api.images + original %}
 {% else %}
-  {% set image = 'http://photo.yago.io/photos/i-9g6sLJT/0/O/i-9g6sLJT.png' %}
+  {% set image = 'http://i.imgur.com/FOKzIc4.png' %}
 {% endif %}
-<picture>
+<picture{% if not original %} class="placeholder"{% endif %}>
   {%if size >= '5'%}
   <source
     media="(min-width: 1200px)"

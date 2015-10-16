@@ -8,7 +8,15 @@
   position: relative;
   display: block;
   img {transition: filter 0.3s ease-out}
-  &:hover .thumb-info {opacity: 1;}
+  .placeholder + .thumb-info {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.2);
+  }
+  &:hover .thumb-info,
+  &:hover .placeholder + .thumb-info {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.5);
+  }
   &:hover img {filter: grayscale(100%);}
 }
 

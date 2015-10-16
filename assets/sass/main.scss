@@ -9,12 +9,14 @@
 @import 'atoms/inputs';
 @import 'atoms/buttons';
 @import 'atoms/labels';
+@import 'atoms/pictures';
 
 // molecules:
 @import 'molecules/search-form';
 @import 'molecules/cover';
 @import 'molecules/thumbnails';
 @import 'molecules/tables';
+@import 'molecules/pagination';
 
 // organisms:
 @import 'organisms/sidebar';
@@ -23,3 +25,4 @@
 // templates:
 @import 'templates/global';
 @import 'templates/themes';
+@import 'templates/results';
