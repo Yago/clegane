@@ -78,6 +78,11 @@ var userSchema = mongoose.Schema({
       required: true,
     },
     episodes: [{
+      episode_id: {
+        type: String,
+        unique: false,
+        required: true,
+      },
       season: {
         type: Number,
         unique: false,
