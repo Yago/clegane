@@ -96,12 +96,67 @@ exports.add = function(req, res) {
           }, function (err, user) {
             if (err) {return res.send(messages.errors.default_error);}
             if (!user) {return res.send(messages.errors.user_notfound);}
-            res.send(messages.success.tv_added);
+            // check if it's not a watch request
+            if (!req.body.season) {res.send(messages.success.tv_added);}
           });
       } else {
         res.send(messages.errors.tv_exist);
       }
     });
+};
+
+/*
+ * Toggle watch episode
+ * Params: key, name, imdb_id, season, episode, episode_title
+ */
+exports.watch = function(req, res) {
+  var userId = req.body.userId;
+
+  User.findOne({_id:userId, 'tvs.tmdb_id': req.params.id},
+    function (err, user) {
+      if (err) {return res.send(messages.errors.default_error);}
+      // If TV Show already exist in User, then add it
+      if (!user) {
+        module.exports.add(req, res);
+      }
+      User.findOne({_id:userId, 'tvs.tmdb_id': req.params.id, 'tvs.episodes.tmdb_id': req.params.episode},
+        function (err, user) {
+          if (err) {return res.send(messages.errors.default_error);}
+          // If episode not exist in the show, then add it
+          if (!user) {
+            User.findOneAndUpdate({_id:userId, 'tvs.tmdb_id': req.params.id},
+              {
+                $push : {
+                  'tvs.$.episodes' : {
+                    tmdb_id: req.params.episode,
+                    season: req.body.season,
+                    episode: req.body.episode,
+                    name: req.body.episode_title
+                  }
+                }
+              }, function (err, user) {
+                if (err) {return res.send(messages.errors.default_error);}
+                if (!user) {return res.send(messages.errors.user_notfound);}
+                res.send(messages.success.tv_watched);
+              });
+          // If episode exist, then drop it
+          } else {
+            User.findOneAndUpdate({_id:userId, 'tvs.tmdb_id': req.params.id, 'tvs.episodes.tmdb_id': req.params.episode},
+              {
+                $pull : {
+                  'tvs.$.episodes' : {
+                    tmdb_id: req.params.episode
+                  }
+                }
+              }, function (err, user) {
+                if (err) {return res.send(messages.errors.default_error);}
+                if (!user) {return res.send(messages.errors.user_notfound);}
+                res.send(messages.success.tv_notwatched);
+              });
+          }
+        });
+    });
+
 };
 
 /*

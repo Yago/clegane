@@ -78,7 +78,7 @@ var userSchema = mongoose.Schema({
       required: true,
     },
     episodes: [{
-      episode_id: {
+      tmdb_id: {
         type: String,
         unique: false,
         required: true,

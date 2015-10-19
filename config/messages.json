@@ -9,9 +9,10 @@
   "success": {
     "movie_added": "Movie successfully added !",
     "movie_watched": "Movie successfully set as watched !",
-    "movie_unwatched": "Movie successfully set as unwatched !",
     "movie_removed": "Movie successfully removed !",
     "tv_added": "TV Show successfully added !",
+    "tv_watched": "Episode successfully set as watched !",
+    "tv_notwatched": "Episode successfully set as not watched !",
     "tv_removed": "TV Show successfully removed !",
     "people_added": "People successfully added !",
     "people_removed": "People successfully removed !"
