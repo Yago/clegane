@@ -96,7 +96,8 @@ exports.add = function(req, res) {
                 name: req.body.name,
                 tmdb_id: req.params.id,
                 imdb_id: req.body.imdb_id,
-                watched: watched
+                watched: watched,
+                watched_on: Date.now()
               }
             }
           }, function (err, user) {
@@ -114,13 +115,14 @@ exports.add = function(req, res) {
  * Toggle watch of a Movie
  * Params: key, name, imdb_id, watch (boolean)
  */
-exports.watchToggle = function(req, res) {
+exports.watch = function(req, res) {
   var userId = req.body.userId;
 
   User.findOneAndUpdate({_id:userId, 'movies.tmdb_id': req.params.id},
     {
       $set : {
-        'movies.$.watched': req.body.watch
+        'movies.$.watched': req.body.watch,
+        'movies.$.watched_on': Date.now()
       }
     }, function (err, user) {
       if (err) {return res.send(messages.errors.default_error);}

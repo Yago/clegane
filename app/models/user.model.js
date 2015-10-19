@@ -59,6 +59,11 @@ var userSchema = mongoose.Schema({
       required: false,
       unique: false,
       default: false
+    },
+    watched_on: {
+      type: Date,
+      required: true,
+      unique: false,
     }
   }],
   tvs: [{
@@ -97,6 +102,12 @@ var userSchema = mongoose.Schema({
         type: String,
         unique: false,
         required: true,
+      },
+      watched_on: {
+        type: Date,
+        unique: false,
+        required: true,
+        default: Date.now
       }
     }]
   }],
