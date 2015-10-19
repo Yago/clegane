@@ -76,6 +76,7 @@ exports.add = function(req, res) {
   var userId  = req.body.userId,
       watched = false;
 
+  // If toggle watch request
   if (req.body.watch) {
     watched = req.body.watch;
   }
