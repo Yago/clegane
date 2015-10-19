@@ -1,10 +1,12 @@
 {
   "errors": {
     "default_error": "Something bad happened, try later.",
-    "user_notfound": "The user cannot be found.",
+    "user_notfound": "The target cannot be found.",
     "movie_exist": "This movie already exist.",
     "tv_exist": "This TV show already exist.",
-    "people_exist": "This people already exist."
+    "people_exist": "This people already exist.",
+    "list_exist": "This item already exist in this list.",
+    "list_notexist": "This item does not exist in this list."
   },
   "success": {
     "movie_added": "Movie successfully added !",
@@ -15,6 +17,10 @@
     "tv_notwatched": "Episode successfully set as not watched !",
     "tv_removed": "TV Show successfully removed !",
     "people_added": "People successfully added !",
-    "people_removed": "People successfully removed !"
+    "people_removed": "People successfully removed !",
+    "list_added": "List successfully added !",
+    "list_item_added": "Item successfully added to list !",
+    "list_item_removed": "Item successfully removed from list !",
+    "list_removed": "List successfully removed !"
   }
 }

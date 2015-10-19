@@ -86,6 +86,7 @@ require('./app/routes/search.routes')(app, passport);
 require('./app/routes/movie.routes')(app, passport);
 require('./app/routes/tv.routes')(app, passport);
 require('./app/routes/people.routes')(app, passport);
+require('./app/routes/list.routes')(app, passport);
 
 // launch ======================================================================
 app.listen(port);
