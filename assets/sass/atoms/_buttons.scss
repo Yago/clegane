@@ -54,15 +54,15 @@
   color: $mercury;
   position: relative;
   top: -2px;
-  .cleganicon-eye {
-    display: none;
-    position: relative;
-    left: 1px;
+  .cleganicon {
+    color: $mercury;
   }
-  .cleganicon-unwatched {display: inline;}
-  &.active, &:hover, &:active, &:focus {
+  .cleganicon-eye {
+    position: relative;
+    left: 0.5px;
     color: $supernova;
-    .cleganicon-eye {display: inline;}
-    .cleganicon-unwatched {display: none;}
+  }
+  &:hover, &:active, &:focus {
+    .cleganicon {color: $supernova;}
   }
 }

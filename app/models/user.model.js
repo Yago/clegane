@@ -4,55 +4,55 @@ var userSchema = mongoose.Schema({
   username: {
     type: String,
     unique: true,
-    required: true,
+    required: true
   },
   email: {
     type: String,
     required: true,
-    unique: true,
+    unique: true
   },
   password: {
     type: String,
     required: true,
-    unique: false,
+    unique: false
   },
   key: {
     type: String,
     required: false,
-    unique: false,
+    unique: false
   },
   peoples: [{
     name: {
       type: String,
       unique: false,
-      required: true,
+      required: true
     },
     tmdb_id: {
       type: String,
       unique: false,
-      required: true,
+      required: true
     },
     imdb_id: {
       type: String,
       unique: false,
-      required: true,
+      required: false
     }
   }],
   movies: [{
     name: {
       type: String,
       unique: false,
-      required: true,
+      required: true
     },
     tmdb_id: {
       type: String,
       unique: false,
-      required: true,
+      required: true
     },
     imdb_id: {
       type: String,
       unique: false,
-      required: true,
+      required: false
     },
     watched: {
       type: Boolean,
@@ -63,45 +63,45 @@ var userSchema = mongoose.Schema({
     watched_on: {
       type: Date,
       required: true,
-      unique: false,
+      unique: false
     }
   }],
   tvs: [{
     name: {
       type: String,
       unique: false,
-      required: true,
+      required: true
     },
     tmdb_id: {
       type: String,
       unique: false,
-      required: true,
+      required: true
     },
     imdb_id: {
       type: String,
       unique: false,
-      required: true,
+      required: false
     },
     episodes: [{
       tmdb_id: {
         type: String,
         unique: false,
-        required: true,
+        required: true
       },
       season: {
         type: Number,
         unique: false,
-        required: true,
+        required: true
       },
       episode: {
         type: Number,
         unique: false,
-        required: true,
+        required: true
       },
       name: {
         type: String,
         unique: false,
-        required: true,
+        required: true
       },
       watched_on: {
         type: Date,
@@ -115,13 +115,13 @@ var userSchema = mongoose.Schema({
     name: {
       type: String,
       unique: false,
-      required: true,
+      required: true
     },
     items: [{
       item: {
         type: String,
         unique: false,
-        required: true,
+        required: true
       }
     }],
   }],

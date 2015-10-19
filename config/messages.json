@@ -10,7 +10,7 @@
   },
   "success": {
     "movie_added": "Movie successfully added !",
-    "movie_watched": "Movie successfully set as watched !",
+    "movie_watched": "Movie toggle watch successfull !",
     "movie_removed": "Movie successfully removed !",
     "tv_added": "TV Show successfully added !",
     "tv_watched": "Episode successfully set as watched !",
