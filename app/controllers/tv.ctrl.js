@@ -78,7 +78,7 @@ exports.add = function(req, res) {
 
   User.findOne({_id:userId, 'tvs.tmdb_id': req.params.id},
     function (err, user) {
-      if (err) {return res.send(messages.errors.default_error);}
+      if (err) {return res.status(500).send(messages.errors.default_error);}
 
       // Check if show already exist in User
       if (!user) {
@@ -94,13 +94,13 @@ exports.add = function(req, res) {
               }
             }
           }, function (err, user) {
-            if (err) {return res.send(messages.errors.default_error);}
-            if (!user) {return res.send(messages.errors.user_notfound);}
+            if (err) {return res.status(500).send(messages.errors.default_error);}
+            if (!user) {return res.status(500).send(messages.errors.user_notfound);}
             // check if it's not a watch request
             if (!req.body.season) {res.send(messages.success.tv_added);}
           });
       } else {
-        res.send(messages.errors.tv_exist);
+        res.status(500).send(messages.errors.tv_exist);
       }
     });
 };
@@ -114,14 +114,14 @@ exports.watch = function(req, res) {
 
   User.findOne({_id:userId, 'tvs.tmdb_id': req.params.id},
     function (err, user) {
-      if (err) {return res.send(messages.errors.default_error);}
+      if (err) {return res.status(500).send(messages.errors.default_error);}
       // If TV Show already exist in User, then add it
       if (!user) {
         module.exports.add(req, res);
       }
       User.findOne({_id:userId, 'tvs.tmdb_id': req.params.id, 'tvs.episodes.tmdb_id': req.params.episode},
         function (err, user) {
-          if (err) {return res.send(messages.errors.default_error);}
+          if (err) {return res.status(500).send(messages.errors.default_error);}
           // If episode not exist in the show, then add it
           if (!user) {
             User.findOneAndUpdate({_id:userId, 'tvs.tmdb_id': req.params.id},
@@ -135,8 +135,8 @@ exports.watch = function(req, res) {
                   }
                 }
               }, function (err, user) {
-                if (err) {return res.send(messages.errors.default_error);}
-                if (!user) {return res.send(messages.errors.user_notfound);}
+                if (err) {return res.status(500).send(messages.errors.default_error);}
+                if (!user) {return res.status(500).send(messages.errors.user_notfound);}
                 res.send(messages.success.tv_watched);
               });
           // If episode exist, then drop it
@@ -149,8 +149,8 @@ exports.watch = function(req, res) {
                   }
                 }
               }, function (err, user) {
-                if (err) {return res.send(messages.errors.default_error);}
-                if (!user) {return res.send(messages.errors.user_notfound);}
+                if (err) {return res.status(500).send(messages.errors.default_error);}
+                if (!user) {return res.status(500).send(messages.errors.user_notfound);}
                 res.send(messages.success.tv_notwatched);
               });
           }
@@ -174,8 +174,8 @@ exports.remove = function(req, res) {
           }
         }
       }, function (err, user) {
-        if (err) {return res.send(messages.errors.default_error);}
-        if (!user) {return res.send(messages.errors.user_notfound);}
+        if (err) {return res.status(500).send(messages.errors.default_error);}
+        if (!user) {return res.status(500).send(messages.errors.user_notfound);}
         res.send(messages.success.tv_removed);
       });
 
@@ -190,8 +190,8 @@ exports.list = function(req, res) {
 
   User.findOne({_id:userId},
     function (err, user) {
-      if (err) {return res.send(messages.errors.default_error);}
-      if (!user) {return res.send(messages.errors.user_notfound);}
+      if (err) {return res.status(500).send(messages.errors.default_error);}
+      if (!user) {return res.status(500).send(messages.errors.user_notfound);}
       res.send(user.tvs);
     });
 };

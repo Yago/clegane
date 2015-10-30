@@ -83,7 +83,7 @@ exports.add = function(req, res) {
 
   User.findOne({_id:userId, 'movies.tmdb_id': req.params.id},
     function (err, user) {
-      if (err) {return res.send(messages.errors.default_error);}
+      if (err) {return res.status(500).send(messages.errors.default_error);}
 
       // Check if movie already exist in User
       if (!user) {
@@ -101,12 +101,12 @@ exports.add = function(req, res) {
               }
             }
           }, function (err, user) {
-            if (err) {return res.send(messages.errors.default_error);}
-            if (!user) {return res.send(messages.errors.user_notfound);}
+            if (err) {return res.status(500).send(messages.errors.default_error);}
+            if (!user) {return res.status(500).send(messages.errors.user_notfound);}
             res.send(messages.success.movie_added);
           });
       } else {
-        res.send(messages.errors.movie_exist);
+        res.status(500).send(messages.errors.movie_exist);
       }
     });
 };
@@ -125,7 +125,7 @@ exports.watch = function(req, res) {
         'movies.$.watched_on': Date.now()
       }
     }, function (err, user) {
-      if (err) {return res.send(messages.errors.default_error);}
+      if (err) {return res.status(500).send(messages.errors.default_error);}
 
       // If no movie exist, create one watched
       if (!user) {
@@ -153,8 +153,8 @@ exports.remove = function(req, res) {
           }
         }
       }, function (err, user) {
-        if (err) {return res.send(messages.errors.default_error);}
-        if (!user) {return res.send(messages.errors.user_notfound);}
+        if (err) {return res.status(500).send(messages.errors.default_error);}
+        if (!user) {return res.status(500).send(messages.errors.user_notfound);}
         res.send(messages.success.movie_removed);
       });
 
@@ -169,8 +169,8 @@ exports.list = function(req, res) {
 
   User.findOne({_id:userId},
     function (err, user) {
-      if (err) {return res.send(messages.errors.default_error);}
-      if (!user) {return res.send(messages.errors.user_notfound);}
+      if (err) {return res.status(500).send(messages.errors.default_error);}
+      if (!user) {return res.status(500).send(messages.errors.user_notfound);}
       res.send(user.movies);
     });
 };

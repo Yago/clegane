@@ -20,8 +20,8 @@ exports.add = function(req, res) {
         }
       }
     }, function (err, user) {
-      if (err) {return res.send(messages.errors.default_error);}
-      if (!user) {return res.send(messages.errors.user_notfound);}
+      if (err) {return res.status(500).send(messages.errors.default_error);}
+      if (!user) {return res.status(500).send(messages.errors.user_notfound);}
       res.send(messages.success.list_added);
     });
 };
@@ -35,8 +35,8 @@ exports.show = function(req, res) {
 
   User.findOne({_id:userId, 'lists._id': req.params.id},
     function (err, user) {
-      if (err) {return res.send(messages.errors.default_error);}
-      if (!user) {return res.send(messages.errors.user_notfound);}
+      if (err) {return res.status(500).send(messages.errors.default_error);}
+      if (!user) {return res.status(500).send(messages.errors.user_notfound);}
       user.lists.forEach(function(list){
         if (list._id == req.params.id) {
           res.send(list);
@@ -55,7 +55,7 @@ exports.push = function(req, res) {
   // Add movie
   User.findOne({_id:userId, 'lists._id': req.params.id, 'lists.items.item': req.params.item},
     function (err, user) {
-      if (err) {return res.send(messages.errors.default_error);}
+      if (err) {return res.status(500).send(messages.errors.default_error);}
       // Check if item not already exist in list
       if (!user) {
         User.findOneAndUpdate({_id:userId, 'lists._id': req.params.id},
@@ -66,12 +66,12 @@ exports.push = function(req, res) {
               }
             }
           }, function (err, user) {
-            if (err) {return res.send(messages.errors.default_error);}
-            if (!user) {return res.send(messages.errors.user_notfound);}
+            if (err) {return res.status(500).send(messages.errors.default_error);}
+            if (!user) {return res.status(500).send(messages.errors.user_notfound);}
             res.send(messages.success.list_item_added);
           });
       } else {
-        return res.send(messages.errors.list_exist);
+        return res.status(500).send(messages.errors.list_exist);
       }
     });
 };
@@ -86,10 +86,10 @@ exports.pull = function(req, res) {
   // Add movie
   User.findOne({_id:userId, 'lists._id': req.params.id, 'lists.items.item': req.params.item},
     function (err, user) {
-      if (err) {return res.send(messages.errors.default_error);}
+      if (err) {return res.status(500).send(messages.errors.default_error);}
       // Check if item exist in list
       if (!user) {
-        return res.send(messages.errors.list_notexist);
+        return res.status(500).send(messages.errors.list_notexist);
       } else {
         User.findOneAndUpdate({_id:userId, 'lists._id': req.params.id, 'lists.items.item': req.params.item},
           {
@@ -99,8 +99,8 @@ exports.pull = function(req, res) {
               }
             }
           }, function (err, user) {
-            if (err) {return res.send(messages.errors.default_error);}
-            if (!user) {return res.send(messages.errors.user_notfound);}
+            if (err) {return res.status(500).send(messages.errors.default_error);}
+            if (!user) {return res.status(500).send(messages.errors.user_notfound);}
             res.send(messages.success.list_item_removed);
           });
       }
@@ -122,8 +122,8 @@ exports.remove = function(req, res) {
           }
         }
       }, function (err, user) {
-        if (err) {return res.send(messages.errors.default_error);}
-        if (!user) {return res.send(messages.errors.user_notfound);}
+        if (err) {return res.status(500).send(messages.errors.default_error);}
+        if (!user) {return res.status(500).send(messages.errors.user_notfound);}
         res.send(messages.success.list_removed);
       });
 
@@ -138,8 +138,8 @@ exports.list = function(req, res) {
 
   User.findOne({_id:userId},
     function (err, user) {
-      if (err) {return res.send(messages.errors.default_error);}
-      if (!user) {return res.send(messages.errors.user_notfound);}
+      if (err) {return res.status(500).send(messages.errors.default_error);}
+      if (!user) {return res.status(500).send(messages.errors.user_notfound);}
       res.send(user.lists);
     });
 };

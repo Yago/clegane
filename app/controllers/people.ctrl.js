@@ -108,7 +108,7 @@ exports.add = function(req, res) {
 
   User.findOne({_id:userId, 'peoples.tmdb_id': req.params.id},
     function (err, user) {
-      if (err) {return res.send(messages.errors.default_error);}
+      if (err) {return res.status(500).send(messages.errors.default_error);}
 
       // Check if people already exist in User
       if (!user) {
@@ -124,12 +124,12 @@ exports.add = function(req, res) {
               }
             }
           }, function (err, user) {
-            if (err) {return res.send(messages.errors.default_error);}
-            if (!user) {return res.send(messages.errors.user_notfound);}
+            if (err) {return res.status(500).send(messages.errors.default_error);}
+            if (!user) {return res.status(500).send(messages.errors.user_notfound);}
             res.send(messages.success.people_added);
           });
       } else {
-        res.send(messages.errors.people_exist);
+        res.status(500).send(messages.errors.people_exist);
       }
     });
 };
@@ -149,8 +149,8 @@ exports.remove = function(req, res) {
           }
         }
       }, function (err, user) {
-        if (err) {return res.send(messages.errors.default_error);}
-        if (!user) {return res.send(messages.errors.user_notfound);}
+        if (err) {return res.status(500).send(messages.errors.default_error);}
+        if (!user) {return res.status(500).send(messages.errors.user_notfound);}
         res.send(messages.success.people_removed);
       });
 
@@ -165,8 +165,8 @@ exports.list = function(req, res) {
 
   User.findOne({_id:userId},
     function (err, user) {
-      if (err) {return res.send(messages.errors.default_error);}
-      if (!user) {return res.send(messages.errors.user_notfound);}
+      if (err) {return res.status(500).send(messages.errors.default_error);}
+      if (!user) {return res.status(500).send(messages.errors.user_notfound);}
       res.send(user.peoples);
     });
 };
