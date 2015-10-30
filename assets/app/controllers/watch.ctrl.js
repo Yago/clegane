@@ -2,7 +2,7 @@
 
 /* global app */
 
-app.controller('WatchCtrl', function($http) {
+app.controller('WatchCtrl', function(ApiService) {
   var that = this;
 
   that.watched = false;
@@ -14,38 +14,27 @@ app.controller('WatchCtrl', function($http) {
   };
 
   that.toggle = function (key, id, title, imdb) {
-    var state = true;
-    if (that.watched) {
-      state = false;
-    }
-    console.log(that.watched);
-
-    $http({
-        method: 'POST',
-        url: '/movie/'+ id +'/watch',
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        transformRequest: function(obj) {
-          var str = [];
-          for(var p in obj) {
-            str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
-          }
-          return str.join('&');
-        },
-        data: {
+    var state = true,
+        url = '/movie/'+ id +'/watch',
+        data = {
           key: key,
           name: title,
           imdb_id: imdb,
           watch: state
-        }
-    }).then(function(res) {
+        };
+
+    if (that.watched) {
+      state = false;
+    }
+
+    ApiService.post(url, data, function (res) {
       console.log(res);
       if (that.watched) {
         that.watched = false;
       } else {
         that.watched = true;
       }
-      console.log(that.watched);
-    }, function(err) {
+    }, function (err) {
       console.log(err);
     });
   };
