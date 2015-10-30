@@ -4,7 +4,7 @@
       '{% if movie.id %}{{movie.id}}{% elseif people.id %}{{people.id}}{% elseif tv.id %}{{tv.id}}{% endif %}',
       '{% if movie.id %}{{movie.title}}{% elseif people.id %}{{people.name}}{% elseif tv.id %}{{tv.name}}{% endif %}',
       '{% if movie.id %}movie{% elseif people.id %}people{% elseif tv.id %}tv{% endif %}',
-      '{% if movie.imdb_id %}{{movie.imdb_id}}{% elseif people.imdb_id %}{{people.imdb_id}}{% elseif tv.imdb_id %}{{tv.imdb_id}}{% endif %}'
+      '{% if movie.imdb_id %}{{movie.imdb_id}}{% elseif people.imdb_id %}{{people.imdb_id}}{% elseif ids.imdb_id %}{{ids.imdb_id}}{% endif %}'
     )">
     <button class="btn btn-primary btn-corner" ng-click="modal.close()">
       <i class="cleganicon cleganicon-close"></i>

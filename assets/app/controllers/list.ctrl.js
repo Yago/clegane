@@ -25,6 +25,8 @@ app.controller('ListCtrl', function($uibModalInstance, ApiService) {
         that.mediaType = mediaType;
         that.mediaImdb = mediaImdb;
 
+        console.log(that.mediaImdb);
+
         // Add list instances to main lists array and check if the current item is inside
         res.data.forEach(function(data){
           var i = 0,
@@ -49,7 +51,7 @@ app.controller('ListCtrl', function($uibModalInstance, ApiService) {
           }
         });
       }, function (err) {
-        console.log(err);
+        //console.log(err);
       });
   };
 
@@ -70,7 +72,7 @@ app.controller('ListCtrl', function($uibModalInstance, ApiService) {
       // Check if media exist to user
       ApiService.post('/'+that.mediaType+'s', {key: that.key},
         function (res) {
-          console.log(res);
+          //console.log(res);
           var i = 0;
 
           // If there is something in the [TYPE] user's listing
@@ -100,12 +102,12 @@ app.controller('ListCtrl', function($uibModalInstance, ApiService) {
                   function (res) {
                     ApiService.post('/list/'+id+'/push/'+that.mediaId, {key: that.key},
                       function (res) {
-                        console.log(res);
+                        //console.log(res);
                       }, function (err) {
-                        console.log(err);
+                        //console.log(err);
                       });
                   }, function (err) {
-                    console.log(err);
+                    //console.log(err);
                   });
               }
             });
@@ -119,17 +121,17 @@ app.controller('ListCtrl', function($uibModalInstance, ApiService) {
               function (res) {
                 ApiService.post('/list/'+id+'/push/'+that.mediaId, {key: that.key},
                   function (res) {
-                    console.log(res);
+                    //console.log(res);
                   }, function (err) {
-                    console.log(err);
+                    //console.log(err);
                   });
               }, function (err) {
-                console.log(err);
+                //console.log(err);
               });
           }
 
         }, function (err) {
-          console.log(err);
+          //console.log(err);
         });
     }
 

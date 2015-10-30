@@ -65,6 +65,11 @@
       <div class="col-sm-9 col-sm-offset-3">
 
         <div class="whity">
+          <div ng-controller="ModalCtrl as modal">
+            <button class="btn btn-primary btn-corner" ng-click="modal.open()">
+              <i class="cleganicon cleganicon-add"></i>
+            </button>
+          </div>
           <p>
             {% for genre in tv.genres %}
               <a href="/genre/{{genre.id}}/1">
@@ -119,5 +124,7 @@
     {% endif %}
 
   </div>
+
   {% include "./components/organisms/photoswipe-wrapper.html" %}
+  {% include "./components/molecules/modal.html" %}
 {% endblock %}
