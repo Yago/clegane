@@ -43,6 +43,12 @@
         </div>
       </div>
 
+      <div ng-controller="ModalCtrl as modal">
+        <button class="btn btn-primary btn-corner" ng-click="modal.open()">
+          <i class="cleganicon cleganicon-add"></i>
+        </button>
+      </div>
+
       <h2>Known For</h2>
       <div class="row">
         {% set thumbindex = 0 %}
@@ -110,4 +116,6 @@
 
     </div>
   </div>
+
+  {% include "./components/molecules/modal.html" %}
 {% endblock %}

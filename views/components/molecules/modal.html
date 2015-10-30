@@ -1,5 +1,5 @@
 <script type="text/ng-template" id="modal-list.html">
-  <div class="modal-body" ng-init="modal.init('{{user.key}}', '{{movie.id}}')">
+  <div class="modal-body" ng-init="modal.init('{{user.key}}', '{% if movie.id %}{{movie.id}}{% elseif people.id %}{{people.id}}{% elseif tv.id %}{{tv.id}}{% endif %}')">
     <button class="btn btn-primary btn-corner" ng-click="modal.close()">
       <i class="cleganicon cleganicon-close"></i>
     </button>
