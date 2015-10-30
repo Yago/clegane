@@ -83,9 +83,11 @@
       <div class="col-sm-9 col-sm-offset-3">
 
         <div class="whity">
-          <button class="btn btn-primary btn-corner">
-            <i class="cleganicon cleganicon-add"></i>
-          </button>
+          <div ng-controller="ModalCtrl as modal">
+            <button class="btn btn-primary btn-corner" ng-init="modal.open()">
+              <i class="cleganicon cleganicon-add"></i>
+            </button>
+          </div>
           {% if movie.tagline %}
             <p class="lead">“{{movie.tagline}}”</p>
           {% endif %}
@@ -136,4 +138,6 @@
     {% endif %}
 
   </div>
+
+  {% include "./components/molecules/modal.html" %}
 {% endblock %}

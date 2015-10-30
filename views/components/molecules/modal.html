@@ -1,0 +1,13 @@
+<script type="text/ng-template" id="modal-list.html">
+  <div class="modal-body" ng-init="modal.init('{{user.key}}', '{{movie.id}}')">
+    <button class="btn btn-primary btn-corner" ng-click="modal.close()">
+      <i class="cleganicon cleganicon-close"></i>
+    </button>
+    <h2>Add [[modal.movieId]] to lists</h2>
+    <div class="checkbox" ng-repeat="(key, list) in modal.lists">
+      <label>
+        <input type="checkbox" ng-model="list.exist" ng-change="modal.update(list.id, list.exist)">[[list.name]] - [[list.exist]]
+      </label>
+    </div>
+  </div>
+</script>
