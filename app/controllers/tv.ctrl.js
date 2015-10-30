@@ -119,7 +119,7 @@ exports.watch = function(req, res) {
       if (!user) {
         module.exports.add(req, res);
       }
-      User.findOne({_id:userId, 'tvs.tmdb_id': req.params.id, 'tvs.episodes.tmdb_id': req.params.episode},
+      User.findOne({_id:userId, 'tvs.tmdb_id': req.params.id, 'tvs.$.episodes.episode_id': req.params.episode},
         function (err, user) {
           if (err) {return res.status(500).send(messages.errors.default_error);}
           // If episode not exist in the show, then add it
@@ -128,7 +128,7 @@ exports.watch = function(req, res) {
               {
                 $push : {
                   'tvs.$.episodes' : {
-                    tmdb_id: req.params.episode,
+                    episode_id: req.params.episode,
                     season: req.body.season,
                     episode: req.body.episode,
                     name: req.body.episode_title
@@ -141,11 +141,11 @@ exports.watch = function(req, res) {
               });
           // If episode exist, then drop it
           } else {
-            User.findOneAndUpdate({_id:userId, 'tvs.tmdb_id': req.params.id, 'tvs.episodes.tmdb_id': req.params.episode},
+            User.findOneAndUpdate({_id:userId, 'tvs.tmdb_id': req.params.id, 'tvs.$.episodes.episode_id': req.params.episode},
               {
                 $pull : {
                   'tvs.$.episodes' : {
-                    tmdb_id: req.params.episode
+                    episode_id: req.params.episode
                   }
                 }
               }, function (err, user) {
