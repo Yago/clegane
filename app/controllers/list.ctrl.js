@@ -53,7 +53,7 @@ exports.push = function(req, res) {
   var userId = req.body.userId;
 
   // Add movie
-  User.findOne({_id:userId, 'lists._id': req.params.id, 'lists.items.item': req.params.item},
+  User.findOne({_id:userId, 'lists._id': req.params.id, 'lists.$.items.item': req.params.item},
     function (err, user) {
       if (err) {return res.status(500).send(messages.errors.default_error);}
       // Check if item not already exist in list
@@ -84,14 +84,14 @@ exports.pull = function(req, res) {
   var userId = req.body.userId;
 
   // Add movie
-  User.findOne({_id:userId, 'lists._id': req.params.id, 'lists.items.item': req.params.item},
+  User.findOne({_id:userId, 'lists._id': req.params.id},
     function (err, user) {
       if (err) {return res.status(500).send(messages.errors.default_error);}
       // Check if item exist in list
       if (!user) {
         return res.status(500).send(messages.errors.list_notexist);
       } else {
-        User.findOneAndUpdate({_id:userId, 'lists._id': req.params.id, 'lists.items.item': req.params.item},
+        User.findOneAndUpdate({_id:userId, 'lists._id': req.params.id},
           {
             $pull : {
               'lists.$.items' : {
