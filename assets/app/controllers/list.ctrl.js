@@ -59,12 +59,9 @@ app.controller('ListCtrl', function($http, $scope, $uibModalInstance) {
 
   that.update = function (id, exist) {
     var action = 'push';
-
     if (!exist) {
       action = 'pull';
     }
-
-    console.log('/list/'+id+'/'+action+'/'+that.movieId);
 
     // update item in list, pull or push depends if it exist
     $http({
@@ -82,11 +79,40 @@ app.controller('ListCtrl', function($http, $scope, $uibModalInstance) {
           key: that.key
         }
     }).then(function(res) {
-      console.log(res);
+      //console.log(res);
     }, function(err) {
-      console.log(err);
+      //console.log(err);
     });
 
+  };
+
+  that.add = function () {
+    if (that.newlist) {
+      // add list
+      $http({
+          method: 'POST',
+          url: '/list/add',
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          transformRequest: function(obj) {
+            var str = [];
+            for(var p in obj) {
+              str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
+            }
+            return str.join('&');
+          },
+          data: {
+            key: that.key,
+            name: that.newlist
+          }
+      }).then(function(res) {
+        //console.log(res);
+        that.lists = [];
+        that.newlist = '';
+        that.init(that.key, that.movieId);
+      }, function(err) {
+        //console.log(err);
+      });
+    }
   };
 
   that.close = function () {

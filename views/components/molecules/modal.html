@@ -3,11 +3,23 @@
     <button class="btn btn-primary btn-corner" ng-click="modal.close()">
       <i class="cleganicon cleganicon-close"></i>
     </button>
-    <h2>Add [[modal.movieId]] to lists</h2>
+    <h2>Add to lists</h2>
     <div class="checkbox" ng-repeat="(key, list) in modal.lists">
       <label>
-        <input type="checkbox" ng-model="list.exist" ng-change="modal.update(list.id, list.exist)">[[list.name]] - [[list.exist]]
+        <input type="checkbox" ng-model="list.exist" ng-change="modal.update(list.id, list.exist)">[[list.name]]
       </label>
     </div>
+    <div class="spacer spacer-sm"></div>
+    <h3>New list</h3>
+    <form ng-submit="modal.add()" class="search-form">
+      <div class="form-group">
+        <div class="input-group">
+          <input type="text" ng-model="modal.newlist" class="form-control" placeholder="Pick a name">
+          <span class="input-group-btn">
+          <button type="submit" class="btn btn-primary"><b>+</b></button>
+          </span>
+        </div>
+      </div>
+    </form>
   </div>
 </script>

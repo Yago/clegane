@@ -1,6 +1,12 @@
 .btn {
   border: none;
   transition: background 0.3s ease-out;
+  b {
+    font-size: 40px;
+    font-family: $main-font;
+    font-weight: 500;
+    line-height: 0.85em;
+  }
 }
 
 .btn-link {
