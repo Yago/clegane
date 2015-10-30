@@ -98,11 +98,6 @@ var userSchema = mongoose.Schema({
         unique: false,
         required: true
       },
-      name: {
-        type: String,
-        unique: false,
-        required: true
-      },
       watched_on: {
         type: Date,
         unique: false,
