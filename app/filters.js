@@ -13,6 +13,16 @@ exports.recent = function (movies) {
 };
 
 /*
+ * Return player's rank based on player.id and user object
+ */
+exports.sortSeasons = function (seasons) {
+  seasons.sort(function(a, b){
+    return a.season_number-b.season_number;
+  });
+  return seasons;
+};
+
+/*
  * Return previous page
  */
 exports.previous = function (current) {

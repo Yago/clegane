@@ -1,8 +1,50 @@
 'use strict';
 
-var User        = require('../models/user.model'),
-    apiCtrl     = require('./api.ctrl.js'),
-    messages    = require('../../config/messages.json');
+var User          = require('../models/user.model'),
+    apiCtrl       = require('./api.ctrl.js'),
+    messages      = require('../../config/messages.json'),
+    async         = require('async'),
+    seasonsObject = function (userId, tv, done){
+      var seasons = [];
+      async.each(tv.seasons, function(season, seasonCallback) {
+        apiCtrl.get('/tv/'+tv.id+'/season/'+season.season_number,
+          function (data) {
+            var seasonArray = data;
+            async.each(seasonArray.episodes, function(episode, episodeCallback) {
+              User.findOne({_id:userId, 'tvs.tmdb_id': tv.id, 'tvs.episodes.tmdb_id': episode.id},
+                function (err, user) {
+                  if (err) {
+                    episode.watched = false;
+                    episodeCallback();
+                  }
+                  if (!user) {
+                    episode.watched = false;
+                    episodeCallback();
+                  }
+                  else {
+                    episode.watched = true;
+                    episodeCallback();
+                  }
+                });
+            }, function(err){
+                if( err ) {
+                  // console.log(err);
+                } else {
+                  seasons.push(seasonArray);
+                  seasonCallback();
+                }
+            });
+          }, function (err) {
+            //console.log(err);
+          });
+      }, function(err){
+          if( err ) {
+            // console.log(err);
+          } else {
+            done(seasons);
+          }
+      });
+    };
 
 /*
  * Display tv page
@@ -32,36 +74,52 @@ exports.display = function(req, res) {
                   // Request imdb id
                   apiCtrl.get('/tv/'+tvId+'/external_ids',
                     function (ids) {
-                      res.locals.tv = main;
-                      res.locals.credits = credits;
-                      res.locals.videos = videos.results;
-                      res.locals.similar = similar.results;
-                      res.locals.ids = ids;
-                      res.render('tv');
+                      console.log(userId);
+                      seasonsObject(userId, main, function(seasons){
+                        res.locals.tv = main;
+                        res.locals.credits = credits;
+                        res.locals.videos = videos.results;
+                        res.locals.similar = similar.results;
+                        res.locals.ids = ids;
+                        res.locals.seasons = seasons;
+                        res.render('tv');
+                      });
                     }, function (err) {
-                      res.locals.tv = main;
-                      res.locals.credits = credits;
-                      res.locals.videos = videos.results;
-                      res.locals.similar = similar.results;
-                      res.render('tv');
+                      seasonsObject(userId, main, function(seasons){
+                        res.locals.tv = main;
+                        res.locals.credits = credits;
+                        res.locals.videos = videos.results;
+                        res.locals.similar = similar.results;
+                        res.locals.seasons = seasons;
+                        res.render('tv');
+                      });
                     });
 
                 }, function (err) {
-                  res.locals.tv = main;
-                  res.locals.credits = credits;
-                  res.locals.videos = videos.results;
-                  res.render('tv');
+                  seasonsObject(userId, main, function(seasons){
+                    res.locals.tv = main;
+                    res.locals.credits = credits;
+                    res.locals.videos = videos.results;
+                    res.locals.seasons = seasons;
+                    res.render('tv');
+                  });
                 });
 
             }, function (err) {
-              res.locals.tv = main;
-              res.locals.credits = credits;
-              res.render('tv');
+              seasonsObject(userId, main, function(seasons){
+                res.locals.tv = main;
+                res.locals.credits = credits;
+                res.locals.seasons = seasons;
+                res.render('tv');
+              });
             });
 
         }, function (err) {
-          res.locals.tv = main;
-          res.render('tv');
+          seasonsObject(userId, main, function(seasons){
+            res.locals.tv = main;
+            res.locals.seasons = seasons;
+            res.render('tv');
+          });
         });
 
     }, function (err) {
@@ -107,8 +165,7 @@ exports.add = function(req, res) {
 
 /*
  * Toggle watch episode
- * Params: key, name, imdb_id, season, episode, episode_title
- * episode_id = tv show tmdb id + “_” + short code (for example : 48866_s01e02)
+ * Params: key, name, imdb_id, season, episode
  */
 exports.watch = function(req, res) {
   var userId = req.body.userId;
@@ -120,7 +177,7 @@ exports.watch = function(req, res) {
       if (!user) {
         module.exports.add(req, res);
       }
-      User.findOne({_id:userId, 'tvs.tmdb_id': req.params.id, 'tvs.episodes.episode_id': req.params.episode},
+      User.findOne({_id:userId, 'tvs.tmdb_id': req.params.id, 'tvs.episodes.tmdb_id': req.params.episode},
         function (err, user) {
           if (err) {return res.status(500).send(messages.errors.default_error);}
           // If episode not exist in the show, then add it
@@ -129,10 +186,10 @@ exports.watch = function(req, res) {
               {
                 $push : {
                   'tvs.$.episodes' : {
-                    episode_id: req.params.episode,
+                    tmdb_id: req.params.episode,
                     season: req.body.season,
-                    episode: req.body.episode,
-                    name: req.body.episode_title
+                    title: req.body.title,
+                    episode: req.body.episode
                   }
                 }
               }, function (err, user) {
@@ -142,11 +199,11 @@ exports.watch = function(req, res) {
               });
           // If episode exist, then drop it
           } else {
-            User.findOneAndUpdate({_id:userId, 'tvs.tmdb_id': req.params.id, 'tvs.episodes.episode_id': req.params.episode},
+            User.findOneAndUpdate({_id:userId, 'tvs.tmdb_id': req.params.id, 'tvs.episodes.tmdb_id': req.params.episode},
               {
                 $pull : {
                   'tvs.$.episodes' : {
-                    episode_id: req.params.episode
+                    tmdb_id: req.params.episode
                   }
                 }
               }, function (err, user) {

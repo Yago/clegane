@@ -1,24 +1,36 @@
 <div class="episodes-wrapper" ng-class="{in: episodes.episodeOpen}" ng-init="episodes.init({{tv.seasons|length}})" ng-controller="EpisodesCtrl as episodes">
   <tabset vertical="true" type="tabs">
-    {% for season in tv.seasons %}
-      {% if season.season_number !== 0 and season.episode_count > 0 %}
+    {% for season in seasons|sortSeasons %}
+      {% if season.season_number !== 0 and season.episodes|length > 0 %}
         <tab select="episodes.selectSeason({{tv.id}}, {{season.season_number}})">
           <tab-heading>
             s<span ng-hide="episodes.episodeOpen">eason </span>{{season.season_number|zero}}
           </tab-heading>
           <div>
             <tabset vertical="true" type="tabs">
-              {% for episode in season.episode_count|numberArray %}
+              {% for episode in season.episodes %}
                 <tab active="{% if loop.index == 1 %}episodes.seasonOpen[{{season.season_number}}]{% else %}false{% endif %}" select="episodes.selectEpisode({{tv.id}}, {{season.season_number}}, {{loop.index}})">
                   <tab-heading>
-                    <span class="watch-toggle">
-                      <input type="checkbox" ng-click="episodes.toggleWatch(); $event.stopPropagation();">
+                    <span class="watch-toggle" ng-controller="WatchCtrl as watched">
+                    <input
+                      type="checkbox"
+                      ng-click="watched.episode(
+                        '{{user.key}}',
+                        '{{tv.id}}',
+                        '{{tv.name}}',
+                        '{{season.season_number}}',
+                        '{{episode.episode_number}}',
+                        '{{episode.id}}',
+                        '{{episode.name}}',
+                        '{{ids.imdb_id}}'
+                      ); $event.stopPropagation();"
+                      ng-checked="{{episode.watched}}">
                       <i class="cleganicon cleganicon-eye"></i>
-                    </span> e<span ng-hide="episodes.episodeOpen">pisode </span>{{loop.index|zero}}
+                    </span> e<span ng-hide="episodes.episodeOpen">pisode </span>{{episode.episode_number|zero}}
                   </tab-heading>
                   <h3>
-                    Season [[episodes.seasonnumber]], Episode [[episodes.number]] : [[episodes.title]]<br>
-                    <small>([[episodes.air_date]])</small>
+                    Season {{episode.season_number}}, Episode {{episode.episode_number}} : {{episode.name}}<br>
+                    <small>({{episode.air_date}})</small>
                   </h3>
                   <div class="spacer spacer-xs"></div>
 
@@ -33,7 +45,7 @@
                   </div>
                   <div class="spacer spacer-sm"></div>
                   <p>
-                    [[episodes.description]]
+                    {{episode.overview}}
                   </p>
                 </tab>
               {% endfor %}

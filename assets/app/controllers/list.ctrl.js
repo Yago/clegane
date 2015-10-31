@@ -25,8 +25,6 @@ app.controller('ListCtrl', function($uibModalInstance, ApiService) {
         that.mediaType = mediaType;
         that.mediaImdb = mediaImdb;
 
-        console.log(that.mediaImdb);
-
         // Add list instances to main lists array and check if the current item is inside
         res.data.forEach(function(data){
           var i = 0,

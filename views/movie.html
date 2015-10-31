@@ -60,7 +60,7 @@
           </div>
           <div class="col-sm-9">
             <h3 ng-controller="WatchCtrl as watched" ng-init="watched.init({{watched}})">
-              <button class="btn-link btn-watch" ng-click='watched.toggle("{{user.key}}", "{{movie.id}}", "{{movie.title}}", {% if movie.imdb_id %}"{{movie.imdb_id}}"{% else %}"null"{% endif %})'>
+              <button class="btn-link btn-watch" ng-click='watched.movie("{{user.key}}", "{{movie.id}}", "{{movie.title}}", {% if movie.imdb_id %}"{{movie.imdb_id}}"{% else %}"null"{% endif %})'>
                 <i ng-hide="watched.watched" class="cleganicon cleganicon-unwatched"></i>
                 <i ng-show="watched.watched" class="cleganicon cleganicon-eye"></i>
               </button>

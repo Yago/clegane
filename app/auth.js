@@ -6,6 +6,7 @@ var config 			= require('../config/config.js');
 
 exports.isAuthenticated = function(req, res, next)  {
   if (res.locals.isAuthenticated) {
+    req.body.userId = res.locals.user.id;
     next();
   } else {
     res.redirect('/');
