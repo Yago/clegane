@@ -74,7 +74,6 @@ exports.display = function(req, res) {
                   // Request imdb id
                   apiCtrl.get('/tv/'+tvId+'/external_ids',
                     function (ids) {
-                      console.log(userId);
                       seasonsObject(userId, main, function(seasons){
                         res.locals.tv = main;
                         res.locals.credits = credits;

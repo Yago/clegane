@@ -2,34 +2,18 @@
 
 /* global app, PhotoSwipe, PhotoSwipeUI_Default, jQuery */
 
-app.controller('EpisodesCtrl', function($http) {
+app.controller('EpisodesCtrl', function($http, ApiService) {
   var that = this;
 
   that.seasonOpen = [];
   that.episodeOpen = false;
 
-  that.title = '';
-  that.number = 0;
-  that.seasonnumber = 0;
-  that.air_date = '';
-  that.description = '';
   that.images = [];
   that.gallery = [];
 
   that.getData = function (id, season, episode) {
     that.number = episode;
     that.seasonnumber = season;
-
-    // Get base informations
-    $http.get('http://api.themoviedb.org/3/tv/'+id+'/season/'+season+'/episode/'+episode+'?api_key=6d83177ea3e67b870ab80fa72f06cbbd', {
-      params: {
-        api_key: 'API_KEY_HERE'
-      }
-    }).then(function(res){
-      that.title = res.data.name;
-      that.air_date = res.data.air_date;
-      that.description = res.data.overview;
-    });
 
     // Get episode images
     $http.get('http://api.themoviedb.org/3/tv/'+id+'/season/'+season+'/episode/'+episode+'/images?api_key=6d83177ea3e67b870ab80fa72f06cbbd', {
@@ -38,7 +22,7 @@ app.controller('EpisodesCtrl', function($http) {
       }
     }).then(function(res){
       that.images = res.data.stills;
-      that. gallery = [];
+      that.gallery = [];
       res.data.stills.forEach(function(image){
         var item = {
           src : 'https://image.tmdb.org/t/p/original'+image.file_path,
@@ -69,10 +53,6 @@ app.controller('EpisodesCtrl', function($http) {
     setTimeout(function(){
       that.getData(id, season, episode);
     }, 300);
-  };
-
-  that.toggleWatch = function () {
-    console.log('toggle');
   };
 
   that.openGallery = function (index) {
