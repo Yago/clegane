@@ -6,6 +6,8 @@ app.controller('GridCtrl', function(ApiService) {
   var that = this;
 
   that.filterActive = '';
+  that.sortActive = '';
+  that.sortDirection = true;
 
   that.init = function (key) {
     that.grid = document.querySelector('.grid');
@@ -14,10 +16,12 @@ app.controller('GridCtrl', function(ApiService) {
       layoutMode: 'fitRows',
       getSortData: {
         movie: '.movie',
-        tv: '.tv'
+        tv: '.tv',
+        name: '[data-name]',
+        date: '[data-date]'
       }
     });
-    that.iso.shuffle();
+    //that.iso.shuffle();
   };
 
   that.filter = function (target) {
@@ -25,6 +29,20 @@ app.controller('GridCtrl', function(ApiService) {
     that.iso.arrange({
       filter: target
     });
+  };
+
+  that.sort = function (target) {
+    that.sortActive = target;
+    that.iso.arrange({
+      filter: '*',
+      sortBy: target,
+      sortAscending : that.sortDirection
+    });
+    if (that.sortDirection) {
+      that.sortDirection = false;
+    } else {
+      that.sortDirection = true;
+    }
   };
 
 
