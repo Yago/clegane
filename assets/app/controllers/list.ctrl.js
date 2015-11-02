@@ -10,12 +10,13 @@ app.controller('ListCtrl', function($uibModalInstance, ApiService) {
   that.mediaId = '';
   that.mediaTitle = '';
   that.mediaType = '';
+  that.mediaPicture = '';
   that.mediaImdb = '';
 
   /*
    * Init modal with informations send from the dom
    */
-  that.init = function (key, mediaId, mediaTitle, mediaType, mediaImdb) {
+  that.init = function (key, mediaId, mediaTitle, mediaType, mediaPicture, mediaImdb) {
 
     // Get user's lists
     ApiService.post('/lists', {key: key}, function (res) {
@@ -23,6 +24,7 @@ app.controller('ListCtrl', function($uibModalInstance, ApiService) {
         that.mediaId = mediaId;
         that.mediaTitle = mediaTitle;
         that.mediaType = mediaType;
+        that.mediaPicture = mediaPicture;
         that.mediaImdb = mediaImdb;
 
         // Add list instances to main lists array and check if the current item is inside
@@ -95,6 +97,7 @@ app.controller('ListCtrl', function($uibModalInstance, ApiService) {
                   {
                     key: that.key,
                     name: that.mediaTitle,
+                    picture: that.mediaPicture,
                     imdb_id: that.mediaImdb
                   },
                   function (res) {
@@ -114,6 +117,7 @@ app.controller('ListCtrl', function($uibModalInstance, ApiService) {
               {
                 key: that.key,
                 name: that.mediaTitle,
+                picture: that.mediaPicture,
                 imdb_id: that.mediaImdb
               },
               function (res) {

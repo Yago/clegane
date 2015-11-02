@@ -36,6 +36,11 @@ var userSchema = mongoose.Schema({
       type: String,
       unique: false,
       required: false
+    },
+    picture: {
+      type: String,
+      unique: false,
+      required: false
     }
   }],
   movies: [{
@@ -50,6 +55,11 @@ var userSchema = mongoose.Schema({
       required: true
     },
     imdb_id: {
+      type: String,
+      unique: false,
+      required: false
+    },
+    picture: {
       type: String,
       unique: false,
       required: false
@@ -78,6 +88,11 @@ var userSchema = mongoose.Schema({
       required: true
     },
     imdb_id: {
+      type: String,
+      unique: false,
+      required: false
+    },
+    picture: {
       type: String,
       unique: false,
       required: false

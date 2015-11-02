@@ -13,12 +13,13 @@ app.controller('WatchCtrl', function(ApiService) {
     }
   };
 
-  that.movie = function (key, id, title, imdb) {
+  that.movie = function (key, id, title, picture, imdb) {
     var state = true,
         url = '/movie/'+ id +'/watch',
         data = {
           key: key,
           name: title,
+          picture: picture,
           imdb_id: imdb,
           watch: state
         };
@@ -39,11 +40,12 @@ app.controller('WatchCtrl', function(ApiService) {
     });
   };
 
-  that.episode = function (key, id, title, season, episode, episodeId, episodeTitle, imdb) {
+  that.episode = function (key, id, title, picture, season, episode, episodeId, episodeTitle, imdb) {
     var url = '/tv/'+ id +'/watch/'+episodeId,
         data = {
           key: key,
           name: title,
+          picture: picture,
           imdb_id: imdb,
           season: season,
           episode: episode,

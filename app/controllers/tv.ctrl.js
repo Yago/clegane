@@ -128,7 +128,7 @@ exports.display = function(req, res) {
 
 /*
  * Add a show to User
- * Params: key, name, imdb_id
+ * Params: key, name, picture, imdb_id
  */
 exports.add = function(req, res) {
   var userId  = req.body.userId;
@@ -147,7 +147,8 @@ exports.add = function(req, res) {
               tvs : {
                 name: req.body.name,
                 tmdb_id: req.params.id,
-                imdb_id: req.body.imdb_id
+                imdb_id: req.body.imdb_id,
+                picture: req.body.picture
               }
             }
           }, function (err, user) {
