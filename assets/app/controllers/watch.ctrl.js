@@ -25,7 +25,7 @@ app.controller('WatchCtrl', function(ApiService) {
         };
 
     if (that.watched) {
-      state = false;
+      data.watch = false;
     }
 
     ApiService.post(url, data, function (res) {
