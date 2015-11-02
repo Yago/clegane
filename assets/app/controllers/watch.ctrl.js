@@ -57,16 +57,5 @@ app.controller('WatchCtrl', function(ApiService) {
     });
   };
 
-  that.check = function (key, id, season, episode) {
-    // var url = '/tv/'+ id +'/check/'+id+'_s'+season+'e'+episode,
-    //     data = {key: key};
-
-    // ApiService.post(url, data, function (res) {
-    //   console.log(res);
-    // }, function (err) {
-    //   console.log(err);
-    // });
-  };
-
 
 });

@@ -118,3 +118,10 @@ exports.length = function (array) {
   return array.length;
 };
 
+/*
+ * Fix quote break with angular parameters
+ */
+exports.quotesafe = function (input) {
+  return input.replace(/\'/g, "\\'").replace(/\"/g, '\\"');
+};
+

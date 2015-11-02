@@ -98,10 +98,11 @@
       position: relative;
       top: 2px;
       padding-right: 10px;
-      color: $black;
+      color: $white;
     }
     input[type="checkbox"]:checked + .cleganicon {
-      color: $white;
+      color: $black;
+      &:before {content: "\EA06";}
     }
   }
 
@@ -141,7 +142,7 @@
   overflow: hidden;
   .episode-gallery-container {width: 100000%;}
   img {
-    max-width: 0.05%;
+    width: 0.05%;
     float: left;
   }
 }
