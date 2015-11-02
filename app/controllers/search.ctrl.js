@@ -1,7 +1,9 @@
 'use strict';
 
 var User        = require('../models/user.model'),
-    apiCtrl     = require('./api.ctrl.js');
+    apiCtrl     = require('./api.ctrl.js'),
+    async       = require('async'),
+    messages    = require('../../config/messages.json');
 
 /*
  * Display search's results
@@ -90,5 +92,70 @@ exports.tags = function(req, res) {
 
     }, function (err) {
       res.send('No result founded');
+    });
+};
+
+/*
+ * Send watched items
+ */
+exports.watched = function(req, res) {
+  var userId = req.body.userId;
+
+  User.findOne({_id:userId},
+    function (err, user) {
+      if (err) {return res.status(500).send(messages.errors.default_error);}
+      if (!user) {return res.status(500).send(messages.errors.user_error);}
+
+      var watchedArray = {};
+      watchedArray.movies = [];
+      watchedArray.tvs = [];
+
+      async.waterfall([
+          // Iterate over user's movies and if they are watched, add to watchedArray
+          function(callback) {
+            async.each(user.movies, function(movie, eachCallback) {
+                if (movie.watched) {
+                  movie.type = 'movie';
+                  watchedArray.movies.push(movie);
+                }
+                eachCallback();
+              }, function(err){
+                if( err ) {// console.log(err);
+                } else {callback(null);}
+              });
+          },
+          // Then iterate over user's tvs and if they have watched episodes, add to watchedArray
+          function(callback) {
+            async.each(user.tvs, function(tv, eachCallback) {
+                if (tv.episodes.length > 0) {
+                  tv.imdb_id = 'tv';
+                  var watchedOn = '';
+                  //Get last watched_on episode and apply to tv parent
+                  async.each(tv.episodes, function(episode, eachSubCallback) {
+                      if (episode.watched_on > watchedOn) {
+                        watchedOn = episode.watched_on;
+                      }
+                      eachSubCallback();
+                    }, function(err){
+                        if( err ) {// console.log(err);
+                        } else {
+                          tv.episodes = watchedOn;
+                          watchedArray.tvs.push(tv);
+                          eachCallback();
+                        }
+                    });
+                } else {
+                  eachCallback();
+                }
+              }, function(err){
+                if( err ) {// console.log(err);
+                } else {callback(null);}
+              });
+          },
+      ], function (err, result) {
+          if (err) {res.status(500).send(messages.errors.default_error);}
+          res.locals.watched = watchedArray;
+          res.render('watched');
+      });
     });
 };

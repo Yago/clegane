@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% import 'components/atoms/pictures.html' as picture %}
+{% import 'components/molecules/thumbnails.html' as thumbnail %}
+
+{% block content %}
+  <div ng-controller="GridCtrl as grid" ng-init="grid.init('{{user.key}}');">
+
+    <div class="results-heading">
+      <h4>
+        {{watched|length}} Results
+      </h4>
+      <h1>
+        Watched
+      <button class="btn btn-primary pull-right" ng-click="grid.filter('*');">All</button>
+      <button class="btn btn-primary pull-right" ng-click="grid.filter('.movie');">Movie</button>
+      <button class="btn btn-primary pull-right" ng-click="grid.filter('.tv');">TV</button>
+      </h1>
+    </div>
+
+    <div class="results-wrapper">
+      <div class="row grid">
+        {% for result in watched.movies %}
+          <div class="col-sm-2-4 grid-item movie">
+            {{ thumbnail.watched(result, 'movie') }}
+          </div>
+        {% endfor %}
+        {% for result in watched.tvs %}
+          <div class="col-sm-2-4 grid-item tv">
+            {{ thumbnail.watched(result, 'tv') }}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+{% endblock %}

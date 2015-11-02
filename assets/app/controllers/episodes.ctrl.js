@@ -56,7 +56,7 @@ app.controller('EpisodesCtrl', function($http, ApiService) {
   };
 
   that.openGallery = function (index) {
-    var $pswp = $('.pswp')[0],
+    var pswp = document.querySelector('.pswp'),
         options = {
           index: index,
           bgOpacity: 0.85,
@@ -64,7 +64,7 @@ app.controller('EpisodesCtrl', function($http, ApiService) {
         };
 
     // Initialize PhotoSwipe
-    var gallery = new PhotoSwipe($pswp, PhotoSwipeUI_Default, that.gallery, options);
+    var gallery = new PhotoSwipe(pswp, PhotoSwipeUI_Default, that.gallery, options);
     gallery.init();
   };
 

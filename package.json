@@ -65,6 +65,7 @@
     "imagemin-pngquant": "^4.1.0",
     "imgur": "^0.1.5",
     "instagram-node": "^0.5.7",
+    "isotope-layout": "^2.2.2",
     "jquery": "^2.1.4",
     "jsdom": "^6.5.1",
     "jshint-stylish": "^2.0.1",
