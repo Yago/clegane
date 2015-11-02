@@ -7,7 +7,9 @@
 
 {% block content %}
   <div class="cover">
-    {{picture.default(tv.backdrop_path, 5, 2.38, 'center', 'img-responsive img-full', tv.title)}}
+    <div class="cover-image">
+      {{picture.default(tv.backdrop_path, 5, 2.38, 'center', 'img-responsive img-full', tv.title)}}
+    </div>
     <div class="cover-content">
       <div class="content-container">
         <div class="row">

@@ -2,6 +2,11 @@
   position: relative;
 }
 
+.cover-image {
+  max-height: 650px;
+  overflow: hidden;
+}
+
 .cover-content {
   position: absolute;
   bottom: 0;
