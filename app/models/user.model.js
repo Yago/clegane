@@ -137,6 +137,12 @@ var userSchema = mongoose.Schema({
         type: String,
         unique: false,
         required: true
+      },
+      add_on: {
+        type: Date,
+        unique: false,
+        required: true,
+        default: Date.now
       }
     }],
   }],
