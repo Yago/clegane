@@ -74,7 +74,7 @@ exports.paginationArray = function (total, current) {
  */
 exports.resize = function (image, width, ratio, gravity) {
   var height  = Math.round(parseFloat(width)/parseFloat(ratio)),
-      baseUrl = image.replace('https', 'http').replace('.tmdb.org', '.tmdb.org.rsz.io');
+      baseUrl = image.replace('https', 'http').replace('.tmdb.org', '.tmdb.org.rsz.io').replace('.imgur.com', '.imgur.com.rsz.io');
 
   /* Firesize */
   //return 'https://'+config.firesize+'.firesize.com/'+width+'x'+height+'/g_';

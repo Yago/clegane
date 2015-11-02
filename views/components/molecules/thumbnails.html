@@ -20,11 +20,9 @@
 
 {% macro cast(content) %}
 <div class="cast-thumb">
-  {% if content.profile_path %}
   <a href="/people/{{content.id}}">
     {{picture.default(content.profile_path, 1, 0.66, 'none', 'img-responsive', content.name)}}
   </a>
-  {% endif %}
   <a href="/people/{{content.id}}">
     <h4>{{content.name}}</h4>
   </a>
