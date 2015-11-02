@@ -19,7 +19,9 @@ app.controller('GridCtrl', function(ApiService) {
         tv: '.tv',
         name: '[data-name]',
         date: '[data-date]'
-      }
+      },
+      sortBy: 'date',
+      sortAscending : false
     });
     //that.iso.shuffle();
   };
@@ -34,7 +36,6 @@ app.controller('GridCtrl', function(ApiService) {
   that.sort = function (target) {
     that.sortActive = target;
     that.iso.arrange({
-      filter: '*',
       sortBy: target,
       sortAscending : that.sortDirection
     });

@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.results-heading .btn-group {
+  margin: 0 10px;
+}
+
 .dropdown li a {
   transition: background 0.2s ease-out,
               color 0.2s ease-out;
