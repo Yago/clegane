@@ -70,17 +70,27 @@ exports.paginationArray = function (total, current) {
 
 
 /*
- * Return Firesize url
+ * Return resized image url
  */
-exports.firesize = function (ratio, width) {
-  var height = Math.round(parseFloat(width)/parseFloat(ratio));
+exports.resize = function (image, width, ratio, gravity) {
+  var height  = Math.round(parseFloat(width)/parseFloat(ratio)),
+      baseUrl = image.replace('https', 'http').replace('.tmdb.org', '.tmdb.org.rsz.io');
 
   /* Firesize */
   //return 'https://'+config.firesize+'.firesize.com/'+width+'x'+height+'/g_';
-  //return 'https://firesize.com/'+width+'x'+height+'/g_';
+  //return 'https://firesize.com/'+width+'x'+height+'/'+image;
 
   /* Imageshack */
-  return 'http://imagizer.imageshack.us/'+width+'x'+height;
+  //return 'http://imagizer.imageshack.us/'+width+'x'+height+'/'+image;
+
+  /* rsz.io */
+  if (width <= 1600 && height <= 1600) {
+    return baseUrl+'?width='+width+'&height='+height+'&mode=crop&anchor='+gravity;
+  } else {
+    return image;
+  }
+
+
 };
 
 /*

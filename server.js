@@ -40,7 +40,7 @@ swig.setFilter('previous', filters.previous);
 swig.setFilter('next', filters.next);
 swig.setFilter('numberArray', filters.numberArray);
 swig.setFilter('paginationArray', filters.paginationArray);
-swig.setFilter('firesize', filters.firesize);
+swig.setFilter('resize', filters.resize);
 swig.setFilter('year', filters.year);
 swig.setFilter('zero', filters.zero);
 swig.setFilter('length', filters.length);
