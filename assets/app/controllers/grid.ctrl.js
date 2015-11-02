@@ -5,6 +5,8 @@
 app.controller('GridCtrl', function(ApiService) {
   var that = this;
 
+  that.filterActive = '';
+
   that.init = function (key) {
     that.grid = document.querySelector('.grid');
     that.iso = new Isotope(that.grid, {
@@ -19,6 +21,7 @@ app.controller('GridCtrl', function(ApiService) {
   };
 
   that.filter = function (target) {
+    that.filterActive = target;
     that.iso.arrange({
       filter: target
     });
