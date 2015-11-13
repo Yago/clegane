@@ -70,7 +70,7 @@
       <br>
       <div ng-controller="CollapseCtrl as collapse">
         <p>
-          <button class="btn btn-link" role="button" ng-click="collapse.isCollapsed = !collapse.isCollapsed">Full filmography <span class="caret"></span></button>
+          <button class="btn btn-link" role="button" ng-click="collapse.isCollapsed = !collapse.isCollapsed" aria-expanded="[[!collapse.isCollapsed]]">Full filmography <span class="caret"></span></button>
         </p>
 
         <div id="cast-wrapper" class="cast-wrapper" ng-cloak uib-collapse="collapse.isCollapsed">

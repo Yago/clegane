@@ -13,7 +13,7 @@
 <br>
 <div ng-controller="CollapseCtrl as collapse">
   <p>
-    <button class="btn btn-link" role="button" ng-click="collapse.isCollapsed = !collapse.isCollapsed">Full cast & crew <span class="caret"></span></button>
+    <button class="btn btn-link" role="button" aria-expanded="[[!collapse.isCollapsed]]" ng-click="collapse.isCollapsed = !collapse.isCollapsed">Full cast & crew <span class="caret"></span></button>
   </p>
 
   <div id="cast-wrapper" class="cast-wrapper" uib-collapse="collapse.isCollapsed">
