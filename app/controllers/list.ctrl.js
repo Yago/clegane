@@ -2,6 +2,7 @@
 
 var User        = require('../models/user.model'),
     apiCtrl     = require('./api.ctrl.js'),
+    async       = require('async'),
     messages    = require('../../config/messages.json');
 
 /*
@@ -141,5 +142,71 @@ exports.list = function(req, res) {
       if (err) {return res.status(500).send(messages.errors.default_error);}
       if (!user) {return res.status(500).send(messages.errors.user_notfound);}
       res.send(user.lists);
+    });
+};
+
+/*
+ * Send User's lists items
+ */
+exports.lists = function(req, res) {
+  var userId = req.body.userId;
+
+  User.findOne({_id:userId},
+    function (err, user) {
+      if (err) {return res.status(500).send(messages.errors.default_error);}
+      if (!user) {return res.status(500).send(messages.errors.user_error);}
+
+      var listsArray = [],
+          userItems = {},
+          looper = function (items, callback) {
+            async.each(items, function(item, eachCallback) {
+                userItems[item.tmdb_id] = item;
+                eachCallback();
+              }, function(err){
+                if( err ) {// console.log(err);
+                } else {callback(null);}
+              });
+          };
+
+      // Build userItems object to provide a quicker access to list item data
+      async.waterfall([
+          function (callback) {looper(user.movies, function(res){callback(res);});},
+          function (callback) {looper(user.tvs, function(res){callback(res);});},
+          function (callback) {looper(user.peoples, function(res){callback(res);});},
+      ], function (err, result) {
+          if (err) {res.status(500).send(messages.errors.default_error);}
+
+          // Loop over User's lists
+          async.each(user.lists, function(list, eachCallback) {
+              var listObject = {};
+              listObject.name = list.name;
+              listObject.items = [];
+
+              // Loop over list items
+              async.each(list.items, function(item, eachSubCallback) {
+                  var itemObject = {};
+                  itemObject.add_on = item.add_on;
+
+                  // Retrieve item data (movie/tv/people) from userItems based on id (item.item)
+                  itemObject.data = userItems[item.item];
+                  listObject.items.push(itemObject);
+                  eachSubCallback();
+                }, function(err){
+                  if( err ) {// console.log(err);
+                  } else {
+                    listsArray.push(listObject);
+                    eachCallback();
+                  }
+                });
+            }, function(err){
+              if( err ) {// console.log(err);
+              } else {
+                res.locals.lists = listsArray;
+                res.render('lists');
+              }
+            });
+
+      });// End userItems waterfall
+
     });
 };
