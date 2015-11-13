@@ -158,9 +158,12 @@ exports.lists = function(req, res) {
 
       var listsArray = [],
           userItems = {},
-          looper = function (items, callback) {
+          looper = function (type, items, callback) {
             async.each(items, function(item, eachCallback) {
-                userItems[item.tmdb_id] = item;
+                userItems[item.tmdb_id] = {};
+                userItems[item.tmdb_id].add_on = '';
+                userItems[item.tmdb_id].type = type;
+                userItems[item.tmdb_id].data = item;
                 eachCallback();
               }, function(err){
                 if( err ) {// console.log(err);
@@ -170,9 +173,9 @@ exports.lists = function(req, res) {
 
       // Build userItems object to provide a quicker access to list item data
       async.waterfall([
-          function (callback) {looper(user.movies, function(res){callback(res);});},
-          function (callback) {looper(user.tvs, function(res){callback(res);});},
-          function (callback) {looper(user.peoples, function(res){callback(res);});},
+          function (callback) {looper('movie', user.movies, function(res){callback(res);});},
+          function (callback) {looper('tv', user.tvs, function(res){callback(res);});},
+          function (callback) {looper('people', user.peoples, function(res){callback(res);});},
       ], function (err, result) {
           if (err) {res.status(500).send(messages.errors.default_error);}
 
@@ -184,11 +187,9 @@ exports.lists = function(req, res) {
 
               // Loop over list items
               async.each(list.items, function(item, eachSubCallback) {
-                  var itemObject = {};
-                  itemObject.add_on = item.add_on;
-
                   // Retrieve item data (movie/tv/people) from userItems based on id (item.item)
-                  itemObject.data = userItems[item.item];
+                  var itemObject = userItems[item.item];
+                  itemObject.add_on = item.add_on;
                   listObject.items.push(itemObject);
                   eachSubCallback();
                 }, function(err){
