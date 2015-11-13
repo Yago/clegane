@@ -183,6 +183,7 @@ exports.lists = function(req, res) {
           async.each(user.lists, function(list, eachCallback) {
               var listObject = {};
               listObject.name = list.name;
+              listObject.id = list.id;
               listObject.items = [];
 
               // Loop over list items
