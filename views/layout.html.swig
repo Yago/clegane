@@ -10,7 +10,6 @@
     <!--[if lt IE 9]>
       <script src="/js/polyfills.min.js"></script>
     <![endif]-->
-    <script src="/js/angular-vendors.min.js"></script>
 </head>
 <body ng-app="CleganeApp" ng-cloak>
 
@@ -43,6 +42,7 @@
   {% block scripts %}
     <script src="/js/vendors.min.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/angular-vendors.min.js"></script>
     <script src="/js/angular-app.js"></script>
   {% endblock %}
   <script type='text/javascript' id="__bs_script__">//<![CDATA[
