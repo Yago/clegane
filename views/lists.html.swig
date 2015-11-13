@@ -15,7 +15,7 @@
 
     <div class="results-wrapper">
       <div class="row list-row">
-        {% for list in lists %}
+        {% for list in lists|sortNames %}
           <div class="col-sm-4 list-col">
             <a href="/lists/{{list.id}}" class="list-card">
               <div class="row">
