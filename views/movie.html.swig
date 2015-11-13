@@ -66,7 +66,7 @@
                       ng-click='watched.movie(
                       "{{user.key}}",
                       "{{movie.id}}",
-                      "{{movie.title}}",
+                      "{{movie.title|quotesafe}}",
                       "{{movie.poster_path}}",
                       {% if movie.imdb_id %}"{{movie.imdb_id}}"{% else %}"null"{% endif %})'>
                 <i ng-hide="watched.watched" class="cleganicon cleganicon-unwatched"></i>

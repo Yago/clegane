@@ -2,7 +2,7 @@
   <div class="modal-body" ng-init="modal.init(
       '{{user.key}}',
       '{% if movie.id %}{{movie.id}}{% elseif people.id %}{{people.id}}{% elseif tv.id %}{{tv.id}}{% endif %}',
-      '{% if movie.id %}{{movie.title}}{% elseif people.id %}{{people.name}}{% elseif tv.id %}{{tv.name}}{% endif %}',
+      '{% if movie.id %}{{movie.title|quotesafe}}{% elseif people.id %}{{people.name|quotesafe}}{% elseif tv.id %}{{tv.name|quotesafe}}{% endif %}',
       '{% if movie.id %}movie{% elseif people.id %}people{% elseif tv.id %}tv{% endif %}',
       '{% if movie.poster_path%}{{movie.poster_path}}{% elseif people.profile_path %}{{people.profile_path}}{% elseif tv.poster_path %}{{tv.poster_path}}{% endif %}',
       '{% if movie.imdb_id %}{{movie.imdb_id}}{% elseif people.imdb_id %}{{people.imdb_id}}{% elseif ids.imdb_id %}{{ids.imdb_id}}{% endif %}'

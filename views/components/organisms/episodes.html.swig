@@ -1,4 +1,4 @@
-<div class="episodes-wrapper" ng-class="{in: episodes.episodeOpen}" ng-init="episodes.init({{tv.seasons|length}})" ng-controller="EpisodesCtrl as episodes">
+<div ng-cloak class="episodes-wrapper" ng-class="{in: episodes.episodeOpen}" ng-init="episodes.init({{tv.seasons|length}})" ng-controller="EpisodesCtrl as episodes">
   <tabset vertical="true" type="tabs">
     {% for season in seasons|sortSeasons %}
       {% if season.season_number !== 0 and season.episodes|length > 0 %}
