@@ -179,34 +179,62 @@ exports.lists = function(req, res) {
       ], function (err, result) {
           if (err) {res.status(500).send(messages.errors.default_error);}
 
-          // Loop over User's lists
-          async.each(user.lists, function(list, eachCallback) {
-              var listObject = {};
-              listObject.name = list.name;
-              listObject.id = list.id;
-              listObject.items = [];
+          // Check if it's a single list request (get /list/:id)
+          if (req.params.id) {
+            console.log('single');
+            user.lists.forEach(function(list){
+              if (list.id === req.params.id) {
+                var listObject = {};
+                listObject.name = list.name;
+                listObject.id = list.id;
+                listObject.items = [];
 
-              // Loop over list items
-              async.each(list.items, function(item, eachSubCallback) {
-                  // Retrieve item data (movie/tv/people) from userItems based on id (item.item)
-                  var itemObject = userItems[item.item];
-                  itemObject.add_on = item.add_on;
-                  listObject.items.push(itemObject);
-                  eachSubCallback();
-                }, function(err){
-                  if( err ) {// console.log(err);
-                  } else {
-                    listsArray.push(listObject);
-                    eachCallback();
-                  }
-                });
-            }, function(err){
-              if( err ) {// console.log(err);
-              } else {
-                res.locals.lists = listsArray;
-                res.render('lists');
+                // Loop over list items
+                async.each(list.items, function(item, eachSubCallback) {
+                    // Retrieve item data (movie/tv/people) from userItems based on id (item.item)
+                    var itemObject = userItems[item.item];
+                    itemObject.add_on = item.add_on;
+                    listObject.items.push(itemObject);
+                    eachSubCallback();
+                  }, function(err){
+                    if( err ) {// console.log(err);
+                    } else {
+                      res.locals.list = listObject;
+                      res.render('list');
+                    }
+                  });
               }
             });
+          } else {
+            // Loop over User's lists
+            async.each(user.lists, function(list, eachCallback) {
+                var listObject = {};
+                listObject.name = list.name;
+                listObject.id = list.id;
+                listObject.items = [];
+
+                // Loop over list items
+                async.each(list.items, function(item, eachSubCallback) {
+                    // Retrieve item data (movie/tv/people) from userItems based on id (item.item)
+                    var itemObject = userItems[item.item];
+                    itemObject.add_on = item.add_on;
+                    listObject.items.push(itemObject);
+                    eachSubCallback();
+                  }, function(err){
+                    if( err ) {// console.log(err);
+                    } else {
+                      listsArray.push(listObject);
+                      eachCallback();
+                    }
+                  });
+              }, function(err){
+                if( err ) {// console.log(err);
+                } else {
+                  res.locals.lists = listsArray;
+                  res.render('lists');
+                }
+              });
+          }
 
       });// End userItems waterfall
 

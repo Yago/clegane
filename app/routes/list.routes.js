@@ -6,6 +6,7 @@ var listCtrl    = require('../controllers/list.ctrl'),
 module.exports = function(app, passport) {
 
   app.get('/lists', auth.isAuthenticated, listCtrl.lists);
+  app.get('/list/:id', auth.isAuthenticated, listCtrl.lists);
 
   // API part
   app.post('/lists', auth.isApiAuthenticated, listCtrl.list);

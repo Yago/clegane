@@ -17,7 +17,7 @@
       <div class="row list-row">
         {% for list in lists|sortNames %}
           <div class="col-sm-4 list-col">
-            <a href="/lists/{{list.id}}" class="list-card">
+            <a href="/list/{{list.id}}" class="list-card">
               <div class="row">
                 {% if list.items|length > 0 %}
                   {% for item in list.items %}
