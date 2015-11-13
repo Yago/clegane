@@ -13,6 +13,9 @@
   display: flex;
   max-width: 50%;
   margin: 5px 0;
+  @media screen and (max-width: $screen-xs-max) {
+    max-width: 100%;
+  }
 }
 
 .list-card {

@@ -13,6 +13,13 @@
   }
 }
 
+.btn-default {
+  &:hover, &:focus, &:active, &.active {
+    background: $web-orange !important;
+    box-shadow: none;
+  }
+}
+
 .btn-link {
   font-weight: 300;
   text-decoration: none;

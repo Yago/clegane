@@ -38,9 +38,9 @@
           </div>
 
           <div class="btn-group pull-right" uib-dropdown>
-            <button class="btn btn-primary" ng-class="grid.filterActive === '*' || grid.filterActive === '' ? 'active' : ''" ng-click="grid.filter('*');">All</button>
-            <button class="btn btn-primary" ng-class="grid.filterActive === '.not-watched' ? 'active' : ''" ng-click="grid.filter('.not-watched');">To watch</button>
-            <button class="btn btn-primary" ng-class="grid.filterActive === '.watched' ? 'active' : ''" ng-click="grid.filter('.watched');">Watched</button>
+            <button class="btn btn-default" ng-class="grid.filterActive === '*' || grid.filterActive === '' ? 'active' : ''" ng-click="grid.filter('*');">All</button>
+            <button class="btn btn-default" ng-class="grid.filterActive === '.not-watched' ? 'active' : ''" ng-click="grid.filter('.not-watched');">To watch</button>
+            <button class="btn btn-default" ng-class="grid.filterActive === '.watched' ? 'active' : ''" ng-click="grid.filter('.watched');">Watched</button>
           </div>
         </div>
       </div>
