@@ -1,7 +1,7 @@
-{% extends 'layout.html' %}
-{% import 'components/atoms/pictures.html' as picture %}
-{% import 'components/molecules/thumbnails.html' as thumbnail %}
-{% import 'components/organisms/cast.html' as cast %}
+{% extends 'layout.html.swig' %}
+{% import 'components/atoms/pictures.html.swig' as picture %}
+{% import 'components/molecules/thumbnails.html.swig' as thumbnail %}
+{% import 'components/organisms/cast.html.swig' as cast %}
 
 {% block wrapper-class %}{% endblock %}
 
@@ -147,5 +147,5 @@
 
   </div>
 
-  {% include "./components/molecules/modal.html" %}
+  {% include "./components/molecules/modal.html.swig" %}
 {% endblock %}

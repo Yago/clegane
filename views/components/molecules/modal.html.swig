@@ -1,4 +1,4 @@
-<script type="text/ng-template" id="modal-list.html">
+<script type="text/ng-template" id="modal-list.html.swig">
   <div class="modal-body" ng-init="modal.init(
       '{{user.key}}',
       '{% if movie.id %}{{movie.id}}{% elseif people.id %}{{people.id}}{% elseif tv.id %}{{tv.id}}{% endif %}',

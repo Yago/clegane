@@ -1,7 +1,7 @@
-{% extends 'layout.html' %}
+{% extends 'layout.html.swig' %}
 
-{% import 'components/atoms/pictures.html' as picture %}
-{% import 'components/molecules/thumbnails.html' as thumbnail %}
+{% import 'components/atoms/pictures.html.swig' as picture %}
+{% import 'components/molecules/thumbnails.html.swig' as thumbnail %}
 
 {% block content %}
   <div ng-controller="GridCtrl as grid" ng-init="grid.init('{{user.key}}');">

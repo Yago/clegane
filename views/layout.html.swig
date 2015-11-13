@@ -16,7 +16,7 @@
 
   <div class="main-wrapper">
 
-    {% include "./components/organisms/sidebar.html" %}
+    {% include "./components/organisms/sidebar.html.swig" %}
 
     <div class="content-wrapper">
       <div class="{% block wrapper-class %}container-fluid{% endblock %}">

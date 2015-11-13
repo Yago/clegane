@@ -1,7 +1,7 @@
-{% extends 'layout.html' %}
+{% extends 'layout.html.swig' %}
 
-{% import 'components/atoms/pictures.html' as picture %}
-{% import 'components/molecules/thumbnails.html' as thumbnail %}
+{% import 'components/atoms/pictures.html.swig' as picture %}
+{% import 'components/molecules/thumbnails.html.swig' as thumbnail %}
 
 {% block content %}
 
@@ -37,6 +37,6 @@
     </div>
   </div>
 
-  {% include "./components/molecules/pagination.html" %}
+  {% include "./components/molecules/pagination.html.swig" %}
 
 {% endblock %}

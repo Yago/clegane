@@ -6,7 +6,7 @@
       </a>
     </header>
     <div class="search-wrapper" ng-controller="SearchCtrl as search">
-      {% include "../molecules/search.html" %}
+      {% include "../molecules/search.html.swig" %}
     </div>
     <nav class="sidenav">
       <ul class="list-unstyled">

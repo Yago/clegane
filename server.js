@@ -31,8 +31,8 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // setting template engine
-app.engine('html', swig.renderFile);
-app.set('view engine', 'html');
+app.engine('html.swig', swig.renderFile);
+app.set('view engine', 'html.swig');
 app.set('views', __dirname + '/views');
 swig.setFilter('recent', filters.recent);
 swig.setFilter('sortSeasons', filters.sortSeasons);

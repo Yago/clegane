@@ -1,4 +1,4 @@
-{% import '../molecules/thumbnails.html' as thumbnail %}
+{% import '../molecules/thumbnails.html.swig' as thumbnail %}
 
 {% macro default(credits) %}
 <div class="row">

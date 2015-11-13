@@ -1,6 +1,6 @@
-{% extends 'layout.html' %}
-{% import 'components/atoms/pictures.html' as picture %}
-{% import 'components/molecules/thumbnails.html' as thumbnail %}
+{% extends 'layout.html.swig' %}
+{% import 'components/atoms/pictures.html.swig' as picture %}
+{% import 'components/molecules/thumbnails.html.swig' as thumbnail %}
 
 {% block wrapper-class %}{% endblock %}
 
@@ -119,5 +119,5 @@
     </div>
   </div>
 
-  {% include "./components/molecules/modal.html" %}
+  {% include "./components/molecules/modal.html.swig" %}
 {% endblock %}
