@@ -17,7 +17,7 @@
         <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
           Filter <span class="caret"></span>
         </button>
-        <ul class="uib-dropdown-menu" role="menu" aria-labelledby="single-button">
+        <ul ng-cloak class="uib-dropdown-menu" role="menu" aria-labelledby="single-button">
           <li role="menuitem" ng-class="grid.filterActive === '*' || grid.filterActive === '' ? 'active' : ''"><a href="#" ng-click="grid.filter('*');">All</a></li>
           <li role="menuitem" ng-class="grid.filterActive === '.movie' ? 'active' : ''"><a href="#" ng-click="grid.filter('.movie');">Movie</a></li>
           <li role="menuitem" ng-class="grid.filterActive === '.tv' ? 'active' : ''"><a href="#" ng-click="grid.filter('.tv');">TV</a></li>
@@ -28,7 +28,7 @@
         <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
           Sort <span class="caret"></span>
         </button>
-        <ul class="uib-dropdown-menu" role="menu" aria-labelledby="single-button">
+        <ul ng-cloak class="uib-dropdown-menu" role="menu" aria-labelledby="single-button">
           <li role="menuitem" ng-class="grid.sortActive === 'name' ? 'active' : ''"><a href="#" ng-click="grid.sort('name');">Sort by name</a></li>
           <li role="menuitem" ng-class="grid.sortActive === 'date' ? 'active' : ''"><a href="#" ng-click="grid.sort('date');">Sort by watched date</a></li>
         </ul>

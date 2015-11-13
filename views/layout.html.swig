@@ -11,7 +11,7 @@
       <script src="/js/polyfills.min.js"></script>
     <![endif]-->
 </head>
-<body ng-app="CleganeApp" ng-cloak>
+<body ng-app="CleganeApp">
 
   <div class="main-wrapper">
 

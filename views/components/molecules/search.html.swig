@@ -22,8 +22,8 @@
       <span class="input-group-btn">
         <button type="submit" class="btn btn-primary" ng-class="noResults ? 'btn-danger' : 'btn-primary'">
           <i ng-hide="loadingResults || noResults" class="glyphicon glyphicon-search"></i>
-          <i ng-show="loadingResults" class="glyphicon glyphicon-refresh"></i>
-          <i ng-show="noResults" class="glyphicon glyphicon-remove"></i>
+          <i ng-cloak ng-show="loadingResults" class="glyphicon glyphicon-refresh"></i>
+          <i ng-cloak ng-show="noResults" class="glyphicon glyphicon-remove"></i>
         </button>
       </span>
     </div>
