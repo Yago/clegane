@@ -68,52 +68,54 @@
         {% endfor %}
       </div>
       <br>
-      <p>
-        <button class="btn btn-link" role="button" data-toggle="collapse" href="#cast-wrapper" aria-expanded="false">Full filmography <span class="caret"></span></button>
-      </p>
+      <div ng-controller="CollapseCtrl as collapse">
+        <p>
+          <button class="btn btn-link" role="button" ng-click="collapse.isCollapsed = !collapse.isCollapsed">Full filmography <span class="caret"></span></button>
+        </p>
 
-      <div id="cast-wrapper" class="cast-wrapper collapse">
-        {% if credits.cast %}
-          <h3>Acting</h3>
-          <table class="table table-striped table-hover">
-            <tbody>
-              {% for media in credits.cast|recent %}
-                <tr>
-                  <td>{% if media.year === 0 %}-{% else %}{{media.year}}{% endif %}</td>
-                  <td><a href="/{{media.media_type}}/{{media.id}}">{{media.heading}}</a> <span class="label label-default pull-right">{{media.media_type}}</span></td>
-                  <td>
-                    {% if media.character %}
-                      {{media.character}}
-                    {% else %}
-                      <em>-</em>
-                    {% endif %}
-                  </td>
-                </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        {% endif %}
+        <div id="cast-wrapper" class="cast-wrapper" ng-cloak uib-collapse="collapse.isCollapsed">
+          {% if credits.cast %}
+            <h3>Acting</h3>
+            <table class="table table-striped table-hover">
+              <tbody>
+                {% for media in credits.cast|recent %}
+                  <tr>
+                    <td>{% if media.year === 0 %}-{% else %}{{media.year}}{% endif %}</td>
+                    <td><a href="/{{media.media_type}}/{{media.id}}">{{media.heading}}</a> <span class="label label-default pull-right">{{media.media_type}}</span></td>
+                    <td>
+                      {% if media.character %}
+                        {{media.character}}
+                      {% else %}
+                        <em>-</em>
+                      {% endif %}
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          {% endif %}
 
-        {% if credits.crew.length > 0 %}
-          <h3>Crew</h3>
-          <table class="table table-striped table-hover">
-            <tbody>
-              {% for media in credits.crew|recent %}
-                <tr>
-                  <td>{% if media.year === 0 %}-{% else %}{{media.year}}{% endif %}</td>
-                  <td><a href="/{{media.media_type}}/{{media.id}}">{{media.heading}}</a> <span class="label label-default pull-right">{{media.media_type}}</span></td>
-                  <td>
-                    {% if media.job %}
-                      {{media.job}}
-                    {% else %}
-                      <em>-</em>
-                    {% endif %}
-                  </td>
-                </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        {% endif %}
+          {% if credits.crew.length > 0 %}
+            <h3>Crew</h3>
+            <table class="table table-striped table-hover">
+              <tbody>
+                {% for media in credits.crew|recent %}
+                  <tr>
+                    <td>{% if media.year === 0 %}-{% else %}{{media.year}}{% endif %}</td>
+                    <td><a href="/{{media.media_type}}/{{media.id}}">{{media.heading}}</a> <span class="label label-default pull-right">{{media.media_type}}</span></td>
+                    <td>
+                      {% if media.job %}
+                        {{media.job}}
+                      {% else %}
+                        <em>-</em>
+                      {% endif %}
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          {% endif %}
+        </div>
       </div>
 
     </div>

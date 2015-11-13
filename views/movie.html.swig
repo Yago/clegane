@@ -62,7 +62,7 @@
           </div>
           <div class="col-sm-9">
             <h3 ng-controller="WatchCtrl as watched" ng-init="watched.init({{watched}})">
-              <button class="btn-link btn-watch"
+              <button ng-cloak class="btn-link btn-watch"
                       ng-click='watched.movie(
                       "{{user.key}}",
                       "{{movie.id}}",

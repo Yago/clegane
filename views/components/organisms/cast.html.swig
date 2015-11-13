@@ -11,35 +11,37 @@
   {% endfor %}
 </div>
 <br>
-<p>
-  <button class="btn btn-link" role="button" data-toggle="collapse" href="#cast-wrapper" aria-expanded="false">Full cast & crew <span class="caret"></span></button>
-</p>
+<div ng-controller="CollapseCtrl as collapse">
+  <p>
+    <button class="btn btn-link" role="button" ng-click="collapse.isCollapsed = !collapse.isCollapsed">Full cast & crew <span class="caret"></span></button>
+  </p>
 
-<div id="cast-wrapper" class="cast-wrapper collapse">
-  <table class="table table-striped table-hover">
-    <tbody>
-      {% for cast in credits.cast %}
-        {% if loop.key >= 4 %}
+  <div id="cast-wrapper" class="cast-wrapper" uib-collapse="collapse.isCollapsed">
+    <table class="table table-striped table-hover">
+      <tbody>
+        {% for cast in credits.cast %}
+          {% if loop.key >= 4 %}
+          <tr>
+            <td><a href="/people/{{cast.id}}">{{cast.name}}</a></td>
+            <td>{{cast.character}}</td>
+          </tr>
+          {% endif %}
+        {% endfor %}
+        {% if credits.crew %}
         <tr>
-          <td><a href="/people/{{cast.id}}">{{cast.name}}</a></td>
-          <td>{{cast.character}}</td>
+          <td><h3>Crew</h3></td>
+          <td></td>
         </tr>
         {% endif %}
-      {% endfor %}
-      {% if credits.crew %}
-      <tr>
-        <td><h3>Crew</h3></td>
-        <td></td>
-      </tr>
-      {% endif %}
-      {% for crew in credits.crew %}
-        <tr>
-          <td><a href="/people/{{crew.id}}">{{crew.name}}</a></td>
-          <td>{{crew.job}}</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+        {% for crew in credits.crew %}
+          <tr>
+            <td><a href="/people/{{crew.id}}">{{crew.name}}</a></td>
+            <td>{{crew.job}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 </div>
 
 {% endmacro %}
