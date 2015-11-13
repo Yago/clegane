@@ -23,6 +23,16 @@ exports.sortSeasons = function (seasons) {
 };
 
 /*
+ * Return season sorted
+ */
+exports.sortAddDate = function (items) {
+  items.sort(function(a, b){
+    return b.add_on-a.add_on;
+  });
+  return items;
+};
+
+/*
  * Return item sorted by name
  */
 exports.sortNames = function (items) {

@@ -37,6 +37,7 @@ app.set('views', __dirname + '/views');
 swig.setFilter('recent', filters.recent);
 swig.setFilter('sortSeasons', filters.sortSeasons);
 swig.setFilter('sortNames', filters.sortNames);
+swig.setFilter('sortAddDate', filters.sortAddDate);
 swig.setFilter('previous', filters.previous);
 swig.setFilter('next', filters.next);
 swig.setFilter('numberArray', filters.numberArray);

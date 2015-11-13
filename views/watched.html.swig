@@ -4,7 +4,7 @@
 {% import 'components/molecules/thumbnails.html.swig' as thumbnail %}
 
 {% block content %}
-  <div ng-controller="GridCtrl as grid" ng-init="grid.init('{{user.key}}');">
+  <div ng-controller="GridCtrl as grid" ng-init="grid.init('{{user.key}}', 'descending');">
 
     <div class="results-heading">
       <div class="row">
@@ -27,8 +27,8 @@
 
           <div class="btn-group pull-right" uib-dropdown>
             <button class="btn btn-primary" ng-class="grid.filterActive === '*' || grid.filterActive === '' ? 'active' : ''" ng-click="grid.filter('*');">All</button>
-            <button class="btn btn-primary" ng-class="grid.filterActive === '.movie' ? 'active' : ''" ng-click="grid.filter('.movie');">Movie</button>
-            <button class="btn btn-primary" ng-class="grid.filterActive === '.tv' ? 'active' : ''" ng-click="grid.filter('.tv');">TV</button>
+            <button class="btn btn-primary" ng-class="grid.filterActive === '.movie' ? 'active' : ''" ng-click="grid.filter('.movie');">Movies</button>
+            <button class="btn btn-primary" ng-class="grid.filterActive === '.tv' ? 'active' : ''" ng-click="grid.filter('.tv');">TVs</button>
           </div>
         </div>
       </div>

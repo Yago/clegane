@@ -10,7 +10,11 @@ app.controller('GridCtrl', function(ApiService) {
   that.sortActive = '';
   that.sortDirection = true;
 
-  that.init = function (key) {
+  that.init = function (key, sort) {
+    var sortAscending = true;
+    if (sort === 'descending') {
+      sortAscending = false;
+    }
     that.grid = document.querySelector('.grid');
     that.iso = new Isotope(that.grid, {
       itemSelector: '.grid-item',
@@ -20,17 +24,19 @@ app.controller('GridCtrl', function(ApiService) {
       getSortData: {
         movie: '.movie',
         tv: '.tv',
+        people: '.people',
+        watched: '.watched',
+        notwatched: '.not-watched',
         name: '[data-name]',
         date: '[data-date]'
       }
     });
     that.iso.arrange({
       sortBy: 'date',
-      sortAscending : false
+      sortAscending : sortAscending
     });
     that.iso.once( 'arrangeComplete', function() {
       that.ready = true;
-      console.log(that.ready);
     });
     //that.iso.shuffle();
   };
