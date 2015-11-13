@@ -13,6 +13,7 @@ app.controller('GridCtrl', function(ApiService) {
     that.grid = document.querySelector('.grid');
     that.iso = new Isotope(that.grid, {
       itemSelector: '.grid-item',
+      percentPosition: true,
       layoutMode: 'fitRows',
       getSortData: {
         movie: '.movie',
