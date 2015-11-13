@@ -7,6 +7,10 @@
     font-weight: 500;
     line-height: 0.85em;
   }
+  &:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
 }
 
 .btn-link {
