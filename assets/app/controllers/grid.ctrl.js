@@ -5,6 +5,7 @@
 app.controller('GridCtrl', function(ApiService) {
   var that = this;
 
+  that.ready = false;
   that.filterActive = '';
   that.sortActive = '';
   that.sortDirection = true;
@@ -15,14 +16,21 @@ app.controller('GridCtrl', function(ApiService) {
       itemSelector: '.grid-item',
       percentPosition: true,
       layoutMode: 'fitRows',
+      transitionDuration: '0.3s',
       getSortData: {
         movie: '.movie',
         tv: '.tv',
         name: '[data-name]',
         date: '[data-date]'
-      },
+      }
+    });
+    that.iso.arrange({
       sortBy: 'date',
       sortAscending : false
+    });
+    that.iso.once( 'arrangeComplete', function() {
+      that.ready = true;
+      console.log(that.ready);
     });
     //that.iso.shuffle();
   };
