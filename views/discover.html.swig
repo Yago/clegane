@@ -4,16 +4,24 @@
 {% import 'components/molecules/thumbnails.html.swig' as thumbnail %}
 
 {% block content %}
+  {% if data.total_pages <= 1000 %}
+    {% set max = data.total_pages %}
+  {% else %}
+    {% set max = 1000 %}
+  {% endif %}
 
   <div class="results-heading">
-    <div class="row">
-      <div class="col-sm-6">
+    {% if type !== 'peoples' %}
+      <div class="row">
+        <div class="col-sm-6">
+    {% endif %}
         <h4>
-          {{data.total_results}} Results - {{data.page}}/{{data.total_pages}}
+          {{data.total_results}} Results - {{data.page}}/{{max}}
         </h4>
         <h1>
           {{query|beautify}} {% if type === 'tvs' %}TV Shows{% else %}{{type}}{% endif %}
         </h1>
+    {% if type !== 'peoples' %}
       </div>
       <div class="col-sm-6">
         <div class="btn-group pull-right" uib-dropdown>
@@ -23,6 +31,7 @@
         </div>
       </div>
     </div>
+    {% endif %}
   </div>
 
   <div class="results-wrapper">
@@ -33,6 +42,8 @@
             {{ thumbnail.movie(result) }}
           {% elseif type === 'tvs' %}
             {{ thumbnail.tv(result) }}
+          {% else %}
+            {{ thumbnail.people(result) }}
           {% endif %}
         </div>
         {% if loop.index % 5 == 0 %}

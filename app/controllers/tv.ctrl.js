@@ -127,7 +127,7 @@ exports.display = function(req, res) {
 };
 
 /*
- * Display discover movies page
+ * Display discover tv page
  * Get data set one by one and if one fail, render the page with the well retrieved data.
  */
 exports.discover = function(req, res) {

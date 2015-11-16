@@ -6,6 +6,7 @@ var peopleCtrl 		= require('../controllers/people.ctrl'),
 module.exports = function(app, passport) {
 
   app.get('/people/:id', auth.isAuthenticated, peopleCtrl.display);
+  app.get('/peoples/:list/:page', auth.isAuthenticated, peopleCtrl.discover);
 
   // API part
   app.post('/peoples', auth.isApiAuthenticated, peopleCtrl.list);

@@ -18,6 +18,16 @@
 </a>
 {% endmacro %}
 
+{% macro people(content) %}
+<a class="thumb" href="/people/{{content.id}}">
+  {{picture.default(content.profile_path, 1, 0.66, 'none', 'img-responsive', content.title)}}
+  <span class="thumb-info">
+    <h5>People</h5>
+    <h3>{{content.name}}</h3>
+  </span>
+</a>
+{% endmacro %}
+
 {% macro watched(content, type) %}
 <a class="thumb" href="/{{type}}/{{content.tmdb_id}}">
   {{picture.default(content.picture, 1, 0.66, 'none', 'img-responsive', content.name)}}

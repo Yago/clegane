@@ -100,6 +100,29 @@ exports.display = function(req, res) {
 };
 
 /*
+ * Display discover peoples page
+ * Get data set one by one and if one fail, render the page with the well retrieved data.
+ */
+exports.discover = function(req, res) {
+  var userId = req.body.userId,
+      list = req.params.list,
+      page = req.params.page;
+
+  // Request main movie informations
+  apiCtrl.discover('person', list, page,
+    function (main) {
+
+      res.locals.data = main;
+      res.locals.type = 'peoples';
+      res.locals.query = list;
+      res.render('discover');
+
+    }, function (err) {
+      res.send('The people couldn\'t be found');
+    });
+};
+
+/*
  * Add a People to User
  * Params: key, name, imdb_id, picture
  */

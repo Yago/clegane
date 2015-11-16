@@ -16,7 +16,7 @@
       <ul class="list-unstyled">
         <li><a href="/movies/popular/1"><i class="cleganicon cleganicon-film"></i> Movies</a></li>
         <li><a href="/tvs/popular/1"><i class="cleganicon cleganicon-television"></i> TV Shows</a></li>
-        <li><a href="#"><i class="cleganicon cleganicon-oscar"></i> People</a></li>
+        <li><a href="/peoples/popular/1"><i class="cleganicon cleganicon-oscar"></i> People</a></li>
       </ul>
       <h5>{{ user.username }}</h5>
       <ul class="list-unstyled">
