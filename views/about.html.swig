@@ -54,7 +54,17 @@
 
           <div class="spacer spacer-xs"></div>
           <h2>Partners</h2>
-          <p><em>Our friendly partners here</em></p>
+          <p>
+            Nothing would be possible without them :D
+          </p>
+          <div class="row row-guttered">
+            <div class="col-sm-6">
+              <a href="https://www.themoviedb.org/">
+                <img src="https://assets.tmdb.org/images/logos/var_1_1_PoweredByTMDB_Blk_Logo_Antitled.png" class="img-responsive">
+              </a>
+            </div>
+            <div class="col-sm-6"></div>
+          </div>
 
           <div class="spacer"></div>
 
