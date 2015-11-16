@@ -127,6 +127,30 @@ exports.display = function(req, res) {
 };
 
 /*
+ * Display discover movies page
+ * Get data set one by one and if one fail, render the page with the well retrieved data.
+ */
+exports.discover = function(req, res) {
+  var userId = req.body.userId,
+      list = req.params.list,
+      page = req.params.page;
+
+  // Request main movie informations
+  apiCtrl.discover('tv', list, page,
+    function (main) {
+
+      res.locals.data = main;
+      res.locals.type = 'tvs';
+      res.locals.query = list;
+      res.locals.lists = ['popular', 'airing_today', 'on_the_air'];
+      res.render('discover');
+
+    }, function (err) {
+      res.send('The tv couldn\'t be found');
+    });
+};
+
+/*
  * Add a show to User
  * Params: key, name, picture, imdb_id
  */

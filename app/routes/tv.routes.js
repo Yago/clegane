@@ -6,6 +6,7 @@ var tvCtrl    = require('../controllers/tv.ctrl'),
 module.exports = function(app, passport) {
 
   app.get('/tv/:id', auth.isAuthenticated, tvCtrl.display);
+  app.get('/tvs/:list/:page', auth.isAuthenticated, tvCtrl.discover);
 
   // API part
   app.post('/tvs', auth.isApiAuthenticated, tvCtrl.list);

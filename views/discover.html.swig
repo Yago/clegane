@@ -12,7 +12,7 @@
           {{data.total_results}} Results - {{data.page}}/{{data.total_pages}}
         </h4>
         <h1>
-          {{query|beautify}} {{type}}
+          {{query|beautify}} {% if type === 'tvs' %}TV Shows{% else %}{{type}}{% endif %}
         </h1>
       </div>
       <div class="col-sm-6">
@@ -29,7 +29,11 @@
     <div class="row">
       {% for result in data.results %}
         <div class="col-sm-2-4">
-          {{ thumbnail.movie(result) }}
+          {% if type === 'movies' %}
+            {{ thumbnail.movie(result) }}
+          {% elseif type === 'tvs' %}
+            {{ thumbnail.tv(result) }}
+          {% endif %}
         </div>
         {% if loop.index % 5 == 0 %}
           </div><div class="row">
