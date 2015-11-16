@@ -149,9 +149,9 @@ $table-border-color:            $mercury !default;
 
 $btn-font-weight:                normal !default;
 
-$btn-default-color:              $black !default;
-$btn-default-bg:                 $supernova !default;
-$btn-default-border:             #ccc !default;
+$btn-default-color:              $white !default;
+$btn-default-bg:                 transparent !default;
+$btn-default-border:             $supernova !default;
 
 $btn-primary-color:              #fff !default;
 $btn-primary-bg:                 $brand-primary !default;

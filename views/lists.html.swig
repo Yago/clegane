@@ -20,7 +20,7 @@
             <a href="/list/{{list.id}}" class="list-card">
               <div class="row">
                 {% if list.items|length > 0 %}
-                  {% for item in list.items %}
+                  {% for item in list.items|sortAddDate %}
                     {% if loop.index <= 3 %}
                       <div class="col-xs-4">
                         {{picture.default(item.data.picture, 1, 0.66, 'none', 'img-responsive', item.data.name)}}

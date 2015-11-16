@@ -2,6 +2,7 @@
 
 var User        = require('../models/user.model'),
     crypto      = require('crypto'),
+    apiCtrl     = require('./api.ctrl.js'),
     algorithm   = 'aes-256-ctr';
 
 var config      = require('../../config/config.js');
@@ -135,7 +136,18 @@ exports.update = function(req, res) {
  * Render dashboard page
  */
 exports.dashboard = function(req, res) {
-  res.render('dashboard');
+  var userId = req.body.userId;
+
+  // Request main people informations
+    apiCtrl.get('/list/'+config.picks,
+      function (main) {
+
+        res.locals.picks = main;
+        res.render('dashboard');
+
+      }, function (err) {
+        res.send('The people couldn\'t be found');
+      });
 };
 
 /*

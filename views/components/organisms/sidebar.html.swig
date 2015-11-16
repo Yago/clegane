@@ -10,7 +10,7 @@
     </div>
     <nav class="sidenav">
       <ul class="list-unstyled">
-        <li><a href="#"><i class="cleganicon cleganicon-fire"></i> Hot</a></li>
+        <li><a href="/"><i class="cleganicon cleganicon-gauge"></i> Dashboard</a></li>
       </ul>
       <h5>Discover</h5>
       <ul class="list-unstyled">
@@ -21,7 +21,7 @@
       <h5>{{ user.username }}</h5>
       <ul class="list-unstyled">
         <li><a href="/watched"><small><i class="cleganicon cleganicon-eye"></i></small> Watched</a></li>
-        <li><a href="/lists"><i class="cleganicon cleganicon-film"></i> My lists</a></li>
+        <li><a href="/lists"><i class="cleganicon cleganicon-star"></i> My lists</a></li>
         <li><a href="/settings"><i class="cleganicon cleganicon-cog"></i> Settings</a></li>
         <li><a href="/logout"><i class="cleganicon cleganicon-out"></i> Logout</a></li>
       </ul>

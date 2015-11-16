@@ -33,6 +33,16 @@ exports.sortAddDate = function (items) {
 };
 
 /*
+ * Return season sorted
+ */
+exports.sortWatchDate = function (items) {
+  items.sort(function(a, b){
+    return b.watched_on-a.watched_on;
+  });
+  return items;
+};
+
+/*
  * Return item sorted by name
  */
 exports.sortNames = function (items) {

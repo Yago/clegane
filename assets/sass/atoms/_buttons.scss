@@ -1,6 +1,7 @@
 .btn {
   border: none;
   transition: background 0.3s ease-out;
+  white-space: normal;
   b {
     font-size: 40px;
     font-family: $main-font;
@@ -14,8 +15,12 @@
 }
 
 .btn-default {
+  border: 1px solid $supernova;
+  transition: color 0.3s,
+              border 0.3s;
   &:hover, &:focus, &:active, &.active {
-    background: $web-orange !important;
+    border-color: $web-orange !important;
+    color: $supernova !important;
     box-shadow: none;
   }
 }
@@ -82,4 +87,8 @@
   &:hover, &:active, &:focus {
     .cleganicon {color: $supernova;}
   }
+}
+
+.btn-list .btn {
+  margin-bottom: 5px;
 }
