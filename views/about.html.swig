@@ -14,6 +14,25 @@
           <p>
             Coded and maintained by the open-source comunity, <b>Clegane</b> is a forever free and fully open-source web application based on JavaScript technologies. The idea is to create a JS playground, but also a nice looking app to manage any movies or TV shows.
           </p>
+          <div class="row text-center librairies">
+            <div class="col-sm-2-4">
+              <a href="http://gulpjs.com/"><i class="cleganicon cleganicon-gulp cleganicon-4x"></i></a>
+            </div>
+            <div class="col-sm-2-4">
+              <a href="https://nodejs.org/en/"><i class="cleganicon cleganicon-node cleganicon-5x"></i></a>
+            </div>
+            <div class="col-sm-2-4">
+              <div class="spacer spacer-xs"></div>
+              <a href="https://www.mongodb.org/"><i class="cleganicon cleganicon-mongodb cleganicon-4x"></i></a>
+            </div>
+            <div class="col-sm-2-4">
+              <a href="https://angular.io/"><i class="cleganicon cleganicon-angular cleganicon-5x"></i></a>
+            </div>
+            <div class="col-sm-2-4">
+              <div class="spacer spacer-xs"></div>
+              <a href="http://expressjs.com/"><i class="cleganicon cleganicon-express cleganicon-4x"></i></a>
+            </div>
+          </div>
           <div class="spacer spacer-xs"></div>
 
           <h2>Who's behind</h2>
