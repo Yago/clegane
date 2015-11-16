@@ -215,6 +215,9 @@ exports.watch = function(req, res) {
                     title: req.body.title,
                     episode: req.body.episode
                   }
+                },
+                $set : {
+                  'tvs.$.last_view': Date.now()
                 }
               }, function (err, user) {
                 if (err) {return res.status(500).send(messages.errors.default_error);}

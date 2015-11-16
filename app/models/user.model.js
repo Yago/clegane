@@ -97,6 +97,11 @@ var userSchema = mongoose.Schema({
       unique: false,
       required: false
     },
+    last_view: {
+      type: Date,
+      unique: false,
+      required: false
+    },
     episodes: [{
       tmdb_id: {
         type: String,
