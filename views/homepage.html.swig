@@ -11,10 +11,10 @@
   <div class="spacer spacer-xs"></div>
   <p class="lead">
     Your badass Movies and TV Shows assistant. <br><br>
-    <em>- Currently in beta -</em>
+    <em>- Currently in Alpha -</em>
   </p>
   <div class="spacer spacer-sm"></div>
-  <a href="/signup" class="btn btn-primary btn-lg">Sign Up - It’s free !</a><br>
+  <a href="/signup" class="btn btn-primary btn-lg">Let's test it !</a><br>
   <a href="/login">or log in</a>
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1">
