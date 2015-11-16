@@ -151,6 +151,13 @@ exports.dashboard = function(req, res) {
 };
 
 /*
+ * About page
+ */
+exports.about = function(req, res, next) {
+  res.render('about');
+};
+
+/*
  * Render signup page
  */
 exports.signup = function(req, res) {

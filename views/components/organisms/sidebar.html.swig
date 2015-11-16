@@ -25,6 +25,10 @@
         <li><a href="/settings"><i class="cleganicon cleganicon-cog"></i> Settings</a></li>
         <li><a href="/logout"><i class="cleganicon cleganicon-out"></i> Logout</a></li>
       </ul>
+      <h5>Clegane</h5>
+      <ul class="list-unstyled">
+        <li><a href="/about"><small><i class="cleganicon cleganicon-info"></i></small> About</a></li>
+      </ul>
     </nav>
   </div>
 </div>

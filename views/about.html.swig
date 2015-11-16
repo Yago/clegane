@@ -1,0 +1,46 @@
+{% extends 'layout.html.swig' %}
+
+{% block content %}
+
+  <div class="content-container">
+    <div class="whity">
+      <div class="spacer spacer-sm"></div>
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+          <div class="text-center">
+            <img src="/svg/clegane.svg" onerror="this.onerror=null; this.src='/img/clegane.png'" alt="Clegane identity" class="img-responsive center-block" />
+          </div>
+          <div class="spacer spacer-md"></div>
+          <p>
+            Coded and maintained by the open-source comunity, <b>Clegane</b> is a forever free and fully open-source web application based on JavaScript technologies. The idea is to create a JS playground, but also a nice looking app to manage any movies or TV shows.
+          </p>
+          <div class="spacer spacer-xs"></div>
+
+          <h2>Who's behind</h2>
+          <div class="spacer spacer-xs"></div>
+          <div class="media">
+            <div class="media-left">
+              <a href="https://github.com/yago">
+                <img src="https://avatars3.githubusercontent.com/u/2025924" alt="Yago, Yann Gouffon" class="media-object img-circle">
+              </a>
+            </div>
+            <div class="media-body">
+              <a href="https://github.com/yago"><h3>Yann Gouffon</h3></a>
+              <p>
+                Rainbow coder who focuses on modular, performant and maintainable web development, he's in love with full-stack JavaScript technologies !
+              </p>
+            </div>
+          </div>
+
+          <div class="spacer spacer-xs"></div>
+          <h2>Partners</h2>
+          <p><em>Our friendly partners here</em></p>
+
+          <div class="spacer"></div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

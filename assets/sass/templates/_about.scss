@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.media-object {
+  max-width: 130px;
+}
+
+.media-body {
+  padding-left: 10px;
+  h3 {margin-top: 0.2em;}
+  a {
+    color: $black;
+  }
+}
