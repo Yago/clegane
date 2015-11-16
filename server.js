@@ -47,6 +47,7 @@ swig.setFilter('year', filters.year);
 swig.setFilter('zero', filters.zero);
 swig.setFilter('length', filters.length);
 swig.setFilter('quotesafe', filters.quotesafe);
+swig.setFilter('beautify', filters.beautify);
 
 // disable cache
 if (config.debug) {

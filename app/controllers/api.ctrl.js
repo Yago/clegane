@@ -66,3 +66,24 @@ exports.search = function (type, query, page, done, error) {
       done(res.body);
     });
 };
+
+/*
+ * Used for discover data from movie/tv/people request on tmdb api
+ * apiCtrl.discover(type,list,page,done(data),error(err));
+ */
+exports.discover = function (type, list, page, done, error) {
+  request
+    .get(api.url+'/'+type+'/'+list)
+    .query({
+      api_key: api.key,
+      language: api.lang,
+      page: page
+    })
+    .set('Accept', 'application/json')
+    .end(function(err, res){
+      if (err) {
+        error(err);
+      }
+      done(res.body);
+    });
+};

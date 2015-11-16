@@ -69,6 +69,30 @@ exports.display = function(req, res) {
 };
 
 /*
+ * Display discover movies page
+ * Get data set one by one and if one fail, render the page with the well retrieved data.
+ */
+exports.discover = function(req, res) {
+  var userId = req.body.userId,
+      list = req.params.list,
+      page = req.params.page;
+
+  // Request main movie informations
+  apiCtrl.discover('movie', list, page,
+    function (main) {
+
+      res.locals.data = main;
+      res.locals.type = 'movies';
+      res.locals.query = list;
+      res.locals.lists = ['popular', 'now_playing', 'upcoming'];
+      res.render('discover');
+
+    }, function (err) {
+      res.send('The movie couldn\'t be found');
+    });
+};
+
+/*
  * Add a Movie to User
  * Params: key, name, picture, imdb_id
  */

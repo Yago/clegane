@@ -6,6 +6,7 @@ var movieCtrl     = require('../controllers/movie.ctrl'),
 module.exports = function(app, passport) {
 
   app.get('/movie/:id', auth.isAuthenticated, movieCtrl.display);
+  app.get('/movies/:list/:page', auth.isAuthenticated, movieCtrl.discover);
 
   // API part
   app.post('/movies', auth.isApiAuthenticated, movieCtrl.list);

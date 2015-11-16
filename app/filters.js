@@ -147,3 +147,11 @@ exports.quotesafe = function (input) {
   return input.replace(/\'/g, "\\'").replace(/\"/g, '\\"');
 };
 
+/*
+ * Beautify string
+ */
+exports.beautify = function (input) {
+  var output = input.replace(/\_/g, ' ');
+  return output.charAt(0).toUpperCase() + output.slice(1);
+};
+
