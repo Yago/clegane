@@ -26,7 +26,7 @@
   <div class="content-container">
     <div class="row">
       <div class="col-sm-8">
-        <h3 class="text-inverse">Recently watched movies</h3>
+        <h3 class="text-inverse">Movies recently watched</h3>
         <div class="row">
           {% set i = 1 %}
           {% for movie in user.movies|sortWatchDate %}
@@ -48,6 +48,22 @@
         </div>
       </div>
     </div>
+
+    <h3 class="text-inverse">Last episode watched</h3>
+    <div class="row">
+      {% set j = 1 %}
+      {% for tv in user.tvs %}
+        {% if tv.episodes|length > 0 and j <= 5 %}
+          {% set j = j + 1 %}
+          <div class="col-sm-2-4">
+            {{ thumbnail.episode(tv, tv.name) }}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
   </div>
+
+  <div class="spacer"></div>
 
 {% endblock %}

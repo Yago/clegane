@@ -34,21 +34,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.engine('html.swig', swig.renderFile);
 app.set('view engine', 'html.swig');
 app.set('views', __dirname + '/views');
-swig.setFilter('recent', filters.recent);
-swig.setFilter('sortSeasons', filters.sortSeasons);
-swig.setFilter('sortNames', filters.sortNames);
-swig.setFilter('sortAddDate', filters.sortAddDate);
-swig.setFilter('sortWatchDate', filters.sortWatchDate);
-swig.setFilter('previous', filters.previous);
-swig.setFilter('next', filters.next);
-swig.setFilter('numberArray', filters.numberArray);
-swig.setFilter('paginationArray', filters.paginationArray);
-swig.setFilter('resize', filters.resize);
-swig.setFilter('year', filters.year);
-swig.setFilter('zero', filters.zero);
-swig.setFilter('length', filters.length);
-swig.setFilter('quotesafe', filters.quotesafe);
-swig.setFilter('beautify', filters.beautify);
 
 // disable cache
 if (config.debug) {

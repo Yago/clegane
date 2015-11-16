@@ -18,6 +18,16 @@
 </a>
 {% endmacro %}
 
+{% macro episode(tv, name) %}
+<a class="thumb thumb-episode" href="/tv/{{tv.id}}">
+  {{picture.default(tv.picture, 1, 0.66, 'none', 'img-responsive', name)}}
+  <span class="thumb-info">
+    <h5>{{name}}</h5>
+    <h3>s{{tv.episodes|lastEpisode.season|zero}}e{{tv.episodes|lastEpisode.episode|zero}}</h3>
+  </span>
+</a>
+{% endmacro %}
+
 {% macro people(content) %}
 <a class="thumb" href="/people/{{content.id}}">
   {{picture.default(content.profile_path, 1, 0.66, 'none', 'img-responsive', content.title)}}
