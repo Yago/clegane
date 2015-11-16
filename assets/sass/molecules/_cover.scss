@@ -22,7 +22,7 @@
     margin-top: 0.1em;
     margin-bottom: 0.4em;
   }
-  h3 {color: $silver-chalice;}
+  h3 {color: $mercury;}
   h1 small {
     font-size: 1em;
     font-weight: 300;
@@ -33,10 +33,18 @@
   }
 }
 
-.dashboard .content-container {
-  h1, h3 {margin-left: 0;}
+.dashboard {
+  .cover a {
+    img {
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+    &:hover img {opacity: 1;}
+  }
+  .content-container {
+    h1, h3 {margin-left: 0;}
+  }
 }
-
 .cover-avatar {
   width: 150px;
   height: 150px;
