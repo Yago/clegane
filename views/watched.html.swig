@@ -37,12 +37,12 @@
     <div class="results-wrapper">
       <div class="row grid">
         {% for item in watched.movies %}
-          <div class="col-sm-2-4 grid-item movie" data-name="{{item.name}}" data-date="{{item.watched_on|date('Y-m-d')}}">
+          <div class="col-sm-2-4 grid-item movie" data-name="{{item.name}}" data-date="{{item.watched_on|date('Y-m-d_H:i')}}">
             {{ thumbnail.watched(item, 'movie') }}
           </div>
         {% endfor %}
         {% for item in watched.tvs %}
-          <div class="col-sm-2-4 grid-item tv" data-name="{{item.name}}" data-date="{{item.episodes[0].watched_on|date('Y-m-d')}}">
+          <div class="col-sm-2-4 grid-item tv" data-name="{{item.name}}" data-date="{{item.last_view|date('Y-m-d_H:i')}}">
             {{ thumbnail.watched(item, 'tv') }}
           </div>
         {% endfor %}

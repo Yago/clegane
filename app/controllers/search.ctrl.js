@@ -128,22 +128,8 @@ exports.watched = function(req, res) {
           function(callback) {
             async.each(user.tvs, function(tv, eachCallback) {
                 if (tv.episodes.length > 0) {
-                  tv.imdb_id = 'tv';
-                  var watchedOn = '';
-                  //Get last watched_on episode and apply to tv parent
-                  async.each(tv.episodes, function(episode, eachSubCallback) {
-                      if (episode.watched_on > watchedOn) {
-                        watchedOn = episode.watched_on;
-                      }
-                      eachSubCallback();
-                    }, function(err){
-                        if( err ) {// console.log(err);
-                        } else {
-                          tv.episodes = watchedOn;
-                          watchedArray.tvs.push(tv);
-                          eachCallback();
-                        }
-                    });
+                  watchedArray.tvs.push(tv);
+                  eachCallback();
                 } else {
                   eachCallback();
                 }
@@ -155,6 +141,7 @@ exports.watched = function(req, res) {
       ], function (err, result) {
           if (err) {res.status(500).send(messages.errors.default_error);}
           res.locals.watched = watchedArray;
+          //res.send(res.locals.watched);
           res.render('watched');
       });
     });
