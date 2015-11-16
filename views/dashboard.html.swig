@@ -24,8 +24,10 @@
   </div>
 
   <div class="content-container">
+    <div class="spacer spacer-sm"></div>
+
     <div class="row">
-      <div class="col-sm-8">
+      <div class="col-sm-7">
         <h3 class="text-inverse">Movies recently watched</h3>
         <div class="row">
           {% set i = 1 %}
@@ -39,7 +41,7 @@
           {% endfor %}
         </div>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-4 col-sm-offset-1">
         <h3 class="text-inverse">Your lists</h3>
         <div class="btn-list">
           {% for list in user.lists|sortNames %}
@@ -48,6 +50,8 @@
         </div>
       </div>
     </div>
+
+    <div class="spacer spacer-sm"></div>
 
     <h3 class="text-inverse">Last episode watched</h3>
     <div class="row">
@@ -64,6 +68,6 @@
 
   </div>
 
-  <div class="spacer"></div>
+  <div class="spacer spacer-sm"></div>
 
 {% endblock %}

@@ -37,9 +37,13 @@
 }
 
 .thumb-episode {
-  img {transition: filter 0.3s ease-out}
   .thumb-info {
     opacity: 1;
     background: rgba(0, 0, 0, 0.2);
+    transition: background 0.3s;
+  }
+  &:hover {
+    .thumb-info {background: rgba(0, 0, 0, 0.6);}
+    img {filter: grayscale(0%) !important;}
   }
 }
