@@ -26,6 +26,13 @@ body.modal-open {
   margin: 0 auto;
 }
 
+.row-guttered {
+  @include make-row(30px);
+  [class*='col-'] {
+    padding: 0 15px;
+  }
+}
+
 .col-sm-2-4 {
   @include make-sm-column(2.4, $grid-gutter-width);
 }

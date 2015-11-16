@@ -15,7 +15,9 @@
 
   <div class="main-wrapper">
 
-    {% include "./components/organisms/sidebar.html.swig" %}
+    {% if isAuthenticated %}
+      {% include "./components/organisms/sidebar.html.swig" %}
+    {% endif %}
 
     <div class="content-wrapper">
       <div class="{% block wrapper-class %}container-fluid{% endblock %}">
