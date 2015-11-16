@@ -19,7 +19,7 @@
 {% endmacro %}
 
 {% macro episode(tv, name) %}
-<a class="thumb thumb-episode" href="/tv/{{tv.id}}">
+<a class="thumb thumb-episode" href="/tv/{{tv.tmdb_id}}">
   {{picture.default(tv.picture, 1, 0.66, 'none', 'img-responsive', name)}}
   <span class="thumb-info">
     <h5>{{name}}</h5>

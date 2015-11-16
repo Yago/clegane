@@ -52,7 +52,7 @@
     <h3 class="text-inverse">Last episode watched</h3>
     <div class="row">
       {% set j = 1 %}
-      {% for tv in user.tvs %}
+      {% for tv in user.tvs|sortLastViewDate %}
         {% if tv.episodes|length > 0 and j <= 5 %}
           {% set j = j + 1 %}
           <div class="col-sm-2-4">

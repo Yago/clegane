@@ -26,7 +26,7 @@ exports.sortSeasons = function (seasons) {
 swig.setFilter('sortSeasons', module.exports.sortSeasons);
 
 /*
- * Return season sorted
+ * Return add date sorted
  */
 exports.sortAddDate = function (items) {
   items.sort(function(a, b){
@@ -37,7 +37,7 @@ exports.sortAddDate = function (items) {
 swig.setFilter('sortAddDate', module.exports.sortAddDate);
 
 /*
- * Return season sorted
+ * Return watch date sorted
  */
 exports.sortWatchDate = function (items) {
   items.sort(function(a, b){
@@ -46,6 +46,17 @@ exports.sortWatchDate = function (items) {
   return items;
 };
 swig.setFilter('sortWatchDate', module.exports.sortWatchDate);
+
+/*
+ * Return last view date sorted
+ */
+exports.sortLastViewDate = function (items) {
+  items.sort(function(a, b){
+    return b.last_view-a.last_view;
+  });
+  return items;
+};
+swig.setFilter('sortLastViewDate', module.exports.sortLastViewDate);
 
 /*
  * Return item sorted by name
