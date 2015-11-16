@@ -33,6 +33,7 @@
               <a href="http://expressjs.com/"><i class="cleganicon cleganicon-express cleganicon-4x"></i></a>
             </div>
           </div>
+          <a class="pull-right" href="https://github.com/Yago/clegane/blob/dev/package.json">View all the librairies</a>
           <div class="spacer spacer-xs"></div>
 
           <h2>Who's behind</h2>
@@ -46,7 +47,7 @@
             <div class="media-body">
               <a href="https://github.com/yago"><h3>Yann Gouffon</h3></a>
               <p>
-                Rainbow coder who focuses on modular, performant and maintainable web development, he's in love with full-stack JavaScript technologies !
+                Occasional Designer and rainbow coder who focuses on modular, performant and maintainable web development, he's in love with full-stack JavaScript technologies&nbsp;!
               </p>
             </div>
           </div>
