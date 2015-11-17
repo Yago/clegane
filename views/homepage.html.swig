@@ -1,0 +1,92 @@
+{% extends 'layout.html.swig' %}
+
+{% block wrapper-class %}homepage{% endblock %}
+
+{% block content %}
+
+<div class="homepage-intro">
+  <div class="container text-center">
+  <div class="spacer spacer-md"></div>
+  <img src="/svg/clegane.svg" onerror="this.onerror=null; this.src='/img/clegane.png'" alt="Clegane identity" class="img-responsive center-block" />
+  <div class="spacer spacer-xs"></div>
+  <p class="lead">
+    Your badass Movies and TV Shows assistant. <br><br>
+    <em>- Currently in Alpha -</em>
+  </p>
+  <div class="spacer spacer-sm"></div>
+  <a href="/signup" class="btn btn-primary btn-lg">Let's test it !</a><br>
+  <a href="/login">or log in</a>
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      <img src="/img/clegane-screenshot.png" alt="Clegane screenshot" class="img-responsive">
+    </div>
+  </div>
+  </div>
+</div>
+
+<div class="whity">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1">
+
+        <div class="spacer"></div>
+        <div class="row row-guttered">
+          <div class="col-sm-4 text-center">
+            <i class="cleganicon cleganicon-binoculars cleganicon-3x"></i>
+            <h3>Easy search & find</h3>
+            <p>
+              With the search engine and the easy navigation, you will quickly find your favorites movies, TV shows and peoples.
+            </p>
+          </div>
+          <div class="col-sm-4 text-center">
+            <i class="cleganicon cleganicon-star cleganicon-3x"></i>
+            <h3>Create lists</h3>
+            <p>
+              You can create unlimited list of whatever you want to better organize. With the list, you can filter and sort it content.
+            </p>
+          </div>
+          <div class="col-sm-4 text-center">
+            <i class="cleganicon cleganicon-eye cleganicon-3x"></i>
+            <h3>Check watched</h3>
+            <p>
+              You can check all the content you watched and easy filter and order it. You will always remember which episode you already seen.
+            </p>
+          </div>
+        </div>
+
+        <div class="spacer spacer-sm"></div>
+        <hr>
+
+        <div class="row">
+          <div class="col-sm-10 col-sm-offset-1">
+            <div class="row row-guttered">
+              <div class="col-sm-4 text-center">
+                <div class="h1">
+                  <i class="cleganicon cleganicon-github cleganicon-5x"></i>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <div class="spacer"></div>
+                <h2>Open-Source</h2>
+                <p>
+                  Clegane is an open-source project based on JavaScript technologies. Join us on <a href="https://github.com/Yago/clegane/">Github</a> !
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="text-inverse">
+  <div class="spacer spacer-md"></div>
+  <div class="container text-center">
+    <address>Build with ❤ by <a href="https://github.com/Yago">Yago</a></address>
+  </div>
+  <div class="spacer spacer-sm"></div>
+</footer>
+
+{% endblock %}

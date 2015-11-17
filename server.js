@@ -1,22 +1,22 @@
-var express  			= require('express'),
-    app      			= express(),
-    port     			= process.env.PORT || 3010,
-    mongoose 			= require('mongoose'),
-    passport 			= require('passport'),
-    flash    			= require('connect-flash'),
-    compression 	= require('compression'),
-    morgan       	= require('morgan'),
-    cookieParser 	= require('cookie-parser'),
-    bodyParser   	= require('body-parser'),
-    session      	= require('express-session'),
-    MongoStore   	= require('connect-mongo')(session),
-    swig 					= require('swig'),
-    filters       = require('./app/filters'),
-    User 					= require('./app/models/user.model');
+'use strict';
 
-var config 				= require('./config/config.js'),
-    skills        = require('./config/skills.json'),
-    chartConfig   = require('./config/chart.js');
+var express       = require('express'),
+    app           = express(),
+    port          = process.env.PORT || 3010,
+    mongoose      = require('mongoose'),
+    passport      = require('passport'),
+    flash         = require('connect-flash'),
+    compression   = require('compression'),
+    morgan        = require('morgan'),
+    cookieParser  = require('cookie-parser'),
+    bodyParser    = require('body-parser'),
+    session       = require('express-session'),
+    MongoStore    = require('connect-mongo')(session),
+    swig          = require('swig'),
+    filters       = require('./app/filters');
+
+var config        = require('./config/config.js'),
+    api           = require('./config/api.js');
 
 // Connect to database
 mongoose.connect(config.db);
@@ -31,14 +31,9 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // setting template engine
-app.engine('html', swig.renderFile);
-app.set('view engine', 'html');
+app.engine('html.swig', swig.renderFile);
+app.set('view engine', 'html.swig');
 app.set('views', __dirname + '/views');
-swig.setFilter('rank', filters.rank);
-swig.setFilter('name', filters.name);
-swig.setFilter('level', filters.level);
-swig.setFilter('modulo', filters.modulo);
-swig.setFilter('length', filters.length);
 
 // disable cache
 if (config.debug) {
@@ -63,8 +58,7 @@ app.use(flash());
 app.use(function(req, res, next) {
   res.locals.req = req;
   res.locals.user = req.user;
-  res.locals.skills = skills;
-  res.locals.chartConfig = chartConfig;
+  res.locals.api = api;
   res.locals.isAuthenticated = req.isAuthenticated();
   res.locals.is_granted = function (role) {
     return req.isAuthenticated() && req.user.roles.indexOf(role) >= 0;
@@ -79,8 +73,11 @@ app.use(express.static(__dirname + '/build'));
 
 // routes ======================================================================
 require('./app/routes/user.routes')(app, passport);
-require('./app/routes/player.routes')(app, passport);
-require('./app/routes/match.routes')(app, passport);
+require('./app/routes/search.routes')(app, passport);
+require('./app/routes/movie.routes')(app, passport);
+require('./app/routes/tv.routes')(app, passport);
+require('./app/routes/people.routes')(app, passport);
+require('./app/routes/list.routes')(app, passport);
 
 // launch ======================================================================
 app.listen(port);

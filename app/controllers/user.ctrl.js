@@ -1,18 +1,19 @@
 'use strict';
 
-var User 				= require('../models/user.model'),
+var User        = require('../models/user.model'),
     crypto      = require('crypto'),
-    algorithm   = 'aes-256-ctr',
-    jwt         = require('jsonwebtoken');
+    apiCtrl     = require('./api.ctrl.js'),
+    algorithm   = 'aes-256-ctr';
 
-var config 				 = require('../../config/config.js');
+var config      = require('../../config/config.js');
 
 var createHash = function(password){
-  var cipher = crypto.createCipher(algorithm, config.secret);
-  var crypted = cipher.update(password,'utf8','hex')
+  var cipher = crypto.createCipher(algorithm, config.secret),
+      crypted = cipher.update(password,'utf8','hex');
+
   crypted += cipher.final('hex');
   return crypted;
-}
+};
 
 
 /*
@@ -32,16 +33,16 @@ exports.index = function(req, res, next) {
  */
 exports.create = function (req, res) {
   var newUser = new User();
-  newUser.username = req.body.username;
-  newUser.password = createHash(req.body.password);
-  newUser.email = req.body.email;
-  newUser.save(function(err) {
-    if (err){
-      req.flash('error', 'Error in Saving user:  ' + err);
-      return err;
-    }
-    res.redirect('/signup/completed');
-  });
+      newUser.username = req.body.username;
+      newUser.password = createHash(req.body.password);
+      newUser.email = req.body.email;
+      newUser.save(function(err) {
+        if (err){
+          req.flash('error', 'Error in Saving user:  ' + err);
+          return err;
+        }
+        res.redirect('/signup/completed');
+      });
 };
 
 /*
@@ -93,21 +94,21 @@ exports.update = function(req, res) {
 
   console.log(req.body.password.length);
 
-  if (typeof req.body.password == 'undefined' || req.body.password.length < 1) {
+  if (typeof req.body.password === 'undefined' || req.body.password.length < 1) {
     User.findOneAndUpdate({_id:userId},
     {
       $set : {
         'username': req.body.username,
         'email': req.body.email
       }
-    }, function (err, user) {
-      if (err) return next(err);
-      if (!user) return res.send('Epic fail');
+    }, function (err, user, next) {
+      if (err) {return next(err);}
+      if (!user) {return res.send('Epic fail');}
       if (typeof req.body.inapp !== 'undefined') {
-        req.flash('success', "Profile successfully updated");
+        req.flash('success', 'Profile successfully updated');
         res.redirect('/settings');
       } else {
-        res.send("Profile successfully updated");
+        res.send('Profile successfully updated');
       }
     });
   } else {
@@ -118,14 +119,14 @@ exports.update = function(req, res) {
         'email': req.body.email,
         'password': createHash(req.body.password)
       }
-    }, function (err, user) {
-      if (err) return next(err);
-      if (!user) return res.send('Epic fail');
+    }, function (err, user, next) {
+      if (err) {return next(err);}
+      if (!user) {return res.send('Epic fail');}
       if (typeof req.body.inapp !== 'undefined') {
-        req.flash('success', "Profile successfully updated");
+        req.flash('success', 'Profile successfully updated');
         res.redirect('/settings');
       } else {
-        res.send("Profile successfully updated");
+        res.send('Profile successfully updated');
       }
     });
   }
@@ -134,19 +135,26 @@ exports.update = function(req, res) {
 /*
  * Render dashboard page
  */
-exports.dashboard = function(req, res, next) {
-  var rawPlayers = res.locals.user.players,
-      players = [];
-  rawPlayers.forEach(function(player){
-    if (player.status === true) {
-      players.push(player);
-    }
-  });
-  players.sort(function(a, b){
-   return b.points-a.points;
-  })
-  res.locals.players = players;
-  res.render('dashboard');
+exports.dashboard = function(req, res) {
+  var userId = req.body.userId;
+
+  // Request main people informations
+    apiCtrl.get('/list/'+config.picks,
+      function (main) {
+
+        res.locals.picks = main;
+        res.render('dashboard');
+
+      }, function (err) {
+        res.send('The people couldn\'t be found');
+      });
+};
+
+/*
+ * About page
+ */
+exports.about = function(req, res, next) {
+  res.render('about');
 };
 
 /*

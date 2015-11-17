@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.results-heading .btn-group {
+  margin: 22px 10px 0 10px;
+  .btn {
+    margin: 0 1px;
+  }
+}
+
+.dropdown li a {
+  transition: background 0.2s ease-out,
+              color 0.2s ease-out;
+}

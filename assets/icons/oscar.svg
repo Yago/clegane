@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="5px" height="13px" viewBox="0 0 5 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12072) - http://www.bohemiancoding.com/sketch -->
+    <title>oscar</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Design-v2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Movie-Details" sketch:type="MSArtboardGroup" transform="translate(-26.000000, -333.000000)" fill="#5F5F5F">
+            <g id="sidenav" sketch:type="MSLayerGroup" transform="translate(19.000000, 194.000000)">
+                <g id="discover" transform="translate(0.000000, 46.500000)" sketch:type="MSShapeGroup">
+                    <path d="M10.40816,104.927267 L10.40816,104.501294 C10.40816,104.501294 10.0674933,104.075507 9.12986667,104.075507 C8.19224,104.075507 7.85157333,104.501294 7.85157333,104.501294 L7.85157333,104.927267 L7.42578667,104.927267 L7,105.353054 L11.2597333,105.353054 L10.8339467,104.927267 L10.40816,104.927267 Z M10.40816,101.519107 L9.98218667,99.3892403 L10.8171467,98.939187 L11.26048,95.981827 L9.5564,95.5558536 L9.98218667,93.8519603 C9.98218667,93.8519603 9.94952,92.9848936 9.12986667,93.0002003 C8.26149333,93.0162536 8.27810667,93.8519603 8.27810667,93.8519603 C8.27810667,94.2521736 8.70408,95.5558536 8.70408,95.5558536 L7,95.981827 L7.44837333,98.9647603 L8.27810667,99.389987 L7.85232,101.519854 L8.70408,104.075507 L9.55565333,104.075507 L10.40816,101.519107 Z" id="oscar"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

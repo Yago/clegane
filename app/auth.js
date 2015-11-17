@@ -6,6 +6,7 @@ var config 			= require('../config/config.js');
 
 exports.isAuthenticated = function(req, res, next)  {
   if (res.locals.isAuthenticated) {
+    req.body.userId = res.locals.user.id;
     next();
   } else {
     res.redirect('/');
@@ -15,10 +16,12 @@ exports.isAuthenticated = function(req, res, next)  {
 exports.isApiAuthenticated = function(req, res, next)  {
   var key = req.body.key;
 
+  console.log(key);
+
   if (typeof key !== 'undefined') {
     User.findOne({key:key}, function(err, user) {
-      if (err) return res.send(err);;
-      if (!user) {res.send('No user found with this key');}
+      if (err) return res.status(500).send(err);;
+      if (!user) {return res.status(500).send('No user found with this key');}
       req.body.userId = user.id;
       next();
     });
@@ -46,7 +49,7 @@ exports.haveApiKey = function(req, res, next)  {
           }
         }, function (err, user) {
           if (err) return err;
-          if (!user) return res.send('Epic fail');
+          if (!user) return res.status(500).send('Epic fail');
           next();
         });
     } else {

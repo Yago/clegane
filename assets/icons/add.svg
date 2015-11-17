@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="20px" height="19px" viewBox="0 0 20 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12072) - http://www.bohemiancoding.com/sketch -->
+    <title>Add to favorites</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Design-v2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="TV-Show-Details" sketch:type="MSArtboardGroup" transform="translate(-1294.000000, -514.000000)" fill="#FFFFFF">
+            <g id="Add-to-list" sketch:type="MSLayerGroup" transform="translate(1247.000000, 500.000000)">
+                <g id="Add-to-favorites" transform="translate(47.000000, 14.000000)" sketch:type="MSShapeGroup">
+                    <path d="M12.8926578,12.1314819 L12.8926578,9.19854321 L12.8995556,9.19854321 L12.8995556,9.17681519 L17.3896695,9.17026229 L19.3972702,7.24233103 L12.8712746,6.34113526 L9.99765689,0.414557299 L7.12403913,6.34113526 L0.599423106,7.24233103 L5.34820406,11.8065962 L4.1883413,18.2922397 L9.92350569,15.2244493 L9.92350569,12.1301024 L12.8926578,12.1314819 Z" id="Fill-1"></path>
+                    <path d="M16.3308593,10.3125357 L14.0390699,10.3125357 L14.0390699,13.2792736 L11.0726769,13.2792736 L11.0726769,15.5707182 L14.0390699,15.5707182 L14.0390699,18.537456 L16.3294798,18.537456 L16.3294798,15.5707182 L19.2962177,15.5707182 L19.2962177,13.2792736 L16.3308593,13.2792736 L16.3308593,10.3125357 Z" id="Fill-2"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

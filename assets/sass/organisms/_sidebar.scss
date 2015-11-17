@@ -1,0 +1,45 @@
+.sidebar {
+  background: $gallery;
+  box-sizing: border-box;
+  width: $sidebar-width;
+  min-height: 100vh;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.sidebar-content {
+  position: fixed;
+  width: $sidebar-width;
+  top: 0;
+  left: 0;
+}
+
+header {
+  background: $supernova;
+  height: 100px;
+  box-sizing: border-box;
+  line-height: 117px;
+  a, a:hover, a:focus, a:active {color: $cod-gray;}
+}
+
+.sidenav {
+  padding: 20px;
+  h5 {margin: 20px 0 10px 0;}
+  li a {
+    font-weight: 700;
+    font-size: $font-size-small;
+    text-transform: uppercase;
+    color: $cod-gray;
+    &:hover {
+      color: $electric-violet;
+      text-decoration: none;
+    }
+    i {
+      display: inline-block;
+      width: 25px;
+      text-align: center;
+      padding-right: 10px;
+    }
+  }
+  li.active a i:before{color: $electric-violet;}
+}

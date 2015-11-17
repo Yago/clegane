@@ -1,0 +1,54 @@
+[ng-cloak] {
+  display: none !important;
+}
+
+body.modal-open {
+  overflow: visible;
+}
+
+.main-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.content-wrapper {
+  background: $cod-gray;
+  flex-grow: 1;
+  flex-shrink: 1;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+
+.content-container {
+  max-width: $screen-lg;
+  width: 80%;
+  padding: 0 $grid-gutter-width/2;
+  margin: 0 auto;
+}
+
+.row-guttered {
+  @include make-row(30px);
+  [class*='col-'] {
+    padding: 0 15px;
+  }
+}
+
+.col-sm-2-4 {
+  @include make-sm-column(2.4, $grid-gutter-width);
+}
+
+.spacer {
+  height: 65px;
+  &.spacer-xl {height: 120px;}
+  &.spacer-lg {height: 90px;}
+  &.spacer-sm {height: 30px;}
+  &.spacer-ssm {height: 15px;}
+  &.spacer-xs {height: 10px;}
+  @media only screen and (max-width: 767px) {
+    height: 30px;
+    &.spacer-xl {height: 50px;}
+    &.spacer-lg {height: 50px;}
+    &.spacer-sm {height: 20px;}
+    &.spacer-xs {height: 10px;}
+  }
+}

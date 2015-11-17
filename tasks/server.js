@@ -15,9 +15,10 @@ module.exports = function() {
   */
   gulp.task('serve', ['default'], function () {
     browserSync({
-      server: {
-        baseDir: [config.app.basedir],
-      },
+      // server: {
+      //   baseDir: [config.app.basedir],
+      // },
+      notify: false,
       open: false
     });
     gulp.watch([config.assets + 'sass/**/*.scss'], function() {
@@ -35,9 +36,13 @@ module.exports = function() {
     gulp.watch([config.assets + 'js/**/*.js'], function() {
       runSequence('scripts', 'styleguide', reload);
     });
+    gulp.watch([config.assets + 'app/**/*.js'], function() {
+      runSequence('angular', 'angular', 'styleguide', reload);
+    });
+    gulp.watch(['views/**/*.html.swig'], reload);
     gulp.watch([
       config.assets + 'components/**/*.{html,hbs,md}',
-      config.assets + 'templates/**/*.html',
+      config.assets + 'templates/**/*.html.swig',
       config.assets + 'docs/**/*.md',
       config.assets + 'data/**/*.{json,yml}'
     ], function() {

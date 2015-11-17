@@ -1,13 +1,13 @@
 'use strict';
 
-var User 				= require('../models/user.model'),
-    userCtrl 		= require('../controllers/user.ctrl'),
+var userCtrl 		= require('../controllers/user.ctrl'),
     auth        = require('../auth');
 
 module.exports = function(app, passport) {
 
   app.get('/', userCtrl.index);
   app.get('/', auth.haveApiKey, userCtrl.dashboard);
+  app.get('/about', auth.isAuthenticated, userCtrl.about);
 
   app.get('/api', auth.haveApiKey, userCtrl.api);
 
@@ -21,7 +21,7 @@ module.exports = function(app, passport) {
   app.get('/settings', auth.isAuthenticated, userCtrl.settings);
   app.post('/settings', auth.isApiAuthenticated, userCtrl.update);
 
-  app.get('/logout', function(req, res, passport) {
+  app.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
   });

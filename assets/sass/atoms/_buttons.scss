@@ -1,0 +1,94 @@
+.btn {
+  border: none;
+  transition: background 0.3s ease-out;
+  white-space: normal;
+  b {
+    font-size: 40px;
+    font-family: $main-font;
+    font-weight: 500;
+    line-height: 0.85em;
+  }
+  &:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
+.btn-default {
+  border: 1px solid $supernova;
+  transition: color 0.3s,
+              border 0.3s;
+  &:hover, &:focus, &:active, &.active {
+    border-color: $web-orange !important;
+    color: $supernova !important;
+    box-shadow: none;
+  }
+}
+
+.btn-link {
+  font-weight: 300;
+  text-decoration: none;
+  padding: 0;
+  &:hover {
+    color: $link-hover-color;
+    text-decoration: none;
+  }
+  &:active, &:focus {
+    outline: none !important;
+    text-decoration: none;
+  }
+  &[aria-expanded="true"] .caret {
+    border-top: none;
+    border-bottom: 4px solid $electric-violet;
+  }
+}
+
+.btn-corner {
+  position: absolute;
+  display: block;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  padding: 0;
+  font-size: 1.2em;
+  background: transparent;
+  border-style: solid;
+  border-width: 0 80px 80px 0;
+  border-color: transparent $electric-violet transparent transparent;
+  transition: border-color 0.3s ease-out;
+  i {
+    display: block;
+    position: absolute;
+    top: 11px;
+    left: 46px;
+  }
+  &:hover, &:active, &:focus {
+    background: transparent !important;
+    border-color: transparent darken($btn-primary-bg, 10%) transparent transparent !important;
+    outline: 0 !important;
+  }
+  &:active {border-color: transparent darken($btn-primary-bg, 15%) transparent transparent !important;}
+}
+
+.btn-watch {
+  font-size: 0.7em;
+  color: $mercury;
+  position: relative;
+  top: -2px;
+  .cleganicon {
+    color: $mercury;
+  }
+  .cleganicon-eye {
+    position: relative;
+    left: 0.5px;
+    color: $supernova;
+  }
+  &:hover, &:active, &:focus {
+    .cleganicon {color: $supernova;}
+  }
+}
+
+.btn-list .btn {
+  margin-bottom: 5px;
+}

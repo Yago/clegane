@@ -1,0 +1,22 @@
+.results-heading {
+  padding: $grid-gutter-width*1.5 $grid-gutter-width*3;
+  border-bottom: 1px solid $scorpion;
+  height: 101px;
+  margin: 0 $grid-gutter-width / -2;
+  h4 {
+    color: $silver-chalice;
+    margin: 0;
+  }
+  h1 {
+    color: $white;
+    margin: 0;
+    margin-top: 2px;
+    text-transform: capitalize;
+  }
+}
+
+.results-wrapper {
+  .thumb {
+    margin: $grid-gutter-width/2 0;
+  }
+}

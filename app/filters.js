@@ -1,83 +1,206 @@
 'use strict';
 
+var config = require('./../config/config.js'),
+    swig   = require('swig');
+
 /*
  * Return player's rank based on player.id and user object
  */
-exports.rank = function (playerId, user) {
-  var rank = '';
-  user.players.sort(function(a, b){
-    return b.points-a.points;
+exports.recent = function (movies) {
+  movies.sort(function(a, b){
+    return b.year-a.year;
   });
-  user.players.sort(function(a, b){
-    return b.status-a.status;
+  return movies;
+};
+swig.setFilter('recent', module.exports.recent);
+
+/*
+ * Return season sorted
+ */
+exports.sortSeasons = function (seasons) {
+  seasons.sort(function(a, b){
+    return a.season_number-b.season_number;
   });
-  for (var i = 0; i < user.players.length; i++) {
-    if (user.players[i].id === playerId) {
-      rank = i + 1;
+  return seasons;
+};
+swig.setFilter('sortSeasons', module.exports.sortSeasons);
+
+/*
+ * Return add date sorted
+ */
+exports.sortAddDate = function (items) {
+  items.sort(function(a, b){
+    return b.add_on-a.add_on;
+  });
+  return items;
+};
+swig.setFilter('sortAddDate', module.exports.sortAddDate);
+
+/*
+ * Return watch date sorted
+ */
+exports.sortWatchDate = function (items) {
+  items.sort(function(a, b){
+    return b.watched_on-a.watched_on;
+  });
+  return items;
+};
+swig.setFilter('sortWatchDate', module.exports.sortWatchDate);
+
+/*
+ * Return last view date sorted
+ */
+exports.sortLastViewDate = function (items) {
+  items.sort(function(a, b){
+    return b.last_view-a.last_view;
+  });
+  return items;
+};
+swig.setFilter('sortLastViewDate', module.exports.sortLastViewDate);
+
+/*
+ * Return item sorted by name
+ */
+exports.sortNames = function (items) {
+  items.sort(function(a, b){
+    if(a.name < b.name) return -1;
+    if(a.name > b.name) return 1;
+    return 0;
+  });
+  return items;
+};
+swig.setFilter('sortNames', module.exports.sortNames);
+
+/*
+ * Return previous page
+ */
+exports.previous = function (current) {
+  if (current === 1) {
+    return 1;
+  } else {
+    return current - 1;
+  }
+};
+swig.setFilter('previous', module.exports.previous);
+
+/*
+ * Return next page
+ */
+exports.next = function (current, total) {
+  if (current === total) {
+    return total;
+  } else {
+    return current + 1;
+  }
+};
+swig.setFilter('next', module.exports.next);
+
+/*
+ * Return an array from a number
+ */
+exports.numberArray = function (number) {
+  var array = [];
+  for (var i = 1; i <= number; i++) {
+    array.push(i);
+  }
+  return array;
+};
+swig.setFilter('numberArray', module.exports.numberArray);
+
+/*
+ * Return an array from a number for pagination
+ */
+exports.paginationArray = function (total, current) {
+  var array = [];
+  for (var i = current - 5; i <= current + 5; i++) {
+    if (i >= 1 && i <= total) {
+      array.push(i);
     }
   }
-  return rank;
+  return array;
 };
+swig.setFilter('paginationArray', module.exports.paginationArray);
 
 /*
- * Return player's name based on player.id and user object
+ * Return resized image url
  */
-exports.name = function (playerId, user) {
-  var name = '';
-  user.players.forEach(function(player){
-    if (player.id === playerId) {
-      name = player.name;
-    }
-  });
-  return name;
-};
+exports.resize = function (image, width, ratio, gravity) {
+  var height  = Math.round(parseFloat(width)/parseFloat(ratio)),
+      baseUrl = image.replace('https', 'http').replace('.tmdb.org', '.tmdb.org.rsz.io').replace('.imgur.com', '.imgur.com.rsz.io');
 
-/*
- * Return player's level based on player.id and user object
- */
-exports.level = function (playerId, user) {
-  var level = '',
-      total = user.players.length,
-      unit  = total / 5;
-  user.players.sort(function(a, b){
-    return b.points-a.points;
-  });
-  user.players.sort(function(a, b){
-    return b.status-a.status;
-  });
-  for (var i = 0; i < user.players.length; i++) {
-    if (user.players[i].id === playerId) {
+  /* Firesize */
+  //return 'https://'+config.firesize+'.firesize.com/'+width+'x'+height+'/g_';
+  //return 'https://firesize.com/'+width+'x'+height+'/'+image;
 
-      if (total - (i+1) >= unit * 4) {
-        level = 'master';
-      } else if (total - (i+1) >= unit * 3 && total - (i+1) < unit * 4) {
-        level = 'expert';
-      } else if (total - (i+1) >= unit * 2 && total - (i+1) < unit * 3) {
-        level = 'adept';
-      } else if (total - (i+1) >= unit * 1 && total - (i+1) < unit * 2) {
-        level = 'apprentice';
-      } else if (total - (i+1) >= unit * 0 && total - (i+1) < unit * 1) {
-        level = 'novice';
-      }
+  /* Imageshack */
+  //return 'http://imagizer.imageshack.us/'+width+'x'+height+'/'+image;
 
-      if (!user.players[i].status) {
-        level = 'novice';
-      }
-    }
+  /* rsz.io */
+  if (width <= 1600 && height <= 1600) {
+    return baseUrl+'?width='+width+'&height='+height+'&mode=crop&anchor='+gravity;
+  } else {
+    return image;
   }
-  return level;
+
+
 };
+swig.setFilter('resize', module.exports.resize);
 
 /*
- * Make modulo operations
+ * Return year from date
  */
-exports.modulo = function (input, coef) {
-  return (input + 1) % coef;
+exports.year = function (date) {
+  return date.split('-')[0];
 };
+swig.setFilter('year', module.exports.year);
 
 /*
- * Send array length
+ * Return zero from episode/season number
  */
-exports.length = function (input) {
-  return input.length;
+exports.zero = function (number) {
+  if (number < 10) {
+    return '0'+number;
+  } else {
+    return number;
+  }
 };
+swig.setFilter('zero', module.exports.zero);
+
+/*
+ * Return array length
+ */
+exports.length = function (array) {
+  return array.length;
+};
+swig.setFilter('length', module.exports.length);
+
+/*
+ * Fix quote break with angular parameters
+ */
+exports.quotesafe = function (input) {
+  return input.replace(/\'/g, "\\'").replace(/\"/g, '\\"');
+};
+swig.setFilter('quotesafe', module.exports.quotesafe);
+
+/*
+ * Beautify string
+ */
+exports.beautify = function (input) {
+  var output = input.replace(/\_/g, ' ');
+  return output.charAt(0).toUpperCase() + output.slice(1);
+};
+swig.setFilter('beautify', module.exports.beautify);
+
+/*
+ * Get last episode
+ */
+exports.lastEpisode = function (episodes) {
+  episodes.sort(function(a, b){
+    return a.season-b.season;
+  });
+  episodes.sort(function(a, b){
+    return a.episode-b.episode;
+  });
+  return episodes[episodes.length - 1];
+};
+swig.setFilter('lastEpisode', module.exports.lastEpisode);

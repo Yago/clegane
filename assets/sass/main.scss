@@ -5,9 +5,29 @@
 @import 'bootstrap';
 
 // atoms:
+@import 'atoms/typography';
+@import 'atoms/inputs';
+@import 'atoms/buttons';
+@import 'atoms/labels';
+@import 'atoms/pictures';
 
 // molecules:
+@import 'molecules/search-form';
+@import 'molecules/cover';
+@import 'molecules/thumbnails';
+@import 'molecules/tables';
+@import 'molecules/pagination';
+@import 'molecules/modal';
+@import 'molecules/list-cards';
 
 // organisms:
+@import 'organisms/sidebar';
+@import 'organisms/episodes';
+@import 'organisms/grid';
 
 // templates:
+@import 'templates/global';
+@import 'templates/themes';
+@import 'templates/results';
+@import 'templates/about';
+@import 'templates/homepage';

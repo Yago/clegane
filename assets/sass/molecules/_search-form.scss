@@ -1,0 +1,41 @@
+.search-wrapper {
+  background: $mercury;
+  padding: 10px 0;
+}
+
+.search-form {
+  .form-group {
+    margin-bottom: 0;
+  }
+  .form-control {
+    height: 45px;
+    font-size: $font-size-small;
+    font-style: normal;
+    color: $cod-gray;
+  }
+  .btn {
+    width: 45px;
+    height: 45px;
+    padding: 0;
+  }
+}
+
+.sidebar .dropdown-menu {
+  padding: 0;
+  margin-top: 8px;
+  width: $sidebar-width;
+  box-shadow: none;
+  background: $gallery;
+  border: none;
+  min-height: 50vh;
+  li > a {
+    white-space: normal;
+    font-size: 15px;
+  }
+  .active > a,
+  .active > a:hover,
+  .active > a:focus {
+    background: $supernova;
+    color: $cod-gray;
+  }
+}
