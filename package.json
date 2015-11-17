@@ -1,14 +1,19 @@
 {
-  "name": "epicpong",
-  "private": true,
+  "name": "Clegane",
   "version": "0.0.1",
-  "description": "PingPong score system",
+  "description": "Your badass Movies and TV Shows assistant",
+  "private": false,
+  "license" : "MIT",
   "main": "server.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:Yago/pingp.git"
+    "url": "git@github.com:Yago/clegane.git"
   },
   "author": "Yann Gouffon <hello@yago.io>",
+  "scripts": {
+    "start": "forever -m 5 server.js",
+    "postinstall": "gulp build --production"
+  },
   "dependencies": {
     "angular": "^1.4.7",
     "angular-sanitize": "^1.4.7",
