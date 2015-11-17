@@ -10,7 +10,7 @@
   },
   "author": "Yann Gouffon <hello@yago.io>",
   "scripts": {
-    "postinstall": "gulp build --production"
+    "postinstall": "gulp --production"
   },
   "dependencies": {
     "angular": "^1.4.7",
