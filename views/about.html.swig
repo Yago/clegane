@@ -61,7 +61,7 @@
           <div class="row row-guttered">
             <div class="col-sm-6">
               <a href="https://www.themoviedb.org/">
-                <img src="https://assets.tmdb.org/images/logos/var_4_0_tmdb-logo-1Line-Blk-Bree.svg" class="img-responsive">
+                <img src="https://assets.tmdb.org/images/logos/var_8_0_tmdb-logo-2_Bree.svg" class="img-responsive">
               </a>
             </div>
             <div class="col-sm-6"></div>
