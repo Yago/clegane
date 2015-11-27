@@ -34,20 +34,36 @@
       </div>
     </div>
 
-    <div class="results-wrapper">
-      <div class="row grid">
-        {% for item in watched.movies %}
-          <div class="col-sm-2-4 grid-item movie" data-name="{{item.name}}" data-date="{{item.watched_on|date('Y-m-d_H:i')}}">
-            {{ thumbnail.watched(item, 'movie') }}
-          </div>
-        {% endfor %}
-        {% for item in watched.tvs %}
-          <div class="col-sm-2-4 grid-item tv" data-name="{{item.name}}" data-date="{{item.last_view|date('Y-m-d_H:i')}}">
-            {{ thumbnail.watched(item, 'tv') }}
-          </div>
-        {% endfor %}
+    {% if watched.movies|length > 0 or watched.tvs|length > 0 %}
+      <div class="results-wrapper">
+        <div class="row grid">
+          {% for item in watched.movies %}
+            <div class="col-sm-2-4 grid-item movie" data-name="{{item.name}}" data-date="{{item.watched_on|date('Y-m-d_H:i')}}">
+              {{ thumbnail.watched(item, 'movie') }}
+            </div>
+          {% endfor %}
+          {% for item in watched.tvs %}
+            <div class="col-sm-2-4 grid-item tv" data-name="{{item.name}}" data-date="{{item.last_view|date('Y-m-d_H:i')}}">
+              {{ thumbnail.watched(item, 'tv') }}
+            </div>
+          {% endfor %}
+        </div>
       </div>
-    </div>
+    {% else %}
+      <div class="container">
+        <div class="spacer spacer-xl"></div>
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+            <div class="bubble-wrapper">
+              <img class="logo" src="/svg/popcorn.svg" onerror="this.onerror=null; this.src='/img/popcorn.png'" alt="Popcorn by Smashicons" />
+              <div class="bubble bubble-left">
+                Take a seat and watch some <a href="/movies/popular/1">movies</a> or <a href="/tvs/popular/1">TV shows</a> !
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
 
   </div>
 {% endblock %}

@@ -1,7 +1,10 @@
 @charset "UTF-8";
 
 .bubble-wrapper {
-  img {width: 25%;}
+  img {
+    width: 25%;
+    vertical-align: top;
+  }
 }
 
 .bubble {
