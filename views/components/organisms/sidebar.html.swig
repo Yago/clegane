@@ -5,7 +5,7 @@
         <i class="cleganicon cleganicon-clegane cleganicon-4x"></i>
       </a>
     </header>
-    <div class="search-wrapper" ng-controller="SearchCtrl as search">
+    <div class="search-wrapper hidden-sm hidden-xs" ng-controller="SearchCtrl as search">
       {% include "../molecules/search.html.swig" %}
     </div>
     <nav class="sidenav">

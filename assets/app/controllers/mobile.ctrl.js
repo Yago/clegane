@@ -5,7 +5,7 @@
 app.controller('MobileCtrl', function() {
   var that = this;
 
-  that.open = true;
+  that.open = false;
 
   that.toggleMenu = function () {
     if (that.open) {

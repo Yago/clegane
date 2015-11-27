@@ -43,6 +43,18 @@
 
   </div>
 
+  {% if isAuthenticated %}
+    <script type="text/ng-template" id="modal-search">
+      <div class="modal-body modal-search">
+        <button class="btn btn-primary btn-corner" ng-click="search.close()">
+          <i class="cleganicon cleganicon-close"></i>
+        </button>
+        <h2>Search</h2>
+        {% include "./components/molecules/search.html.swig" %}
+      </div>
+    </script>
+  {% endif %}
+
   {% block scripts %}
     <script src="/js/vendors.min.js"></script>
     <script src="/js/main.js"></script>

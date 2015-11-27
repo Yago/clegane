@@ -1,5 +1,47 @@
 @charset "UTF-8";
 
+.modal-dialog {
+  @media screen and (max-width: $screen-xs-max) {
+    margin: 0;
+  }
+}
+
 .modal-body {
   h2 {margin-top: 0;}
+  @media screen and (max-width: $screen-xs-max) {
+    padding: 40px 20px;
+  }
+}
+
+.modal-search {
+  min-height: 90vh;
+  padding: 40px 20px;
+
+  .dropdown-menu {
+    left: -20px !important;
+    right: -20px !important;
+    padding: 0 20px 20px 20px;
+    margin-bottom: 10px;
+    margin-top: 8px;
+    box-shadow: none;
+    background: $gallery;
+    border: none;
+    min-height: 50vh;
+    li > a {
+      white-space: normal;
+      font-size: 16px;
+      padding: 8px 0px;
+      border-bottom: 1px solid #e3e3e3;
+      margin: 0 10px;
+    }
+    a:hover,
+    a:focus,
+    a:active,
+    .active > a,
+    .active > a:hover,
+    .active > a:focus {
+      color: $black;
+      background: transparent;
+    }
+  }
 }

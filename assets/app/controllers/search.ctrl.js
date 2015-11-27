@@ -2,7 +2,7 @@
 
 /* global app, angular */
 
-app.controller('SearchCtrl', function($http) {
+app.controller('SearchCtrl', function($http, $uibModalInstance) {
   var that = this;
 
   that.results = [];
@@ -49,5 +49,11 @@ app.controller('SearchCtrl', function($http) {
     window.location.replace('/search/' + this.keywords+ '/1');
   };
 
+  /*
+   * Close modal
+   */
+  that.close = function () {
+    $uibModalInstance.close();
+  };
 
 });

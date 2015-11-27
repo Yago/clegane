@@ -13,4 +13,12 @@ app.controller('ModalCtrl', function($scope, $http, $uibModal) {
         });
   };
 
+  that.search = function () {
+    var modalInstance = $uibModal.open({
+          animation: true,
+          templateUrl: 'modal-search',
+          controller: 'SearchCtrl as search'
+        });
+  };
+
 });
