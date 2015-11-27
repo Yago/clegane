@@ -42,6 +42,22 @@
       <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
           <p>{{people.biography}}</p>
+          <div class="spacer"></div>
+
+          <div ng-controller="PeopleCtrl as people" ng-init="people.getData({{people.id}})">
+            <div class="gallery" itemscope itemtype="http://schema.org/ImageGallery">
+              <div class="gallery row">
+                <figure class="col-xs-4 col-sm-3" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" ng-repeat="(key, image) in people.gallery | orderBy:vote | limitTo:12">
+                  <a href="{{api.images}}[[image.file_path]]" itemprop="contentUrl" ng-click="people.openGallery(key); $event.preventDefault();">
+                    {{picture.default('[[image.file_path]]', 1, 0.66, 'none', 'img-responsive')}}
+                  </a>
+                  <div class="spacer spacer-xs"></div>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+          <div class="spacer"></div>
         </div>
       </div>
 
@@ -121,5 +137,6 @@
     </div>
   </div>
 
+  {% include "./components/organisms/photoswipe-wrapper.html.swig" %}
   {% include "./components/molecules/modal.html.swig" %}
 {% endblock %}

@@ -1,0 +1,90 @@
+@charset "UTF-8";
+
+.gallery {
+  a {display: block;}
+  figure:nth-child(12) a {
+    position: relative;
+    &:after {
+      content: '\002b';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 20;
+      text-align: center;
+      color: $white;
+      font-size: 60px;
+      margin-left: -15px;
+      margin-top: -30px;
+      line-height: 60px;
+      opacity: 0.6;
+      transition: opacity 0.3s;
+    }
+    picture:after {
+      content: '\00a0';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 19;
+      background: rgba(0, 0, 0, 0.4);
+      transition: background 0.3s;
+    }
+    &:hover {
+      &:after {opacity: 1;}
+      picture:after {background: rgba(0, 0, 0, 0.5);}
+    }
+  }
+}
+
+.pswp__caption__center {
+  font-size: $font-size-base;
+  text-align: center;
+  a {
+    color: $white;
+    text-decoration: underline;
+    &:hover, &:active, &:focus {
+      color: $supernova;
+    }
+  }
+}
+
+.pswp__ui--fit .pswp__top-bar,
+.pswp__button--arrow--left:before,
+.pswp__button--arrow--right:before {
+  background-color: transparent;
+}
+
+.pswp__counter {color: $white;}
+
+.pswp__button--close:after,
+.pswp__button--share:after,
+.pswp__button--fs:after,
+.pswp__button--zoom:after,
+.pswp__button--arrow--left:after,
+.pswp__button--arrow--right:after {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  color: $white;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+.pswp__button--arrow--left:after,
+.pswp__button--arrow--right:after {
+  font-size: 20px;
+}
+
+.pswp__button--close:after {@extend .glyphicon-remove:before;}
+.pswp__button--close:after {@extend .glyphicon-close:before;}
+.pswp__button--share:after {@extend .glyphicon-share-alt:before;}
+.pswp__button--fs:after {@extend .glyphicon-fullscreen:before;}
+.pswp__button--zoom:after {@extend .glyphicon-zoom-in:before;}
+.pswp__button--arrow--left:after {@extend .glyphicon-chevron-left:before;}
+.pswp__button--arrow--right:after {@extend .glyphicon-chevron-right:before;}
