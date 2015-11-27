@@ -1,6 +1,6 @@
-<div class="sidebar">
+<div class="sidebar" ng-class="mobile.open === true ? 'sidebar-open' : ''">
   <div class="sidebar-content">
-    <header class="text-center">
+    <header class="text-center hidden-sm hidden-xs">
       <a href="/" class="brand">
         <i class="cleganicon cleganicon-clegane cleganicon-4x"></i>
       </a>

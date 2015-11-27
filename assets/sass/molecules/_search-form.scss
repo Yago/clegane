@@ -1,6 +1,10 @@
 .search-wrapper {
   background: $mercury;
   padding: 10px 0;
+  @media screen and (max-width: $screen-sm-max) {
+    padding: 14px 0;
+    box-shadow: inset -7px 0 15px -3px rgba(0, 0, 0, 0.4);
+  }
 }
 
 .search-form {
@@ -17,6 +21,12 @@
     width: 45px;
     height: 45px;
     padding: 0;
+  }
+  @media screen and (max-width: $screen-sm-max) {
+    .btn, .form-control {
+      height: 60px;
+    }
+    .btn {box-shadow: inset -7px 0 15px -3px rgba(0, 0, 0, 0.4);}
   }
 }
 
@@ -37,5 +47,8 @@
   .active > a:focus {
     background: $supernova;
     color: $cod-gray;
+  }
+  @media screen and (max-width: $screen-sm-max) {
+    margin-top: 30px;
   }
 }

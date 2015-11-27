@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+.mobile-header {
+  height: $mobile-header-height;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: left 0.3s;
+  background: $supernova;
+  z-index: 300;
+  &.mobile-header-push {
+    left: $sidebar-width;
+  }
+}

@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>{% block title %}Clegane{% endblock %}</title>
+    <meta name="viewport" content="width=device-width">
     <link href="/css/vendors.min.css" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet">
     <script src="https://use.typekit.net/sgl6zav.js"></script>
@@ -13,13 +14,14 @@
 </head>
 <body ng-app="CleganeApp">
 
-  <div class="main-wrapper">
+  <div class="main-wrapper" ng-controller="MobileCtrl as mobile" ng-swipe-left="mobile.closeMenu();">
 
     {% if isAuthenticated %}
+      {% include "./components/organisms/mobile-header.html.swig" %}
       {% include "./components/organisms/sidebar.html.swig" %}
     {% endif %}
 
-    <div class="content-wrapper">
+    <div class="content-wrapper" ng-click="mobile.closeMenu();" >
       <div class="{% block wrapper-class %}container-fluid{% endblock %}">
         {% if flashes %}
           <div class="messages">

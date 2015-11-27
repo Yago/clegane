@@ -9,6 +9,12 @@ body.modal-open {
 .main-wrapper {
   display: flex;
   flex-wrap: nowrap;
+  background: $gallery;
+  @media screen and (max-width: $screen-sm-max) {
+    display: block;
+    padding-top: $mobile-header-height;
+    overflow: hidden;
+  }
 }
 
 .content-wrapper {
@@ -17,6 +23,15 @@ body.modal-open {
   flex-shrink: 1;
   box-sizing: border-box;
   min-height: 100vh;
+  @media screen and (max-width: $screen-sm-max) {
+    width: 100%;
+    position: relative;
+    left: 0;
+    transition: left 0.3s;
+    .sidebar-open + & {
+      left: $sidebar-width;
+    }
+  }
 }
 
 .content-container {
