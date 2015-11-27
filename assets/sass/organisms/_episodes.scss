@@ -99,10 +99,13 @@
       top: 2px;
       padding-right: 10px;
       color: $white;
+      &.cleganicon-unwatched {display: inline;}
+      &.cleganicon-eye {display: none;}
     }
-    input[type="checkbox"]:checked + .cleganicon {
+    input[type="checkbox"]:checked + .icon-wrapper .cleganicon {
       color: $black;
-      &:before {content: "\EA06";}
+      &.cleganicon-unwatched {display: none;}
+      &.cleganicon-eye {display: inline;}
     }
   }
 

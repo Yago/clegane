@@ -27,7 +27,10 @@
                           '{{ids.imdb_id}}'
                         ); $event.stopPropagation();"
                         ng-checked="{{episode.watched}}">
-                      <i class="cleganicon cleganicon-unwatched"></i>
+                      <span class="icon-wrapper">
+                        <i class="cleganicon cleganicon-unwatched"></i>
+                        <i class="cleganicon cleganicon-eye"></i>
+                      </span>
                     </span> e<span ng-hide="episodes.episodeOpen">pisode </span>{{episode.episode_number|zero}}
                   </tab-heading>
                   <h3>
