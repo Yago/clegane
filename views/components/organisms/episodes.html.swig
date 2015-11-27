@@ -41,7 +41,7 @@
 
                   <div id="episode-gallery-[[episodes.seasonnumber]][[episodes.number]]" class="episode-gallery" itemscope itemtype="http://schema.org/ImageGallery">
                     <div class="episode-gallery-container">
-                      <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" ng-repeat="(key, image) in episodes.images">
+                      <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" ng-repeat="(key, image) in episodes.images | limitTo:2">
                         <a href="{{api.images}}[[image.file_path]]" itemprop="contentUrl" ng-click="episodes.openGallery(key); $event.preventDefault();">
                           {{picture.default('[[image.file_path]]', 2, 1.77, 'none', 'img-responsive', 'Season [[episodes.seasonnumber]], Episode [[episodes.number]] : [[episodes.title]]')}}
                         </a>
