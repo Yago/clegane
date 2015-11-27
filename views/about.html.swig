@@ -53,14 +53,15 @@
           </div>
 
           <div class="spacer spacer-xs"></div>
-          <h2>Partners</h2>
+          <h2>Proudly supported by</h2>
           <p>
-            Nothing would be possible without them :D
+            Nothing would be possible without them !
           </p>
+          <div class="spacer spacer-sm"></div>
           <div class="row row-guttered">
             <div class="col-sm-6">
               <a href="https://www.themoviedb.org/">
-                <img src="https://assets.tmdb.org/images/logos/var_1_1_PoweredByTMDB_Blk_Logo_Antitled.png" class="img-responsive">
+                <img src="https://assets.tmdb.org/images/logos/var_4_0_tmdb-logo-1Line-Blk-Bree.svg" class="img-responsive">
               </a>
             </div>
             <div class="col-sm-6"></div>
