@@ -50,10 +50,10 @@
         </div>
       </div>
     {% else %}
-      <div class="container">
+      <div class="content-container">
         <div class="spacer spacer-xl"></div>
         <div class="row">
-          <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+          <div class="col-sm-6 col-sm-offset-3">
             <div class="bubble-wrapper">
               <img class="logo" src="/svg/popcorn.svg" onerror="this.onerror=null; this.src='/img/popcorn.png'" alt="Popcorn by Smashicons" />
               <div class="bubble bubble-left">

@@ -57,7 +57,7 @@
         </div>
       </div>
     {% else %}
-      <div class="container">
+      <div class="content-container">
         <div class="spacer spacer-xl"></div>
         <div class="row">
           <div class="col-sm-6 col-sm-offset-3">
