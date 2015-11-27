@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+.bubble-wrapper {
+  img {width: 25%;}
+}
+
+.bubble {
+  display: inline-block;
+  background: $mercury;
+  position: relative;
+  padding: 15px 20px;
+  max-width: calc(70% - 30px);
+  &:after {
+    content: '\00a0';
+    position: absolute;
+  }
+  &.bubble-left {
+    margin-left: 30px;
+    &:after {
+      left: -20px;
+      top: 50%;
+      margin-top: -10px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 10px 20px 10px 0;
+      border-color: transparent $mercury transparent transparent;
+    }
+  }
+  &.bubble-right {
+    margin-right: 30px;
+    &:after {
+      right: -20px;
+      top: 50%;
+      margin-top: -10px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 10px 0 10px 20px;
+      border-color: transparent transparent transparent $mercury;
+    }
+  }
+}

@@ -30,40 +30,70 @@
       <div class="col-sm-7">
         <h3 class="text-inverse">Movies recently watched</h3>
         <div class="row">
-          {% set i = 1 %}
-          {% for movie in user.movies|sortWatchDate %}
-            {% if movie.watched and i <= 3 %}
-              {% set i = i + 1 %}
-              <div class="col-sm-4">
-                {{ thumbnail.watched(movie, 'movie') }}
+          {% if user.movies|length > 0 %}
+            {% set i = 1 %}
+            {% for movie in user.movies|sortWatchDate %}
+              {% if movie.watched and i <= 3 %}
+                {% set i = i + 1 %}
+                <div class="col-sm-4">
+                  {{ thumbnail.watched(movie, 'movie') }}
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% else %}
+            <div class="spacer spacer-sm"></div>
+            <div class="row">
+              <div class="col-md-10">
+                <div class="bubble-wrapper">
+                  <img class="logo" src="/svg/popcorn.svg" onerror="this.onerror=null; this.src='/img/popcorn.png'" alt="Popcorn by Smashicons" />
+                  <div class="bubble bubble-left">
+                    Take a seat and watch some <a href="/movies/popular/1">movies</a> !
+                  </div>
+                </div>
               </div>
-            {% endif %}
-          {% endfor %}
+            </div>
+          {% endif %}
         </div>
       </div>
-      <div class="col-sm-4 col-sm-offset-1">
-        <h3 class="text-inverse">Your lists</h3>
-        <div class="btn-list">
-          {% for list in user.lists|sortNames %}
-            <a class="btn btn-default" href="/list/{{list.id}}">{{list.name}}</a>
-          {% endfor %}
+      {% if user.lists|length > 0 %}
+        <div class="col-sm-4 col-sm-offset-1">
+          <h3 class="text-inverse">Your lists</h3>
+          <div class="btn-list">
+            {% for list in user.lists|sortNames %}
+              <a class="btn btn-default" href="/list/{{list.id}}">{{list.name}}</a>
+            {% endfor %}
+          </div>
         </div>
-      </div>
+      {% endif %}
     </div>
 
     <div class="spacer spacer-sm"></div>
 
     <h3 class="text-inverse">Last episode watched</h3>
     <div class="row">
-      {% set j = 1 %}
-      {% for tv in user.tvs|sortLastViewDate %}
-        {% if tv.episodes|length > 0 and j <= 5 %}
-          {% set j = j + 1 %}
-          <div class="col-sm-2-4">
-            {{ thumbnail.episode(tv, tv.name) }}
+      {% if user.tvs|length > 0 %}
+        {% set j = 1 %}
+        {% for tv in user.tvs|sortLastViewDate %}
+          {% if tv.episodes|length > 0 and j <= 5 %}
+            {% set j = j + 1 %}
+            <div class="col-sm-2-4">
+              {{ thumbnail.episode(tv, tv.name) }}
+            </div>
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        <div class="spacer spacer-sm"></div>
+        <div class="row">
+          <div class="col-md-8">
+            <div class="bubble-wrapper">
+              <div class="bubble bubble-right">
+                Looks like someone doesn't like <a href="/tvs/popular/1">TV Shows</a> here !
+              </div>
+              <img class="logo" src="/svg/boba.svg" onerror="this.onerror=null; this.src='/img/boba.png'" alt="Popcorn by Smashicons" />
+            </div>
           </div>
-        {% endif %}
-      {% endfor %}
+        </div>
+      {% endif %}
     </div>
 
   </div>
