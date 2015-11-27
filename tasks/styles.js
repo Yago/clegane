@@ -26,7 +26,7 @@ module.exports = function() {
         includePaths: ['.']
       }).on('error', $.sass.logError))
       .pipe($.postcss([
-        require('autoprefixer-core')({
+        require('autoprefixer')({
           browsers: config.browsers,
           options: {
             map: true
