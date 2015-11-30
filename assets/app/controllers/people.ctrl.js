@@ -44,11 +44,15 @@ app.controller('PeopleCtrl', function($http) {
                 }
               }).then(function(res){
                 res.data.results.forEach(function(image){
+                  var title = image.media.title;
+                  if (!image.media.title) {
+                    title = image.media.name;
+                  }
                   var item = {
                     src : 'https://image.tmdb.org/t/p/original'+image.file_path,
                     w   : image.width,
                     h   : image.height,
-                    title: '<a href="/'+image.media_type+'/'+image.media.id+'" target="_blank">'+image.media.title+'</a>',
+                    title: '<a href="/'+image.media_type+'/'+image.media.id+'" target="_blank">'+title+'</a>',
                     file_path : image.file_path,
                     vote : image.vote_average
                   };

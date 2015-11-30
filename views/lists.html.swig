@@ -39,7 +39,7 @@
                       </div>
                     {% endif %}
                   {% else %}
-                    {{picture.default(nothing, 1, 1.98, 'none', 'img-responsive', item.data.name)}}
+                    {{picture.default(nothing, 1, 1.98, 'none', 'img-responsive img-full', item.data.name)}}
                   {% endif %}
                 </div>
                 <span class="clearfix visible-xs"></span>
