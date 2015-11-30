@@ -35,7 +35,7 @@
             {% for movie in user.movies|sortWatchDate %}
               {% if movie.watched and i <= 3 %}
                 {% set i = i + 1 %}
-                <div class="col-sm-4">
+                <div class="col-xs-4">
                   {{ thumbnail.watched(movie, 'movie') }}
                 </div>
               {% endif %}
@@ -78,6 +78,7 @@
             {% set j = j + 1 %}
             <div class="col-sm-2-4">
               {{ thumbnail.episode(tv, tv.name) }}
+              <div class="spacer spacer-xs"></div>
             </div>
           {% endif %}
         {% endfor %}

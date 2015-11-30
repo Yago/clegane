@@ -14,6 +14,7 @@ body.modal-open {
     display: block;
     padding-top: $mobile-header-height;
     overflow: hidden;
+    &.main-wrapper-visitor {padding-top: 0;}
   }
 }
 
@@ -39,6 +40,9 @@ body.modal-open {
   width: 80%;
   padding: 0 $grid-gutter-width/2;
   margin: 0 auto;
+  @media screen and (max-width: $screen-sm-max) {
+    width: 95%;
+  }
 }
 
 .row-guttered {
@@ -50,6 +54,9 @@ body.modal-open {
 
 .col-sm-2-4 {
   @include make-sm-column(2.4, $grid-gutter-width);
+  @media screen and (max-width: $screen-xs-max) {
+    @include make-xs-column(6, $grid-gutter-width);
+  }
 }
 
 .spacer {

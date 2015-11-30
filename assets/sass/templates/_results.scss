@@ -13,10 +13,42 @@
     margin-top: 2px;
     text-transform: capitalize;
   }
+  @media screen and (max-width: $screen-sm-max) {
+    height: auto;
+    padding: 5px 10px;
+    .btn-group {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+      border-collapse: separate;
+      margin: 10px 0;
+      float: none !important;
+      &.dropdown {
+        display: block;
+        .btn {
+          display: block;
+          width: 100%;
+        }
+        .dropdown-menu {width: 100%;}
+      }
+      .btn {
+        padding: 5px 10px;
+        line-height: 1.5;
+        border-radius: 0px;
+        font-size: 14px;
+        float: none;
+        display: table-cell;
+        width: 1%;
+      }
+    }
+  }
 }
 
 .results-wrapper {
   .thumb {
     margin: $grid-gutter-width/2 0;
+  }
+  @media screen and (max-width: $screen-xs-max) {
+    .row:after, .row:before {display: none;}
   }
 }

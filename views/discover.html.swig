@@ -24,7 +24,7 @@
     {% if type !== 'peoples' %}
       </div>
       <div class="col-sm-6">
-        <div class="btn-group pull-right" uib-dropdown>
+        <div class="btn-group pull-right">
           {% for list in lists %}
             <a href="/{{type}}/{{list}}/1" class="btn btn-default{% if list === query %} active{% endif %}">{{list|beautify}}</a>
           {% endfor %}

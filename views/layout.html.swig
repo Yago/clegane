@@ -14,14 +14,14 @@
 </head>
 <body ng-app="CleganeApp">
 
-  <div class="main-wrapper" ng-controller="MobileCtrl as mobile" ng-swipe-left="mobile.closeMenu();">
+  <div class="main-wrapper{% if not isAuthenticated %} main-wrapper-visitor{% endif %}" ng-controller="MobileCtrl as mobile" ng-swipe-left="mobile.closeMenu();">
 
     {% if isAuthenticated %}
       {% include "./components/organisms/mobile-header.html.swig" %}
       {% include "./components/organisms/sidebar.html.swig" %}
     {% endif %}
 
-    <div class="content-wrapper" ng-click="mobile.closeMenu();" >
+    <div class="content-wrapper" >
       <div class="{% block wrapper-class %}container-fluid{% endblock %}">
         {% if flashes %}
           <div class="messages">

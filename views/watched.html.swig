@@ -4,7 +4,7 @@
 {% import 'components/molecules/thumbnails.html.swig' as thumbnail %}
 
 {% block content %}
-  <div ng-controller="GridCtrl as grid" ng-init="grid.init('{{user.key}}', 'descending');">
+  <div ng-controller="GridCtrl as grid" ng-init="grid.record('{{user.key}}', 'descending');">
 
     <div class="results-heading">
       <div class="row">
@@ -16,19 +16,19 @@
         </div>
         <div class="col-sm-7">
           <div class="btn-group pull-right" uib-dropdown>
-            <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
+            <span role="button" id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
               Sort <span class="caret"></span>
-            </button>
+            </span>
             <ul ng-cloak class="uib-dropdown-menu" role="menu" aria-labelledby="single-button">
               <li role="menuitem" ng-class="grid.sortActive === 'name' ? 'active' : ''"><a href="#" ng-click="grid.sort('name');">Sort by name</a></li>
               <li role="menuitem" ng-class="grid.sortActive === 'date' ? 'active' : ''"><a href="#" ng-click="grid.sort('date');">Sort by watched date</a></li>
             </ul>
           </div>
 
-          <div class="btn-group pull-right" uib-dropdown>
-            <button class="btn btn-default" ng-class="grid.filterActive === '*' || grid.filterActive === '' ? 'active' : ''" ng-click="grid.filter('*');">All</button>
-            <button class="btn btn-default" ng-class="grid.filterActive === '.movie' ? 'active' : ''" ng-click="grid.filter('.movie');">Movies</button>
-            <button class="btn btn-default" ng-class="grid.filterActive === '.tv' ? 'active' : ''" ng-click="grid.filter('.tv');">TVs</button>
+          <div class="btn-group pull-right">
+            <span role="button" class="btn btn-default" ng-class="grid.filterActive === '*' || grid.filterActive === '' ? 'active' : ''" ng-click="grid.filter('*');">All</span>
+            <span role="button" class="btn btn-default" ng-class="grid.filterActive === '.movie' ? 'active' : ''" ng-click="grid.filter('.movie');">Movies</span>
+            <span role="button" class="btn btn-default" ng-class="grid.filterActive === '.tv' ? 'active' : ''" ng-click="grid.filter('.tv');">TVs</span>
           </div>
         </div>
       </div>

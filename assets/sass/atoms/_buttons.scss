@@ -12,6 +12,9 @@
     outline: none !important;
     box-shadow: none !important;
   }
+  &:hover {
+    cursor: pointer !important;
+  }
 }
 
 .btn-default {

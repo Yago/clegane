@@ -9,10 +9,15 @@ app.controller('GridCtrl', function(ApiService) {
   that.filterActive = '';
   that.sortActive = '';
   that.sortDirection = true;
+  that.sort = 'descending';
 
-  that.init = function (key, sort) {
+  that.record = function (key, sort) {
+    that.sort = sort;
+  };
+
+  that.init = function () {
     var sortAscending = true;
-    if (sort === 'descending') {
+    if (that.sort === 'descending') {
       sortAscending = false;
     }
     that.grid = document.querySelector('.grid');
@@ -42,6 +47,7 @@ app.controller('GridCtrl', function(ApiService) {
   };
 
   that.filter = function (target) {
+    if (!that.ready) {that.init();}
     that.filterActive = target;
     that.iso.arrange({
       filter: target
@@ -49,6 +55,7 @@ app.controller('GridCtrl', function(ApiService) {
   };
 
   that.sort = function (target) {
+    if (!that.ready) {that.init();}
     that.sortActive = target;
     that.iso.arrange({
       sortBy: target,
