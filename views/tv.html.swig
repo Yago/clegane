@@ -42,8 +42,6 @@
                   <li>
                     <h4>Links</h4>
                     <a href="http://www.imdb.com/title/{{ids.imdb_id}}" target="_blank">IMDB</a>
-                    <br>
-                    <input type="checkbox">
                   </li>
                 {% endif %}
               </ul>

@@ -4,9 +4,13 @@
 <div class="row">
   {% for cast in credits.cast %}
     {% if loop.key <= 3 %}
-    <div class="col-xs-6 col-sm-3">
-      {{ thumbnail.cast(cast) }}
-    </div>
+      <div class="col-xs-6 col-sm-3">
+        {{ thumbnail.cast(cast) }}
+        <div class="spacer spacer-xs visible-xs"></div>
+      </div>
+      {% if loop.key % 2 == 1 %}
+        <div class="clearfix visible-xs"></div>
+      {% endif %}
     {% endif %}
   {% endfor %}
 </div>
