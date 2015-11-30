@@ -4,7 +4,7 @@
 <div class="row">
   {% for cast in credits.cast %}
     {% if loop.key <= 3 %}
-    <div class="col-sm-3">
+    <div class="col-xs-6 col-sm-3">
       {{ thumbnail.cast(cast) }}
     </div>
     {% endif %}

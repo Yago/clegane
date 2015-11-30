@@ -27,7 +27,7 @@
         <div class="row">
           <div class="col-sm-3">
             <div class="poster-wrapper">
-              {{picture.default(movie.poster_path, 1, 0.66, 'none', 'img-responsive', movie.title)}}
+              {{picture.default(movie.poster_path, 1, 0.66, 'none', 'img-responsive hidden-xs', movie.title)}}
 
               <ul class="list-unstyled">
                 {% if movie.release_date %}

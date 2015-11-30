@@ -31,6 +31,24 @@
   .content-container {
     h1, h3 {margin-left: $grid-gutter-width*1.5;}
   }
+  @media screen and (max-width: $screen-xs-max) {
+    position: static;
+    padding-top: 20px;
+    z-index: 10;
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    [class*="col-"] {
+      flex: 1 0 auto;
+      width: 100%;
+    }
+    .col-sm-3 {order:1;}
+    .col-sm-9 {order:0;}
+    .content-container {
+      h1, h3 {margin-left: 0;}
+    }
+  }
 }
 
 .dashboard {
@@ -70,5 +88,8 @@
   a {
     color: $supernova;
     &:hover {color: $web-orange;}
+  }
+  @media screen and (max-width: $screen-xs-max) {
+    position: static;
   }
 }
