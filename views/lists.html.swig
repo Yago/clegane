@@ -13,7 +13,7 @@
       <h1>My lists</h1>
     </div>
 
-    {% if watched.movies|length > 0 or watched.tvs|length > 0 %}
+    {% if lists|length > 0 %}
       <div class="results-wrapper">
         <div class="row list-row">
           {% for list in lists|sortNames %}
@@ -42,6 +42,7 @@
                     {{picture.default(nothing, 1, 1.98, 'none', 'img-responsive', item.data.name)}}
                   {% endif %}
                 </div>
+                <span class="clearfix visible-xs"></span>
                 <div class="list-card-content text-center">
                   <h3>{{list.name}}</h3>
                   <p>

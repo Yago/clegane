@@ -25,6 +25,12 @@
       float: none !important;
       &.dropdown {
         display: block;
+        &.dropdown-xs-half {
+          float: left !important;
+          width: 33.3333%;
+          padding: 0 0 0 5px;
+          &:first-child {width: 66.6666%;padding: 0 5px 0 0;}
+        }
         .btn {
           display: block;
           width: 100%;

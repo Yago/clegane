@@ -15,6 +15,7 @@
   margin: 5px 0;
   @media screen and (max-width: $screen-xs-max) {
     max-width: 100%;
+    display: block;
   }
 }
 

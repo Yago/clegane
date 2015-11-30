@@ -4,7 +4,7 @@
 {% import 'components/molecules/thumbnails.html.swig' as thumbnail %}
 
 {% block content %}
-  <div ng-controller="GridCtrl as grid" ng-init="grid.init('{{user.key}}', 'ascending');">
+  <div ng-controller="GridCtrl as grid" ng-init="grid.record('{{user.key}}', 'ascending');">
 
     <div class="results-heading">
       <div class="row">
@@ -15,7 +15,7 @@
           <h1>{{list.name}}</h1>
         </div>
         <div class="col-sm-7">
-          <div class="btn-group pull-right" uib-dropdown>
+          <div class="btn-group pull-right dropdown-xs-half" uib-dropdown>
             <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
               Sort <span class="caret"></span>
             </button>
@@ -25,7 +25,7 @@
             </ul>
           </div>
 
-          <div class="btn-group pull-right" uib-dropdown>
+          <div class="btn-group pull-right dropdown-xs-half" uib-dropdown>
             <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
               Filter <span class="caret"></span>
             </button>
@@ -37,10 +37,10 @@
             </ul>
           </div>
 
-          <div class="btn-group pull-right" uib-dropdown>
-            <button class="btn btn-default" ng-class="grid.filterActive === '*' || grid.filterActive === '' ? 'active' : ''" ng-click="grid.filter('*');">All</button>
-            <button class="btn btn-default" ng-class="grid.filterActive === '.not-watched' ? 'active' : ''" ng-click="grid.filter('.not-watched');">To watch</button>
-            <button class="btn btn-default" ng-class="grid.filterActive === '.watched' ? 'active' : ''" ng-click="grid.filter('.watched');">Watched</button>
+          <div class="btn-group pull-right">
+            <span class="btn btn-default" ng-class="grid.filterActive === '*' || grid.filterActive === '' ? 'active' : ''" ng-click="grid.filter('*');">All</span>
+            <span class="btn btn-default" ng-class="grid.filterActive === '.not-watched' ? 'active' : ''" ng-click="grid.filter('.not-watched');">To watch</span>
+            <span class="btn btn-default" ng-class="grid.filterActive === '.watched' ? 'active' : ''" ng-click="grid.filter('.watched');">Watched</span>
           </div>
         </div>
       </div>
