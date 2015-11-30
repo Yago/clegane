@@ -21,5 +21,19 @@
   .panel-title > a {
     display: inline-block;
     width: 100%;
+    &:hover, &:focus, &:active {text-decoration: none;}
+  }
+
+  .watch-toggle {
+    input[type="checkbox"].clicked + .icon-wrapper .cleganicon {
+      color: $black;
+      &.cleganicon-unwatched {display: none;}
+      &.cleganicon-eye {display: inline;}
+    }
+    input[type="checkbox"]:not(.clicked) + .icon-wrapper .cleganicon {
+      color: $white;
+      &.cleganicon-unwatched {display: inline;}
+      &.cleganicon-eye {display: none;}
+    }
   }
 }

@@ -42,6 +42,8 @@
                   <li>
                     <h4>Links</h4>
                     <a href="http://www.imdb.com/title/{{ids.imdb_id}}" target="_blank">IMDB</a>
+                    <br>
+                    <input type="checkbox">
                   </li>
                 {% endif %}
               </ul>
@@ -120,6 +122,7 @@
         {% if loop.key <= 4 %}
           <div class="col-sm-2-4">
             {{ thumbnail.tv(tv) }}
+            <div class="spacer spacer-xs visible-xs"></div>
           </div>
         {% endif %}
       {% endfor %}

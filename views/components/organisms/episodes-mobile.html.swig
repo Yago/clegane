@@ -22,6 +22,8 @@
                       '{{episode.name|quotesafe}}',
                       '{{ids.imdb_id}}'
                     ); $event.stopPropagation();"
+                    toggle-class="clicked"
+                    ng-class="{{episode.watched}} === true ? 'clicked' : ''"
                     ng-checked="{{episode.watched}}">
                   <span class="icon-wrapper">
                     <i class="cleganicon cleganicon-unwatched"></i>

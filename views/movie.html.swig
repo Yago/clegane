@@ -139,6 +139,7 @@
         {% if loop.key <= 4 %}
           <div class="col-sm-2-4">
             {{ thumbnail.movie(movie) }}
+            <div class="spacer spacer-xs visible-xs"></div>
           </div>
         {% endif %}
       {% endfor %}
