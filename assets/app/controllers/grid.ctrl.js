@@ -9,17 +9,14 @@ app.controller('GridCtrl', function(ApiService) {
   that.filterActive = '';
   that.sortActive = '';
   that.sortDirection = true;
-  that.sort = 'descending';
 
   that.record = function (key, sort) {
-    that.sort = sort;
+    if (that.sort === 'descending') {
+      that.sortDirection = false;
+    }
   };
 
   that.init = function () {
-    var sortAscending = true;
-    if (that.sort === 'descending') {
-      sortAscending = false;
-    }
     that.grid = document.querySelector('.grid');
     that.iso = new Isotope(that.grid, {
       itemSelector: '.grid-item',
@@ -38,7 +35,7 @@ app.controller('GridCtrl', function(ApiService) {
     });
     that.iso.arrange({
       sortBy: 'date',
-      sortAscending : sortAscending
+      sortAscending : that.sortDirection
     });
     that.iso.once( 'arrangeComplete', function() {
       that.ready = true;
