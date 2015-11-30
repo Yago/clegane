@@ -81,34 +81,6 @@
     .active a, a:active, a:focus {background: $selective-yellow;}
   }
 
-  .watch-toggle {
-    position: relative;
-    input[type="checkbox"] {
-      position: absolute;
-      top: -15px;
-      left: -15px;
-      opacity: 0;
-      height: 45px;
-      width: 50px;
-      line-height: 30px;
-      z-index: 200;
-    }
-    .cleganicon {
-      font-size: 14px;
-      position: relative;
-      top: 2px;
-      padding-right: 10px;
-      color: $white;
-      &.cleganicon-unwatched {display: inline;}
-      &.cleganicon-eye {display: none;}
-    }
-    input[type="checkbox"]:checked + .icon-wrapper .cleganicon {
-      color: $black;
-      &.cleganicon-unwatched {display: none;}
-      &.cleganicon-eye {display: inline;}
-    }
-  }
-
   // Episode content
   .tab-content .tab-content {
     width: 0;
@@ -137,6 +109,34 @@
       padding: 0 15px 15px 15px;
       flex: 6 0 calc(85.5% - 16px);
     }
+  }
+}
+
+.watch-toggle {
+  position: relative;
+  input[type="checkbox"] {
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    opacity: 0;
+    height: 45px;
+    width: 50px;
+    line-height: 30px;
+    z-index: 200;
+  }
+  .cleganicon {
+    font-size: 14px;
+    position: relative;
+    top: 2px;
+    padding-right: 10px;
+    color: $white;
+    &.cleganicon-unwatched {display: inline;}
+    &.cleganicon-eye {display: none;}
+  }
+  input[type="checkbox"]:checked + .icon-wrapper .cleganicon {
+    color: $black;
+    &.cleganicon-unwatched {display: none;}
+    &.cleganicon-eye {display: inline;}
   }
 }
 

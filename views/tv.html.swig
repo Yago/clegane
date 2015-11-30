@@ -15,7 +15,7 @@
         <div class="row">
           <div class="col-sm-3">
             <div class="poster-wrapper">
-              {{picture.default(tv.poster_path, 1, 0.66, 'none', 'img-responsive', tv.title)}}
+              {{picture.default(tv.poster_path, 1, 0.66, 'none', 'img-responsive hidden-xs', tv.title)}}
 
               <ul class="list-unstyled">
                 {% if tv.first_air_date %}
@@ -98,6 +98,7 @@
     {% include "./components/organisms/episodes.html.swig" %}
   </div>
 
+  {% include "./components/organisms/episodes-mobile.html.swig" %}
 
   <div class="content-container">
     <div class="row">

@@ -78,6 +78,7 @@
               {% else %}
                 {{ thumbnail.tv(media) }}
               {% endif %}
+              <div class="spacer spacer-xs visible-xs"></div>
             </div>
             {% set thumbindex = thumbindex + 1 %}
           {% endif %}

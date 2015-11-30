@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+.episodes-mobile {
+  background: $supernova;
+  padding: 1px 0;
+  > h3 {
+    margin: 0;
+    padding: 0.5em $grid-gutter-width*1.5;
+    background: $web-orange;
+  }
+  .panel-body {
+    background: $gallery;
+  }
+  a:focus {outline: none !important;}
+  .panel-group {margin-bottom: 0;}
+  .panel {
+    border: none;
+    border-bottom: 1px solid $web-orange;
+  }
+  .panel-title {font-size: 18px;}
+  .panel-title > a {
+    display: inline-block;
+    width: 100%;
+  }
+}
