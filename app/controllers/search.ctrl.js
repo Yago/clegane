@@ -9,21 +9,29 @@ var User        = require('../models/user.model'),
  * Display search's results
  */
 exports.results = function(req, res) {
-  var userId = req.body.userId,
+  var userId = req.decoded.id,
       query = req.params.query,
       page = req.params.page;
 
+  var data = {};
+
   // Request results based on search keywords
   apiCtrl.search('multi', query, page,
-    function (data) {
+    function (main) {
 
-      res.locals.data = data;
-      res.locals.query = query;
-      res.locals.type = 'search';
-      res.render('results');
+      data.query = query;
+      data.type = 'search';
+      data.data = main;
+      res.json({
+        success: true,
+        data: data
+      });
 
     }, function (err) {
-      res.send('No result founded');
+      res.json({
+        success: false,
+        message: messages.errors.api_error
+      });
     });
 };
 
@@ -31,33 +39,44 @@ exports.results = function(req, res) {
  * Display genre's results
  */
 exports.genres = function(req, res) {
-  var userId = req.body.userId,
+  var userId = req.decoded.id,
       genreId = req.params.id,
       page = req.params.page;
 
+  var data = {};
+
   // Request genre results
   apiCtrl.getpage('/genre/'+genreId+'/movies', page,
-    function (data) {
+    function (main) {
 
       // Request genre infos
         apiCtrl.get('/genre/'+genreId,
           function (genre) {
 
-            res.locals.data = data;
-            res.locals.query = genreId;
-            res.locals.type = 'genre';
-            res.locals.genre = genre;
-            res.render('results');
+            data.query = genreId;
+            data.type = 'genre';
+            data.genre = genre;
+            data.data = main;
+            res.json({
+              success: true,
+              data: data
+            });
 
           }, function (err) {
-            res.locals.data = data;
-            res.locals.query = genreId;
-            res.locals.type = 'genre';
-            res.render('results');
+            data.query = genreId;
+            data.type = 'genre';
+            data.data = main;
+            res.json({
+              success: true,
+              data: data
+            });
           });
 
     }, function (err) {
-      res.send('No result founded');
+      res.json({
+        success: false,
+        message: messages.errors.api_error
+      });
     });
 };
 
@@ -65,33 +84,44 @@ exports.genres = function(req, res) {
  * Display tag's results
  */
 exports.tags = function(req, res) {
-  var userId = req.body.userId,
+  var userId = req.decoded.id,
       tagId = req.params.id,
       page = req.params.page;
 
+  var data = {};
+
   // Request tag's results
   apiCtrl.getpage('/keyword/'+tagId+'/movies', page,
-    function (data) {
+    function (main) {
 
       // Request tag's infos
         apiCtrl.get('/keyword/'+tagId,
           function (tag) {
 
-            res.locals.data = data;
-            res.locals.query = tagId;
-            res.locals.type = 'tag';
-            res.locals.tag = tag;
-            res.render('results');
+            data.query = tagId;
+            data.type = 'tag';
+            data.tag = tag;
+            data.data = main;
+            res.json({
+              success: true,
+              data: data
+            });
 
           }, function (err) {
-            res.locals.data = data;
-            res.locals.query = tagId;
-            res.locals.type = 'tag';
-            res.render('results');
+            data.query = tagId;
+            data.type = 'tag';
+            data.data = main;
+            res.json({
+              success: true,
+              data: data
+            });
           });
 
     }, function (err) {
-      res.send('No result founded');
+      res.json({
+        success: false,
+        message: messages.errors.api_error
+      });
     });
 };
 
@@ -99,12 +129,12 @@ exports.tags = function(req, res) {
  * Send watched items
  */
 exports.watched = function(req, res) {
-  var userId = req.body.userId;
+  var userId = req.decoded.id;
 
   User.findOne({_id:userId},
     function (err, user) {
-      if (err) {return res.status(500).send(messages.errors.default_error);}
-      if (!user) {return res.status(500).send(messages.errors.user_error);}
+      if (err) {res.json({success: false, message: messages.errors.default_error});}
+      if (!user) {res.json({success: false,message: messages.errors.user_notfound});}
 
       var watchedArray = {};
       watchedArray.movies = [];
@@ -139,10 +169,11 @@ exports.watched = function(req, res) {
               });
           },
       ], function (err, result) {
-          if (err) {res.status(500).send(messages.errors.default_error);}
-          res.locals.watched = watchedArray;
-          //res.send(res.locals.watched);
-          res.render('watched');
+          if (err) {res.json({success: false, message: messages.errors.default_error});}
+          res.json({
+            success: true,
+            data: watchedArray
+          });
       });
     });
 };
