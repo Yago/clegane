@@ -9,8 +9,6 @@ module.exports = function(app, passport) {
   app.get('/', auth.isAuthenticated, userCtrl.dashboard);
   app.get('/about', auth.isAuthenticated, userCtrl.about);
 
-  app.get('/api', auth.haveApiKey, userCtrl.api);
-
   app.get('/login', userCtrl.login);
   app.post('/login', passport.authenticate('login'), auth.authenticate);
 
