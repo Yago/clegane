@@ -52,8 +52,10 @@ var User          = require('../models/user.model'),
  * Season and Episodes data will be get by AngularJS in front
  */
 exports.display = function(req, res) {
-  var userId = req.body.userId,
+  var userId = req.decoded.id,
       tvId = req.params.id;
+
+  var data = {};
 
   // Request main tv informations
   apiCtrl.get('/tv/'+tvId,
@@ -75,54 +77,72 @@ exports.display = function(req, res) {
                   apiCtrl.get('/tv/'+tvId+'/external_ids',
                     function (ids) {
                       seasonsObject(userId, main, function(seasons){
-                        res.locals.tv = main;
-                        res.locals.credits = credits;
-                        res.locals.videos = videos.results;
-                        res.locals.similar = similar.results;
-                        res.locals.ids = ids;
-                        res.locals.seasons = seasons;
-                        res.render('tv');
+                        data.tv = main;
+                        data.credits = credits;
+                        data.videos = videos.results;
+                        data.similar = similar.results;
+                        data.ids = ids;
+                        data.seasons = seasons;
+                        res.json({
+                          success: true,
+                          data: data
+                        });
                       });
                     }, function (err) {
                       seasonsObject(userId, main, function(seasons){
-                        res.locals.tv = main;
-                        res.locals.credits = credits;
-                        res.locals.videos = videos.results;
-                        res.locals.similar = similar.results;
-                        res.locals.seasons = seasons;
-                        res.render('tv');
+                        data.tv = main;
+                        data.credits = credits;
+                        data.videos = videos.results;
+                        data.similar = similar.results;
+                        data.seasons = seasons;
+                        res.json({
+                          success: true,
+                          data: data
+                        });
                       });
                     });
 
                 }, function (err) {
                   seasonsObject(userId, main, function(seasons){
-                    res.locals.tv = main;
-                    res.locals.credits = credits;
-                    res.locals.videos = videos.results;
-                    res.locals.seasons = seasons;
-                    res.render('tv');
+                    data.tv = main;
+                    data.credits = credits;
+                    data.videos = videos.results;
+                    data.seasons = seasons;
+                    res.json({
+                      success: true,
+                      data: data
+                    });
                   });
                 });
 
             }, function (err) {
               seasonsObject(userId, main, function(seasons){
-                res.locals.tv = main;
-                res.locals.credits = credits;
-                res.locals.seasons = seasons;
-                res.render('tv');
+                data.tv = main;
+                data.credits = credits;
+                data.seasons = seasons;
+                res.json({
+                  success: true,
+                  data: data
+                });
               });
             });
 
         }, function (err) {
           seasonsObject(userId, main, function(seasons){
-            res.locals.tv = main;
-            res.locals.seasons = seasons;
-            res.render('tv');
+            data.tv = main;
+            data.seasons = seasons;
+            res.json({
+              success: true,
+              data: data
+            });
           });
         });
 
     }, function (err) {
-      res.send('The tv show couldn\'t be found');
+      res.json({
+        success: false,
+        message: messages.errores.api_error
+      });
     });
 };
 
@@ -131,22 +151,30 @@ exports.display = function(req, res) {
  * Get data set one by one and if one fail, render the page with the well retrieved data.
  */
 exports.discover = function(req, res) {
-  var userId = req.body.userId,
+  var userId = req.decoded.id,
       list = req.params.list,
       page = req.params.page;
+
+  var data = {};
 
   // Request main movie informations
   apiCtrl.discover('tv', list, page,
     function (main) {
 
-      res.locals.data = main;
-      res.locals.type = 'tvs';
-      res.locals.query = list;
-      res.locals.lists = ['popular', 'airing_today', 'on_the_air'];
-      res.render('discover');
+      data.type = 'tvs';
+      data.query = list;
+      data.data = main;
+      data.lists = ['popular', 'airing_today', 'on_the_air'];
+      res.json({
+        success: true,
+        data: data
+      });
 
     }, function (err) {
-      res.send('The tv couldn\'t be found');
+      res.json({
+        success: false,
+        message: messages.errors.api_error
+      });
     });
 };
 
@@ -155,7 +183,7 @@ exports.discover = function(req, res) {
  * Params: key, name, picture, imdb_id
  */
 exports.add = function(req, res) {
-  var userId  = req.body.userId;
+  var userId = req.decoded.id;
 
   User.findOne({_id:userId, 'tvs.tmdb_id': req.params.id},
     function (err, user) {
@@ -176,13 +204,21 @@ exports.add = function(req, res) {
               }
             }
           }, function (err, user) {
-            if (err) {return res.status(500).send(messages.errors.default_error);}
-            if (!user) {return res.status(500).send(messages.errors.user_notfound);}
+            if (err) {res.json({success: false, message: messages.errors.default_error});}
+            if (!user) {res.json({success: false,message: messages.errors.user_notfound});}
             // check if it's not a watch request
-            if (!req.body.season) {res.send(messages.success.tv_added);}
+            if (!req.body.season) {
+              res.json({
+                success: true,
+                message: messages.success.tv_added
+              });
+            }
           });
       } else {
-        res.status(500).send(messages.errors.tv_exist);
+        res.json({
+          success: false,
+          message: messages.errors.tv_exist
+        });
       }
     });
 };
@@ -192,18 +228,18 @@ exports.add = function(req, res) {
  * Params: key, name, imdb_id, season, episode
  */
 exports.watch = function(req, res) {
-  var userId = req.body.userId;
+  var userId = req.decoded.id;
 
   User.findOne({_id:userId, 'tvs.tmdb_id': req.params.id},
     function (err, user) {
-      if (err) {return res.status(500).send(messages.errors.default_error);}
+      if (err) {res.json({success: false, message: messages.errors.default_error});}
       // If TV Show already exist in User, then add it
       if (!user) {
         module.exports.add(req, res);
       }
       User.findOne({_id:userId, 'tvs.tmdb_id': req.params.id, 'tvs.episodes.tmdb_id': req.params.episode},
         function (err, user) {
-          if (err) {return res.status(500).send(messages.errors.default_error);}
+          if (err) {res.json({success: false, message: messages.errors.default_error});}
           // If episode not exist in the show, then add it
           if (!user) {
             User.findOneAndUpdate({_id:userId, 'tvs.tmdb_id': req.params.id},
@@ -220,9 +256,12 @@ exports.watch = function(req, res) {
                   'tvs.$.last_view': Date.now()
                 }
               }, function (err, user) {
-                if (err) {return res.status(500).send(messages.errors.default_error);}
-                if (!user) {return res.status(500).send(messages.errors.user_notfound);}
-                res.send(messages.success.tv_watched);
+                if (err) {res.json({success: false, message: messages.errors.default_error});}
+                if (!user) {res.json({success: false,message: messages.errors.user_notfound});}
+                res.json({
+                  success: true,
+                  message: messages.success.tv_watched
+                });
               });
           // If episode exist, then drop it
           } else {
@@ -234,9 +273,12 @@ exports.watch = function(req, res) {
                   }
                 }
               }, function (err, user) {
-                if (err) {return res.status(500).send(messages.errors.default_error);}
-                if (!user) {return res.status(500).send(messages.errors.user_notfound);}
-                res.send(messages.success.tv_notwatched);
+                if (err) {res.json({success: false, message: messages.errors.default_error});}
+                if (!user) {res.json({success: false,message: messages.errors.user_notfound});}
+                res.json({
+                  success: true,
+                  message: messages.success.tv_notwatched
+                });
               });
           }
         });
@@ -249,7 +291,7 @@ exports.watch = function(req, res) {
  * Params: key
  */
 exports.remove = function(req, res) {
-  var userId = req.body.userId;
+  var userId = req.decoded.id;
 
   User.findOneAndUpdate({_id:userId},
       {
@@ -259,9 +301,12 @@ exports.remove = function(req, res) {
           }
         }
       }, function (err, user) {
-        if (err) {return res.status(500).send(messages.errors.default_error);}
-        if (!user) {return res.status(500).send(messages.errors.user_notfound);}
-        res.send(messages.success.tv_removed);
+        if (err) {res.json({success: false, message: messages.errors.default_error});}
+        if (!user) {res.json({success: false,message: messages.errors.user_notfound});}
+        res.json({
+          success: true,
+          message: messages.success.tv_removed
+        });
       });
 
 };
@@ -271,12 +316,15 @@ exports.remove = function(req, res) {
  * Params: key
  */
 exports.list = function(req, res) {
-  var userId = req.body.userId;
+  var userId = req.decoded.id;
 
   User.findOne({_id:userId},
     function (err, user) {
-      if (err) {return res.status(500).send(messages.errors.default_error);}
-      if (!user) {return res.status(500).send(messages.errors.user_notfound);}
-      res.send(user.tvs);
+      if (err) {res.json({success: false, message: messages.errors.default_error});}
+      if (!user) {res.json({success: false,message: messages.errors.user_notfound});}
+      res.json({
+        success: true,
+        data: user.tvs
+      });
     });
 };
