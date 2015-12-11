@@ -1,10 +1,11 @@
 {
   "errors": {
+    "default_error": "Something bad happened, try later.",
+    "api_error": "Themoviedb do not respond.",
     "creation_fail": "Error in Saving user",
     "auth_fail": "Username or password are wrong",
     "no_token": "No token provided",
     "token_fail": "Failed to authenticate token",
-    "default_error": "Something bad happened, try later.",
     "user_error": "The user cannot be found.",
     "user_notfound": "The target cannot be found.",
     "user_exist": "This user already exist.",

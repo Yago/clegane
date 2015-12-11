@@ -107,11 +107,14 @@ exports.dashboard = function(req, res) {
   // Request main people informations
     apiCtrl.get('/list/'+config.picks,
       function (main) {
-
-        res.locals.picks = main;
-        res.render('dashboard');
-
+        res.json({
+          success: true,
+          data: main
+        });
       }, function (err) {
-        res.send('The people couldn\'t be found');
+        res.json({
+          success: false,
+          message: message.error.api_error
+        });
       });
 };
