@@ -9,8 +9,8 @@ module.exports = function(app, passport) {
   app.get('/peoples/:list/:page', auth.isAuthenticated, peopleCtrl.discover);
 
   // API part
-  app.post('/peoples', auth.isApiAuthenticated, peopleCtrl.list);
-  app.post('/people/:id/add', auth.isApiAuthenticated, peopleCtrl.add);
-  app.post('/people/:id/remove', auth.isApiAuthenticated, peopleCtrl.remove);
+  app.post('/peoples', auth.isAuthenticated, peopleCtrl.list);
+  app.post('/people/:id/add', auth.isAuthenticated, peopleCtrl.add);
+  app.post('/people/:id/remove', auth.isAuthenticated, peopleCtrl.remove);
 
 };

@@ -9,11 +9,11 @@ module.exports = function(app, passport) {
   app.get('/list/:id', auth.isAuthenticated, listCtrl.lists);
 
   // API part
-  app.post('/lists', auth.isApiAuthenticated, listCtrl.list);
-  app.post('/list/add', auth.isApiAuthenticated, listCtrl.add);
-  app.post('/list/:id', auth.isApiAuthenticated, listCtrl.show);
-  app.post('/list/:id/push/:item', auth.isApiAuthenticated, listCtrl.push);
-  app.post('/list/:id/pull/:item', auth.isApiAuthenticated, listCtrl.pull);
-  app.post('/list/:id/remove', auth.isApiAuthenticated, listCtrl.remove);
+  app.post('/lists', auth.isAuthenticated, listCtrl.list);
+  app.post('/list/add', auth.isAuthenticated, listCtrl.add);
+  app.post('/list/:id', auth.isAuthenticated, listCtrl.show);
+  app.post('/list/:id/push/:item', auth.isAuthenticated, listCtrl.push);
+  app.post('/list/:id/pull/:item', auth.isAuthenticated, listCtrl.pull);
+  app.post('/list/:id/remove', auth.isAuthenticated, listCtrl.remove);
 
 };

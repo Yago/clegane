@@ -19,7 +19,7 @@ module.exports = function(app, passport) {
   app.get('/signup/completed', userCtrl.signupCompleted);
 
   app.get('/settings', auth.isAuthenticated, userCtrl.settings);
-  app.post('/settings', auth.isApiAuthenticated, userCtrl.update);
+  app.post('/settings', auth.isAuthenticated, userCtrl.update);
 
   app.get('/logout', function(req, res) {
     req.logout();

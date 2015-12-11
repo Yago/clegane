@@ -9,9 +9,9 @@ module.exports = function(app, passport) {
   app.get('/tvs/:list/:page', auth.isAuthenticated, tvCtrl.discover);
 
   // API part
-  app.post('/tvs', auth.isApiAuthenticated, tvCtrl.list);
-  app.post('/tv/:id/add', auth.isApiAuthenticated, tvCtrl.add);
-  app.post('/tv/:id/watch/:episode', auth.isApiAuthenticated, tvCtrl.watch);
-  app.post('/tv/:id/remove', auth.isApiAuthenticated, tvCtrl.remove);
+  app.post('/tvs', auth.isAuthenticated, tvCtrl.list);
+  app.post('/tv/:id/add', auth.isAuthenticated, tvCtrl.add);
+  app.post('/tv/:id/watch/:episode', auth.isAuthenticated, tvCtrl.watch);
+  app.post('/tv/:id/remove', auth.isAuthenticated, tvCtrl.remove);
 
 };

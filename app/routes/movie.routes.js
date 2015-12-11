@@ -9,9 +9,9 @@ module.exports = function(app, passport) {
   app.get('/movies/:list/:page', auth.isAuthenticated, movieCtrl.discover);
 
   // API part
-  app.post('/movies', auth.isApiAuthenticated, movieCtrl.list);
-  app.post('/movie/:id/add', auth.isApiAuthenticated, movieCtrl.add);
-  app.post('/movie/:id/watch', auth.isApiAuthenticated, movieCtrl.watch);
-  app.post('/movie/:id/remove', auth.isApiAuthenticated, movieCtrl.remove);
+  app.post('/movies', auth.isAuthenticated, movieCtrl.list);
+  app.post('/movie/:id/add', auth.isAuthenticated, movieCtrl.add);
+  app.post('/movie/:id/watch', auth.isAuthenticated, movieCtrl.watch);
+  app.post('/movie/:id/remove', auth.isAuthenticated, movieCtrl.remove);
 
 };
