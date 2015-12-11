@@ -46,20 +46,6 @@ exports.create = function (req, res) {
 };
 
 /*
- * Signup completed page
- */
-exports.signupCompleted = function(req, res) {
-  res.render('user/signup-completed');
-};
-
-/*
- * API page
- */
-exports.api = function(req, res) {
-  res.render('api');
-};
-
-/*
  * List all User
  */
 exports.list = function(req, res) {
@@ -70,20 +56,6 @@ exports.list = function(req, res) {
     });
     res.json(list);
   });
-};
-
-/*
- * Render login page
- */
-exports.login = function(req, res) {
-  res.render('user/login');
-};
-
-/*
- * Render settings page
- */
-exports.settings = function(req, res) {
-  res.render('user/settings');
 };
 
 /*
@@ -148,18 +120,4 @@ exports.dashboard = function(req, res) {
       }, function (err) {
         res.send('The people couldn\'t be found');
       });
-};
-
-/*
- * About page
- */
-exports.about = function(req, res, next) {
-  res.render('about');
-};
-
-/*
- * Render signup page
- */
-exports.signup = function(req, res) {
-  res.render('user/signup');
 };
