@@ -68,6 +68,7 @@
     "html5shiv": "^3.7.3",
     "imagemin-pngquant": "^4.2.0",
     "imgur": "^0.1.7",
+    "ionic": "^1.7.11",
     "isotope-layout": "^2.2.2",
     "jquery": "^2.1.4",
     "jsdom": "^7.1.0",

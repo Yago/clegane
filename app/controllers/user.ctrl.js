@@ -5,7 +5,8 @@ var User        = require('../models/user.model'),
     apiCtrl     = require('./api.ctrl.js'),
     algorithm   = 'aes-256-ctr';
 
-var config      = require('../../config/config.js');
+var config      = require('../../config/config.js'),
+    message     = require('../../config/messages.json');
 
 var createHash = function(password){
   var cipher = crypto.createCipher(algorithm, config.secret),
@@ -38,10 +39,15 @@ exports.create = function (req, res) {
       newUser.email = req.body.email;
       newUser.save(function(err) {
         if (err){
-          req.flash('error', 'Error in Saving user:  ' + err);
-          return err;
+          res.json({
+            success: false,
+            message: message.errors.creation_fail
+          });
         }
-        res.redirect('/signup/completed');
+        res.json({
+          success: true,
+          message: message.success.user_created
+        });
       });
 };
 

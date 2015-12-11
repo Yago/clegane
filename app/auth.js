@@ -7,9 +7,17 @@ var config      = require('../config/config.js'),
 
 exports.authenticate = function(req, res, next) {
   User.findOne({ username: req.body.username }, function (err, user) {
-    if (err) { res.status(500).send(message.error.default_error); }
+    if (err) {
+      res.json({
+        success: false,
+        message: message.errors.default_error
+      });
+    }
     if (!user) {
-      res.status(500).send(message.error.user_error);
+      res.json({
+        success: false,
+        message: message.errors.user_error
+      });
     } else if (user) {
 
       var token = jwt.sign({
@@ -33,26 +41,54 @@ exports.isAuthenticated = function(req, res, next) {
   if (token) {
     jwt.verify(token, config.secret, function(err, decoded) {
       if (err) {
-        res.status(403).send(message.errors.token_fail);
+        res.json({
+          success: false,
+          message: message.errors.token_fail
+        });
       } else {
         req.decoded = decoded;
         next();
       }
     });
   } else {
-    res.status(403).send(message.errors.no_token);
+    res.json({
+      success: false,
+      message: message.errors.no_token
+    });
   }
 
 };
 
 exports.checkUser = function(req, res, next)  {
   User.findOne({username:req.body.username}, function(err, user) {
-    if (err) return next(err);
+    if (err) {
+      res.json({
+        success: false,
+        message: message.errors.default_error
+      });
+    }
     if (user) {
-      req.flash('error', "User already exist, please change username or email");
-      res.render('user/signup');
+      res.json({
+        success: false,
+        message: message.errors.user_exist
+      });
     } else {
-      next();
+      User.findOne({email:req.body.email}, function(err, user) {
+        if (err) {
+          res.json({
+            success: false,
+            message: message.errors.default_error
+          });
+        }
+        if (user) {
+          res.json({
+            success: false,
+            message: message.errors.email_exist
+          });
+        } else {
+          next();
+        }
+      });
     }
   });
 }
