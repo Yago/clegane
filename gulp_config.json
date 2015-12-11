@@ -8,7 +8,8 @@
     "css": [
       "node_modules/angular-ui-bootstrap/ui-bootstrap-csp.css",
       "node_modules/photoswipe/dist/photoswipe.css",
-      "node_modules/photoswipe/dist/default-skin/default-skin.css"
+      "node_modules/photoswipe/dist/default-skin/default-skin.css",
+      "node_modules/ionic/bin/myApp/www/lib/ionic/css/ionic.css"
     ],
     "js": [
       "node_modules/photoswipe/dist/photoswipe.js",
@@ -16,11 +17,15 @@
       "node_modules/isotope-layout/dist/isotope.pkgd.js"
     ],
     "angular": [
+      "node_modules/ionic/bin/myApp/www/lib/ionic/js/ionic.js",
       "node_modules/angular/angular.js",
+      "node_modules/angular-animate/angular-animate.js",
       "node_modules/angular-sanitize/angular-sanitize.js",
       "node_modules/angular-touch/angular-touch.js",
+      "node_modules/angular-ui-router/build/angular-ui-router.js",
       "node_modules/angular-ui-bootstrap/ui-bootstrap.js",
-      "node_modules/angular-ui-bootstrap/ui-bootstrap-tpls.js"
+      "node_modules/angular-ui-bootstrap/ui-bootstrap-tpls.js",
+      "node_modules/ionic/bin/myApp/www/lib/ionic/js/ionic-angular.js"
     ],
     "fonts": [
       "node_modules/bootstrap-sass/assets/fonts/bootstrap/*",
@@ -40,7 +45,7 @@
   "tasks":  "./tasks/",
   "assets": "assets/",
   "iconsFontName": "cleganicon",
-  "build": "build/",
+  "build": "www/build/",
   "browsers": ["last 2 versions", "safari 5", "ie 8", "ie 9", "ff 27", "opera 12.1"],
   "styleguide": {
     "assets": "node_modules/fabricator/src/assets/fabricator/",
