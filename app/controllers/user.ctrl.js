@@ -16,19 +16,6 @@ var createHash = function(password){
   return crypted;
 };
 
-
-/*
- * Check if authenticate when on homepage
- */
-exports.index = function(req, res, next) {
-  if (req.isAuthenticated()) {
-    next('route');
-    return;
-  } else {
-    res.render('homepage');
-  }
-};
-
 /*
  * Create new User
  */
@@ -52,25 +39,10 @@ exports.create = function (req, res) {
 };
 
 /*
- * List all User
- */
-exports.list = function(req, res) {
-  User.find({}, function(err, users) {
-    var list = [];
-    users.forEach(function(user) {
-      list.push(user.username);
-    });
-    res.json(list);
-  });
-};
-
-/*
  * Save settings
  */
 exports.update = function(req, res) {
-  var userId = req.body.userId;
-
-  console.log(req.body.password.length);
+  var userId = req.decoded.id;
 
   if (typeof req.body.password === 'undefined' || req.body.password.length < 1) {
     User.findOneAndUpdate({_id:userId},
@@ -80,14 +52,22 @@ exports.update = function(req, res) {
         'email': req.body.email
       }
     }, function (err, user, next) {
-      if (err) {return next(err);}
-      if (!user) {return res.send('Epic fail');}
-      if (typeof req.body.inapp !== 'undefined') {
-        req.flash('success', 'Profile successfully updated');
-        res.redirect('/settings');
-      } else {
-        res.send('Profile successfully updated');
+      if (err) {
+        res.json({
+          success: false,
+          message: message.errors.default_error
+        });
       }
+      if (!user) {
+        res.json({
+          success: false,
+          message: message.errors.user_error
+        });
+      }
+      res.json({
+        success: true,
+        message: message.success.user_updated
+      });
     });
   } else {
     User.findOneAndUpdate({_id:userId},
@@ -98,14 +78,22 @@ exports.update = function(req, res) {
         'password': createHash(req.body.password)
       }
     }, function (err, user, next) {
-      if (err) {return next(err);}
-      if (!user) {return res.send('Epic fail');}
-      if (typeof req.body.inapp !== 'undefined') {
-        req.flash('success', 'Profile successfully updated');
-        res.redirect('/settings');
-      } else {
-        res.send('Profile successfully updated');
+      if (err) {
+        res.json({
+          success: false,
+          message: message.errors.default_error
+        });
       }
+      if (!user) {
+        res.json({
+          success: false,
+          message: message.errors.user_error
+        });
+      }
+      res.json({
+        success: true,
+        message: message.success.user_updated
+      });
     });
   }
 };

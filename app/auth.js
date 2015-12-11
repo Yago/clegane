@@ -21,6 +21,7 @@ exports.authenticate = function(req, res, next) {
     } else if (user) {
 
       var token = jwt.sign({
+        id: user.id,
         name: user.username,
         email: user.email
       }, config.secret, {

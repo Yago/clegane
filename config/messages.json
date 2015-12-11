@@ -17,6 +17,7 @@
   },
   "success": {
     "user_created": "User successfully created !",
+    "user_updated": "User successfully updated !",
     "movie_added": "Movie successfully added !",
     "movie_watched": "Movie toggle watch successfull !",
     "movie_removed": "Movie successfully removed !",
