@@ -1,64 +1,49 @@
 'use strict';
-var User 				= require('./models/user.model'),
+var User        = require('./models/user.model'),
     jwt         = require('jsonwebtoken');
 
-var config 			= require('../config/config.js');
+var config      = require('../config/config.js'),
+    message     = require('../config/messages.json');
 
-exports.isAuthenticated = function(req, res, next)  {
-  if (res.locals.isAuthenticated) {
-    req.body.userId = res.locals.user.id;
-    next();
-  } else {
-    res.redirect('/');
-  }
-}
+exports.authenticate = function(req, res, next) {
+  User.findOne({ username: req.body.username }, function (err, user) {
+    if (err) { res.status(500).send(message.error.default_error); }
+    if (!user) {
+      res.status(500).send(message.error.user_error);
+    } else if (user) {
 
-exports.isApiAuthenticated = function(req, res, next)  {
-  var key = req.body.key;
+      var token = jwt.sign({
+        name: user.username,
+        email: user.email
+      }, config.secret, {
+        expiresInMinutes: 1 // expires in 7 days
+      });
 
-  console.log(key);
-
-  if (typeof key !== 'undefined') {
-    User.findOne({key:key}, function(err, user) {
-      if (err) return res.status(500).send(err);;
-      if (!user) {return res.status(500).send('No user found with this key');}
-      req.body.userId = user.id;
-      next();
-    });
-  } else if (typeof key === 'undefined' && res.locals.isAuthenticated) {
-    req.body.userId = res.locals.user.id;
-    req.body.inapp = true;
-    next();
-  } else {
-    res.send('Please, provide a key');
-  }
-}
-
-exports.haveApiKey = function(req, res, next)  {
-  if (res.locals.isAuthenticated) {
-    if (typeof res.locals.user.key === 'undefined') {
-      var userToken = {
-        id: res.locals.user._id,
-        username: res.locals.user.username,
-        email: res.locals.user.email
-      };
-      User.findOneAndUpdate({_id:res.locals.user._id},
-        {
-          $set : {
-            'key': jwt.sign(userToken, config.secret)
-          }
-        }, function (err, user) {
-          if (err) return err;
-          if (!user) return res.status(500).send('Epic fail');
-          next();
-        });
-    } else {
-      next();
+      res.json({
+        success: true,
+        token: token
+      });
     }
+  });
+};
+
+exports.isAuthenticated = function(req, res, next) {
+  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+  if (token) {
+    jwt.verify(token, config.secret, function(err, decoded) {
+      if (err) {
+        res.status(403).send(message.errors.token_fail);
+      } else {
+        req.decoded = decoded;
+        next();
+      }
+    });
   } else {
-    next();
+    res.status(403).send(message.errors.no_token);
   }
-}
+
+};
 
 exports.checkUser = function(req, res, next)  {
   User.findOne({username:req.body.username}, function(err, user) {
