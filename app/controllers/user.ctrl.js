@@ -52,18 +52,8 @@ exports.update = function(req, res) {
         'email': req.body.email
       }
     }, function (err, user, next) {
-      if (err) {
-        res.json({
-          success: false,
-          message: message.errors.default_error
-        });
-      }
-      if (!user) {
-        res.json({
-          success: false,
-          message: message.errors.user_error
-        });
-      }
+      if (err) {res.json({success: false, message: message.errors.default_error});}
+      if (!user) {res.json({success: false,message: message.errors.user_notfound});}
       res.json({
         success: true,
         message: message.success.user_updated
@@ -78,18 +68,8 @@ exports.update = function(req, res) {
         'password': createHash(req.body.password)
       }
     }, function (err, user, next) {
-      if (err) {
-        res.json({
-          success: false,
-          message: message.errors.default_error
-        });
-      }
-      if (!user) {
-        res.json({
-          success: false,
-          message: message.errors.user_error
-        });
-      }
+      if (err) {res.json({success: false, message: message.errors.default_error});}
+      if (!user) {res.json({success: false,message: message.errors.user_notfound});}
       res.json({
         success: true,
         message: message.success.user_updated
@@ -105,16 +85,16 @@ exports.dashboard = function(req, res) {
   var userId = req.body.userId;
 
   // Request main people informations
-    apiCtrl.get('/list/'+config.picks,
-      function (main) {
-        res.json({
-          success: true,
-          data: main
-        });
-      }, function (err) {
-        res.json({
-          success: false,
-          message: message.error.api_error
-        });
+  apiCtrl.get('/list/'+config.picks,
+    function (main) {
+      res.json({
+        success: true,
+        data: main
       });
+    }, function (err) {
+      res.json({
+        success: false,
+        message: message.error.api_error
+      });
+    });
 };
