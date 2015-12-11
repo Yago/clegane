@@ -7,10 +7,10 @@ var User        = require('../models/user.model'),
 
 /*
  * Add a list to User
- * Params: key, name
+ * Params: token, name
  */
 exports.add = function(req, res) {
-  var userId = req.body.userId;
+  var userId = req.decoded.id;
 
   // Add movie
   User.findOneAndUpdate({_id:userId},
@@ -21,26 +21,32 @@ exports.add = function(req, res) {
         }
       }
     }, function (err, user) {
-      if (err) {return res.status(500).send(messages.errors.default_error);}
-      if (!user) {return res.status(500).send(messages.errors.user_notfound);}
-      res.send(messages.success.list_added);
+      if (err) {res.json({success: false, message: messages.errors.default_error});}
+      if (!user) {res.json({success: false,message: messages.errors.user_notfound});}
+      res.json({
+        success: true,
+        message: messages.success.list_added
+      });
     });
 };
 
 /*
  * Show list
- * Params: key
+ * Params: token
  */
 exports.show = function(req, res) {
-  var userId = req.body.userId;
+  var userId = req.decoded.id;
 
   User.findOne({_id:userId, 'lists._id': req.params.id},
     function (err, user) {
-      if (err) {return res.status(500).send(messages.errors.default_error);}
-      if (!user) {return res.status(500).send(messages.errors.user_notfound);}
+      if (err) {res.json({success: false, message: messages.errors.default_error});}
+      if (!user) {res.json({success: false,message: messages.errors.user_notfound});}
       user.lists.forEach(function(list){
         if (list._id == req.params.id) {
-          res.send(list);
+          res.json({
+            success: true,
+            data: list
+          });
         }
       });
     });
@@ -48,15 +54,15 @@ exports.show = function(req, res) {
 
 /*
  * Add item to list
- * Params: key
+ * Params: token
  */
 exports.push = function(req, res) {
-  var userId = req.body.userId;
+  var userId = req.decoded.id;
 
   // Add movie
   User.findOne({_id:userId, 'lists._id': req.params.id, 'lists.$.items.item': req.params.item},
     function (err, user) {
-      if (err) {return res.status(500).send(messages.errors.default_error);}
+      if (err) {res.json({success: false, message: messages.errors.default_error});}
       // Check if item not already exist in list
       if (!user) {
         User.findOneAndUpdate({_id:userId, 'lists._id': req.params.id},
@@ -67,53 +73,69 @@ exports.push = function(req, res) {
               }
             }
           }, function (err, user) {
-            if (err) {return res.status(500).send(messages.errors.default_error);}
-            if (!user) {return res.status(500).send(messages.errors.user_notfound);}
-            res.send(messages.success.list_item_added);
+            if (err) {
+              res.json({
+                success: false,
+                message: messages.errors.default_error
+              })
+            }
+            if (!user) {
+              res.json({
+                success: false,
+                message: messages.errors.user_notfound
+              })
+            }
+            res.json({
+              success: true,
+              message: messages.success.list_item_added
+            });
           });
       } else {
-        return res.status(500).send(messages.errors.list_exist);
+        res.json({
+          success: false,
+          message: messages.errors.list_exist
+        })
       }
     });
 };
 
 /*
  * Remove item to list
- * Params: key
+ * Params: token
  */
 exports.pull = function(req, res) {
-  var userId = req.body.userId;
+  var userId = req.decoded.id;
 
-  // Add movie
   User.findOne({_id:userId, 'lists._id': req.params.id},
     function (err, user) {
-      if (err) {return res.status(500).send(messages.errors.default_error);}
-      // Check if item exist in list
-      if (!user) {
-        return res.status(500).send(messages.errors.list_notexist);
-      } else {
-        User.findOneAndUpdate({_id:userId, 'lists._id': req.params.id},
-          {
-            $pull : {
-              'lists.$.items' : {
-                item: req.params.item
-              }
+      if (err) {res.json({success: false, message: messages.errors.default_error});}
+      if (!user) {res.json({success: false,message: messages.errors.user_notfound});}
+
+      User.findOneAndUpdate({_id:userId, 'lists._id': req.params.id},
+        {
+          $pull : {
+            'lists.$.items' : {
+              item: req.params.item
             }
-          }, function (err, user) {
-            if (err) {return res.status(500).send(messages.errors.default_error);}
-            if (!user) {return res.status(500).send(messages.errors.user_notfound);}
-            res.send(messages.success.list_item_removed);
+          }
+        }, function (err, user) {
+          if (err) {res.json({success: false, message: messages.errors.default_error});}
+          if (!user) {res.json({success: false,message: messages.errors.user_notfound});}
+
+          res.json({
+            success: true,
+            message: messages.success.list_item_removed
           });
-      }
+        });
     });
 };
 
 /*
- * Remove a People from User
- * Params: key
+ * Remove a list from User
+ * Params: token
  */
 exports.remove = function(req, res) {
-  var userId = req.body.userId;
+  var userId = req.decoded.id;
 
   User.findOneAndUpdate({_id:userId},
       {
@@ -123,25 +145,33 @@ exports.remove = function(req, res) {
           }
         }
       }, function (err, user) {
-        if (err) {return res.status(500).send(messages.errors.default_error);}
-        if (!user) {return res.status(500).send(messages.errors.user_notfound);}
-        res.send(messages.success.list_removed);
+        if (err) {res.json({success: false, message: messages.errors.default_error});}
+        if (!user) {res.json({success: false,message: messages.errors.user_notfound});}
+
+        res.json({
+          success: true,
+          message: messages.success.list_removed
+        });
       });
 
 };
 
 /*
  * List User's lists
- * Params: key
+ * Params: token
  */
 exports.list = function(req, res) {
-  var userId = req.body.userId;
+  var userId = req.decoded.id;
 
   User.findOne({_id:userId},
     function (err, user) {
-      if (err) {return res.status(500).send(messages.errors.default_error);}
-      if (!user) {return res.status(500).send(messages.errors.user_notfound);}
-      res.send(user.lists);
+      if (err) {res.json({success: false, message: messages.errors.default_error});}
+      if (!user) {res.json({success: false,message: messages.errors.user_notfound});}
+
+      res.json({
+        success: true,
+        data: user.lists
+      });
     });
 };
 
@@ -149,12 +179,12 @@ exports.list = function(req, res) {
  * Send User's lists items
  */
 exports.lists = function(req, res) {
-  var userId = req.body.userId;
+  var userId = req.decoded.id;
 
   User.findOne({_id:userId},
     function (err, user) {
-      if (err) {return res.status(500).send(messages.errors.default_error);}
-      if (!user) {return res.status(500).send(messages.errors.user_error);}
+      if (err) {res.json({success: false, message: messages.errors.default_error});}
+      if (!user) {res.json({success: false,message: messages.errors.user_notfound});}
 
       var listsArray = [],
           userItems = {},
@@ -199,8 +229,10 @@ exports.lists = function(req, res) {
                   }, function(err){
                     if( err ) {// console.log(err);
                     } else {
-                      res.locals.list = listObject;
-                      res.render('list');
+                      res.json({
+                        success: true,
+                        data: listObject
+                      });
                     }
                   });
               }
@@ -230,8 +262,10 @@ exports.lists = function(req, res) {
               }, function(err){
                 if( err ) {// console.log(err);
                 } else {
-                  res.locals.lists = listsArray;
-                  res.render('lists');
+                  res.json({
+                    success: true,
+                    data: listsArray
+                  });
                 }
               });
           }
