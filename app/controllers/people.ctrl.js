@@ -62,8 +62,10 @@ function prepareCredits (credits) {
  * Get data set one by one and if one fail, render the page with the well retrieved data.
  */
 exports.display = function(req, res) {
-  var userId = req.body.userId,
+  var userId = req.decoded.id,
       peopleId = req.params.id;
+
+  var data = {};
 
   // Request main people informations
   apiCtrl.get('/person/'+peopleId,
@@ -76,26 +78,38 @@ exports.display = function(req, res) {
           // Request cover images
           apiCtrl.get('/person/'+peopleId+'/tagged_images',
             function (images) {
-              res.locals.people = main;
-              res.locals.credits = prepareCredits(credits);
-              res.locals.images = images.results;
-              res.locals.currentyear = new Date().getFullYear();
-              res.render('people');
+              data.people = main;
+              data.credits = prepareCredits(credits);
+              data.images = images.results;
+              data.currentyear = new Date().getFullYear();
+              res.json({
+                success: true,
+                data: data
+              });
             }, function (err) {
-              res.locals.people = main;
-              res.locals.credits = prepareCredits(credits);
-              res.locals.currentyear = new Date().getFullYear();
-              res.render('people');
+              data.people = main;
+              data.credits = prepareCredits(credits);
+              data.currentyear = new Date().getFullYear();
+              res.json({
+                success: true,
+                data: data
+              });
             });
 
         }, function (err) {
-          res.locals.people = main;
-          res.locals.currentyear = new Date().getFullYear();
-          res.render('people');
+          data.people = main;
+          data.currentyear = new Date().getFullYear();
+          res.json({
+            success: true,
+            data: data
+          });
         });
 
     }, function (err) {
-      res.send('The people couldn\'t be found');
+      res.json({
+        success: false,
+        message: messages.errores.api_error
+      });
     });
 };
 
@@ -104,30 +118,38 @@ exports.display = function(req, res) {
  * Get data set one by one and if one fail, render the page with the well retrieved data.
  */
 exports.discover = function(req, res) {
-  var userId = req.body.userId,
+  var userId = req.decoded.id,
       list = req.params.list,
       page = req.params.page;
+
+  var data = {};
 
   // Request main movie informations
   apiCtrl.discover('person', list, page,
     function (main) {
 
-      res.locals.data = main;
-      res.locals.type = 'peoples';
-      res.locals.query = list;
-      res.render('discover');
+      data.type = 'peoples';
+      data.query = list;
+      data.data = main;
+      res.json({
+        success: true,
+        data: data
+      });
 
     }, function (err) {
-      res.send('The people couldn\'t be found');
+      res.json({
+        success: false,
+        message: messages.errors.api_error
+      });
     });
 };
 
 /*
  * Add a People to User
- * Params: key, name, imdb_id, picture
+ * Params: token, name, imdb_id, picture
  */
 exports.add = function(req, res) {
-  var userId = req.body.userId;
+  var userId = req.decoded.id;
 
   User.findOne({_id:userId, 'peoples.tmdb_id': req.params.id},
     function (err, user) {
@@ -148,22 +170,28 @@ exports.add = function(req, res) {
               }
             }
           }, function (err, user) {
-            if (err) {return res.status(500).send(messages.errors.default_error);}
-            if (!user) {return res.status(500).send(messages.errors.user_notfound);}
-            res.send(messages.success.people_added);
+            if (err) {res.json({success: false, message: messages.errors.default_error});}
+            if (!user) {res.json({success: false,message: messages.errors.user_notfound});}
+            res.json({
+              success: true,
+              message: messages.success.people_added
+            });
           });
       } else {
-        res.status(500).send(messages.errors.people_exist);
+        res.json({
+          success: false,
+          message: messages.errors.people_exist
+        });
       }
     });
 };
 
 /*
  * Remove a People from User
- * Params: key
+ * Params: token
  */
 exports.remove = function(req, res) {
-  var userId = req.body.userId;
+  var userId = req.decoded.id;
 
   User.findOneAndUpdate({_id:userId},
       {
@@ -173,24 +201,30 @@ exports.remove = function(req, res) {
           }
         }
       }, function (err, user) {
-        if (err) {return res.status(500).send(messages.errors.default_error);}
-        if (!user) {return res.status(500).send(messages.errors.user_notfound);}
-        res.send(messages.success.people_removed);
+        if (err) {res.json({success: false, message: messages.errors.default_error});}
+        if (!user) {res.json({success: false,message: messages.errors.user_notfound});}
+        res.json({
+          success: true,
+          message: messages.success.people_removed
+        });
       });
 
 };
 
 /*
  * List User's peoples
- * Params: key
+ * Params: token
  */
 exports.list = function(req, res) {
-  var userId = req.body.userId;
+  var userId = req.decoded.id;
 
   User.findOne({_id:userId},
     function (err, user) {
-      if (err) {return res.status(500).send(messages.errors.default_error);}
-      if (!user) {return res.status(500).send(messages.errors.user_notfound);}
-      res.send(user.peoples);
+      if (err) {res.json({success: false, message: messages.errors.default_error});}
+      if (!user) {res.json({success: false,message: messages.errors.user_notfound});}
+      res.json({
+        success: true,
+        data: user.peoples
+      });
     });
 };

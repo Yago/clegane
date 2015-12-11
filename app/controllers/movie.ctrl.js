@@ -81,7 +81,10 @@ exports.display = function(req, res) {
         });
 
     }, function (err) {
-      res.send('The movie couldn\'t be found');
+      res.json({
+        success: false,
+        message: messages.errores.api_error
+      });
     });
 };
 
