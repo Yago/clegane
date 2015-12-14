@@ -6,6 +6,11 @@ body.modal-open {
   overflow: visible;
 }
 
+@media screen and (min-width: $screen-sm-min) {
+  .nav-bar-container {display: none;}
+  .has-header {top: 0;}
+}
+
 .main-wrapper {
   display: flex;
   flex-wrap: nowrap;

@@ -16,11 +16,16 @@ app.run(function ($rootScope, $state, $location) {
   }
 
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
-    var requireAuth = toState.data.requireAuth;
+    var requireAuth = toState.requireAuth;
     if (requireAuth) {
       if (!$rootScope.authenticated) {
         event.preventDefault();
         $state.go('app.homepage');
+      }
+    } else {
+      if ($rootScope.authenticated) {
+        event.preventDefault();
+        $state.go('app.dashboard');
       }
     }
   });

@@ -8,12 +8,11 @@ app.config(function($stateProvider, $urlRouterProvider, $rootScopeProvider) {
     .state('app', {
       url: '',
       abstract: true,
-      templateUrl: 'templates/menu.html',
-      controller: 'MainCtrl'
+      templateUrl: 'templates/menu.html'
     })
     .state('app.homepage', {
       url: '/',
-      data: {requireAuth: false},
+      requireAuth: false,
       views: {
         'menuContent': {
           templateUrl: 'templates/homepage.html'
@@ -22,7 +21,7 @@ app.config(function($stateProvider, $urlRouterProvider, $rootScopeProvider) {
     })
     .state('app.dashboard', {
       url: '/dashboard',
-      data: {requireAuth: true},
+      requireAuth: true,
       views: {
         'menuContent': {
           templateUrl: 'templates/dashboard.html'
@@ -31,7 +30,7 @@ app.config(function($stateProvider, $urlRouterProvider, $rootScopeProvider) {
     })
     .state('app.test', {
       url: '/test',
-      data: {requireAuth: true},
+      requireAuth: true,
       views: {
         'menuContent': {
           templateUrl: 'templates/test.html'
@@ -40,7 +39,7 @@ app.config(function($stateProvider, $urlRouterProvider, $rootScopeProvider) {
     })
     .state('app.login', {
       url: '/login',
-      data: {requireAuth: false},
+      requireAuth: false,
       views: {
         'menuContent': {
           templateUrl: 'templates/login.html'
@@ -49,7 +48,7 @@ app.config(function($stateProvider, $urlRouterProvider, $rootScopeProvider) {
     })
     .state('app.signup', {
       url: '/signup',
-      data: {requireAuth: false},
+      requireAuth: false,
       views: {
         'menuContent': {
           templateUrl: 'templates/signup.html'

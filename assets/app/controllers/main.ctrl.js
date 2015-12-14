@@ -6,8 +6,10 @@ app.controller('MainCtrl', function($rootScope, $ionicPopup, $ionicSideMenuDeleg
   var that = this;
 
   that.isAuthenticated = false;
-  if ($rootScope.token) {
+  that.sidemenu = 'never';
+  if ($rootScope.authenticated) {
     that.isAuthenticated = true;
+    that.sidemenu = 'large';
   }
 
   //localStorage.clear();
