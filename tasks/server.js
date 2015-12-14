@@ -15,9 +15,9 @@ module.exports = function() {
   */
   gulp.task('serve', ['default'], function () {
     browserSync({
-      // server: {
-      //   baseDir: [config.app.basedir],
-      // },
+      server: {
+        baseDir: [config.app.basedir],
+      },
       notify: false,
       open: false
     });

@@ -1,7 +1,7 @@
 {
   "app": {
     "env": "dev",
-    "basedir": "styleguide",
+    "basedir": "www",
     "ghpages": "styleguide"
   },
   "vendors": {
