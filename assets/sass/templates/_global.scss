@@ -35,6 +35,10 @@ body.modal-open {
   }
 }
 
+ion-content {
+  background: $cod-gray;
+}
+
 .content-container {
   max-width: $screen-lg;
   width: 80%;

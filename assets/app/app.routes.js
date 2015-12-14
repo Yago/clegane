@@ -2,50 +2,61 @@
 
 /* global app */
 
-app.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $urlRouterProvider, $rootScopeProvider) {
 
-  if (localStorage.cleganeToken) {
-    $stateProvider
-      .state('app', {
-        url: '',
-        abstract: true,
-        templateUrl: 'templates/menu.html',
-        controller: 'MainCtrl'
-      })
-      .state('app.home', {
-        url: '/',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/homepage.html'
-          }
+  $stateProvider
+    .state('app', {
+      url: '',
+      abstract: true,
+      templateUrl: 'templates/menu.html',
+      controller: 'MainCtrl'
+    })
+    .state('app.homepage', {
+      url: '/',
+      data: {requireAuth: false},
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/homepage.html'
         }
-      })
-      .state('app.test', {
-        url: '/test',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/test.html'
-          }
+      }
+    })
+    .state('app.dashboard', {
+      url: '/dashboard',
+      data: {requireAuth: true},
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/dashboard.html'
         }
-      });
-    } else {
-      $stateProvider
-        .state('app', {
-          url: '',
-          abstract: true,
-          templateUrl: 'templates/menu-public.html',
-          controller: 'MainCtrl'
-        })
-        .state('app.welcome', {
-          url: '/',
-          views: {
-            'menuContent': {
-              templateUrl: 'templates/welcome.html'
-            }
-          }
-        });
-    }
+      }
+    })
+    .state('app.test', {
+      url: '/test',
+      data: {requireAuth: true},
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/test.html'
+        }
+      }
+    })
+    .state('app.login', {
+      url: '/login',
+      data: {requireAuth: false},
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/login.html'
+        }
+      }
+    })
+    .state('app.signup', {
+      url: '/signup',
+      data: {requireAuth: false},
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/signup.html'
+        }
+      }
+    });
 
-    $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/');
 
 });
