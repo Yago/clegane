@@ -1,0 +1,35 @@
+<picture ng-class="!src ? 'placeholder' : ''">
+
+  <source
+    ng-if="size >= 5"
+    media="(min-width: 1200px)"
+    srcset="{{src|resize:'1920':ratio:gravity}} 1x, {{src|resize:'2880':ratio:gravity}} 2x">
+
+  <source
+    ng-if="size >= 4"
+    media="(min-width: 980px)"
+    srcset="{{src|resize:'1200':ratio:gravity}} 1x, {{src|resize:'2400':ratio:gravity}} 2x">
+
+  <source
+    ng-if="size >= 3"
+    media="(min-width: 770px)"
+    srcset="{{src|resize:'980':ratio:gravity}} 1x, {{src|resize:'1960':ratio:gravity}} 2x">
+
+  <source
+    ng-if="size >= 2"
+    media="(min-width: 401px)"
+    srcset="{{src|resize:'770':ratio:gravity}} 1x, {{src|resize:'1440':ratio:gravity}} 2x">
+
+  <source
+    ng-if="size >= 1"
+    srcset="{{src|resize:'400':ratio:gravity}} 1x, {{src|resize:'800':ratio:gravity}} 2x">
+
+  <source
+    ng-if="size < 1"
+    media="(max-width: 400px)"
+    srcset="{{src|resize:'400':ratio:gravity}} 1x, {{src|resize:'800':ratio:gravity}} 2x">
+
+
+  <img src="{{src|resize:'770':ratio:gravity}}" alt="{{alt}}" class="{{class}}">
+
+</picture>
