@@ -8,22 +8,25 @@ var app = angular.module('CleganeApp',
 
 // Basic angular style middleware
 app.run(function ($rootScope, $state, $location) {
-  $rootScope.authenticated = false;
+  $rootScope.isAuthenticated = false;
+  $rootScope.isMenu = 'never';
   if (localStorage.cleganeToken) {
-    $rootScope.authenticated = true;
+    $rootScope.isAuthenticated = true;
+    $rootScope.isMenu = 'large';
   } else if (sessionStorage.cleganeToken) {
-    $rootScope.authenticated = true;
+    $rootScope.isAuthenticated = true;
+    $rootScope.isMenu = 'large';
   }
 
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
     var requireAuth = toState.requireAuth;
     if (requireAuth) {
-      if (!$rootScope.authenticated) {
+      if (!$rootScope.isAuthenticated) {
         event.preventDefault();
         $state.go('app.homepage');
       }
     } else {
-      if ($rootScope.authenticated) {
+      if ($rootScope.isAuthenticated) {
         event.preventDefault();
         $state.go('app.dashboard');
       }

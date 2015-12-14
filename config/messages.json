@@ -8,8 +8,8 @@
     "token_fail": "Failed to authenticate token",
     "user_error": "The user cannot be found.",
     "user_notfound": "The target cannot be found.",
-    "user_exist": "This user already exist.",
-    "email_exist": "This email already exist.",
+    "user_exist": "This username is already taken.",
+    "email_exist": "This email is already taken.",
     "movie_exist": "This movie already exist.",
     "tv_exist": "This TV show already exist.",
     "people_exist": "This people already exist.",
@@ -17,7 +17,7 @@
     "list_notexist": "This item does not exist in this list."
   },
   "success": {
-    "user_created": "User successfully created !",
+    "user_created": "Account successfully created ! You can already log you in",
     "user_updated": "User successfully updated !",
     "movie_added": "Movie successfully added !",
     "movie_watched": "Movie toggle watch successfull !",

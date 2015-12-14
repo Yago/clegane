@@ -1,0 +1,41 @@
+<ion-view view-title="Signup" cache-view="false" hide-nav-bar="true">
+  <ion-content has-header="false">
+
+    <div class="content-container">
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3" ng-controller="UserCtrl as user">
+          <div class="spacer"></div>
+          <h1 class="text-inverse">Signup</h1>
+
+          <form ng-submit="user.signup();">
+            <label class="item item-input item-floating-label">
+              <span class="input-label text-inverse">Username</span>
+              <input type="text" name="username" ng-model="user.username" placeholder="Username"/>
+            </label>
+            <label class="item item-input item-floating-label">
+              <span class="input-label text-inverse">Email</span>
+              <input type="email" name="email" ng-model="user.email" placeholder="Email"/>
+            </label>
+            <label class="item item-input item-floating-label">
+              <span class="input-label text-inverse">Email confirmation</span>
+              <input type="email" name="emailcheck" ng-model="user.emailcheck" placeholder="Email confirmation"/>
+            </label>
+            <label class="item item-input item-floating-label">
+              <span class="input-label text-inverse">Password</span>
+              <input type="password" name="password" ng-model="user.password" placeholder="Password"/>
+            </label>
+            <label class="item item-input item-floating-label">
+              <span class="input-label text-inverse">Password confirmation</span>
+              <input type="password" name="passwordcheck" ng-model="user.passwordcheck" placeholder="Password confirmation"/>
+            </label>
+            <div class="spacer spacer-sm"></div>
+            <div class="form-group">
+              <input type="submit" value="Log In" class="btn btn-primary"/>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>
