@@ -10,10 +10,7 @@ var app = angular.module('CleganeApp',
 app.run(function ($rootScope, $state, $location) {
   $rootScope.isAuthenticated = false;
   $rootScope.isMenu = 'never';
-  if (localStorage.cleganeToken) {
-    $rootScope.isAuthenticated = true;
-    $rootScope.isMenu = 'large';
-  } else if (sessionStorage.cleganeToken) {
+  if (localStorage.cleganeToken || sessionStorage.cleganeToken) {
     $rootScope.isAuthenticated = true;
     $rootScope.isMenu = 'large';
   }

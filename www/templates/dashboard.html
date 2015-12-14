@@ -1,6 +1,21 @@
 <ion-view view-title="Test" cache-view="false" hide-back-button="true">
-  <ion-content>
-    <h1>Hello Dashboard</h1>
-    <a href="#" ui-sref="app.test">test</a>
+  <ion-content ng-controller="DashboardCtrl as dashboard" ng-init="dashboard.init();">
+
+    <div class="cover">
+      <div class="cover-image">
+        <a href="/movie/{{picksItem.id}}">
+          <!-- {{picture.default(picksItem.backdrop_path, 5, 2.38, 'center', 'img-responsive img-full', movie.title)}} -->
+          <img src="{{dashboard.data.items[dashboard.data.items.length - 1].backdrop_path}}" alt="">
+          <div class="cover-content">
+            <div class="content-container">
+              <h3>Clegane's weekly picks</h3>
+              <h1>{{dashboard.data.items[dashboard.data.items.length - 1].title}}</h1>
+              <div class="spacer spacer-sm"></div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
   </ion-content>
 </ion-view>
