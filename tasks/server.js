@@ -40,6 +40,7 @@ module.exports = function() {
       runSequence('angular', 'angular', 'styleguide', reload);
     });
     gulp.watch(['views/**/*.html.swig'], reload);
+    gulp.watch(['www/**/*.html'], reload);
     gulp.watch([
       config.assets + 'components/**/*.{html,hbs,md}',
       config.assets + 'templates/**/*.html.swig',

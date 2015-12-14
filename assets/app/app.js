@@ -9,10 +9,12 @@ app.config(function($interpolateProvider){
     $interpolateProvider.startSymbol('[[').endSymbol(']]');
 });
 
+app.config(['$locationProvider', function($locationProvider) {
+  $locationProvider.html5Mode(true);
+}]);
+
 // Fix when $uibModalInstance is use in a non-modal controller
 app.service('$uibModalInstance', function () {});
-
-//---------
 
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -26,34 +28,4 @@ app.run(function($ionicPlatform) {
       StatusBar.styleDefault();
     }
   });
-});
-
-app.config(function($stateProvider, $urlRouterProvider) {
-
-  $stateProvider
-    .state('app', {
-      url: "",
-      abstract: true,
-      templateUrl: "templates/menu.html",
-      controller: 'MainCtrl'
-    })
-    .state('app.home', {
-      url: "/",
-      views: {
-        'menuContent': {
-          templateUrl: "templates/homepage.html"
-        }
-      }
-    })
-    .state('app.test', {
-      url: "/test",
-      views: {
-        'menuContent': {
-          templateUrl: "templates/test.html"
-        }
-      }
-    });
-
-    $urlRouterProvider.otherwise('/');
-
 });

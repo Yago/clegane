@@ -5,14 +5,20 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
 
+    <base href="/">
     <link href="build/css/vendors.min.css" rel="stylesheet">
     <link href="build/css/main.css" rel="stylesheet">
 
     <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
+    <!-- <script src="cordova.js"></script> -->
+
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+    <!--[if lt IE 9]>
+      <script src="build/js/polyfills.min.js"></script>
+    <![endif]-->
 
   </head>
-  <body ng-app="CleganeApp">
+  <body ng-app="CleganeApp" ng-controller="MainCtrl as app">
 
     <ion-nav-bar class="bar-stable">
       <ion-nav-back-button>
