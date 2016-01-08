@@ -2,16 +2,6 @@
 
 /* global app */
 
-app.directive('cleganeVideosds', function(){
-  return {
-    restrict: 'E',
-    scope: {
-      code: '@code'
-    },
-    templateUrl: 'templates/components/atoms/video.html'
-  };
-});
-
 app.directive('cleganeVideo', function($sce) {
   return {
     restrict: 'E',

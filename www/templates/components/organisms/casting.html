@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-xs-6 col-sm-3" ng-repeat="(key, cast) in page.data.credits.cast | limitTo:4">
+    <div class="cast-thumb">
+      <a href="/people/{{content.id}}">
+        <clegane-pic
+          src="{{cast.profile_path}}"
+          size="1"
+          ratio="0.66"
+          gravity="center"
+          class="img-responsive"
+          alt="{{cast.name}}"></clegane-pic>
+      </a>
+      <a href="/people/{{cast.id}}">
+        <h4>{{cast.name}}</h4>
+      </a>
+      <small>{{cast.character}}</small>
+      <div class="spacer spacer-xs visible-xs"></div>
+    </div>
+    <div ng-if="$index % 2 == 1" class="clearfix visible-xs"></div>
+  </div>
+</div>
+<br>
+<div ng-controller="CollapseCtrl as collapse">
+  <p>
+    <button class="btn btn-link" role="button" aria-expanded="[[!collapse.isCollapsed]]" ng-click="collapse.isCollapsed = !collapse.isCollapsed">Full cast & crew <span class="caret"></span></button>
+  </p>
+
+  <div id="cast-wrapper" class="cast-wrapper" uib-collapse="collapse.isCollapsed">
+    <table class="table table-striped table-hover">
+      <tbody>
+
+        <tr ng-repeat="(key, cast) in page.data.credits.cast" ng-if="$index >= 4">
+          <td><a href="/people/{{cast.id}}">{{cast.name}}</a></td>
+          <td>{{cast.character}}</td>
+        </tr>
+
+        <tr ng-if="page.data.credits.crew.length > 0">
+          <td><h3>Crew</h3></td>
+          <td></td>
+        </tr>
+
+        <tr ng-repeat="(key, crew) in page.data.credits.crew" ng-if="$index >= 4">
+          <td><a href="/people/{{crew.id}}">{{crew.name}}</a></td>
+          <td>{{crew.job}}</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
