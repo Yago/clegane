@@ -82,15 +82,27 @@ exports.update = function(req, res) {
  * Render dashboard page
  */
 exports.dashboard = function(req, res) {
-  var userId = req.body.userId;
+  var userId = req.decoded.id;
+
+  console.log(userId);
 
   // Request main people informations
   apiCtrl.get('/list/'+config.picks,
     function (main) {
-      res.json({
-        success: true,
-        data: main
-      });
+      User.findOne({_id:userId,},
+        function (err, user) {
+          if (err) {res.json({success: false, message: message.errors.default_error});}
+          if (!user) {res.json({success: false, message: message.errors.user_notfound});}
+          res.json({
+            success: true,
+            data: {
+              picks: main,
+              movies: user.movies,
+              lists: user.lists,
+              tvs: user.tvs
+            }
+          });
+        });
     }, function (err) {
       res.json({
         success: false,

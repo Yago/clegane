@@ -17,6 +17,7 @@ app.controller('DashboardCtrl', function(ApiService) {
     ApiService.get('LOCAL_API?token='+that.token,
       function (res) {
         if (res.data.success) {
+          console.log(res.data.data.picks);
           that.data = res.data.data;
         }
       }, function (err) {
