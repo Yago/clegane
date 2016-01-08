@@ -2,7 +2,7 @@
 
 /* global app */
 
-app.controller('DashboardCtrl', function(ApiService) {
+app.controller('PageCtrl', function(ApiService) {
   var that = this;
 
   that.data = '';
@@ -13,11 +13,10 @@ app.controller('DashboardCtrl', function(ApiService) {
   }
 
   // Get picks and user data
-  that.init = function () {
-    ApiService.get('LOCAL_API?token='+that.token,
+  that.init = function (call) {
+    ApiService.get('LOCAL_API'+call+'?token='+that.token,
       function (res) {
         if (res.data.success) {
-          console.log(res.data.data.picks);
           that.data = res.data.data;
         }
       }, function (err) {

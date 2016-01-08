@@ -84,8 +84,6 @@ exports.update = function(req, res) {
 exports.dashboard = function(req, res) {
   var userId = req.decoded.id;
 
-  console.log(userId);
-
   // Request main people informations
   apiCtrl.get('/list/'+config.picks,
     function (main) {

@@ -1,20 +1,20 @@
 <ion-view view-title="Test" cache-view="false" hide-back-button="true">
-  <ion-content ng-controller="DashboardCtrl as dashboard" ng-init="dashboard.init();">
+  <ion-content ng-controller="PageCtrl as page" ng-init="page.init('');">
 
     <div class="cover">
       <div class="cover-image">
         <a href="/movie/{{picksItem.id}}">
           <clegane-pic
-            src="{{dashboard.data.picks.items[dashboard.data.picks.items.length - 1].backdrop_path}}"
+            src="{{page.data.picks.items[page.data.picks.items.length - 1].backdrop_path}}"
             size="5"
             ratio="2.38"
             gravity="center"
             class="img-responsive img-full"
-            alt="{{dashboard.data.picks.items[dashboard.data.picks.items.length - 1].title}}"></clegane-pic>
+            alt="{{page.data.picks.items[page.data.picks.items.length - 1].title}}"></clegane-pic>
           <div class="cover-content">
             <div class="content-container">
               <h3>Clegane's weekly picks</h3>
-              <h1>{{dashboard.data.picks.items[dashboard.data.picks.items.length - 1].title}}</h1>
+              <h1>{{page.data.picks.items[page.data.picks.items.length - 1].title}}</h1>
               <div class="spacer spacer-sm"></div>
             </div>
           </div>
@@ -28,9 +28,9 @@
       <div class="row">
         <div class="col-sm-7">
           <h3 class="text-inverse">Movies recently watched</h3>
-          <div class="row" ng-if="dashboard.data.movies.length > 0">
+          <div class="row" ng-if="page.data.movies.length > 0">
 
-            <div class="col-xs-4" ng-repeat="(key, movie) in dashboard.data.movies | orderBy:'watched_on':true | limitTo:3">
+            <div class="col-xs-4" ng-repeat="(key, movie) in page.data.movies | orderBy:'watched_on':true | limitTo:3">
               <a class="thumb" href="/movie/{{movie.tmdb_id}}">
                 <clegane-pic
                   src="{{movie.picture}}"
@@ -48,7 +48,7 @@
 
           </div>
 
-          <div ng-if="dashboard.data.movies.length <= 0">
+          <div ng-if="page.data.movies.length <= 0">
             <div class="spacer spacer-sm"></div>
             <div class="row">
               <div class="col-md-10">
@@ -64,10 +64,10 @@
 
         </div>
 
-        <div class="col-sm-4 col-sm-offset-1" ng-if="dashboard.data.lists.length > 0">
+        <div class="col-sm-4 col-sm-offset-1" ng-if="page.data.lists.length > 0">
           <h3 class="text-inverse">Your lists</h3>
           <div class="btn-list">
-            <a class="btn btn-default" ng-repeat="(key, list) in dashboard.data.lists | orderBy:'name':false" href="/list/{{list._id}}">{{list.name}}</a>
+            <a class="btn btn-default" ng-repeat="(key, list) in page.data.lists | orderBy:'name':false" href="/list/{{list._id}}">{{list.name}}</a>
           </div>
         </div>
       </div>
@@ -75,9 +75,9 @@
       <div class="spacer spacer-sm"></div>
 
       <h3 class="text-inverse">Last episode watched</h3>
-      <div class="row" ng-if="dashboard.data.tvs.length > 0">
+      <div class="row" ng-if="page.data.tvs.length > 0">
 
-        <div class="col-sm-2-4" ng-repeat="(key, tv) in dashboard.data.tvs | orderBy:'last_view':true | limitTo:5">
+        <div class="col-sm-2-4" ng-repeat="(key, tv) in page.data.tvs | orderBy:'last_view':true | limitTo:5">
           <a class="thumb thumb-episode" href="/tv/{{tv.tmdb_id}}">
             <clegane-pic
               src="{{tv.picture}}"
@@ -94,7 +94,7 @@
         </div>
 
       </div>
-      <div class="row" ng-if="dashboard.data.tvs.length <= 0">
+      <div class="row" ng-if="page.data.tvs.length <= 0">
         <div class="spacer spacer-sm"></div>
         <div class="row">
           <div class="col-md-8">
