@@ -44,6 +44,10 @@ ion-content {
   background: $cod-gray;
 }
 
+ion-modal-view ion-content {
+  background: $white;
+}
+
 .content-container {
   max-width: $screen-lg;
   width: 80%;
