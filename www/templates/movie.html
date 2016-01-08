@@ -1,0 +1,74 @@
+<ion-view view-title="Test" cache-view="false" hide-back-button="true">
+  <ion-content ng-controller="PageCtrl as page" ng-init="page.get('/movie/'+page.param.id);">
+
+    <div class="cover">
+      <div class="cover-image">
+        <clegane-pic
+          src="{{page.data.movie.backdrop_path}}"
+          size="5"
+          ratio="2.38"
+          gravity="center"
+          class="img-responsive img-full"
+          alt="{{page.data.movie.title}}"></clegane-pic>
+      </div>
+      <div class="cover-content">
+        <div class="content-container">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="poster-wrapper">
+                <clegane-pic
+                  src="{{page.data.movie.poster_path}}"
+                  size="1"
+                  ratio="0.66"
+                  gravity="none"
+                  class="img-responsive hidden-xs"
+                  alt="{{page.data.movie.title}}"></clegane-pic>
+
+                <ul class="list-unstyled">
+                  <li ng-if="page.data.movie.release_date">
+                    <h4>Release</h4>
+                    {{page.data.movie.release_date}}
+                  </li>
+                  <li ng-if="page.data.movie.production_countries">
+                    <h4>Countries</h4>
+                    <span ng-repeat="(key, country) in page.data.movie.production_countries">{{country.name}}<span ng-if="!$last">, </span></span>
+                  </li>
+                  <li ng-if="page.data.keywords">
+                    <h4>Keywords</h4>
+                    <span ng-repeat="(key, keyword) in page.data.keywords">
+                      <a href="/tag/{{keyword.id}}/1">{{keyword.name}}</a><span ng-if="!$last">, </span>
+                    </span>
+                  </li>
+                  <li ng-if="page.data.movie.imdb_id">
+                    <h4>Links</h4>
+                    <a href="http://www.imdb.com/title/{{page.data.movie.imdb_id}}" target="_blank">IMDB</a>
+                  </li>
+                </ul>
+
+              </div>
+            </div>
+            <div class="col-sm-9">
+              <h3 ng-controller="WatchCtrl as watched" ng-init="watched.init()">
+                <button ng-cloak class="btn-link btn-watch"
+                        ng-click='watched.movie(
+                        page.data.movie.id,
+                        page.data.movie.title,
+                        page.data.movie.poster_path,
+                        page.data.movie.imdb_id)'>
+                  <i ng-hide="watched.watched" class="cleganicon cleganicon-unwatched"></i>
+                  <i ng-show="watched.watched" class="cleganicon cleganicon-eye"></i>
+                </button>
+                Movie
+              </h3>
+              <h1>
+                {{page.data.movie.title}}
+                <small ng-if="page.data.movie.title != page.data.movie.original_title">({{movie.original_title}})</small>
+              </h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

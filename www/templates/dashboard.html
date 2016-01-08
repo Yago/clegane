@@ -1,5 +1,5 @@
 <ion-view view-title="Test" cache-view="false" hide-back-button="true">
-  <ion-content ng-controller="PageCtrl as page" ng-init="page.init('');">
+  <ion-content ng-controller="PageCtrl as page" ng-init="page.get('');">
 
     <div class="cover">
       <div class="cover-image">
@@ -34,8 +34,8 @@
               <a class="thumb" href="/movie/{{movie.tmdb_id}}">
                 <clegane-pic
                   src="{{movie.picture}}"
-                  size="5"
-                  ratio="2.38"
+                  size="1"
+                  ratio="0.66"
                   gravity="center"
                   class="img-responsive img-full"
                   alt="{{movie.name}}"></clegane-pic>
@@ -81,8 +81,8 @@
           <a class="thumb thumb-episode" href="/tv/{{tv.tmdb_id}}">
             <clegane-pic
               src="{{tv.picture}}"
-              size="5"
-              ratio="2.38"
+              size="1"
+              ratio="0.66"
               gravity="center"
               class="img-responsive img-full"
               alt="{{movie.name}}"></clegane-pic>

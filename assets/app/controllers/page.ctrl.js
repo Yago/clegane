@@ -2,10 +2,11 @@
 
 /* global app */
 
-app.controller('PageCtrl', function(ApiService) {
+app.controller('PageCtrl', function(ApiService, $stateParams) {
   var that = this;
 
   that.data = '';
+  that.param = $stateParams;
 
   that.token = localStorage.cleganeToken;
   if (!that.token) {
@@ -13,7 +14,7 @@ app.controller('PageCtrl', function(ApiService) {
   }
 
   // Get picks and user data
-  that.init = function (call) {
+  that.get = function (call) {
     ApiService.get('LOCAL_API'+call+'?token='+that.token,
       function (res) {
         if (res.data.success) {

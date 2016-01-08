@@ -28,12 +28,12 @@ app.config(function($stateProvider, $urlRouterProvider, $rootScopeProvider) {
         }
       }
     })
-    .state('app.test', {
-      url: '/test',
+    .state('app.movie', {
+      url: '/movie/:id',
       requireAuth: true,
       views: {
         'menuContent': {
-          templateUrl: 'templates/test.html'
+          templateUrl: 'templates/movie.html'
         }
       }
     })

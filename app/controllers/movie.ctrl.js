@@ -30,14 +30,14 @@ exports.display = function(req, res) {
               apiCtrl.get('/movie/'+movieId+'/videos',
                 function (videos) {
 
-                  // Request tokenwords
-                  apiCtrl.get('/movie/'+movieId+'/tokenwords',
-                    function (tokenwords) {
+                  // Request keywords
+                  apiCtrl.get('/movie/'+movieId+'/keywords',
+                    function (keywords) {
                       data.movie = main;
                       data.credits = credits;
                       data.similar = similar.results;
                       data.videos = videos.results;
-                      data.tokenwords = tokenwords.tokenwords;
+                      data.keywords = keywords.keywords;
                       res.json({
                         success: true,
                         data: data
