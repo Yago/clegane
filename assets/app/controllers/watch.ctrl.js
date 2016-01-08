@@ -19,13 +19,12 @@ app.controller('WatchCtrl', function(ApiService, $stateParams) {
         };
 
     ApiService.post(url, data, function (res) {
+      //console.log(res);
       if (res.data.success) {
         res.data.data.forEach(function(movie){
-          console.log(movie.tmdb_id + ' - ' + $stateParams.id);
           if (movie.tmdb_id === $stateParams.id && movie.watched) {
             that.watched = true;
-            console.log('watched');
-          }else {console.log('not watched');}
+          }
         });
       }
     }, function (err) {
