@@ -23,7 +23,10 @@ app.controller('PageCtrl', function(ApiService, $stateParams) {
       }, function (err) {
         console.log(err);
       });
-
   };
+
+  that.youtube = function (id) {
+    return 'https://www.youtube.com/embed/'+id;
+  }
 
 });

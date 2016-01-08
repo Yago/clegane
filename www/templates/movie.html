@@ -1,6 +1,5 @@
-<ion-view view-title="Test" cache-view="false" hide-back-button="true">
+<ion-view view-title="Clegane" cache-view="false" hide-back-button="true">
   <ion-content ng-controller="PageCtrl as page" ng-init="page.get('/movie/'+page.param.id);">
-
     <div class="cover">
       <div class="cover-image">
         <clegane-pic
@@ -68,6 +67,71 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="content-container">
+      <div class="row">
+        <div class="col-sm-9 col-sm-offset-3">
+
+          <div class="whity">
+            <div ng-controller="ModalCtrl as modal">
+              <button class="btn btn-primary btn-corner" ng-click="modal.open()">
+                <i class="cleganicon cleganicon-add"></i>
+              </button>
+            </div>
+            <p class="lead" ng-if="page.data.movie.tagline">“{{page.data.movie.tagline}}”</p>
+
+            <p>
+              <span ng-repeat="(key, genre) in page.data.movie.genres">
+                <a href="/genre/{{genre.id}}/1">
+                  {{genre.name}}
+                </a><span ng-if="!$last"> | </span>
+              </span>
+            </p>
+
+            <p>{{page.data.movie.overview}}</p>
+          </div>
+
+          <div ng-if="page.data.videos" class="embed-responsive embed-responsive-16by9">
+            <div ng-repeat="(key, video) in page.data.videos | limitTo:1">
+              <div ng-if="video.site === 'YouTube'">
+              <clegane-video code="video.key"></clegane-video>
+              </div>
+            </div>
+          </div>
+
+          <div class="whity">
+            <h2>Cast</h2>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="spacer"></div>
+
+      <div ng-if="page.data.similar.length > 0">
+        <h2 class="text-inverse">Similar movies</h2>
+        <div class="spacer spacer-xs"></div>
+        <div class="row">
+          <div ng-repeat="(key, movie) in page.data.similar | limitTo:5" class="col-sm-2-4">
+            <a class="thumb" href="/movie/{{content.id}}">
+              <clegane-pic
+                src="{{movie.poster_path}}"
+                size="1"
+                ratio="0.66"
+                gravity="center"
+                class="img-responsive"
+                alt="{{movie.title}}"></clegane-pic>
+              <span class="thumb-info">
+                <h5>{{movie.media_type}}</h5>
+                <h3>{{movie.title}}</h3>
+              </span>
+            </a>
+            <div class="spacer spacer-xs visible-xs"></div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
   </ion-content>
