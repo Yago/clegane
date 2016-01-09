@@ -10,11 +10,15 @@ app.controller('ModalCtrl', function($scope, $ionicModal) {
     animation: 'slide-in-up'
   }).then(function(modal) {
     that.modal = modal;
-    that.modal.show();
+    //that.modal.show();
   });
 
   that.open = function () {
     that.modal.show();
+  };
+
+  that.close = function () {
+    that.modal.hide();
   };
 
   // that.search = function () {
