@@ -59,10 +59,10 @@ app.controller('WatchCtrl', function(ApiService, $stateParams) {
     });
   };
 
-  that.episode = function (key, id, title, picture, season, episode, episodeId, episodeTitle, imdb) {
-    var url = '/tv/'+ id +'/watch/'+episodeId,
+  that.episode = function (id, title, picture, season, episode, episodeId, episodeTitle, imdb) {
+    var url = 'LOCAL_API/tv/'+ id +'/watch/'+episodeId,
         data = {
-          key: key,
+          token: that.token,
           name: title,
           picture: picture,
           imdb_id: imdb,

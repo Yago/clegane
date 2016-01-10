@@ -37,6 +37,15 @@ app.config(function($stateProvider, $urlRouterProvider, $rootScopeProvider) {
         }
       }
     })
+    .state('app.tv', {
+      url: '/tv/:id',
+      requireAuth: true,
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/tv.html'
+        }
+      }
+    })
     .state('app.login', {
       url: '/login',
       requireAuth: false,

@@ -21,12 +21,4 @@ app.controller('ModalCtrl', function($scope, $ionicModal) {
     that.modal.hide();
   };
 
-  // that.search = function () {
-  //   var modalInstance = $uibModal.open({
-  //         animation: true,
-  //         templateUrl: 'modal-search',
-  //         controller: 'SearchCtrl as search'
-  //       });
-  // };
-
 });

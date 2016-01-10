@@ -1,0 +1,26 @@
+<h3>
+  Season {{episode.season_number}}, Episode {{episode.episode_number}} : {{episode.name}}<br>
+  <small>({{episode.air_date}})</small>
+</h3>
+<div class="spacer spacer-xs"></div>
+
+<div id="episode-gallery-{{episodes.seasonnumber}}{{episodes.number}}" class="episode-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+  <div class="episode-gallery-container">
+    <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" ng-repeat="(key, image) in episodes.images | limitTo:2">
+      <a href="https://image.tmdb.org/t/p/original{{image.file_path}}" itemprop="contentUrl" ng-click="episodes.openGallery(key); $event.preventDefault();">
+        <clegane-pic
+          src="{{image.file_path}}"
+          size="1"
+          ratio="1.77"
+          gravity="none"
+          class="img-responsive"
+          alt="Season {{episodes.seasonnumber}}, Episode {{$index}} : {{episodes.title}}"></clegane-pic>
+      </a>
+    </figure>
+  </div>
+</div>
+<div class="spacer spacer-sm"></div>
+
+<p>
+  {{episode.overview}}
+</p>

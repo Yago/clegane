@@ -34,10 +34,8 @@ app.controller('EpisodesCtrl', function($http, ApiService) {
     });
   };
 
-  that.init = function (seasons) {
-    for (var i = 0; i <= seasons; i++) {
-      that.seasonOpen[i] = false;
-    }
+  that.init = function (season) {
+    that.seasonOpen[season] = false;
   };
 
   that.selectSeason = function (id, season) {
@@ -56,6 +54,7 @@ app.controller('EpisodesCtrl', function($http, ApiService) {
   };
 
   that.openGallery = function (index) {
+    console.log('open gallery');
     var pswp = document.querySelector('.pswp'),
         options = {
           index: index,
