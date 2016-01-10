@@ -46,6 +46,15 @@ app.config(function($stateProvider, $urlRouterProvider, $rootScopeProvider) {
         }
       }
     })
+    .state('app.people', {
+      url: '/people/:id',
+      requireAuth: true,
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/people.html'
+        }
+      }
+    })
     .state('app.login', {
       url: '/login',
       requireAuth: false,

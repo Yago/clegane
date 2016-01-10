@@ -2,12 +2,13 @@
 
 /* global app, PhotoSwipe, PhotoSwipeUI_Default */
 
-app.controller('PeopleCtrl', function($http) {
+app.controller('PeopleCtrl', function($http, $stateParams) {
   var that = this;
 
   that.gallery = [];
 
-  that.getData = function (id) {
+  that.getData = function () {
+    var id = $stateParams.id;
 
     // Get people's profile pics
     $http.get('http://api.themoviedb.org/3/person/'+id+'/images', {

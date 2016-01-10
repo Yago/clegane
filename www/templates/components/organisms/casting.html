@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-xs-6 col-sm-3" ng-repeat="(key, cast) in page.data.credits.cast | limitTo:4">
     <div class="cast-thumb">
-      <a href="/people/{{content.id}}">
+      <a href="/people/{{cast.id}}">
         <clegane-pic
           src="{{cast.profile_path}}"
           size="1"

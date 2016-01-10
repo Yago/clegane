@@ -54,7 +54,6 @@ app.controller('EpisodesCtrl', function($http, ApiService) {
   };
 
   that.openGallery = function (index) {
-    console.log('open gallery');
     var pswp = document.querySelector('.pswp'),
         options = {
           index: index,
