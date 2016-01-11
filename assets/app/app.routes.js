@@ -142,6 +142,15 @@ app.config(function($stateProvider, $urlRouterProvider, $rootScopeProvider) {
         }
       }
     })
+    .state('app.list', {
+      url: '/list/:id',
+      requireAuth: true,
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/list.html'
+        }
+      }
+    })
     .state('app.lists', {
       url: '/lists',
       requireAuth: true,
