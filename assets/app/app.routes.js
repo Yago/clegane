@@ -132,6 +132,24 @@ app.config(function($stateProvider, $urlRouterProvider, $rootScopeProvider) {
           templateUrl: 'templates/results.html'
         }
       }
+    })
+    .state('app.watched', {
+      url: '/watched',
+      requireAuth: true,
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/watched.html'
+        }
+      }
+    })
+    .state('app.lists', {
+      url: '/lists',
+      requireAuth: true,
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/lists.html'
+        }
+      }
     });
 
   $urlRouterProvider.otherwise('/');
