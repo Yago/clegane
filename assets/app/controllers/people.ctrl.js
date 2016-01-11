@@ -82,4 +82,21 @@ app.controller('PeopleCtrl', function($http, $stateParams) {
     gallery.init();
   };
 
+  that.notFuture = function (item) {
+    var currentYear = new Date().getFullYear();
+    if (item.year < currentYear) {
+      return item;
+    } else {
+      return 0;
+    }
+  };
+
+  that.hasPoster = function (item) {
+    if (item.poster_path) {
+      return item;
+    } else {
+      return 0;
+    }
+  };
+
 });

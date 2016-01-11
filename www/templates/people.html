@@ -82,57 +82,59 @@
         </div>
 
         <h2>Known For</h2>
-        <div class="row">
-          <div class="col-sm-2-4" ng-repeat="(key, media) in page.data.credits.cast | orderBy:'year':true | limitTo:5" ng-if="media.poster_path && media.year">
-            <clegane-thumb
-              ng-if="media.media_type === 'movie'"
-              id="{{media.id}}"
-              img="{{media.poster_path}}"
-              title="{{media.title}}"
-              type="{{media.media_type}}"></clegane-thumb>
-            <clegane-thumb
-              ng-if="media.media_type === 'tv'"
-              id="{{media.id}}"
-              img="{{media.poster_path}}"
-              title="{{media.name}}"
-              type="{{media.media_type}}"></clegane-thumb>
-            <div class="spacer spacer-xs visible-xs"></div>
+        <div ng-controller="PeopleCtrl as people">
+          <div class="row">
+            <div class="col-sm-2-4" ng-repeat="(key, media) in page.data.credits.cast | orderBy:'year':true | filter:people.notFuture | filter:people.hasPoster | limitTo:5">
+              <clegane-thumb
+                ng-if="media.media_type === 'movie'"
+                id="{{media.id}}"
+                img="{{media.poster_path}}"
+                title="{{media.title}}"
+                type="{{media.media_type}}"></clegane-thumb>
+              <clegane-thumb
+                ng-if="media.media_type === 'tv'"
+                id="{{media.id}}"
+                img="{{media.poster_path}}"
+                title="{{media.name}}"
+                type="{{media.media_type}}"></clegane-thumb>
+              <div class="spacer spacer-xs visible-xs"></div>
+            </div>
           </div>
-        </div>
-        <br>
-        <div ng-controller="CollapseCtrl as collapse">
-          <p ng-if="page.data.credits.cast.length > 4 || page.data.credits.crew.length > 0">
-            <button class="btn btn-link" role="button" ng-click="collapse.isCollapsed = !collapse.isCollapsed" aria-expanded="[[!collapse.isCollapsed]]">Full filmography <span class="caret"></span></button>
-          </p>
+          <br>
+          <div ng-controller="CollapseCtrl as collapse">
+            <p ng-if="page.data.credits.cast.length > 4 || page.data.credits.crew.length > 0">
+              <button class="btn btn-link" role="button" ng-click="collapse.isCollapsed = !collapse.isCollapsed" aria-expanded="[[!collapse.isCollapsed]]">Full filmography <span class="caret"></span></button>
+            </p>
 
-          <div id="cast-wrapper" class="cast-wrapper" ng-cloak uib-collapse="collapse.isCollapsed">
-            <h3 ng-if="page.data.credits.cast.length > 4">Acting</h3>
-            <table ng-if="page.data.credits.cast.length > 4" class="table table-striped table-hover">
-              <tbody>
-                <tr ng-repeat="(key, media) in page.data.credits.cast | orderBy:'year':true" ng-if="$index > 4">
-                <td><span ng-if="media.year === 0">-</span><span ng-if="media.year !== 0">{{media.year}}</span></td>
-                  <td><a href="/{{media.media_type}}/{{media.id}}">{{media.heading}}</a> <span class="label label-default pull-right">{{media.media_type}}</span></td>
-                  <td>
-                    <span ng-if="media.character">{{media.character}}</span>
-                    <em ng-if="!media.character">-</em>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <div id="cast-wrapper" class="cast-wrapper" ng-cloak uib-collapse="collapse.isCollapsed">
+              <h3 ng-if="page.data.credits.cast.length > 4">Acting</h3>
+              <table ng-if="page.data.credits.cast.length > 4" class="table table-striped table-hover">
+                <tbody>
+                  <tr ng-repeat="(key, media) in page.data.credits.cast | orderBy:'year':true">
+                  <td><span ng-if="media.year === 0">-</span><span ng-if="media.year !== 0">{{media.year}}</span></td>
+                    <td><a href="/{{media.media_type}}/{{media.id}}">{{media.heading}}</a> <span class="label label-default pull-right">{{media.media_type}}</span></td>
+                    <td>
+                      <span ng-if="media.character">{{media.character}}</span>
+                      <em ng-if="!media.character">-</em>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
 
-            <h3 ng-if="page.data.credits.crew.length > 0">Crew</h3>
-            <table ng-if="page.data.credits.crew.length > 0" class="table table-striped table-hover">
-              <tbody>
-                <tr ng-repeat="(key, media) in page.data.credits.crew | orderBy:'year':true">
-                <td><span ng-if="media.year === 0">-</span><span ng-if="media.year !== 0">{{media.year}}</span></td>
-                  <td><a href="/{{media.media_type}}/{{media.id}}">{{media.heading}}</a> <span class="label label-default pull-right">{{media.media_type}}</span></td>
-                  <td>
-                    <span ng-if="media.job">{{media.job}}</span>
-                    <em ng-if="!media.job">-</em>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+              <h3 ng-if="page.data.credits.crew.length > 0">Crew</h3>
+              <table ng-if="page.data.credits.crew.length > 0" class="table table-striped table-hover">
+                <tbody>
+                  <tr ng-repeat="(key, media) in page.data.credits.crew | orderBy:'year':true">
+                  <td><span ng-if="media.year === 0">-</span><span ng-if="media.year !== 0">{{media.year}}</span></td>
+                    <td><a href="/{{media.media_type}}/{{media.id}}">{{media.heading}}</a> <span class="label label-default pull-right">{{media.media_type}}</span></td>
+                    <td>
+                      <span ng-if="media.job">{{media.job}}</span>
+                      <em ng-if="!media.job">-</em>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
