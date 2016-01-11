@@ -48,8 +48,21 @@ exports.update = function(req, res) {
     User.findOneAndUpdate({_id:userId},
     {
       $set : {
-        'username': req.body.username,
         'email': req.body.email
+      }
+    }, function (err, user, next) {
+      if (err) {res.json({success: false, message: message.errors.default_error});}
+      if (!user) {res.json({success: false,message: message.errors.user_notfound});}
+      res.json({
+        success: true,
+        message: message.success.user_updated
+      });
+    });
+  } else if (typeof req.body.email === 'undefined' || req.body.email.length < 1) {
+    User.findOneAndUpdate({_id:userId},
+    {
+      $set : {
+        'password': createHash(req.body.password)
       }
     }, function (err, user, next) {
       if (err) {res.json({success: false, message: message.errors.default_error});}
@@ -63,7 +76,6 @@ exports.update = function(req, res) {
     User.findOneAndUpdate({_id:userId},
     {
       $set : {
-        'username': req.body.username,
         'email': req.body.email,
         'password': createHash(req.body.password)
       }
@@ -105,6 +117,27 @@ exports.dashboard = function(req, res) {
       res.json({
         success: false,
         message: message.error.api_error
+      });
+    });
+};
+
+/*
+ * List User's infos
+ * Params: token
+ */
+exports.infos = function(req, res) {
+  var userId = req.decoded.id;
+
+  User.findOne({_id:userId},
+    function (err, user) {
+      if (err) {res.json({success: false, message: messages.errors.default_error});}
+      if (!user) {res.json({success: false,message: messages.errors.user_notfound});}
+      res.json({
+        success: true,
+        data: {
+          username: user.username,
+          email: user.email
+        }
       });
     });
 };

@@ -160,6 +160,15 @@ app.config(function($stateProvider, $urlRouterProvider, $rootScopeProvider) {
         }
       }
     })
+    .state('app.settings', {
+      url: '/settings',
+      requireAuth: true,
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/settings.html'
+        }
+      }
+    })
     .state('app.about', {
       url: '/about',
       requireAuth: true,

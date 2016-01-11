@@ -46,7 +46,7 @@
         <a class="item item-icon-left" href="/settings">
           <i class="icon cleganicon cleganicon-cog"></i>Settings
         </a>
-        <a class="item item-icon-left" href="/logout">
+        <a class="item item-icon-left" href="#" ng-controller="UserCtrl as user" ng-click="user.logout(); $event.preventDefault();">
           <i class="icon cleganicon cleganicon-out"></i>Logout
         </a>
         <div class="item item-divider">Clegane</div>
