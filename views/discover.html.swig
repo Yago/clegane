@@ -16,7 +16,7 @@
         <div class="col-sm-6">
     {% endif %}
         <h4>
-          {{data.total_results}} Results - {{data.page}}/{{max}}
+          {{data.total_results}} Results - {{data.page}}/<span ng-if="page.data.data.total_pages <= 1000">{{page.data.data.total_pages}}</span><span ng-if="page.data.data.total_pages > 1000">1000</span>
         </h4>
         <h1>
           {{query|beautify}} {% if type === 'tvs' %}TV Shows{% else %}{{type}}{% endif %}

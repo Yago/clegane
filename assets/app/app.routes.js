@@ -55,12 +55,32 @@ app.config(function($stateProvider, $urlRouterProvider, $rootScopeProvider) {
         }
       }
     })
+    .state('app.movies', {
+      url: '/movies/:query/:page',
+      requireAuth: true,
+      params : { type: 'movies' },
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/discover.html'
+        }
+      }
+    })
     .state('app.tv', {
       url: '/tv/:id',
       requireAuth: true,
       views: {
         'menuContent': {
           templateUrl: 'templates/tv.html'
+        }
+      }
+    })
+    .state('app.tvs', {
+      url: '/tvs/:query/:page',
+      requireAuth: true,
+      params : { type: 'tvs' },
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/discover.html'
         }
       }
     })
@@ -73,30 +93,43 @@ app.config(function($stateProvider, $urlRouterProvider, $rootScopeProvider) {
         }
       }
     })
+    .state('app.peoples', {
+      url: '/peoples/:query/:page',
+      requireAuth: true,
+      params : { type: 'peoples' },
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/discover.html'
+        }
+      }
+    })
     .state('app.search', {
       url: '/search/:query/:page',
       requireAuth: true,
+      params : { type: 'search' },
       views: {
         'menuContent': {
-          templateUrl: 'templates/all-results.html'
+          templateUrl: 'templates/results.html'
         }
       }
     })
     .state('app.tag', {
       url: '/tag/:query/:page',
       requireAuth: true,
+      params : { type: 'tag' },
       views: {
         'menuContent': {
-          templateUrl: 'templates/tag.html'
+          templateUrl: 'templates/results.html'
         }
       }
     })
     .state('app.genre', {
       url: '/genre/:query/:page',
       requireAuth: true,
+      params : { type: 'genre' },
       views: {
         'menuContent': {
-          templateUrl: 'templates/genre.html'
+          templateUrl: 'templates/results.html'
         }
       }
     });

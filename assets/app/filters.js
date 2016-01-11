@@ -25,6 +25,16 @@ app.filter('typeaheadid', function() {
 });
 
 /*
+ * Beautify string
+ */
+ app.filter('beautify', function() {
+   return function(input) {
+     var output = input.replace(/\_/g, ' ');
+     return output.charAt(0).toUpperCase() + output.slice(1);
+   };
+ });
+
+/*
  * Return resized image url
  */
 app.filter('resize', function() {
