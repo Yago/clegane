@@ -81,6 +81,24 @@ app.config(function($stateProvider, $urlRouterProvider, $rootScopeProvider) {
           templateUrl: 'templates/all-results.html'
         }
       }
+    })
+    .state('app.tag', {
+      url: '/tag/:query/:page',
+      requireAuth: true,
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/tag.html'
+        }
+      }
+    })
+    .state('app.genre', {
+      url: '/genre/:query/:page',
+      requireAuth: true,
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/genre.html'
+        }
+      }
     });
 
   $urlRouterProvider.otherwise('/');

@@ -11,17 +11,17 @@
   <div class="row">
     <div class="col-sm-2-4" ng-repeat="(key, result) in page.data.data.results">
       <clegane-thumb
-        ng-if="result.media_type === 'movie'"
+        ng-if="result.media_type === 'movie' || page.data.type === 'tag' || page.data.type === 'genre'"
         id="{{result.id}}"
         img="{{result.poster_path}}"
         title="{{result.title}}"
-        type="{{result.media_type}}"></clegane-thumb>
+        type="movie"></clegane-thumb>
       <clegane-thumb
         ng-if="result.media_type === 'tv'"
         id="{{result.id}}"
         img="{{result.poster_path}}"
         title="{{result.name}}"
-        type="{{result.media_type}}"></clegane-thumb>
+        type="tv"></clegane-thumb>
     </div>
   </div>
 </div>
