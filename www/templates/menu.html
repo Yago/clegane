@@ -23,8 +23,36 @@
         <ng-include src="'templates/components/molecules/search.html'"></ng-include>
       </div>
       <ion-list>
-        <ion-item menu-close href="#" ui-sref="app.dashboard">Home</ion-item>
-        <ion-item menu-close href="#" ui-sref="app.test">Test</ion-item>
+        <a class="item item-icon-left" href="#" ui-sref="app.dashboard">
+          <i class="icon cleganicon cleganicon-gauge"></i>Dashboard
+        </a>
+        <div class="item item-divider">Discover</div>
+        <a class="item item-icon-left" href="/movies/popular/1">
+          <i class="icon cleganicon cleganicon-film"></i>Movies
+        </a>
+        <a class="item item-icon-left" href="/tvs/popular/1">
+          <i class="icon cleganicon cleganicon-television"></i>TV Shows
+        </a>
+        <a class="item item-icon-left" href="/peoples/popular/1">
+          <i class="icon cleganicon cleganicon-oscar"></i>People
+        </a>
+        <div class="item item-divider">Personnal</div>
+        <a class="item item-icon-left" href="/watched">
+          <i class="icon cleganicon cleganicon-eye"></i>Watched
+        </a>
+        <a class="item item-icon-left" href="/lists">
+          <i class="icon cleganicon cleganicon-star"></i>My lists
+        </a>
+        <a class="item item-icon-left" href="/settings">
+          <i class="icon cleganicon cleganicon-cog"></i>Settings
+        </a>
+        <a class="item item-icon-left" href="/logout">
+          <i class="icon cleganicon cleganicon-out"></i>Logout
+        </a>
+        <div class="item item-divider">Clegane</div>
+        <a class="item item-icon-left" href="/about">
+          <i class="icon cleganicon cleganicon-info"></i>About
+        </a>
       </ion-list>
     </ion-content>
   </ion-side-menu>

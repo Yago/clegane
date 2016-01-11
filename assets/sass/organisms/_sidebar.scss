@@ -22,6 +22,7 @@
   }
 }
 
+
 .sidebar-content {
   position: fixed;
   width: $sidebar-width;
@@ -29,6 +30,32 @@
   left: 0;
   @media screen and (max-width: $screen-sm-max) {
     position: absolute;
+  }
+}
+
+.menu-left .scroll-content {
+  background: $gallery;
+  .list {
+    padding: 15px 0;
+  }
+  .item-divider {
+    font-weight: 300;
+    background: transparent;
+    border: none;
+  }
+  .item-icon-left {
+    text-transform: uppercase;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 47px;
+    background: transparent;
+    border: none;
+    color: $cod-gray;
+    &:hover, &:focus {color: $electric-violet;}
+    i {
+      font-size: 16px;
+      top: -2px;
+    }
   }
 }
 

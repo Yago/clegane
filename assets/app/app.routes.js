@@ -159,6 +159,15 @@ app.config(function($stateProvider, $urlRouterProvider, $rootScopeProvider) {
           templateUrl: 'templates/lists.html'
         }
       }
+    })
+    .state('app.about', {
+      url: '/about',
+      requireAuth: true,
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/about.html'
+        }
+      }
     });
 
   $urlRouterProvider.otherwise('/');
