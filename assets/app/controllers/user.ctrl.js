@@ -32,7 +32,7 @@ app.controller('UserCtrl', function($state, $ionicPopup, ApiService, $rootScope)
         } else {
           sessionStorage.cleganeToken = res.data.token;
           $rootScope.isAuthenticated = true;
-          $state.go('app.dashboard');
+          window.location.replace("/");
         }
       }, function (err) {
         $ionicPopup.alert({

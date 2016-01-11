@@ -3,7 +3,7 @@
 
     <div class="cover">
       <div class="cover-image">
-        <a href="/movie/{{picksItem.id}}">
+        <a href="/movie/{{page.data.picks.items[page.data.picks.items.length - 1].id}}">
           <clegane-pic
             src="{{page.data.picks.items[page.data.picks.items.length - 1].backdrop_path}}"
             size="5"
