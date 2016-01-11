@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" ng-if="page.data.credits.cast.length > 0">
   <div class="col-xs-6 col-sm-3" ng-repeat="(key, cast) in page.data.credits.cast | limitTo:4">
     <div class="cast-thumb">
       <a href="/people/{{cast.id}}">
@@ -39,7 +39,7 @@
           <td></td>
         </tr>
 
-        <tr ng-repeat="(key, crew) in page.data.credits.crew" ng-if="$index >= 4">
+        <tr ng-repeat="(key, crew) in page.data.credits.crew">
           <td><a href="/people/{{crew.id}}">{{crew.name}}</a></td>
           <td>{{crew.job}}</td>
         </tr>

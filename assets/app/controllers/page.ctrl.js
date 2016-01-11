@@ -35,7 +35,7 @@ app.controller('PageCtrl', function(ApiService, $stateParams) {
         if (res.data.success) {
           that.data = res.data.data;
         }
-        if (that.data.data.total_pages) {
+        if (that.data.data != undefined && that.data.data.total_pages != undefined) {
           that.paginate(that.data.data.total_pages, that.param.page);
         }
       }, function (err) {

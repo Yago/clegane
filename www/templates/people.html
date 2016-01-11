@@ -84,32 +84,18 @@
         <h2>Known For</h2>
         <div class="row">
           <div class="col-sm-2-4" ng-repeat="(key, media) in page.data.credits.cast | orderBy:'year':true | limitTo:5" ng-if="media.poster_path && media.year">
-            <a ng-if="media.media_type === 'movie'" class="thumb" href="/movie/{{media.id}}">
-              <clegane-pic
-                src="{{media.poster_path}}"
-                size="1"
-                ratio="0.66"
-                gravity="none"
-                class="img-responsive"
-                alt="{{media.title}}"></clegane-pic>
-              <span class="thumb-info">
-                <h5>{{media.media_type}}</h5>
-                <h3>{{media.title}}</h3>
-              </span>
-            </a>
-            <a ng-if="media.media_type === 'tv'" class="thumb" href="/tv/{{media.id}}">
-              <clegane-pic
-                src="{{media.poster_path}}"
-                size="1"
-                ratio="0.66"
-                gravity="none"
-                class="img-responsive"
-                alt="{{media.name}}"></clegane-pic>
-              <span class="thumb-info">
-                <h5>{{media.media_type}}</h5>
-                <h3>{{media.name}}</h3>
-              </span>
-            </a>
+            <clegane-thumb
+              ng-if="media.media_type === 'movie'"
+              id="{{media.id}}"
+              img="{{media.poster_path}}"
+              title="{{media.title}}"
+              type="{{media.media_type}}"></clegane-thumb>
+            <clegane-thumb
+              ng-if="media.media_type === 'tv'"
+              id="{{media.id}}"
+              img="{{media.poster_path}}"
+              title="{{media.name}}"
+              type="{{media.media_type}}"></clegane-thumb>
             <div class="spacer spacer-xs visible-xs"></div>
           </div>
         </div>

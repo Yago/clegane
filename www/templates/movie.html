@@ -100,8 +100,8 @@
             </div>
           </div>
 
-          <div class="whity">
-            <h2>Cast</h2>
+          <div class="whity" ng-if="page.data.credits.cast.length > 0 || page.data.credits.crew.length > 0">
+            <h2 ng-if="page.data.credits.cast.length > 0">Cast</h2>
             <ng-include src="'templates/components/organisms/casting.html'"></ng-include>
           </div>
         </div>
@@ -114,19 +114,11 @@
         <div class="spacer spacer-xs"></div>
         <div class="row">
           <div ng-repeat="(key, movie) in page.data.similar | limitTo:5" class="col-sm-2-4">
-            <a class="thumb" href="/movie/{{content.id}}">
-              <clegane-pic
-                src="{{movie.poster_path}}"
-                size="1"
-                ratio="0.66"
-                gravity="center"
-                class="img-responsive"
-                alt="{{movie.title}}"></clegane-pic>
-              <span class="thumb-info">
-                <h5>{{movie.media_type}}</h5>
-                <h3>{{movie.title}}</h3>
-              </span>
-            </a>
+            <clegane-thumb
+              id="{{movie.id}}"
+              img="{{movie.poster_path}}"
+              title="{{movie.title}}"
+              type="movie"></clegane-thumb>
             <div class="spacer spacer-xs visible-xs"></div>
           </div>
         </div>
