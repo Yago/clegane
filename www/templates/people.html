@@ -35,11 +35,12 @@
                   size="1"
                   ratio="1"
                   gravity="center"
-                  class="img-responsive"
+                  class="img-responsive img-circle"
                   alt="{{page.data.people.name}}"></clegane-pic>
               </div>
             </div>
           </div>
+          <div class="spacer spacer-sm"></div>
         </div>
 
         <div class="text-center">
@@ -114,13 +115,13 @@
         </div>
         <br>
         <div ng-controller="CollapseCtrl as collapse">
-          <p>
+          <p ng-if="page.data.credits.cast.length > 4 || page.data.credits.crew.length > 0">
             <button class="btn btn-link" role="button" ng-click="collapse.isCollapsed = !collapse.isCollapsed" aria-expanded="[[!collapse.isCollapsed]]">Full filmography <span class="caret"></span></button>
           </p>
 
           <div id="cast-wrapper" class="cast-wrapper" ng-cloak uib-collapse="collapse.isCollapsed">
-            <h3 ng-if="page.data.credits.cast.length > 0">Acting</h3>
-            <table ng-if="page.data.credits.cast.length > 0" class="table table-striped table-hover">
+            <h3 ng-if="page.data.credits.cast.length > 4">Acting</h3>
+            <table ng-if="page.data.credits.cast.length > 4" class="table table-striped table-hover">
               <tbody>
                 <tr ng-repeat="(key, media) in page.data.credits.cast | orderBy:'year':true" ng-if="$index > 4">
                 <td><span ng-if="media.year === 0">-</span><span ng-if="media.year !== 0">{{media.year}}</span></td>

@@ -19,6 +19,24 @@ app.config(function($stateProvider, $urlRouterProvider, $rootScopeProvider) {
         }
       }
     })
+    .state('app.login', {
+      url: '/login',
+      requireAuth: false,
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/login.html'
+        }
+      }
+    })
+    .state('app.signup', {
+      url: '/signup',
+      requireAuth: false,
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/signup.html'
+        }
+      }
+    })
     .state('app.dashboard', {
       url: '/dashboard',
       requireAuth: true,
@@ -55,21 +73,12 @@ app.config(function($stateProvider, $urlRouterProvider, $rootScopeProvider) {
         }
       }
     })
-    .state('app.login', {
-      url: '/login',
-      requireAuth: false,
+    .state('app.search', {
+      url: '/search/:query/:page',
+      requireAuth: true,
       views: {
         'menuContent': {
-          templateUrl: 'templates/login.html'
-        }
-      }
-    })
-    .state('app.signup', {
-      url: '/signup',
-      requireAuth: false,
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/signup.html'
+          templateUrl: 'templates/all-results.html'
         }
       }
     });

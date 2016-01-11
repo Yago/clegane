@@ -7,7 +7,7 @@ app.directive('cleganeVideo', function($sce) {
     restrict: 'E',
     scope: { code:'=' },
     replace: true,
-    template: '<iframe src="{{url}}" class="embed-responsive-item" frameborder="0" allowfullscreen</iframe>',
+    template: '<iframe src="{{url}}" class="embed-responsive-item" frameborder="0" allowfullscreen></iframe>',
     link: function (scope) {
         scope.$watch('code', function (newVal) {
            if (newVal) {

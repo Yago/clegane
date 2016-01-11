@@ -1,0 +1,7 @@
+<ion-view view-title="Clegane" cache-view="false" hide-back-button="true">
+  <ion-content ng-controller="PageCtrl as page" ng-init="page.get('/search/'+page.param.query+'/'+page.param.page);">
+
+    <ng-include src="'templates/components/organisms/results.html'"></ng-include>
+
+  </ion-content>
+</ion-view>

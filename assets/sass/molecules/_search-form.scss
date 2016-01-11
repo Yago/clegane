@@ -12,9 +12,13 @@
   }
   .form-control {
     height: 45px;
+    width: $sidebar-width - 45px;
+    padding: 7.5px 12px;
+    box-sizing: border-box;
     font-size: $font-size-small;
     font-style: normal;
     color: $cod-gray;
+    float: left;
   }
   .btn {
     width: 45px;
@@ -29,9 +33,9 @@
   }
 }
 
-.sidebar .dropdown-menu {
+.menu-left .dropdown-menu {
   padding: 0;
-  margin-top: 8px;
+  margin-top: 10px;
   width: $sidebar-width;
   box-shadow: none;
   background: $gallery;

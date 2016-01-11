@@ -14,6 +14,14 @@
 
   <ion-side-menu side="left" class="dark" expose-aside-when="{{isMenu}}">
     <ion-content>
+      <header class="text-center hidden-sm hidden-xs">
+        <a href="/" class="brand">
+          <i class="cleganicon cleganicon-clegane cleganicon-4x"></i>
+        </a>
+      </header>
+      <div class="search-wrapper hidden-sm hidden-xs" ng-controller="SearchCtrl as search">
+        <ng-include src="'templates/components/molecules/search.html'"></ng-include>
+      </div>
       <ion-list>
         <ion-item menu-close href="#" ui-sref="app.dashboard">Home</ion-item>
         <ion-item menu-close href="#" ui-sref="app.test">Test</ion-item>

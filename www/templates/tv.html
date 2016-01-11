@@ -78,9 +78,11 @@
           </p>
 
           <p>{{page.data.tv.overview}}</p>
+
+          <div class="spacer spacer-xl" ng-if="page.data.videos.length <= 0"></div>
         </div>
 
-        <div ng-if="page.data.videos" class="embed-responsive embed-responsive-16by9">
+        <div ng-if="page.data.videos.length > 0" class="embed-responsive embed-responsive-16by9">
           <div ng-repeat="(key, video) in page.data.videos | limitTo:1">
             <div ng-if="video.site === 'YouTube'">
             <clegane-video code="video.key"></clegane-video>
