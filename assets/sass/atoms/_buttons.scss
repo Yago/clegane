@@ -12,6 +12,9 @@
     outline: none !important;
     box-shadow: none !important;
   }
+  &:hover {
+    cursor: pointer !important;
+  }
 }
 
 .btn-default {
@@ -90,5 +93,6 @@
 }
 
 .btn-list .btn {
+  margin-left: auto !important;
   margin-bottom: 5px;
 }

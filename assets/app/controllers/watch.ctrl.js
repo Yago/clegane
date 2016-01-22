@@ -2,22 +2,41 @@
 
 /* global app */
 
-app.controller('WatchCtrl', function(ApiService) {
+app.controller('WatchCtrl', function(ApiService, $stateParams) {
   var that = this;
 
   that.watched = false;
+  that.token = localStorage.cleganeToken;
+  if (!that.token) {
+    that.token = sessionStorage.cleganeToken;
+  }
 
-  that.init = function (watched) {
-    if (watched) {
-      that.watched = true;
-    }
+  that.init = function () {
+    var state = true,
+        url = 'LOCAL_API/movies',
+        data = {
+          token: that.token
+        };
+
+    ApiService.post(url, data, function (res) {
+      //console.log(res);
+      if (res.data.success) {
+        res.data.data.forEach(function(movie){
+          if (movie.tmdb_id === $stateParams.id && movie.watched) {
+            that.watched = true;
+          }
+        });
+      }
+    }, function (err) {
+      //console.log(err);
+    });
   };
 
-  that.movie = function (key, id, title, picture, imdb) {
+  that.movie = function (id, title, picture, imdb) {
     var state = true,
-        url = '/movie/'+ id +'/watch',
+        url = 'LOCAL_API/movie/'+ id +'/watch',
         data = {
-          key: key,
+          token: that.token,
           name: title,
           picture: picture,
           imdb_id: imdb,
@@ -29,21 +48,21 @@ app.controller('WatchCtrl', function(ApiService) {
     }
 
     ApiService.post(url, data, function (res) {
-      //console.log(res);
+      console.log(res);
       if (that.watched) {
         that.watched = false;
       } else {
         that.watched = true;
       }
     }, function (err) {
-      //console.log(err);
+      console.log(err);
     });
   };
 
-  that.episode = function (key, id, title, picture, season, episode, episodeId, episodeTitle, imdb) {
-    var url = '/tv/'+ id +'/watch/'+episodeId,
+  that.episode = function (id, title, picture, season, episode, episodeId, episodeTitle, imdb) {
+    var url = 'LOCAL_API/tv/'+ id +'/watch/'+episodeId,
         data = {
-          key: key,
+          token: that.token,
           name: title,
           picture: picture,
           imdb_id: imdb,

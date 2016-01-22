@@ -5,12 +5,10 @@ var peopleCtrl 		= require('../controllers/people.ctrl'),
 
 module.exports = function(app, passport) {
 
-  app.get('/people/:id', auth.isAuthenticated, peopleCtrl.display);
-  app.get('/peoples/:list/:page', auth.isAuthenticated, peopleCtrl.discover);
-
-  // API part
-  app.post('/peoples', auth.isApiAuthenticated, peopleCtrl.list);
-  app.post('/people/:id/add', auth.isApiAuthenticated, peopleCtrl.add);
-  app.post('/people/:id/remove', auth.isApiAuthenticated, peopleCtrl.remove);
+  app.get('/api/people/:id', auth.isAuthenticated, peopleCtrl.display);
+  app.get('/api/peoples/:list/:page', auth.isAuthenticated, peopleCtrl.discover);
+  app.post('/api/peoples', auth.isAuthenticated, peopleCtrl.list);
+  app.post('/api/people/:id/add', auth.isAuthenticated, peopleCtrl.add);
+  app.post('/api/people/:id/remove', auth.isAuthenticated, peopleCtrl.remove);
 
 };

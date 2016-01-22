@@ -19,6 +19,7 @@ module.exports = function() {
       .pipe($.jshint.reporter('jshint-stylish'))
       .pipe($.ngAnnotate())
       .pipe($.replace('API_KEY_HERE', api.key))
+      .pipe($.replace('LOCAL_API', api.local))
       .pipe($.concat('angular-app.js'))
       .pipe($.if(argv.production, $.uglify()))
       .pipe($.size({title: 'JS SCRIPTS', showFiles: true}))

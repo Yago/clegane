@@ -1,8 +1,15 @@
 {
   "errors": {
     "default_error": "Something bad happened, try later.",
+    "api_error": "Themoviedb do not respond.",
+    "creation_fail": "Error in Saving user",
+    "auth_fail": "Username or password are wrong",
+    "no_token": "No token provided",
+    "token_fail": "Failed to authenticate token",
     "user_error": "The user cannot be found.",
     "user_notfound": "The target cannot be found.",
+    "user_exist": "This username is already taken.",
+    "email_exist": "This email is already taken.",
     "movie_exist": "This movie already exist.",
     "tv_exist": "This TV show already exist.",
     "people_exist": "This people already exist.",
@@ -10,6 +17,8 @@
     "list_notexist": "This item does not exist in this list."
   },
   "success": {
+    "user_created": "Account successfully created ! You can already log you in",
+    "user_updated": "User successfully updated !",
     "movie_added": "Movie successfully added !",
     "movie_watched": "Movie toggle watch successfull !",
     "movie_removed": "Movie successfully removed !",

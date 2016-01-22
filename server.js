@@ -2,7 +2,7 @@
 
 var express       = require('express'),
     app           = express(),
-    port          = process.env.PORT || 3010,
+    port          = process.env.PORT || 3000,
     mongoose      = require('mongoose'),
     passport      = require('passport'),
     flash         = require('connect-flash'),
@@ -64,6 +64,8 @@ app.use(function(req, res, next) {
     return req.isAuthenticated() && req.user.roles.indexOf(role) >= 0;
   };
   res.locals.flashes = req.flash();
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
 

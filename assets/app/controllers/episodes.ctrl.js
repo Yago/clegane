@@ -1,6 +1,6 @@
 'use strict';
 
-/* global app, PhotoSwipe, PhotoSwipeUI_Default, jQuery */
+/* global app, PhotoSwipe, PhotoSwipeUI_Default */
 
 app.controller('EpisodesCtrl', function($http, ApiService) {
   var that = this;
@@ -16,7 +16,7 @@ app.controller('EpisodesCtrl', function($http, ApiService) {
     that.seasonnumber = season;
 
     // Get episode images
-    $http.get('http://api.themoviedb.org/3/tv/'+id+'/season/'+season+'/episode/'+episode+'/images?api_key=6d83177ea3e67b870ab80fa72f06cbbd', {
+    $http.get('http://api.themoviedb.org/3/tv/'+id+'/season/'+season+'/episode/'+episode+'/images', {
       params: {
         api_key: 'API_KEY_HERE'
       }
@@ -34,10 +34,8 @@ app.controller('EpisodesCtrl', function($http, ApiService) {
     });
   };
 
-  that.init = function (seasons) {
-    for (var i = 0; i <= seasons; i++) {
-      that.seasonOpen[i] = false;
-    }
+  that.init = function (season) {
+    that.seasonOpen[season] = false;
   };
 
   that.selectSeason = function (id, season) {

@@ -9,8 +9,10 @@ var User        = require('../models/user.model'),
  * Get data set one by one and if one fail, render the page with the well retrieved data.
  */
 exports.display = function(req, res) {
-  var userId = req.body.userId,
+  var userId = req.decoded.id,
       movieId = req.params.id;
+
+  var data = {};
 
   // Request main movie informations
   apiCtrl.get('/movie/'+movieId,
@@ -31,40 +33,58 @@ exports.display = function(req, res) {
                   // Request keywords
                   apiCtrl.get('/movie/'+movieId+'/keywords',
                     function (keywords) {
-                      res.locals.movie = main;
-                      res.locals.credits = credits;
-                      res.locals.similar = similar.results;
-                      res.locals.videos = videos.results;
-                      res.locals.keywords = keywords.keywords;
-                      res.render('movie');
+                      data.movie = main;
+                      data.credits = credits;
+                      data.similar = similar.results;
+                      data.videos = videos.results;
+                      data.keywords = keywords.keywords;
+                      res.json({
+                        success: true,
+                        data: data
+                      });
                     }, function (err) {
-                      res.locals.movie = main;
-                      res.locals.credits = credits;
-                      res.locals.similar = similar.results;
-                      res.locals.videos = videos.results;
-                      res.render('movie');
+                      data.movie = main;
+                      data.credits = credits;
+                      data.similar = similar.results;
+                      data.videos = videos.results;
+                      res.json({
+                        success: true,
+                        data: data
+                      });
                     });
 
                 }, function (err) {
-                  res.locals.movie = main;
-                  res.locals.credits = credits;
-                  res.locals.similar = similar.results;
-                  res.render('movie');
+                  data.movie = main;
+                  data.credits = credits;
+                  data.similar = similar.results;
+                  res.json({
+                    success: true,
+                    data: data
+                  });
                 });
 
             }, function (err) {
-              res.locals.movie = main;
-              res.locals.credits = credits;
-              res.render('movie');
+              data.movie = main;
+              data.credits = credits;
+              res.json({
+                success: true,
+                data: data
+              });
             });
 
         }, function (err) {
-          res.locals.movie = main;
-          res.render('movie');
+          data.movie = main;
+          res.json({
+            success: true,
+            data: data
+          });
         });
 
     }, function (err) {
-      res.send('The movie couldn\'t be found');
+      res.json({
+        success: false,
+        message: messages.errores.api_error
+      });
     });
 };
 
@@ -73,31 +93,39 @@ exports.display = function(req, res) {
  * Get data set one by one and if one fail, render the page with the well retrieved data.
  */
 exports.discover = function(req, res) {
-  var userId = req.body.userId,
+  var userId = req.decoded.id,
       list = req.params.list,
       page = req.params.page;
+
+  var data = {};
 
   // Request main movie informations
   apiCtrl.discover('movie', list, page,
     function (main) {
 
-      res.locals.data = main;
-      res.locals.type = 'movies';
-      res.locals.query = list;
-      res.locals.lists = ['popular', 'now_playing', 'upcoming'];
-      res.render('discover');
+      data.type = 'movies';
+      data.query = list;
+      data.data = main;
+      data.lists = ['popular', 'now_playing', 'upcoming'];
+      res.json({
+        success: true,
+        data: data
+      });
 
     }, function (err) {
-      res.send('The movie couldn\'t be found');
+      res.json({
+        success: false,
+        message: messages.errors.api_error
+      });
     });
 };
 
 /*
  * Add a Movie to User
- * Params: key, name, picture, imdb_id
+ * Params: token, name, picture, imdb_id
  */
 exports.add = function(req, res) {
-  var userId  = req.body.userId,
+  var userId = req.decoded.id,
       watched = false;
 
   // If toggle watch request
@@ -126,22 +154,25 @@ exports.add = function(req, res) {
               }
             }
           }, function (err, user) {
-            if (err) {return res.status(500).send(messages.errors.default_error);}
-            if (!user) {return res.status(500).send(messages.errors.user_notfound);}
-            res.send(messages.success.movie_added);
+            if (err) {res.json({success: false, message: messages.errors.default_error});}
+            if (!user) {res.json({success: false,message: messages.errors.user_notfound});}
+            res.json({
+              success: true,
+              message: messages.success.movie_added
+            });
           });
       } else {
-        res.status(500).send(messages.errors.movie_exist);
+        res.json({success: false, message: messages.errors.movie_exist});
       }
     });
 };
 
 /*
  * Toggle watch of a Movie
- * Params: key, name, imdb_id, watch (boolean)
+ * Params: token, name, imdb_id, watch (boolean)
  */
 exports.watch = function(req, res) {
-  var userId = req.body.userId;
+  var userId = req.decoded.id;
 
   User.findOneAndUpdate({_id:userId, 'movies.tmdb_id': req.params.id},
     {
@@ -150,13 +181,16 @@ exports.watch = function(req, res) {
         'movies.$.watched_on': Date.now()
       }
     }, function (err, user) {
-      if (err) {return res.status(500).send(messages.errors.default_error);}
+      if (err) {res.json({success: false, message: messages.errors.default_error});}
 
       // If no movie exist, create one watched
       if (!user) {
         module.exports.add(req, res);
       } else {
-        res.send(messages.success.movie_watched);
+        res.json({
+          success: true,
+          message: messages.success.movie_watched
+        });
       }
 
     });
@@ -165,10 +199,10 @@ exports.watch = function(req, res) {
 
 /*
  * Remove a Movie from User
- * Params: key
+ * Params: token
  */
 exports.remove = function(req, res) {
-  var userId = req.body.userId;
+  var userId = req.decoded.id;
 
   User.findOneAndUpdate({_id:userId},
       {
@@ -178,24 +212,30 @@ exports.remove = function(req, res) {
           }
         }
       }, function (err, user) {
-        if (err) {return res.status(500).send(messages.errors.default_error);}
-        if (!user) {return res.status(500).send(messages.errors.user_notfound);}
-        res.send(messages.success.movie_removed);
+        if (err) {res.json({success: false, message: messages.errors.default_error});}
+        if (!user) {res.json({success: false,message: messages.errors.user_notfound});}
+        res.json({
+          success: true,
+          message: messages.success.movie_removed
+        });
       });
 
 };
 
 /*
  * List User's movies
- * Params: key
+ * Params: token
  */
 exports.list = function(req, res) {
-  var userId = req.body.userId;
+  var userId = req.decoded.id;
 
   User.findOne({_id:userId},
     function (err, user) {
-      if (err) {return res.status(500).send(messages.errors.default_error);}
-      if (!user) {return res.status(500).send(messages.errors.user_notfound);}
-      res.send(user.movies);
+      if (err) {res.json({success: false, message: messages.errors.default_error});}
+      if (!user) {res.json({success: false,message: messages.errors.user_notfound});}
+      res.json({
+        success: true,
+        data: user.movies
+      });
     });
 };

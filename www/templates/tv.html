@@ -1,0 +1,131 @@
+<ion-view view-title="Clegane" cache-view="false" hide-back-button="true">
+  <ion-content ng-controller="PageCtrl as page" ng-init="page.get('/tv/'+page.param.id);">
+
+  <div class="cover" ng-if="page.data.tv.backdrop_path">
+    <div class="cover-image">
+      <clegane-pic
+        src="{{page.data.tv.backdrop_path}}"
+        size="5"
+        ratio="2.38"
+        gravity="center"
+        class="img-responsive img-full"
+        alt="{{page.data.tv.title}}"></clegane-pic>
+    </div>
+    <div class="cover-content">
+      <div class="content-container">
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="poster-wrapper">
+              <clegane-pic
+                src="{{page.data.tv.poster_path}}"
+                size="1"
+                ratio="0.66"
+                gravity="none"
+                class="img-responsive hidden-xs"
+                alt="{{page.data.tv.title}}"></clegane-pic>
+
+              <ul class="list-unstyled">
+                <li ng-if="page.data.tv.first_air_date">
+                  <h4>Release</h4>
+                  {{page.data.tv.first_air_date}}
+                </li>
+                <li ng-if="page.data.tv.origin_country.length > 0">
+                  <h4>Countries</h4>
+                  <span ng-repeat="(key, country) in page.data.tv.origin_country">{{country}}<span ng-if="!$last">, </span></span>
+                </li>
+                <li ng-if="page.data.keywords.length > 0">
+                  <h4>Keywords</h4>
+                  <span ng-repeat="(key, keyword) in page.data.keywords">
+                    <a href="/tag/{{keyword.id}}/1">{{keyword.name}}</a><span ng-if="!$last">, </span>
+                  </span>
+                </li>
+                <li ng-if="page.data.ids.imdb_id">
+                  <h4>Links</h4>
+                  <a href="http://www.imdb.com/title/{{page.data.ids.imdb_id}}" target="_blank">IMDB</a>
+                </li>
+              </ul>
+
+            </div>
+          </div>
+          <div class="col-sm-9">
+            <h3>TV Show</h3>
+            <h1>
+              {{page.data.tv.name}}
+              <small ng-if="page.data.tv.name != page.data.tv.original_name">({{page.data.tv.original_name}})</small>
+            </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-container">
+    <div class="row">
+      <div class="col-sm-9 col-sm-offset-3">
+
+        <div class="whity" ng-if="page.data.tv.name">
+          <div ng-controller="ModalCtrl as modal" ng-show="page.data.tv.name">
+            <button class="btn btn-primary btn-corner" ng-click="modal.open()">
+              <i class="cleganicon cleganicon-add"></i>
+            </button>
+          </div>
+          <p>
+            <span ng-repeat="(key, genre) in page.data.tv.genres">
+              <a href="/genre/{{genre.id}}/1">
+                {{genre.name}}
+              </a><span ng-if="!$last"> | </span>
+            </span>
+          </p>
+
+          <p>{{page.data.tv.overview}}</p>
+
+          <div class="spacer spacer-xl" ng-if="page.data.videos.length <= 0"></div>
+        </div>
+
+        <div ng-if="page.data.videos.length > 0" class="embed-responsive embed-responsive-16by9">
+          <div ng-repeat="(key, video) in page.data.videos | limitTo:1">
+            <div ng-if="video.site === 'YouTube'">
+            <clegane-video code="video.key"></clegane-video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-include src="'templates/components/organisms/episodes.html'"></ng-include>
+  </div>
+
+  <div class="content-container">
+    <div class="row">
+      <div class="col-sm-9 col-sm-offset-3">
+        <div class="whity" ng-if="page.data.credits.cast.length > 0 || page.data.credits.crew.length > 0">
+          <h2 ng-if="page.data.credits.cast.length > 0">Cast</h2>
+          <ng-include src="'templates/components/organisms/casting.html'"></ng-include>
+        </div>
+      </div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div ng-if="page.data.similar.length > 0">
+      <h2 class="text-inverse">Similar TV Shows</h2>
+      <div class="spacer spacer-xs"></div>
+      <div class="row">
+        <div ng-repeat="(key, tv) in page.data.similar | limitTo:5" class="col-sm-2-4">
+          <clegane-thumb
+            id="{{tv.id}}"
+            img="{{tv.poster_path}}"
+            title="{{tv.name}}"
+            type="tv"></clegane-thumb>
+          <div class="spacer spacer-xs visible-xs"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="spacer"></div>
+
+  <ng-include src="'templates/components/organisms/photoswipe-wrapper.html'"></ng-include>
+
+  </ion-content>
+</ion-view>

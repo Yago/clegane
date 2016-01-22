@@ -1,0 +1,116 @@
+<ion-view view-title="Test" cache-view="false" hide-back-button="true">
+  <ion-content ng-controller="PageCtrl as page" ng-init="page.get('');">
+
+    <div class="cover">
+      <div class="cover-image">
+        <a href="/movie/{{page.data.picks.items[page.data.picks.items.length - 1].id}}">
+          <clegane-pic
+            src="{{page.data.picks.items[page.data.picks.items.length - 1].backdrop_path}}"
+            size="5"
+            ratio="2.38"
+            gravity="center"
+            class="img-responsive img-full"
+            alt="{{page.data.picks.items[page.data.picks.items.length - 1].title}}"></clegane-pic>
+          <div class="cover-content">
+            <div class="content-container">
+              <h3>Clegane's weekly picks</h3>
+              <h1>{{page.data.picks.items[page.data.picks.items.length - 1].title}}</h1>
+              <div class="spacer spacer-sm"></div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="content-container">
+      <div class="spacer spacer-sm"></div>
+
+      <div class="row">
+        <div class="col-sm-7">
+          <h3 class="text-inverse">Movies recently watched</h3>
+          <div class="row" ng-if="page.data.movies.length > 0">
+
+            <div class="col-xs-4" ng-repeat="(key, movie) in page.data.movies | orderBy:'watched_on':true | limitTo:3">
+              <a class="thumb" href="/movie/{{movie.tmdb_id}}">
+                <clegane-pic
+                  src="{{movie.picture}}"
+                  size="1"
+                  ratio="0.66"
+                  gravity="center"
+                  class="img-responsive img-full"
+                  alt="{{movie.name}}"></clegane-pic>
+                <span class="thumb-info">
+                  <h5>movie</h5>
+                  <h3>{{movie.name}}</h3>
+                </span>
+              </a>
+            </div>
+
+          </div>
+
+          <div ng-if="page.data.movies.length <= 0">
+            <div class="spacer spacer-sm"></div>
+            <div class="row">
+              <div class="col-md-10">
+                <div class="bubble-wrapper">
+                  <img class="logo" src="build/svg/popcorn.svg" onerror="this.onerror=null; this.src='build/img/popcorn.png'" alt="Popcorn by Smashicons" />
+                  <div class="bubble bubble-left">
+                    Take a seat and watch some <a href="/movies/popular/1">movies</a> !
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-sm-4 col-sm-offset-1" ng-if="page.data.lists.length > 0">
+          <h3 class="text-inverse">Your lists</h3>
+          <div class="btn-list">
+            <a class="btn btn-default" ng-repeat="(key, list) in page.data.lists | orderBy:'name':false" href="/list/{{list._id}}">{{list.name}}</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="spacer spacer-sm"></div>
+
+      <h3 class="text-inverse">Last episode watched</h3>
+      <div class="row" ng-if="page.data.tvs.length > 0">
+
+        <div class="col-sm-2-4" ng-repeat="(key, tv) in page.data.tvs | orderBy:'last_view':true | limitTo:5">
+          <a class="thumb thumb-episode" href="/tv/{{tv.tmdb_id}}">
+            <clegane-pic
+              src="{{tv.picture}}"
+              size="1"
+              ratio="0.66"
+              gravity="center"
+              class="img-responsive img-full"
+              alt="{{movie.name}}"></clegane-pic>
+            <span class="thumb-info">
+              <h5>{{tv.name}}</h5>
+
+            </span>
+          </a>
+        </div>
+
+      </div>
+      <div class="row" ng-if="page.data.tvs.length <= 0">
+        <div class="spacer spacer-sm"></div>
+        <div class="row">
+          <div class="col-md-8">
+            <div class="bubble-wrapper">
+              <div class="bubble bubble-right">
+                Looks like someone doesn't like <a href="/tvs/popular/1">TV Shows</a> here !
+              </div>
+              <img class="logo" src="build/svg/boba.svg" onerror="this.onerror=null; this.src='build/img/boba.png'" alt="Popcorn by Smashicons" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="spacer spacer-sm"></div>
+
+  </ion-content>
+</ion-view>

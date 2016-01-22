@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <base href="/" />
+    <link href="build/css/vendors.min.css" rel="stylesheet">
+    <link href="build/css/main.css" rel="stylesheet">
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <!-- <script src="cordova.js"></script> -->
+
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+    <!--[if lt IE 9]>
+      <script src="build/js/polyfills.min.js"></script>
+    <![endif]-->
+
+  </head>
+  <body ng-app="CleganeApp">
+
+    <ion-nav-bar class="bar-stable">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+    </ion-nav-bar>
+
+    <ion-nav-view></ion-nav-view>
+
+    <script src="build/js/vendors.min.js"></script>
+    <script src="build/js/main.js"></script>
+    <script src="build/js/angular-vendors.min.js"></script>
+    <script src="build/js/angular-app.js"></script>
+
+    <script type='text/javascript' id="__bs_script__">//<![CDATA[
+        document.write("<script async src='http://HOST:3001/browser-sync/browser-sync-client.2.10.0.js'><\/script>".replace("HOST", location.hostname));
+    //]]></script>
+  </body>
+</html>

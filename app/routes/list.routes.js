@@ -5,15 +5,13 @@ var listCtrl    = require('../controllers/list.ctrl'),
 
 module.exports = function(app, passport) {
 
-  app.get('/lists', auth.isAuthenticated, listCtrl.lists);
-  app.get('/list/:id', auth.isAuthenticated, listCtrl.lists);
-
-  // API part
-  app.post('/lists', auth.isApiAuthenticated, listCtrl.list);
-  app.post('/list/add', auth.isApiAuthenticated, listCtrl.add);
-  app.post('/list/:id', auth.isApiAuthenticated, listCtrl.show);
-  app.post('/list/:id/push/:item', auth.isApiAuthenticated, listCtrl.push);
-  app.post('/list/:id/pull/:item', auth.isApiAuthenticated, listCtrl.pull);
-  app.post('/list/:id/remove', auth.isApiAuthenticated, listCtrl.remove);
+  app.get('/api/lists', auth.isAuthenticated, listCtrl.lists);
+  app.get('/api/list/:id', auth.isAuthenticated, listCtrl.lists);
+  app.post('/api/lists', auth.isAuthenticated, listCtrl.list);
+  app.post('/api/list/add', auth.isAuthenticated, listCtrl.add);
+  app.post('/api/list/:id', auth.isAuthenticated, listCtrl.show);
+  app.post('/api/list/:id/push/:item', auth.isAuthenticated, listCtrl.push);
+  app.post('/api/list/:id/pull/:item', auth.isAuthenticated, listCtrl.pull);
+  app.post('/api/list/:id/remove', auth.isAuthenticated, listCtrl.remove);
 
 };

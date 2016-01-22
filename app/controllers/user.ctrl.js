@@ -5,7 +5,8 @@ var User        = require('../models/user.model'),
     apiCtrl     = require('./api.ctrl.js'),
     algorithm   = 'aes-256-ctr';
 
-var config      = require('../../config/config.js');
+var config      = require('../../config/config.js'),
+    message     = require('../../config/messages.json');
 
 var createHash = function(password){
   var cipher = crypto.createCipher(algorithm, config.secret),
@@ -13,19 +14,6 @@ var createHash = function(password){
 
   crypted += cipher.final('hex');
   return crypted;
-};
-
-
-/*
- * Check if authenticate when on homepage
- */
-exports.index = function(req, res, next) {
-  if (req.isAuthenticated()) {
-    next('route');
-    return;
-  } else {
-    res.render('homepage');
-  }
 };
 
 /*
@@ -38,96 +26,66 @@ exports.create = function (req, res) {
       newUser.email = req.body.email;
       newUser.save(function(err) {
         if (err){
-          req.flash('error', 'Error in Saving user:  ' + err);
-          return err;
+          res.json({
+            success: false,
+            message: message.errors.creation_fail
+          });
         }
-        res.redirect('/signup/completed');
+        res.json({
+          success: true,
+          message: message.success.user_created
+        });
       });
-};
-
-/*
- * Signup completed page
- */
-exports.signupCompleted = function(req, res) {
-  res.render('user/signup-completed');
-};
-
-/*
- * API page
- */
-exports.api = function(req, res) {
-  res.render('api');
-};
-
-/*
- * List all User
- */
-exports.list = function(req, res) {
-  User.find({}, function(err, users) {
-    var list = [];
-    users.forEach(function(user) {
-      list.push(user.username);
-    });
-    res.json(list);
-  });
-};
-
-/*
- * Render login page
- */
-exports.login = function(req, res) {
-  res.render('user/login');
-};
-
-/*
- * Render settings page
- */
-exports.settings = function(req, res) {
-  res.render('user/settings');
 };
 
 /*
  * Save settings
  */
 exports.update = function(req, res) {
-  var userId = req.body.userId;
-
-  console.log(req.body.password.length);
+  var userId = req.decoded.id;
 
   if (typeof req.body.password === 'undefined' || req.body.password.length < 1) {
     User.findOneAndUpdate({_id:userId},
     {
       $set : {
-        'username': req.body.username,
         'email': req.body.email
       }
     }, function (err, user, next) {
-      if (err) {return next(err);}
-      if (!user) {return res.send('Epic fail');}
-      if (typeof req.body.inapp !== 'undefined') {
-        req.flash('success', 'Profile successfully updated');
-        res.redirect('/settings');
-      } else {
-        res.send('Profile successfully updated');
+      if (err) {res.json({success: false, message: message.errors.default_error});}
+      if (!user) {res.json({success: false,message: message.errors.user_notfound});}
+      res.json({
+        success: true,
+        message: message.success.user_updated
+      });
+    });
+  } else if (typeof req.body.email === 'undefined' || req.body.email.length < 1) {
+    User.findOneAndUpdate({_id:userId},
+    {
+      $set : {
+        'password': createHash(req.body.password)
       }
+    }, function (err, user, next) {
+      if (err) {res.json({success: false, message: message.errors.default_error});}
+      if (!user) {res.json({success: false,message: message.errors.user_notfound});}
+      res.json({
+        success: true,
+        message: message.success.user_updated
+      });
     });
   } else {
     User.findOneAndUpdate({_id:userId},
     {
       $set : {
-        'username': req.body.username,
         'email': req.body.email,
         'password': createHash(req.body.password)
       }
     }, function (err, user, next) {
-      if (err) {return next(err);}
-      if (!user) {return res.send('Epic fail');}
-      if (typeof req.body.inapp !== 'undefined') {
-        req.flash('success', 'Profile successfully updated');
-        res.redirect('/settings');
-      } else {
-        res.send('Profile successfully updated');
-      }
+      if (err) {res.json({success: false, message: message.errors.default_error});}
+      if (!user) {res.json({success: false,message: message.errors.user_notfound});}
+      res.json({
+        success: true,
+        message: message.success.user_updated
+      });
     });
   }
 };
@@ -136,30 +94,50 @@ exports.update = function(req, res) {
  * Render dashboard page
  */
 exports.dashboard = function(req, res) {
-  var userId = req.body.userId;
+  var userId = req.decoded.id;
 
   // Request main people informations
-    apiCtrl.get('/list/'+config.picks,
-      function (main) {
-
-        res.locals.picks = main;
-        res.render('dashboard');
-
-      }, function (err) {
-        res.send('The people couldn\'t be found');
+  apiCtrl.get('/list/'+config.picks,
+    function (main) {
+      User.findOne({_id:userId,},
+        function (err, user) {
+          if (err) {res.json({success: false, message: message.errors.default_error});}
+          if (!user) {res.json({success: false, message: message.errors.user_notfound});}
+          res.json({
+            success: true,
+            data: {
+              picks: main,
+              movies: user.movies,
+              lists: user.lists,
+              tvs: user.tvs
+            }
+          });
+        });
+    }, function (err) {
+      res.json({
+        success: false,
+        message: message.error.api_error
       });
+    });
 };
 
 /*
- * About page
+ * List User's infos
+ * Params: token
  */
-exports.about = function(req, res, next) {
-  res.render('about');
-};
+exports.infos = function(req, res) {
+  var userId = req.decoded.id;
 
-/*
- * Render signup page
- */
-exports.signup = function(req, res) {
-  res.render('user/signup');
+  User.findOne({_id:userId},
+    function (err, user) {
+      if (err) {res.json({success: false, message: messages.errors.default_error});}
+      if (!user) {res.json({success: false,message: messages.errors.user_notfound});}
+      res.json({
+        success: true,
+        data: {
+          username: user.username,
+          email: user.email
+        }
+      });
+    });
 };

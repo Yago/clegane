@@ -1,0 +1,54 @@
+<ion-view view-title="Clegane" cache-view="false" hide-back-button="true">
+  <ion-content ng-controller="PageCtrl as page" ng-init="page.get('/'+page.param.type+'/'+page.param.query+'/'+page.param.page);">
+
+    <div class="results-heading">
+      <div class="row" ng-if="page.data.type !== 'peoples'">
+        <div class="col-sm-6">
+          <h4>
+            {{page.data.data.total_results}} Results - {{page.data.data.page}}/<span ng-if="page.data.data.total_pages <= 1000">{{page.data.data.total_pages}}</span><span ng-if="page.data.data.total_pages > 1000">1000</span>
+          </h4>
+          <h1>{{page.param.query|beautify}} <span ng-if="page.data.type === 'tvs'">TV Shows</span><span ng-if="page.data.type !== 'tvs'">{{page.data.type}}</span></h1>
+        </div>
+        <div class="col-sm-6">
+          <div class="btn-group pull-right">
+            <a ng-repeat="(key, list) in page.data.lists" href="/{{page.data.type}}/{{list}}/1" class="btn btn-default" ng-class="list === page.param.query ? 'active' : ''">{{list|beautify}}</a>
+          </div>
+      </div>
+    </div>
+    <div ng-if="page.data.type === 'peoples'">
+      <h4>
+        {{page.data.data.total_results}} Results - {{page.data.data.page}}/<span ng-if="page.data.data.total_pages <= 1000">{{page.data.data.total_pages}}</span><span ng-if="page.data.data.total_pages > 1000">1000</span>
+      </h4>
+      <h1>{{page.param.query|beautify}} {{page.data.type}}</h1>
+    </div>
+  </div>
+
+  <div class="results-wrapper">
+    <div class="row">
+      <div class="col-sm-2-4" ng-repeat="(key, result) in page.data.data.results">
+        <clegane-thumb
+          ng-if="page.data.type === 'movies'"
+          id="{{result.id}}"
+          img="{{result.poster_path}}"
+          title="{{result.title}}"
+          type="movie"></clegane-thumb>
+        <clegane-thumb
+          ng-if="page.data.type === 'tvs'"
+          id="{{result.id}}"
+          img="{{result.poster_path}}"
+          title="{{result.name}}"
+          type="tv"></clegane-thumb>
+        <clegane-thumb
+          ng-if="page.data.type === 'person'"
+          id="{{result.id}}"
+          img="{{result.profile_path}}"
+          title="{{result.name}}"
+          type="people"></clegane-thumb>
+      </div>
+    </div>
+  </div>
+
+  <ng-include src="'templates/components/molecules/pagination.html'"></ng-include>
+
+  </ion-content>
+</ion-view>

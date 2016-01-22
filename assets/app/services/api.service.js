@@ -22,6 +22,13 @@ app.factory('ApiService', function ($http) {
       }, function(err) {
         error(err);
       });
+    },
+    get: function (url, success, error) {
+      $http.get(url).then(function(res) {
+        success(res);
+      }, function(err) {
+        error(err);
+      });
     }
   };
 });

@@ -1,11 +1,11 @@
-var passport 				= require('passport'),
+var passport        = require('passport'),
     TwitterStrategy = require('passport-twitter').Strategy,
     LocalStrategy   = require('passport-local').Strategy,
-    User 				    = require('../app/models/user.model'),
+    User            = require('../app/models/user.model'),
     crypto          = require('crypto'),
     algorithm       = 'aes-256-ctr';
 
-var config 				 = require('../config/config.js');
+var config         = require('../config/config.js');
 
 var isValidPassword = function(user, password){
   var decipher = crypto.createDecipher(algorithm, config.secret);
@@ -35,13 +35,11 @@ module.exports = function(passport) {
       User.findOne({ username: username }, function (err, user) {
         if (err) { return done(err); }
         if (!user) {
-          req.flash('error', "Username or password incorrect");
           return done(null, false, { message: 'Incorrect username.' });
         }
         if (isValidPassword(user, password)) {
           return done(null, user);
         } else {
-          req.flash('error', "Username or password incorrect");
           return done(null, false, { message: 'Incorrect password.' });
         }
       });

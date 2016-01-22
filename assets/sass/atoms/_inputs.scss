@@ -1,5 +1,15 @@
-.form-control {
-  box-shadow: none;
+.item.item-input {
+  border: none;
+  padding-left: 0;
+  padding-right: 0;
+  input {
+    background: $white;
+    padding: 4px 10px;
+  }
+}
+
+.item.item-checkbox {
+  background: transparent;
   border: none;
 }
 

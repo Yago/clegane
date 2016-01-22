@@ -1,0 +1,20 @@
+<span class="watch-toggle" ng-controller="WatchCtrl as watched">
+  <input
+    type="checkbox"
+    ng-model="watched.episode[$index]"
+    ng-click="watched.episode(
+      page.data.tv.id,
+      page.data.tv.name,
+      page.data.tv.name.poster_path,
+      season.season_number,
+      episode.episode_number,
+      episode.id,
+      episode.name,
+      page.data.ids.imdb_id
+    ); $event.stopPropagation();"
+    ng-checked="episode.watched">
+  <span class="icon-wrapper">
+    <i class="cleganicon cleganicon-unwatched"></i>
+    <i class="cleganicon cleganicon-eye"></i>
+  </span>
+</span> e<span ng-hide="episodes.episodeOpen">pisode </span>{{episode.episode_number}}

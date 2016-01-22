@@ -1,3 +1,5 @@
+.menu .overflow-scroll {overflow-y: auto;}
+
 .sidebar {
   background: $gallery;
   box-sizing: border-box;
@@ -7,11 +9,38 @@
   position: relative;
 }
 
+
 .sidebar-content {
   position: fixed;
   width: $sidebar-width;
   top: 0;
   left: 0;
+}
+
+.menu-left .scroll-content {
+  background: $gallery;
+  .list {
+    padding: 15px 0;
+  }
+  .item-divider {
+    font-weight: 300;
+    background: transparent;
+    border: none;
+  }
+  .item-icon-left {
+    text-transform: uppercase;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 47px;
+    background: transparent;
+    border: none;
+    color: $cod-gray;
+    &:hover, &:focus {color: $electric-violet;}
+    i {
+      font-size: 16px;
+      top: -2px;
+    }
+  }
 }
 
 header {

@@ -6,9 +6,21 @@ body.modal-open {
   overflow: visible;
 }
 
+@media screen and (min-width: $screen-sm-min) {
+  .nav-bar-container {display: none;}
+  .has-header {top: 0;}
+}
+
 .main-wrapper {
   display: flex;
   flex-wrap: nowrap;
+  background: $gallery;
+  @media screen and (max-width: $screen-sm-max) {
+    display: block;
+    padding-top: $mobile-header-height;
+    overflow: hidden;
+    &.main-wrapper-visitor {padding-top: 0;}
+  }
 }
 
 .content-wrapper {
@@ -17,6 +29,23 @@ body.modal-open {
   flex-shrink: 1;
   box-sizing: border-box;
   min-height: 100vh;
+  @media screen and (max-width: $screen-sm-max) {
+    width: 100%;
+    position: relative;
+    left: 0;
+    transition: left 0.3s;
+    .sidebar-open + & {
+      left: $sidebar-width;
+    }
+  }
+}
+
+ion-content {
+  background: $cod-gray;
+}
+
+ion-modal-view ion-content {
+  background: $white;
 }
 
 .content-container {
@@ -24,6 +53,9 @@ body.modal-open {
   width: 80%;
   padding: 0 $grid-gutter-width/2;
   margin: 0 auto;
+  @media screen and (max-width: $screen-sm-max) {
+    width: 95%;
+  }
 }
 
 .row-guttered {
@@ -35,6 +67,9 @@ body.modal-open {
 
 .col-sm-2-4 {
   @include make-sm-column(2.4, $grid-gutter-width);
+  @media screen and (max-width: $screen-xs-max) {
+    @include make-xs-column(6, $grid-gutter-width);
+  }
 }
 
 .spacer {

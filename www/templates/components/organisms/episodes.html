@@ -1,0 +1,29 @@
+<div ng-controller="EpisodesCtrl as episodes" ng-cloak class="episodes-wrapper hidden-xs" ng-class="{in: episodes.episodeOpen}">
+  <uib-tabset vertical="true" type="tabs">
+    <uib-tab ng-repeat="(seasonkey, season) in page.data.seasons | orderBy:'season_number':false" ng-if="season.season_number !== 0 && season.episodes.length > 0" select="episodes.selectSeason(page.data.tv.id, season.season_number)" ng-init="episodes.init(seasonkey)">
+      <uib-tab-heading>
+        s<span class="hidden-xs" ng-hide="episodes.episodeOpen">eason </span>{{season.season_number}}
+      </uib-tab-heading>
+      <div>
+        <uib-tabset vertical="true" type="tabs">
+          <uib-tab ng-repeat="(key, episode) in season.episodes" ng-if="key === 0" active="episodes.seasonOpen[seasonkey]" select="episodes.selectEpisode(page.data.tv.id, seasonkey, $index+1)">
+            <uib-tab-heading>
+              <ng-include src="'templates/components/molecules/episode-tab.html'"></ng-include>
+            </uib-tab-heading>
+            <div>
+              <ng-include src="'templates/components/molecules/episode-content.html'"></ng-include>
+            </div>
+          </uib-tab>
+          <uib-tab ng-repeat="(key, episode) in season.episodes" ng-if="key !== 0" active="false" select="episodes.selectEpisode(page.data.tv.id, seasonkey, $index+1)">
+            <uib-tab-heading>
+              <ng-include src="'templates/components/molecules/episode-tab.html'"></ng-include>
+            </uib-tab-heading>
+            <div>
+              <ng-include src="'templates/components/molecules/episode-content.html'"></ng-include>
+            </div>
+          </uib-tab>
+        </uib-tabset>
+      </div>
+    </uib-tab>
+  </uib-tabset>
+</div>

@@ -2,6 +2,7 @@
 
 .list-row {
   display: flex;
+  flex-wrap: wrap;
   overflow: hidden;
   @media screen and (max-width: $screen-xs-max) {
     display: block;
@@ -9,17 +10,20 @@
 }
 
 .list-col {
-  flex: 1 1 auto;
+  flex: 1 0 auto;
   display: flex;
   max-width: 50%;
+  width: 33.3333333333%;
   margin: 5px 0;
   @media screen and (max-width: $screen-xs-max) {
     max-width: 100%;
+    display: block;
   }
 }
 
 .list-card {
   flex: 1 1 auto;
+  max-width: 100%;
   position: relative;
   z-index: 1;
   transform: scale(1);

@@ -1,5 +1,31 @@
 @charset "UTF-8";
 
+.modal-dialog {
+  @media screen and (max-width: $screen-xs-max) {
+    margin: 0;
+  }
+}
+
 .modal-body {
   h2 {margin-top: 0;}
+  @media screen and (max-width: $screen-xs-max) {
+    padding: 40px 20px;
+  }
+}
+
+
+.modal-content {
+  background: $gallery;
+  padding: 40px;
+  overflow-y: auto;
+  .btn-corner {
+    position: fixed;
+  }
+  .item {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  @media screen and (max-width: $screen-xs-max) {
+    padding: 20px;
+  }
 }
