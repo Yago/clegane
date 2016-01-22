@@ -11,10 +11,12 @@
     }
   }
 
-  > .ng-isolate-scope > .tab-content {
+  > div[type="tabs"] > .tab-content {
     background: $supernova;
     display: flex;
     > .tab-pane,
+    > .tab-pane > div,
+    > .tab-pane > div > div[type="tabs"],
     > .tab-pane > .ng-scope {
       flex: 1;
       display: flex;
@@ -26,8 +28,7 @@
     > .active {display: flex !important;}
   }
 
-  .tab-content
-  div[type="tabs"] {
+  .tab-content div[type="tabs"] {
     display: flex;
     flex-wrap: nowrap;
   }
@@ -88,6 +89,7 @@
     flex: 0 1 0;
     transition: all 0.3s ease-in-out;
     background: $gallery;
+    h3:first-child, .h3:first-child {margin-top: 0.7em;}
   }
 
   &.in {
