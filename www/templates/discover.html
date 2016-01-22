@@ -23,8 +23,6 @@
     </div>
   </div>
 
-  <pre>{{page.data.data.results.length | numberArray}}</pre>
-
   <div class="results-wrapper">
     <div class="row" ng-repeat="(rowkey, row) in page.data.data.results.length | numberArray">
       <div class="col-sm-2-4" ng-repeat="(key, result) in page.data.data.results | rowArray:rowkey">

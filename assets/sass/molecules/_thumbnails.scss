@@ -7,31 +7,24 @@
 .thumb {
   position: relative;
   display: block;
-  img {transition: all 0.3s ease-out}
-  .placeholder + .thumb-info {
-    opacity: 1;
-    background: rgba(0, 0, 0, 0.2);
+  img {
+    box-shadow: 0px 0px 8px -1px rgba(0, 0, 0, 0.8);
+    transition: box-shadow 0.3s linear,
+                filter 0.3s linear;
   }
-  &:hover .thumb-info,
-  &:hover .placeholder + .thumb-info {
-    opacity: 1;
-    background: rgba(0, 0, 0, 0.5);
-  }
-  &:hover img {filter: grayscale(100%);}
-  @media screen and (max-width: $screen-sm-max) {
-    &:hover {
-      .thumb-info,
-      .placeholder + .thumb-info {
-        opacity: 0;
-      }
-      img {filter: none;}
+  &:hover {
+    img {
+      box-shadow: 0px 0px 8px 2px rgba(0, 0, 0, 1);
+      filter: contrast(103%) brightness(115%);
     }
+    .thumb-info h3 {color: $supernova;}
+    .thumb-info h5 {color: $silver-chalice;}
   }
 }
 
 .thumb-info {
   color: $white;
-  transition: opacity 0.3s ease-out;
+  transition: opacity 0.3s linear;
   display: block;
   padding: 10px;
   h3 {
@@ -39,10 +32,12 @@
     font-size: $font-size-base;
     font-weight: 400;
     margin: 0;
+    transition: color 0.3s;
   }
   h5 {
     color: $scorpion;
     margin: 0;
+    transition: color 0.3s;
   }
   .cleganicon {font-size: 0.6em;}
 }
