@@ -34,7 +34,7 @@ app.filter('numberArray', function() {
   return function(input) {
     var array = [],
         max = input/5;
-    for (var i = 1; i <= max; i++) {
+    for (var i = 0; i <= max; i++) {
       array.push(i);
     }
     return array;
