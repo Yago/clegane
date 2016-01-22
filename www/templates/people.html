@@ -1,4 +1,7 @@
 <ion-view view-title="Clegane" cache-view="false" hide-back-button="true">
+  <ion-nav-buttons side="left">
+    <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+  </ion-nav-buttons>
   <ion-content ng-controller="PageCtrl as page" ng-init="page.get('/people/'+page.param.id);">
 
     <div ng-if="page.data.images[0]" class="cover">
