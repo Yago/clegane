@@ -1,0 +1,7 @@
+@charset "UTF-8";
+
+.bar-header {
+  &.bar-energized .button {
+    color: $black;
+  }
+}

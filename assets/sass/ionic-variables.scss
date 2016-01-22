@@ -7,7 +7,7 @@ $stable:                          #f8f8f8 !default;
 $positive:                        $electric-violet !default;
 $calm:                            #11c1f3 !default;
 $balanced:                        #33cd5f !default;
-$energized:                       #ffc900 !default;
+$energized:                       $supernova !default;
 $assertive:                       #ef473a !default;
 $royal:                           $electric-violet !default;
 $dark:                            #444 !default;
@@ -203,7 +203,7 @@ $bar-balanced-active-bg:          $button-balanced-active-bg !default;
 $bar-balanced-active-border:      $button-balanced-active-border !default;
 
 $bar-energized-bg:                rgba($button-energized-bg, $bar-transparency) !default;
-$bar-energized-text:              $button-energized-text !default;
+$bar-energized-text:              $black !default;
 $bar-energized-border:            $button-energized-border !default;
 $bar-energized-active-bg:         $button-energized-active-bg !default;
 $bar-energized-active-border:     $button-energized-active-border !default;
