@@ -25,12 +25,6 @@
     height: 45px;
     padding: 0;
   }
-  @media screen and (max-width: $screen-sm-max) {
-    .btn, .form-control {
-      height: 60px;
-    }
-    .btn {width: 60px;}
-  }
 }
 
 .menu-left .dropdown-menu {

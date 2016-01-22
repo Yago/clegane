@@ -7,19 +7,6 @@
   min-height: 100vh;
   flex-shrink: 0;
   position: relative;
-  @media screen and (max-width: $screen-sm-max) {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: $sidebar-width * -1;
-    transition: left 0.3s;
-    overflow-y: auto;
-    overflow-x: hidden;
-    box-shadow: inset -7px 0 15px -3px rgba(0, 0, 0, 0.4);
-    &.sidebar-open {
-      left: 0;
-    }
-  }
 }
 
 
@@ -28,9 +15,6 @@
   width: $sidebar-width;
   top: 0;
   left: 0;
-  @media screen and (max-width: $screen-sm-max) {
-    position: absolute;
-  }
 }
 
 .menu-left .scroll-content {

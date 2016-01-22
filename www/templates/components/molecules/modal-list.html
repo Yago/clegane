@@ -1,14 +1,8 @@
 <ion-modal-view>
-  <ion-header-bar>
-    <h1 class="title">My Modal title</h1>
+  <ion-content class="modal-content" has-bouncing="false" ng-controller="ListCtrl as modallist">
     <button class="btn btn-primary btn-corner" ng-click="modal.close()">
       <i class="cleganicon cleganicon-close"></i>
     </button>
-  </ion-header-bar>
-
-  <ion-content has-bouncing="false" ng-controller="ListCtrl as modallist">
-    <div class="spacer spacer-md"></div>
-
     <div ng-init="modallist.init()">
       <h2>Add to lists</h2>
       <ion-checkbox ng-repeat="(key, item) in modallist.lists" ng-model="item.exist" ng-change="modallist.update(item.id, item.exist, type)">{{item.name}}</ion-checkbox>
