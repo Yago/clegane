@@ -41,3 +41,13 @@
   }
   .cleganicon {font-size: 0.6em;}
 }
+
+.whity .thumb {
+  img {box-shadow: none !important;}
+  .thumb-info h3 {color: $scorpion;}
+  .thumb-info h5 {color: $silver-chalice;}
+  &:hover {
+    .thumb-info h3 {color: $electric-violet;}
+    .thumb-info h5 {color: $scorpion;}
+  }
+}
