@@ -2,8 +2,10 @@
 
 /* global app */
 
-app.controller('PageCtrl', function(ApiService, $stateParams) {
+app.controller('PageCtrl', function(ApiService, MobileService, $stateParams) {
   var that = this;
+
+  that.isMobile = MobileService.detect();
 
   that.data = '';
   that.param = $stateParams;
