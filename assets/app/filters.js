@@ -30,6 +30,29 @@ app.filter('typeaheadid', function() {
   };
 });
 
+app.filter('numberArray', function() {
+  return function(input) {
+    var array = [],
+        max = input/5;
+    for (var i = 1; i <= max; i++) {
+      array.push(i);
+    }
+    return array;
+  };
+});
+
+app.filter('rowArray', function() {
+  return function(array, current) {
+    var items = [];
+    for (var i = 0; i <= array.length; i++) {
+      if (i < current * 5 && i >= (current-1) * 5) {
+        items.push(array[i]);
+      }
+    }
+    return items;
+  };
+});
+
 /*
  * Beautify string
  */

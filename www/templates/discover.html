@@ -1,5 +1,5 @@
 <ion-view view-title="Clegane" cache-view="false" hide-back-button="true">
-  <ion-content ng-controller="PageCtrl as page" ng-init="page.get('/'+page.param.type+'/'+page.param.query+'/'+page.param.page);">
+  <ion-content class="discover-page" ng-controller="PageCtrl as page" ng-init="page.get('/'+page.param.type+'/'+page.param.query+'/'+page.param.page);">
 
     <div class="results-heading">
       <div class="row" ng-if="page.data.type !== 'peoples'">
@@ -23,9 +23,11 @@
     </div>
   </div>
 
+  <pre>{{page.data.data.results.length | numberArray}}</pre>
+
   <div class="results-wrapper">
-    <div class="row">
-      <div class="col-sm-2-4" ng-repeat="(key, result) in page.data.data.results">
+    <div class="row" ng-repeat="(rowkey, row) in page.data.data.results.length | numberArray">
+      <div class="col-sm-2-4" ng-repeat="(key, result) in page.data.data.results | rowArray:rowkey">
         <clegane-thumb
           ng-if="page.data.type === 'movies'"
           from="discover"
