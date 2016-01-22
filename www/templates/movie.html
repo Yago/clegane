@@ -1,6 +1,6 @@
 <ion-view view-title="Clegane" cache-view="false" hide-back-button="true">
   <ion-content ng-controller="PageCtrl as page" ng-init="page.get('/movie/'+page.param.id);">
-    <div class="cover">
+    <div class="cover" ng-if="page.data.movie.backdrop_path">
       <div class="cover-image">
         <clegane-pic
           src="{{page.data.movie.backdrop_path}}"
@@ -73,7 +73,7 @@
       <div class="row">
         <div class="col-sm-9 col-sm-offset-3">
 
-          <div class="whity">
+          <div class="whity" ng-if="page.data.movie.title">
             <div ng-controller="ModalCtrl as modal" ng-show="page.data.movie.title">
               <button class="btn btn-primary btn-corner" ng-click="modal.open()">
                 <i class="cleganicon cleganicon-add"></i>
