@@ -1,8 +1,8 @@
-<ion-view view-title="Clegane" cache-view="false" hide-back-button="true">
+<ion-view view-title="Clegane" cache-view="false" hide-back-button="true" ng-controller="PageCtrl as page" ng-init="page.get('/'+page.param.type+'/'+page.param.query+'/'+page.param.page);">
   <ion-nav-buttons side="left">
     <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
   </ion-nav-buttons>
-  <ion-content class="discover-page" ng-controller="PageCtrl as page" ng-init="page.get('/'+page.param.type+'/'+page.param.query+'/'+page.param.page);">
+  <ion-content class="discover-page">
 
     <div class="results-heading">
       <div class="row" ng-if="page.data.type !== 'peoples'">
@@ -26,7 +26,7 @@
     </div>
   </div>
 
-  <div class="results-wrapper">
+  <div class="results-wrapper" ng-if="!page.isMobile">
     <div class="row" ng-repeat="(rowkey, row) in page.data.data.results.length | numberArray">
       <div class="col-sm-2-4" ng-repeat="(key, result) in page.data.data.results | rowArray:rowkey">
         <clegane-thumb
@@ -56,7 +56,22 @@
     </div>
   </div>
 
-  <ng-include src="'templates/components/molecules/pagination.html'"></ng-include>
+  <div class="list" ng-if="page.isMobile">
+    <clegane-item
+      ng-if="page.data.type === 'movies'"
+      ng-repeat="(key, result) in page.data.data.results"
+      from="discover"
+      id="{{result.id}}"
+      img="{{result.poster_path}}"
+      title="{{result.title}}"
+      time="{{result.release_date|year}}"
+      type="movie"></clegane-item>
+      <div class="spacer spacer-xl"></div>
+  </div>
+
+  <ng-include ng-if="!page.isMobile" src="'templates/components/molecules/pagination.html'"></ng-include>
 
   </ion-content>
+
+  <ng-include ng-if="page.isMobile" src="'templates/components/molecules/pager.html'"></ng-include>
 </ion-view>

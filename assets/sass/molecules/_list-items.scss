@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+
+.list .item {
+  img {max-height: 100%;}
+}
+
+.item-thumbnail-left {
+  padding-left: 75px;
+  &:active, &:hover {
+    background: $black;
+  }
+  * {
+    color: $mercury;
+  }
+}

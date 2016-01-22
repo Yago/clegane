@@ -39,6 +39,7 @@ app.config(['$locationProvider', function($locationProvider) {
 // Ionic config
 app.config(function($ionicConfigProvider) {
   $ionicConfigProvider.scrolling.jsScrolling(false);
+  $ionicConfigProvider.views.transition('none');
 });
 
 // Fix when $uibModalInstance is use in a non-modal controller

@@ -1,0 +1,17 @@
+<div class="tabs tabs-positive tabs-icon-top" ng-if="page.data.data.total_pages > 1">
+  <a  class="tab-item" ng-class="page.param.page == 1 ? 'disabled' : ''" href="/{{page.data.type}}/{{page.param.query}}/{{page.param.page - 1}}" aria-label="Previous">
+    <i class="icon ion-android-arrow-dropleft"></i>
+    Previous
+  </a>
+  <div class="tab-item tab-indicator" ng-repeat="(key, value) in page.paginationArray" ng-if="page.param.page == value">
+    <span>{{value}}</span>
+  </div>
+  <a class="tab-item" ng-class="page.param.page == 1000 || page.param.page == page.data.data.total_pages ? 'disabled' : ''" ng-if="page.param.page < 999" href="/{{page.data.type}}/{{page.param.query}}/{{page.param.page - 1 + 2}}" aria-label="Next">
+    <i class="icon ion-android-arrow-dropright"></i>
+    Next
+  </a>
+  <a class="tab-item" ng-class="page.param.page == 1000 || page.param.page == page.data.data.total_pages ? 'disabled' : ''" ng-if="page.param.page == 999" href="/{{page.data.type}}/{{page.param.query}}/1000" aria-label="Next">
+    <i class="icon ion-android-arrow-dropright"></i>
+    Next
+  </a>
+</div>

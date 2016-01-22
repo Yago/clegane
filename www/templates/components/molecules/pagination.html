@@ -1,6 +1,6 @@
 <nav class="text-center" ng-if="page.data.data.total_pages > 1">
   <ul class="pagination">
-    <li class="pagination-controller" ng-class="page.param.page == 1 ? 'disabled' : ''">
+    <li class="pagination-controller pagination-start" ng-class="page.param.page == 1 ? 'disabled' : ''">
       <a href="/{{page.data.type}}/{{page.param.query}}/1" aria-label="First page">
         <span aria-hidden="true">&laquo;</span>
       </a>
@@ -14,14 +14,14 @@
     <li ng-repeat="(key, value) in page.paginationArray" ng-class="page.param.page == value ? 'active' : ''"><a href="/{{page.data.type}}/{{page.param.query}}/{{value}}">{{value}}</a></li>
 
     <li class="pagination-controller" ng-class="page.param.page == 1000 || page.param.page == page.data.data.total_pages ? 'disabled' : ''">
-      <a ng-if="page.param.page < 999" href="/{{page.data.type}}/{{page.param.query}}/{{page.param.page + 1}}" aria-label="Next">
+      <a ng-if="page.param.page < 999" href="/{{page.data.type}}/{{page.param.query}}/{{page.param.page - 1 + 2}}" aria-label="Next">
         <span aria-hidden="true">&rsaquo;</span>
       </a>
       <a ng-if="page.param.page == 999" href="/{{page.data.type}}/{{page.param.query}}/1000" aria-label="Next">
         <span aria-hidden="true">&rsaquo;</span>
       </a>
     </li>
-    <li class="pagination-controller" ng-class="page.param.page == 1000 || page.param.page == page.data.data.total_pages ? 'disabled' : ''">
+    <li class="pagination-controller pagination-end" ng-class="page.param.page == 1000 || page.param.page == page.data.data.total_pages ? 'disabled' : ''">
       <a ng-if="page.data.data.total_pages <= 1000" href="/{{page.data.type}}/{{page.param.query}}/{{page.data.data.total_pages}}" aria-label="Last page">
         <span aria-hidden="true">&raquo;</span>
       </a>

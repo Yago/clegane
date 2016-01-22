@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+.pager {
+
+}
+
+.tab-indicator span {
+  display: inline-block;
+  font-size: 3em;
+  padding-top: 14px;
+}
+
+.tab-item {
+  color: $white;
+  opacity: 1;
+  &.disabled {
+    opacity: 0.6;
+  }
+}
