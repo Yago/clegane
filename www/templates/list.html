@@ -48,8 +48,10 @@
           <div ng-repeat="(key, item) in page.data.items | orderBy:'add_on':true" class="col-sm-2-4 grid-item {{item.type}}" ng-class="item.data.watched || items.data.episodes.length ? 'watched' : 'not-watched'" data-name="{{item.data.name}}" data-date="{{item.add_on}}">
             <clegane-thumb
               id="{{item.data.tmdb_id}}"
+              from="list"
               img="{{item.data.picture}}"
               title="{{item.data.name}}"
+              time="{{item.add_on|day}}"
               type="{{item.type}}"></clegane-thumb>
           </div>
         </div>

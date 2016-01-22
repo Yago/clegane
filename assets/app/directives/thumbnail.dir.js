@@ -9,7 +9,9 @@ app.directive('cleganeThumb', function(){
       id: '@id',
       img: '@img',
       title: '@title',
-      type: '@type'
+      type: '@type',
+      time: '@time',
+      from: '@from'
     },
     templateUrl: 'templates/components/molecules/thumbnail.html'
   };

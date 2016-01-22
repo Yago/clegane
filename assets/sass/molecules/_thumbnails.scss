@@ -30,29 +30,19 @@
 }
 
 .thumb-info {
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.5);
   color: $white;
-  padding: $grid-gutter-width*2;
   transition: opacity 0.3s ease-out;
-  h1, h2, h3, h4, h5 {
-    margin: 0.2em 0;
+  display: block;
+  padding: 10px;
+  h3 {
+    color: $mercury;
+    font-size: $font-size-base;
+    font-weight: 400;
+    margin: 0;
   }
-}
-
-.thumb-episode {
-  .thumb-info {
-    opacity: 1;
-    background: rgba(0, 0, 0, 0.2);
-    transition: background 0.3s;
+  h5 {
+    color: $scorpion;
+    margin: 0;
   }
-  &:hover {
-    .thumb-info {background: rgba(0, 0, 0, 0.6);}
-    img {filter: grayscale(0%) !important;}
-  }
+  .cleganicon {font-size: 0.6em;}
 }

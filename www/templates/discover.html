@@ -28,18 +28,23 @@
       <div class="col-sm-2-4" ng-repeat="(key, result) in page.data.data.results">
         <clegane-thumb
           ng-if="page.data.type === 'movies'"
+          from="discover"
           id="{{result.id}}"
           img="{{result.poster_path}}"
           title="{{result.title}}"
+          time="{{result.release_date|year}}"
           type="movie"></clegane-thumb>
         <clegane-thumb
           ng-if="page.data.type === 'tvs'"
+          from="discover"
           id="{{result.id}}"
           img="{{result.poster_path}}"
           title="{{result.name}}"
+          time="{{result.first_air_date|year}}"
           type="tv"></clegane-thumb>
         <clegane-thumb
           ng-if="page.data.type === 'peoples'"
+          from="discover"
           id="{{result.id}}"
           img="{{result.profile_path}}"
           title="{{result.name}}"

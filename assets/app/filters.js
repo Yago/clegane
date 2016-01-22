@@ -8,6 +8,12 @@ app.filter('year', function() {
   };
 });
 
+app.filter('day', function() {
+  return function(input) {
+    return input.split('T')[0];
+  };
+});
+
 app.filter('loopbreak', function() {
   return function(input, step) {
     if ((input+1) % (12 / step) === 0) {

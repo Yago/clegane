@@ -7,7 +7,18 @@
     class="img-responsive"
     alt="{{title}}"></clegane-pic>
   <span class="thumb-info">
-    <h5>{{type}}</h5>
-    <h3>{{title}}</h3>
+    <h3>
+      {{title}}
+    </h3>
+    <h5>
+      <span ng-if="from !== 'discover'">
+        {{type}}
+      </span>
+      <span ng-class="from !== 'discover' ? 'pull-right' : ''" ng-if="time">
+        <i class="cleganicon cleganicon-eye" ng-if="from === 'watched'"></i>
+        <i class="cleganicon cleganicon-add" ng-if="from === 'list'"></i>
+        {{time}}
+      </span>
+    </h5>
   </span>
 </a>
