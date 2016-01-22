@@ -25,6 +25,12 @@
             img="{{result.poster_path}}"
             title="{{result.name}}"
             type="tv"></clegane-thumb>
+          <clegane-thumb
+            ng-if="result.media_type === 'person'"
+            id="{{result.id}}"
+            img="{{result.profile_path}}"
+            title="{{result.name}}"
+            type="tv"></clegane-thumb>
         </div>
       </div>
     </div>

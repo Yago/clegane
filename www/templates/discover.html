@@ -39,7 +39,7 @@
           title="{{result.name}}"
           type="tv"></clegane-thumb>
         <clegane-thumb
-          ng-if="page.data.type !== 'movies' && page.data.type !== 'tvs'"
+          ng-if="page.data.type === 'person'"
           id="{{result.id}}"
           img="{{result.profile_path}}"
           title="{{result.name}}"
