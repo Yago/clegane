@@ -16,6 +16,7 @@
 
 .modal-content {
   background: $gallery;
+  color: $cod-gray;
   padding: 40px;
   overflow-y: auto;
   .btn-corner {
@@ -24,8 +25,13 @@
   .item {
     padding-top: 8px;
     padding-bottom: 8px;
+    color: $cod-gray;
   }
   @media screen and (max-width: $screen-xs-max) {
     padding: 20px;
+    .btn-corner {
+      top: -20px;
+      right: -20px;
+    }
   }
 }
