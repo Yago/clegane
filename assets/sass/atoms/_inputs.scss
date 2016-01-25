@@ -16,21 +16,37 @@
 ::-webkit-input-placeholder {
   color: $silver-chalice;
   font-style: italic;
-  line-height: 1.3em;
+  line-height: 2em;
 }
 :-moz-placeholder {
   color: $silver-chalice;
   font-style: italic;
-  line-height: 1.3em;
+  line-height: 2em;
 }
 ::-moz-placeholder {
   color: $silver-chalice;
   font-style: italic;
-  line-height: 1.3em;
+  line-height: 2em;
 }
 :-ms-input-placeholder {
   color: $silver-chalice;
   font-style: italic;
-  line-height: 1.3em;
+  line-height: 2em;
+}
+
+@media screen and (max-width: $screen-xs-max) {
+  ::-webkit-input-placeholder {
+    line-height: 1.3em;
+  }
+  :-moz-placeholder {
+    line-height: 1.3em;
+  }
+  ::-moz-placeholder {
+    line-height: 1.3em;
+  }
+  :-ms-input-placeholder {
+    line-height: 1.3em;
+  }
+
 }
 
