@@ -1,8 +1,8 @@
-<ion-view view-title="Clegane" cache-view="false" hide-back-button="true">
+<ion-view view-title="Clegane" cache-view="false" hide-back-button="true" ng-controller="PageCtrl as page" ng-init="page.get('/'+page.param.type+'/'+page.param.query+'/'+page.param.page);">
   <ion-nav-buttons side="left">
     <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
   </ion-nav-buttons>
-  <ion-content ng-controller="PageCtrl as page" ng-init="page.get('/'+page.param.type+'/'+page.param.query+'/'+page.param.page);">
+  <ion-content>
 
     <div class="results-heading">
       <h4>
@@ -14,7 +14,7 @@
     </div>
 
     <div class="results-wrapper">
-      <div class="row" ng-repeat="(rowkey, row) in page.data.data.results.length | numberArray">
+      <div class="row" ng-if="!page.isMobile" ng-repeat="(rowkey, row) in page.data.data.results.length | numberArray">
         <div class="col-sm-2-4" ng-repeat="(key, result) in page.data.data.results | rowArray:rowkey">
           <clegane-thumb
             ng-if="result.media_type === 'movie' || page.data.type === 'tag' || page.data.type === 'genre'"
@@ -33,13 +33,37 @@
             id="{{result.id}}"
             img="{{result.profile_path}}"
             title="{{result.name}}"
-            type="tv"></clegane-thumb>
+            type="people"></clegane-thumb>
         </div>
+      </div>
+      <div class="list" ng-if="page.isMobile">
+        <span ng-repeat="(key, result) in page.data.data.results">
+          <clegane-item
+            ng-if="result.media_type === 'movie' || page.data.type === 'tag' || page.data.type === 'genre'"
+            id="{{result.id}}"
+            img="{{result.poster_path}}"
+            title="{{result.title}}"
+            type="movie"></clegane-item>
+          <clegane-item
+            ng-if="result.media_type === 'tv'"
+            id="{{result.id}}"
+            img="{{result.poster_path}}"
+            title="{{result.name}}"
+            type="tv"></clegane-item>
+          <clegane-item
+            ng-if="result.media_type === 'person'"
+            id="{{result.id}}"
+            img="{{result.profile_path}}"
+            title="{{result.name}}"
+            type="people"></clegane-item>
+        </span>
+        <div class="spacer spacer-xl"></div>
       </div>
     </div>
 
-    <ng-include src="'templates/components/molecules/pagination.html'"></ng-include>
-
+    <ng-include ng-if="!page.isMobile" src="'templates/components/molecules/pagination.html'"></ng-include>
 
   </ion-content>
+
+  <ng-include ng-if="page.isMobile" src="'templates/components/molecules/pager.html'"></ng-include>
 </ion-view>

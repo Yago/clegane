@@ -26,8 +26,8 @@
     </div>
   </div>
 
-  <div class="results-wrapper" ng-if="!page.isMobile">
-    <div class="row" ng-repeat="(rowkey, row) in page.data.data.results.length | numberArray">
+  <div class="results-wrapper">
+    <div class="row" ng-if="!page.isMobile" ng-repeat="(rowkey, row) in page.data.data.results.length | numberArray">
       <div class="col-sm-2-4" ng-repeat="(key, result) in page.data.data.results | rowArray:rowkey">
         <clegane-thumb
           ng-if="page.data.type === 'movies'"
@@ -54,20 +54,37 @@
           type="people"></clegane-thumb>
       </div>
     </div>
+    <div class="list" ng-if="page.isMobile">
+      <clegane-item
+        ng-if="page.data.type === 'movies'"
+        ng-repeat="(key, result) in page.data.data.results"
+        from="discover"
+        id="{{result.id}}"
+        img="{{result.poster_path}}"
+        title="{{result.title}}"
+        time="{{result.release_date|year}}"
+        type="movie"></clegane-item>
+      <clegane-item
+        ng-if="page.data.type === 'tvs'"
+        ng-repeat="(key, result) in page.data.data.results"
+        from="discover"
+        id="{{result.id}}"
+        img="{{result.poster_path}}"
+        title="{{result.name}}"
+        time="{{result.first_air_date|year}}"
+        type="tv"></clegane-item>
+      <clegane-item
+        ng-if="page.data.type === 'peoples'"
+        ng-repeat="(key, result) in page.data.data.results"
+        from="discover"
+        id="{{result.id}}"
+        img="{{result.profile_path}}"
+        title="{{result.name}}"
+        type="people"></clegane-item>
+        <div class="spacer spacer-xl"></div>
+    </div>
   </div>
 
-  <div class="list" ng-if="page.isMobile">
-    <clegane-item
-      ng-if="page.data.type === 'movies'"
-      ng-repeat="(key, result) in page.data.data.results"
-      from="discover"
-      id="{{result.id}}"
-      img="{{result.poster_path}}"
-      title="{{result.title}}"
-      time="{{result.release_date|year}}"
-      type="movie"></clegane-item>
-      <div class="spacer spacer-xl"></div>
-  </div>
 
   <ng-include ng-if="!page.isMobile" src="'templates/components/molecules/pagination.html'"></ng-include>
 

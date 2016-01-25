@@ -47,8 +47,8 @@
       </div>
 
       <div class="results-wrapper">
-        <div class="row grid">
-          <div ng-repeat="(key, item) in page.data.items | orderBy:'add_on':true" class="col-sm-2-4 grid-item {{item.type}}" ng-class="item.data.watched || items.data.episodes.length ? 'watched' : 'not-watched'" data-name="{{item.data.name}}" data-date="{{item.add_on}}">
+        <div class="row grid" ng-if="!page.isMobile">
+          <div ng-repeat="(key, item) in page.data.items | orderBy:'add_on':true" class="col-sm-2-4 grid-item {{item.type}}" ng-class="item.data.watched || items.data.episodes.length ? 'watched' : 'not-watched'" data-name="{{item.data.name}}" data-date="{{item.add_on|day}}">
             <clegane-thumb
               id="{{item.data.tmdb_id}}"
               from="list"
@@ -58,7 +58,22 @@
               type="{{item.type}}"></clegane-thumb>
           </div>
         </div>
+        <div class="list grid" ng-if="page.isMobile">
+          <clegane-item
+            ng-repeat="(key, item) in page.data.items | orderBy:'add_on':true"
+            class="col-sm-2-4 grid-item {{item.type}}"
+            ng-class="item.data.watched || items.data.episodes.length ? 'watched' : 'not-watched'"
+            data-name="{{item.data.name}}"
+            data-date="{{item.add_on|day}}"
+            id="{{item.data.tmdb_id}}"
+            from="watched"
+            img="{{item.data.picture}}"
+            title="{{item.data.name}}"
+            time="{{item.data.add_on|day}}"
+            type="{{item.type}}"></clegane-item>
+        </div>
       </div>
+
 
     </div>
 

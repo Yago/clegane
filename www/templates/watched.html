@@ -4,7 +4,7 @@
   </ion-nav-buttons>
   <ion-content ng-controller="PageCtrl as page" ng-init="page.get('/watched');">
 
-  <div ng-controller="GridCtrl as grid" ng-init="grid.record('{{user.key}}', 'descending');">
+  <div ng-controller="GridCtrl as grid" ng-init="grid.record('{{user.key}}', 'descending', {{page.isMobile}});">
 
     <div class="results-heading">
       <div class="row">
@@ -35,8 +35,8 @@
     </div>
 
     <div class="results-wrapper" ng-if="page.data.movies.length > 0 || page.data.tvs.length > 0">
-      <div class="row grid">
-        <div ng-repeat="(key, item) in page.data.movies" class="col-sm-2-4 grid-item movie" data-name="{{item.name}}" data-date="{{item.watched_on}}">
+      <div class="row grid" ng-if="!page.isMobile">
+        <div ng-repeat="(key, item) in page.data.movies" class="col-sm-2-4 grid-item movie" data-name="{{item.name}}" data-date="{{item.watched_on|day}}">
           <clegane-thumb
             id="{{item.tmdb_id}}"
             from="watched"
@@ -45,7 +45,7 @@
             time="{{item.watched_on|day}}"
             type="movie"></clegane-thumb>
         </div>
-        <div ng-repeat="(key, item) in page.data.tvs" class="col-sm-2-4 grid-item tv" data-name="{{item.name}}" data-date="{{item.watched_on}}">
+        <div ng-repeat="(key, item) in page.data.tvs" class="col-sm-2-4 grid-item tv" data-name="{{item.name}}" data-date="{{item.last_view|day}}">
           <clegane-thumb
             id="{{item.tmdb_id}}"
             from="watched"
@@ -55,7 +55,33 @@
             type="tv"></clegane-thumb>
         </div>
       </div>
+      <div class="list grid" ng-if="page.isMobile">
+        <clegane-item
+          ng-repeat="(key, item) in page.data.movies"
+          class="grid-item movie"
+          data-name="{{item.name}}"
+          data-date="{{item.watched_on|day}}"
+          id="{{item.tmdb_id}}"
+          from="watched"
+          img="{{item.picture}}"
+          title="{{item.name}}"
+          time="{{item.watched_on|day}}"
+          type="movie"></clegane-item>
+        <clegane-item
+          ng-repeat="(key, item) in page.data.tvs"
+          class="grid-item tv"
+          data-name="{{item.name}}"
+          data-date="{{item.last_view|day}}"
+          id="{{item.tmdb_id}}"
+          from="watched"
+          img="{{item.picture}}"
+          title="{{item.name}}"
+          time="{{item.last_view|day}}"
+          type="tv"></clegane-item>
+          <div class="spacer spacer-xl"></div>
+      </div>
     </div>
+
 
     <div ng-if="page.data.movies.length <= 0 && page.data.tvs.length <= 0" class="content-container">
       <div class="spacer spacer-xl"></div>

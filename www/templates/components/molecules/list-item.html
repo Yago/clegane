@@ -9,6 +9,13 @@
       alt="{{title}}"></clegane-pic>
   </div>
   <h2>{{title}}</h2>
-  <p>{{type}} {{time}}</p>
+  <p>
+    <span ng-if="from !== 'discover'">{{type}}<br></span>
+    <span ng-if="time">
+      <i class="cleganicon cleganicon-eye" ng-if="from === 'watched'"></i>
+      <i class="cleganicon cleganicon-add" ng-if="from === 'list'"></i>
+      {{time}}
+    </span>
+  </p>
   <i class="icon ion-ios-arrow-right"></i>
 </a>

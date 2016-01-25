@@ -1,13 +1,13 @@
 @charset "UTF-8";
 
-.pager {
-
+.pager.tabs {
+  height: 35px;
 }
 
 .tab-indicator span {
   display: inline-block;
-  font-size: 3em;
-  padding-top: 14px;
+  font-size: 2em;
+  padding-top: 8px;
 }
 
 .tab-item {

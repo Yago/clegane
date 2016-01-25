@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+.list .grid-item {
+  width: 100% !important;
+}
 
 .list .item {
   img {max-height: 100%;}
@@ -7,10 +10,21 @@
 
 .item-thumbnail-left {
   padding-left: 75px;
+  border-left: none;
+  border-bottom: none;
+  border-right: none;
   &:active, &:hover {
     background: $black;
   }
   * {
     color: $mercury;
+  }
+  p, p * {
+    color: $silver-chalice;
+  }
+  .cleganicon {
+    position: relative;
+    top: 2px;
+    font-size: 0.8em;
   }
 }
