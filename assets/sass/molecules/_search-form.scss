@@ -46,3 +46,18 @@
     color: $cod-gray;
   }
 }
+
+.ion-autocomplete-container {
+  .bar.bar-header {
+    @extend .bar-dark;
+  }
+  .item-divider {
+    display: none;
+  }
+  .item {
+    border-left: none;
+    border-bottom: none;
+    border-right: none;
+    &:active, &:focus {background: transparent;}
+  }
+}

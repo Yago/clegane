@@ -3,7 +3,7 @@
 /* global angular */
 
 var app = angular.module('CleganeApp',
-            ['ngSanitize', 'ngTouch', 'ui.bootstrap', 'ionic']);
+            ['ngSanitize', 'ngTouch', 'ui.bootstrap', 'ionic', 'ion-autocomplete']);
 
 
 // Basic angular style middleware

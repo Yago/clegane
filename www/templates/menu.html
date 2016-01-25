@@ -1,4 +1,4 @@
-<ion-side-menus enable-menu-with-back-views="false" ng-controller="MainCtrl as app">
+<ion-side-menus enable-menu-with-back-views="false" ng-controller="SearchCtrl as search">
   <ion-side-menu-content drag-content="false">
     <ion-nav-bar class="bar-energized">
       <ion-nav-back-button>
@@ -7,6 +7,9 @@
       <ion-nav-buttons side="left">
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
         </button>
+      </ion-nav-buttons>
+      <ion-nav-buttons side="right">
+        <button class="button button-icon ion-ios-search-strong" ng-click="search.openSearch()"></button>
       </ion-nav-buttons>
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
@@ -19,8 +22,23 @@
           <i class="cleganicon cleganicon-clegane cleganicon-4x"></i>
         </a>
       </header>
-      <div class="search-wrapper hidden-xs" ng-controller="SearchCtrl as search">
+      <div class="search-wrapper hidden-xs">
         <ng-include src="'templates/components/molecules/search.html'"></ng-include>
+        <input
+          ion-autocomplete
+          type="text"
+          readonly="readonly"
+          class="hidden ion-autocomplete"
+          autocomplete="off"
+          ng-model="search.mobileKeywords"
+          item-value-key="display"
+          item-view-value-key="display + release_date + first_air_date"
+          items-method="search.getMobileResults(query)"
+          items-method-value-key="items"
+          placeholder="Enter test query ..."
+          items-clicked-method="search.itemsClicked(callback)"
+          items-removed-method="search.itemsRemoved(callback)"
+          max-selected-items="1"/>
       </div>
       <ion-list>
         <a menu-close class="item item-icon-left" href="#" ui-sref="app.dashboard">

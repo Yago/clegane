@@ -13,7 +13,7 @@
         uib-typeahead="data as data.display for data in search.getResults($viewValue)"
         typeahead-loading="loadingResults"
         typeahead-no-results="noResults"
-        typeahead-template-url="result-template.html.swig"
+        typeahead-template-url="result-template.html"
         typeahead-on-select="search.onSelect($item, $model, $label)"
         typeahead-wait-ms="0"
         class="form-control"
@@ -30,7 +30,7 @@
   </div>
 </form>
 
-<script type="text/ng-template" id="result-template.html.swig">
+<script type="text/ng-template" id="result-template.html">
   <a href="/{{match.model.media_type}}/{{match.model.id}}">
     <strong ng-if="match.model.title">
       {{match.model.title}}
