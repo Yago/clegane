@@ -12,6 +12,8 @@
     margin: 0 auto;
   }
   @media screen and (max-width: $screen-xs-max) {
+    margin-left: -13px;
+    margin-right: -13px;
     .content-container-people & {
       margin-left: -13px;
       margin-right: -13px;
