@@ -46,6 +46,8 @@
           <div class="spacer spacer-sm"></div>
         </div>
 
+        <div class="spacer spacer-xl visible-xs" ng-if="page.data.people.profile_path"></div>
+
         <div class="text-center">
           <h1>{{page.data.people.name}}</h1>
           <p>{{page.data.people.birthday}}<span ng-if="page.data.people.imdb_id"> - <a href="http://www.imdb.com/name/{{page.data.people.imdb_id}}" target="_blank">IMDB</a></span></p>
