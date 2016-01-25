@@ -4,6 +4,13 @@
   </ion-nav-buttons>
   <ion-content ng-controller="PageCtrl as page" ng-init="page.get('/tv/'+page.param.id);">
 
+  <div class="list">
+    <a ng-repeat="(seasonkey, season) in page.data.seasons | orderBy:'season_number':false" ng-if="season.season_number !== 0 && season.episodes.length > 0" class="item item-icon-right" href="/tv/{{page.param.id}}/season/{{season.season_number}}">
+      <h2>Season {{season.season_number}}</h2>
+      <i class="icon ion-ios-arrow-right"></i>
+    </a>
+  </div>
+
   <div class="cover" ng-if="page.data.tv.backdrop_path">
     <div class="cover-image">
       <clegane-pic

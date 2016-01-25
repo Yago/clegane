@@ -74,6 +74,24 @@ app.config(function($stateProvider, $urlRouterProvider, $rootScopeProvider) {
         }
       }
     })
+    .state('app.season', {
+      url: '/tv/:id/season/:season_number',
+      requireAuth: true,
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/season.html'
+        }
+      }
+    })
+    .state('app.episode', {
+      url: '/episode/:id',
+      requireAuth: true,
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/episode.html'
+        }
+      }
+    })
     .state('app.tvs', {
       url: '/tvs/:query/:page',
       requireAuth: true,

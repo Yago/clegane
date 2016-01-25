@@ -1,0 +1,12 @@
+<ion-view view-title="Clegane" cache-view="false" hide-back-button="true">
+  <ion-content ng-controller="PageCtrl as page" ng-init="page.get('/tv/'+page.param.id);">
+
+    <div class="list" ng-repeat="(seasonkey, season) in page.data.seasons | orderBy:'season_number':false" ng-if="season.season_number !== 0 && season.episodes.length > 0 && season.season_number == page.param.season_number">
+      <a ng-repeat="(key, episode) in season.episodes" class="item item-icon-right" href="/episode/{{episode.id}}">
+        <h2>Episode {{episode.episode_number}}</h2>
+        <i class="icon ion-ios-arrow-right"></i>
+      </a>
+    </div>
+
+  </ion-content>
+</ion-view>
