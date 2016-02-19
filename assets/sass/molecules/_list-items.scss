@@ -8,21 +8,23 @@
   border-left: none;
   border-bottom: none;
   border-right: none;
-  color: $silver-chalice;
   &:active, &:hover {
     background: $black;
   }
   * {
-    color: $mercury;
   }
   p, p * {
     color: $silver-chalice;
   }
   img {max-height: 100%;}
   .cleganicon {
-    position: relative;
     top: 2px;
     font-size: 0.8em;
+  }
+  &.item-mobile {
+    color: $silver-chalice;
+    * {color: $mercury;}
+    .cleganicon {position: relative;}
   }
 }
 
