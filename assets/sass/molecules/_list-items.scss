@@ -26,6 +26,16 @@
     * {color: $mercury;}
     .cleganicon {position: relative;}
   }
+  &.item-mobile.item-checkbox {
+    border-bottom: 1px solid $scorpion;
+    .checkbox {
+      width: 42px;
+      right: auto;
+      left: 8px;
+      height: 42px;
+      input[type="checkbox"] {margin-left: 0;}
+    }
+  }
 }
 
 .item-thumbnail-left {
