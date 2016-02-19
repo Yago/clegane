@@ -2,7 +2,7 @@
 
 /* global app */
 
-app.controller('PageCtrl', function(ApiService, MobileService, $stateParams) {
+app.controller('PageCtrl', function(ApiService, StorageService, MobileService, $stateParams) {
   var that = this;
 
   that.isMobile = MobileService.detect();
@@ -44,6 +44,20 @@ app.controller('PageCtrl', function(ApiService, MobileService, $stateParams) {
         console.log(err);
       });
   };
+
+  // Save data from current page
+  that.save = function (key, data) {
+    StorageService.save(key, data);
+  };
+
+  // Get data for season's page
+  that.seasons = function (id) {
+    if (StorageService.get(id)) {
+      that.data = angular.fromJson(StorageService.get(id));
+    } else {
+      that.get('/tv/'+id);
+    }
+  }
 
 
 });
