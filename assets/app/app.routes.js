@@ -84,7 +84,7 @@ app.config(function($stateProvider, $urlRouterProvider, $rootScopeProvider) {
       }
     })
     .state('app.episode', {
-      url: '/episode/:id',
+      url: '/tv/:id/season/:season_number/episode/:episode_number',
       requireAuth: true,
       views: {
         'menuContent': {

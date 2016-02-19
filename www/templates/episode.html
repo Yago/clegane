@@ -1,7 +1,44 @@
 <ion-view view-title="Clegane" cache-view="false" hide-back-button="true">
-  <ion-content ng-controller="PageCtrl as page" ng-init="page.get('/lists');">
+  <ion-content ng-controller="PageCtrl as page" ng-init="page.seasons(page.param.id);">
 
+    <div class="list" ng-repeat="(seasonkey, season) in page.data.seasons" ng-if="season.season_number == page.param.season_number">
+      <div class="list" ng-repeat="(episodekey, episode) in season.episodes" ng-if="episode.episode_number == page.param.episode_number">
 
+        <div class="content-container content-container-people" ng-controller="EpisodesCtrl as episodes" ng-cloak ng-init="episodes.selectEpisode(page.param.id, page.param.season_number, page.param.episode_number)">
+          <div class="whity">
+            <h3>
+              Season {{episode.season_number}}, Episode {{episode.episode_number}} : {{episode.name}}<br>
+              <small>({{episode.air_date}})</small>
+            </h3>
+            <div class="spacer spacer-xs"></div>
+
+            <div id="episode-gallery-{{episodes.seasonnumber}}{{episodes.number}}" class="episode-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+              <div class="episode-gallery-container">
+                <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" ng-repeat="(key, image) in episodes.images | limitTo:2">
+                  <a href="https://image.tmdb.org/t/p/original{{image.file_path}}" itemprop="contentUrl" ng-click="episodes.openGallery(key); $event.preventDefault();">
+                    <clegane-pic
+                      src="{{image.file_path}}"
+                      size="1"
+                      ratio="1.77"
+                      gravity="none"
+                      class="img-responsive"
+                      alt="Season {{episodes.seasonnumber}}, Episode {{$index}} : {{episodes.title}}"></clegane-pic>
+                  </a>
+                </figure>
+              </div>
+            </div>
+            <div class="spacer spacer-sm"></div>
+
+            <p>
+              {{episode.overview}}
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <ng-include src="'templates/components/organisms/photoswipe-wrapper.html'"></ng-include>
 
   </ion-content>
 </ion-view>
