@@ -43,7 +43,7 @@ namespace :app do
   end
   task :run do
     on roles(:web) do
-      execute "./node_modules/.bin/forever -m 5 server.js"
+      execute "cd #{current_path} && ./node_modules/.bin/forever -m 5 server.js"
     end
   end
 end
