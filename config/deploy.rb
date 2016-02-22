@@ -41,14 +41,24 @@ namespace :app do
       execute "cd #{current_path} && ./node_modules/.bin/gulp --production"
     end
   end
-  task :run do
-    on roles(:web) do
-      execute "cd #{current_path} && ./node_modules/.bin/forever -m 5 server.js"
+  task :start do
+    on roles(:app), in: :sequence, wait: 5 do
+      execute "forever start #{current_path.join('server.js')}"
+    end
+  end
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      execute "forever restart #{current_path.join('server.js')}"
+    end
+  end
+  task :stop do
+    on roles(:app), in: :sequence, wait: 5 do
+      execute "forever stop #{current_path.join('server.js')}"
     end
   end
 end
 after "deploy", "app:env"
 after "app:env", "app:dep"
 after "app:dep", "app:build"
-after "app:build", "app:run"
+after "app:build", "app:start"
 
