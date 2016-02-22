@@ -41,8 +41,14 @@ namespace :app do
       execute "cd #{current_path} && ./node_modules/.bin/gulp --production"
     end
   end
+  task :run do
+    on roles(:web) do
+      execute "./node_modules/.bin/forever -m 5 server.js"
+    end
+  end
 end
 after "deploy", "app:env"
-after "deploy", "app:dep"
-after "deploy", "app:build"
+after "app:env", "app:dep"
+after "app:dep", "app:build"
+after "app:build", "app:run"
 
