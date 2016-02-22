@@ -33,12 +33,12 @@ namespace :app do
     on roles(:web) do
       execute "cp #{current_path}/package.json #{shared_path}/package.json"
       execute "cd #{shared_path} && npm set progress=false && npm install"
-      execute "ln -s #{shared_path}/node_modules #{current_release}/node_modules"
+      execute "ln -s #{shared_path}/node_modules #{current_path}/node_modules"
     end
   end
   task :build do
     on roles(:web) do
-      execute "cd #{current_release} && ./node_modules/.bin/gulp --production"
+      execute "cd #{current_path} && ./node_modules/.bin/gulp --production"
     end
   end
 end
