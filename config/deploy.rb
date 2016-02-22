@@ -32,3 +32,12 @@ namespace :build do
   end
 end
 after "deploy", "build:send"
+
+namespace :node do
+  task :env do
+    on roles(:web) do
+      execute "cp #{shared_path}/.env #{current_path}/config/.env"
+    end
+  end
+end
+after "deploy", "node:env"
