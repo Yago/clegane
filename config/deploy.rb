@@ -23,21 +23,26 @@ set :log_level, :info
 
 set :keep_releases, 5
 
-require 'json'
-buildLocation = JSON.parse(File.read('gulp_config.json'))['build']
-buildLocation.slice! "build/"
-namespace :build do
-  task :send do
-    system "scp -r #{buildLocation}build #{fetch(:user)}@#{fetch(:host)}:#{current_path}/#{buildLocation}"
-  end
-end
-after "deploy", "build:send"
-
-namespace :node do
+namespace :app do
   task :env do
     on roles(:web) do
-      execute "cp #{shared_path}/.env #{current_path}/config/.env"
+      execute "cp #{shared_path}/.env #{current_path}/.env"
+    end
+  end
+  task :dep do
+    on roles(:web) do
+      execute "cp #{current_path}/package.json #{shared_path}/package.json"
+      execute "cd #{shared_path} && npm set progress=false && npm install"
+      execute "ln -s #{shared_path}/node_modules #{current_release}/node_modules"
+    end
+  end
+  task :build do
+    on roles(:web) do
+      execute "cd #{current_release} && ./node_modules/.bin/gulp --production"
     end
   end
 end
-after "deploy", "node:env"
+after "deploy", "app:env"
+after "deploy", "app:dep"
+after "deploy", "app:build"
+
