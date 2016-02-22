@@ -17,7 +17,7 @@
       "node_modules/isotope-layout/dist/isotope.pkgd.js"
     ],
     "angular": [
-      "node_modules/ionic/bin/myApp/www/lib/ionic/js/ionic.js",
+      "ionic/js/ionic.js",
       "node_modules/angular/angular.js",
       "node_modules/angular-animate/angular-animate.js",
       "node_modules/angular-sanitize/angular-sanitize.js",
@@ -25,12 +25,12 @@
       "node_modules/angular-ui-router/build/angular-ui-router.js",
       "node_modules/angular-ui-bootstrap/ui-bootstrap.js",
       "node_modules/angular-ui-bootstrap/ui-bootstrap-tpls.js",
-      "node_modules/ionic/bin/myApp/www/lib/ionic/js/ionic-angular.js",
+      "ionic/js/ionic-angular.js",
       "node_modules/ion-autocomplete/dist/ion-autocomplete.js"
     ],
     "fonts": [
       "node_modules/bootstrap-sass/assets/fonts/bootstrap/*",
-      "node_modules/ionic/bin/myApp/www/lib/ionic/fonts/*",
+      "ionic/fonts/*",
       "assets/fonts/*"
     ],
     "polyfills": [
