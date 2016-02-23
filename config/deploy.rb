@@ -41,9 +41,10 @@ namespace :app do
       execute "cd #{current_path} && ./node_modules/.bin/gulp --production"
     end
   end
+
   task :start do
     on roles(:app), in: :sequence, wait: 5 do
-      execute "forever start #{current_path.join('server.js')}"
+      execute "forever --spinSleepTime 10000 --minUptime 1000 start #{current_path.join('server.js')}"
     end
   end
   task :restart do
