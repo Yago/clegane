@@ -45,13 +45,13 @@ namespace :app do
   task :start do
     on roles(:app), in: :sequence, wait: 5 do
       execute "forever stopall"
-      execute "forever --spinSleepTime 10000 --minUptime 1000 start #{release_path.join('server.js')}"
+      execute "cd #{current_path} && forever --spinSleepTime 10000 --minUptime 1000 start server.js"
     end
   end
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
       execute "forever stopall"
-      execute "forever restart #{release_path.join('server.js')}"
+      execute "forever restart #{current_path.join('server.js')}"
     end
   end
   task :stop do
