@@ -26,32 +26,32 @@ set :keep_releases, 5
 namespace :app do
   task :env do
     on roles(:web) do
-      execute "cp #{shared_path}/.env #{current_release}/.env"
+      execute "cp #{shared_path}/.env #{release_path}/.env"
     end
   end
   task :dep do
     on roles(:web) do
-      execute "cp #{current_release}/package.json #{shared_path}/package.json"
+      execute "cp #{release_path}/package.json #{shared_path}/package.json"
       execute "cd #{shared_path} && npm set progress=false && npm install"
-      execute "ln -s #{shared_path}/node_modules #{current_release}/node_modules"
+      execute "ln -s #{shared_path}/node_modules #{release_path}/node_modules"
     end
   end
   task :build do
     on roles(:web) do
-      execute "cd #{current_release} && ./node_modules/.bin/gulp --production"
+      execute "cd #{release_path} && ./node_modules/.bin/gulp --production"
     end
   end
 
   task :start do
     on roles(:app), in: :sequence, wait: 5 do
       execute "forever stopall"
-      execute "forever --spinSleepTime 10000 --minUptime 1000 start #{current_release.join('server.js')}"
+      execute "forever --spinSleepTime 10000 --minUptime 1000 start #{release_path.join('server.js')}"
     end
   end
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
       execute "forever stopall"
-      execute "forever restart #{current_release.join('server.js')}"
+      execute "forever restart #{release_path.join('server.js')}"
     end
   end
   task :stop do
@@ -63,5 +63,5 @@ end
 before "deploy:publishing", "app:env"
 after "app:env", "app:dep"
 after "app:dep", "app:build"
-after "app:build", "app:start"
+after "deploy", "app:start"
 
