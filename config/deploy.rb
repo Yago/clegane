@@ -44,21 +44,23 @@ namespace :app do
 
   task :start do
     on roles(:app), in: :sequence, wait: 5 do
+      execute "forever stopall"
       execute "forever --spinSleepTime 10000 --minUptime 1000 start #{current_path.join('server.js')}"
     end
   end
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
+      execute "forever stopall"
       execute "forever restart #{current_path.join('server.js')}"
     end
   end
   task :stop do
     on roles(:app), in: :sequence, wait: 5 do
-      execute "forever stop #{current_path.join('server.js')}"
+      execute "forever stopall"
     end
   end
 end
-after "deploy", "app:env"
+before "deploy:publishing", "app:env"
 after "app:env", "app:dep"
 after "app:dep", "app:build"
 after "app:build", "app:start"
