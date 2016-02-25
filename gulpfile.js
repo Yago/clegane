@@ -39,7 +39,7 @@ gulp.task('init', function() {
  * Task to build assets on production server
  */
 gulp.task('build',['clean'], function() {
-  return gulp.start('vendors', 'styles', 'img', 'scripts', 'angular', 'icons');
+  return gulp.start('vendors', 'styles', 'img', 'scripts', 'angular', 'icons', 'favicons');
 });
 
 
@@ -47,5 +47,5 @@ gulp.task('build',['clean'], function() {
  * Default task
  */
 gulp.task('default', ['clean'], function(done){
-  runSequence(['css-vendors', 'js-vendors', 'fonts-vendors', 'polyfills-vendors', 'angular-vendors', 'img', 'icons', 'styles', 'scripts', 'angular', 'styleguide-styles', 'styleguide-scripts'], 'styleguide', done);
+  runSequence(['css-vendors', 'js-vendors', 'fonts-vendors', 'polyfills-vendors', 'angular-vendors', 'img', 'icons', 'favicons', 'styles', 'scripts', 'angular', 'styleguide-styles', 'styleguide-scripts'], 'styleguide', done);
 });
