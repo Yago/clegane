@@ -9,14 +9,17 @@
   border-bottom: none;
   border-right: none;
   &:active, &:hover {
-    background: $black;
+    background: $cod-gray !important;
   }
   * {
   }
   p, p * {
     color: $silver-chalice;
   }
-  img {max-height: 100%;}
+  img {
+    max-width: 70%;
+    min-height: 100%;
+  }
   .cleganicon {
     top: 2px;
     font-size: 0.8em;
