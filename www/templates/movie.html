@@ -3,7 +3,7 @@
     <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
   </ion-nav-buttons>
   <ion-content ng-controller="PageCtrl as page" ng-init="page.get('/movie/'+page.param.id);">
-    <div class="cover" ng-if="page.data.movie.backdrop_path">
+    <div class="cover" ng-if="page.data.movie.title">
       <div class="cover-image">
         <clegane-pic
           src="{{page.data.movie.backdrop_path}}"
