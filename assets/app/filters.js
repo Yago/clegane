@@ -71,7 +71,7 @@ app.filter('resize', function() {
     if (image) {
       var picture = 'https://image.tmdb.org/t/p/'+width+image;
     } else {
-      var picture = 'http://i.imgur.com/FOKzIc4.png';
+      var picture = '';
     }
     return picture;
   };
