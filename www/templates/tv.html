@@ -4,7 +4,7 @@
   </ion-nav-buttons>
   <ion-content ng-controller="PageCtrl as page" ng-init="page.get('/tv/'+page.param.id);">
 
-  <div class="cover" ng-if="page.data.tv.backdrop_path">
+  <div class="cover" ng-if="page.data.tv.name">
     <div class="cover-image">
       <clegane-pic
         src="{{page.data.tv.backdrop_path}}"

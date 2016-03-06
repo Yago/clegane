@@ -3,7 +3,7 @@
     <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
   </ion-nav-buttons>
   <ion-content ng-controller="PageCtrl as page" ng-init="page.get('/movie/'+page.param.id);">
-    <div class="cover" ng-if="page.data.movie.backdrop_path">
+    <div class="cover" ng-if="page.data.movie.title">
       <div class="cover-image">
         <clegane-pic
           src="{{page.data.movie.backdrop_path}}"
@@ -95,7 +95,7 @@
             <p>{{page.data.movie.overview}}</p>
           </div>
 
-          <div ng-if="page.data.videos" class="embed-responsive embed-responsive-16by9">
+          <div ng-if="page.data.videos.length > 0" class="embed-responsive embed-responsive-16by9">
             <div ng-repeat="(key, video) in page.data.videos | limitTo:1">
               <div ng-if="video.site === 'YouTube'">
               <clegane-video code="video.key"></clegane-video>

@@ -1,6 +1,6 @@
 {
   "name": "Clegane",
-  "version": "0.0.1-alpha.2",
+  "version": "0.1.0",
   "description": "Your badass Movies and TV Shows assistant",
   "license": "MIT",
   "main": "server.js",
