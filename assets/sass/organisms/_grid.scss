@@ -11,3 +11,8 @@
   transition: background 0.2s ease-out,
               color 0.2s ease-out;
 }
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+}
