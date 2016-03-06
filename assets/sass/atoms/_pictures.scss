@@ -6,6 +6,11 @@
   position: relative;
   background: $black;
   height: 0;
+  .avatar & {
+    background: transparent;
+    border-radius: 300px;
+    overflow: hidden;
+  }
   picture {
     position: absolute;
     top: 0;
