@@ -50,7 +50,12 @@
 
         <div class="text-center">
           <h1>{{page.data.people.name}}</h1>
-          <p>{{page.data.people.birthday}}<span ng-if="page.data.people.imdb_id"> - <a href="http://www.imdb.com/name/{{page.data.people.imdb_id}}" target="_blank">IMDB</a></span></p>
+          <p>
+            {{page.data.people.birthday}}<span ng-if="page.data.people.imdb_id"> - <a href="http://www.imdb.com/name/{{page.data.people.imdb_id}}" target="_blank">IMDB</a></span>
+            - <a href="https://www.themoviedb.org/person/{{page.param.id}}" target="_blank">
+              <small><small><i class="cleganicon cleganicon-edit"></i></small></small> Edit
+            </a>
+          </p>
         </div>
         <div class="spacer spacer-sm"></div>
         <div class="row">
