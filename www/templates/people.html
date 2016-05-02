@@ -106,12 +106,8 @@
             </div>
           </div>
           <br>
-          <div ng-controller="CollapseCtrl as collapse">
-            <p ng-if="page.data.credits.cast.length > 4 || page.data.credits.crew.length > 0">
-              <button class="btn btn-link" role="button" ng-click="collapse.isCollapsed = !collapse.isCollapsed" aria-expanded="[[!collapse.isCollapsed]]">Full filmography <span class="caret"></span></button>
-            </p>
-
-            <div id="cast-wrapper" class="cast-wrapper" ng-cloak uib-collapse="collapse.isCollapsed">
+          <div>
+            <div id="cast-wrapper" class="cast-wrapper" ng-cloak>
               <h3 ng-if="page.data.credits.cast.length > 4">Acting</h3>
               <table ng-if="page.data.credits.cast.length > 4" class="table table-striped table-hover">
                 <tbody>
