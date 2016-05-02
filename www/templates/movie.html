@@ -1,4 +1,4 @@
-<ion-view view-title="Clegane" cache-view="false" hide-back-button="true">
+<ion-view view-title="Clegane" hide-back-button="true">
   <ion-nav-buttons side="left">
     <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
   </ion-nav-buttons>
@@ -44,6 +44,13 @@
                   <li ng-if="page.data.movie.imdb_id">
                     <h4>Links</h4>
                     <a href="http://www.imdb.com/title/{{page.data.movie.imdb_id}}" target="_blank">IMDB</a>
+                  </li>
+                  <li>
+                    <h4>TMDB</h4>
+                    <div class="spacer spacer-xs"></div>
+                    <a href="https://www.themoviedb.org/movie/{{page.param.id}}" target="_blank">
+                      <small><i class="cleganicon cleganicon-edit"></i></small> Edit
+                    </a>
                   </li>
                 </ul>
 
@@ -98,12 +105,33 @@
           <div ng-if="page.data.videos.length > 0" class="embed-responsive embed-responsive-16by9">
             <div ng-repeat="(key, video) in page.data.videos | limitTo:1">
               <div ng-if="video.site === 'YouTube'">
-              <clegane-video code="video.key"></clegane-video>
+                <clegane-video code="video.key"></clegane-video>
               </div>
             </div>
           </div>
 
           <div class="whity" ng-if="page.data.credits.cast.length > 0 || page.data.credits.crew.length > 0">
+
+            <h2 ng-if="page.data.credits.cast.length > 0">Gallery</h2>
+            <div ng-controller="MovieCtrl as movie" ng-init="movie.init(page.params.id)">
+              <div class="gallery gallery-movie" itemscope itemtype="http://schema.org/ImageGallery">
+                <div class="gallery row">
+                  <figure class="col-xs-6 col-sm-4" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" ng-repeat="(key, image) in movie.gallery | limitTo:9">
+                    <a href="https://image.tmdb.org/t/p/original{{image.file_path}}" itemprop="contentUrl" ng-click="movie.openGallery(key); $event.preventDefault();">
+                      <clegane-pic
+                        src="{{image.src}}"
+                        size="1"
+                        ratio="2.111"
+                        gravity="none"
+                        class="img-responsive"></clegane-pic>
+                    </a>
+                    <div class="spacer spacer-xs"></div>
+                  </figure>
+                </div>
+              </div>
+            </div>
+
+
             <h2 ng-if="page.data.credits.cast.length > 0">Cast</h2>
             <ng-include src="'templates/components/organisms/casting.html'"></ng-include>
           </div>
@@ -130,6 +158,8 @@
     </div>
 
     <div class="spacer"></div>
+
+    <ng-include src="'templates/components/organisms/photoswipe-wrapper.html'"></ng-include>
 
   </ion-content>
 </ion-view>

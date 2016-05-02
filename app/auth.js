@@ -25,7 +25,7 @@ exports.authenticate = function(req, res, next) {
         name: user.username,
         email: user.email
       }, config.secret, {
-        expiresInMinutes: 43200 // expires in 1 month
+        expiresInMinutes: 86400 // expires in 2 month
       });
 
       res.json({

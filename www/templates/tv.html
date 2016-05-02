@@ -1,4 +1,4 @@
-<ion-view view-title="Clegane" cache-view="false" hide-back-button="true">
+<ion-view view-title="Clegane" hide-back-button="true">
   <ion-nav-buttons side="left">
     <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
   </ion-nav-buttons>
@@ -45,6 +45,13 @@
                 <li ng-if="page.data.ids.imdb_id">
                   <h4>Links</h4>
                   <a href="http://www.imdb.com/title/{{page.data.ids.imdb_id}}" target="_blank">IMDB</a>
+                </li>
+                <li>
+                  <h4>TMDB</h4>
+                  <div class="spacer spacer-xs"></div>
+                  <a href="https://www.themoviedb.org/tv/{{page.param.id}}" target="_blank">
+                    <small><i class="cleganicon cleganicon-edit"></i></small> Edit
+                  </a>
                 </li>
               </ul>
 

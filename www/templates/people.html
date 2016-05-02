@@ -1,4 +1,4 @@
-<ion-view view-title="Clegane" cache-view="false" hide-back-button="true">
+<ion-view view-title="Clegane" hide-back-button="true">
   <ion-nav-buttons side="left">
     <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
   </ion-nav-buttons>
@@ -50,7 +50,12 @@
 
         <div class="text-center">
           <h1>{{page.data.people.name}}</h1>
-          <p>{{page.data.people.birthday}}<span ng-if="page.data.people.imdb_id"> - <a href="http://www.imdb.com/name/{{page.data.people.imdb_id}}" target="_blank">IMDB</a></span></p>
+          <p>
+            {{page.data.people.birthday}}<span ng-if="page.data.people.imdb_id"> - <a href="http://www.imdb.com/name/{{page.data.people.imdb_id}}" target="_blank">IMDB</a></span>
+            - <a href="https://www.themoviedb.org/person/{{page.param.id}}" target="_blank">
+              <small><small><i class="cleganicon cleganicon-edit"></i></small></small> Edit
+            </a>
+          </p>
         </div>
         <div class="spacer spacer-sm"></div>
         <div class="row">
@@ -59,7 +64,7 @@
             <div class="spacer"></div>
 
             <div ng-controller="PeopleCtrl as people" ng-init="people.getData()">
-              <div class="gallery" itemscope itemtype="http://schema.org/ImageGallery">
+              <div class="gallery gallery-people" itemscope itemtype="http://schema.org/ImageGallery">
                 <div class="gallery row">
                   <figure class="col-xs-4 col-sm-3" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" ng-repeat="(key, image) in people.gallery | orderBy:vote | limitTo:12">
                     <a href="https://image.tmdb.org/t/p/original{{image.file_path}}" itemprop="contentUrl" ng-click="people.openGallery(key); $event.preventDefault();">
@@ -106,12 +111,8 @@
             </div>
           </div>
           <br>
-          <div ng-controller="CollapseCtrl as collapse">
-            <p ng-if="page.data.credits.cast.length > 4 || page.data.credits.crew.length > 0">
-              <button class="btn btn-link" role="button" ng-click="collapse.isCollapsed = !collapse.isCollapsed" aria-expanded="[[!collapse.isCollapsed]]">Full filmography <span class="caret"></span></button>
-            </p>
-
-            <div id="cast-wrapper" class="cast-wrapper" ng-cloak uib-collapse="collapse.isCollapsed">
+          <div>
+            <div id="cast-wrapper" class="cast-wrapper" ng-cloak>
               <h3 ng-if="page.data.credits.cast.length > 4">Acting</h3>
               <table ng-if="page.data.credits.cast.length > 4" class="table table-striped table-hover">
                 <tbody>

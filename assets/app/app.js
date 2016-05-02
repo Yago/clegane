@@ -20,7 +20,7 @@ app.run(function ($rootScope, $state, $location) {
     if (requireAuth) {
       if (!$rootScope.isAuthenticated) {
         event.preventDefault();
-        $state.go('app.homepage');
+        $state.go('app.login');
       }
     } else {
       if ($rootScope.isAuthenticated) {
@@ -39,7 +39,7 @@ app.config(['$locationProvider', function($locationProvider) {
 // Ionic config
 app.config(function($ionicConfigProvider) {
   $ionicConfigProvider.scrolling.jsScrolling(false);
-  $ionicConfigProvider.views.transition('none');
+  $ionicConfigProvider.views.transition('platform');
 });
 
 // Fix when $uibModalInstance is use in a non-modal controller
