@@ -64,7 +64,7 @@
             <div class="spacer"></div>
 
             <div ng-controller="PeopleCtrl as people" ng-init="people.getData()">
-              <div class="gallery" itemscope itemtype="http://schema.org/ImageGallery">
+              <div class="gallery gallery-people" itemscope itemtype="http://schema.org/ImageGallery">
                 <div class="gallery row">
                   <figure class="col-xs-4 col-sm-3" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" ng-repeat="(key, image) in people.gallery | orderBy:vote | limitTo:12">
                     <a href="https://image.tmdb.org/t/p/original{{image.file_path}}" itemprop="contentUrl" ng-click="people.openGallery(key); $event.preventDefault();">

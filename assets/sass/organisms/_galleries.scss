@@ -2,7 +2,9 @@
 
 .gallery {
   a {display: block;}
-  figure:nth-child(12) a {
+
+  &.gallery-people figure:nth-child(12) a,
+  &.gallery-movie figure:nth-child(9) a {
     position: relative;
     &:after {
       content: '\002b';
