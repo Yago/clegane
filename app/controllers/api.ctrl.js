@@ -19,6 +19,7 @@ exports.get = function (url, done, error) {
     .end(function(err, res){
       if (err) {
         error(err);
+        return;
       }
       done(res.body);
     });
@@ -40,6 +41,7 @@ exports.getpage = function (url, page, done, error) {
     .end(function(err, res){
       if (err) {
         error(err);
+        return;
       }
       done(res.body);
     });
@@ -62,6 +64,7 @@ exports.search = function (type, query, page, done, error) {
     .end(function(err, res){
       if (err) {
         error(err);
+        return;
       }
       done(res.body);
     });
@@ -83,6 +86,7 @@ exports.discover = function (type, list, page, done, error) {
     .end(function(err, res){
       if (err) {
         error(err);
+        return;
       }
       done(res.body);
     });
