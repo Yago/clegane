@@ -20,7 +20,7 @@ app.run(function ($rootScope, $state, $location) {
     if (requireAuth) {
       if (!$rootScope.isAuthenticated) {
         event.preventDefault();
-        $state.go('app.homepage');
+        $state.go('app.login');
       }
     } else {
       if ($rootScope.isAuthenticated) {

@@ -21,7 +21,6 @@ app.config(function($stateProvider, $urlRouterProvider, $rootScopeProvider) {
     })
     .state('app.login', {
       url: '/login',
-      requireAuth: false,
       views: {
         'menuContent': {
           templateUrl: 'templates/login.html'
