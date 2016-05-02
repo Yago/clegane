@@ -146,7 +146,8 @@
   width: 100%;
   overflow: hidden;
   .episode-gallery-container {width: 100000%;}
-  img {
+  a {
+    display: block;
     width: 0.05%;
     float: left;
   }
