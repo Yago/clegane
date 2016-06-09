@@ -3,6 +3,10 @@
 */
 
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+import { increment } from '../../actions/items';
 
 class Main extends React.Component {
   buttonGO(event) {
@@ -19,4 +23,14 @@ class Main extends React.Component {
   }
 }
 
-export default Main;
+function mapStateToProps(state) {
+  return {
+    items: state.items
+  };
+}
+
+function mapDispachToProps(dispatch) {
+  return bindActionCreators({increment}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispachToProps)(Main);

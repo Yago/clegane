@@ -1,6 +1,8 @@
+export const INCREMENT_STUFF = 'INCREMENT_STUFF'
+
 function items(state = [], action) {
   switch(action.type) {
-    case 'INCREMENT_STUFF': {
+    case INCREMENT_STUFF: {
       console.log('Incrementing stuff!!');
       const i = action.index;
       console.log(`Icrement ${i} to ${i+1}`);
