@@ -9,7 +9,7 @@ import rootReducer from './reducers/index';
 const defaultState = {};
 
 // Set store
-const store = createStore(rootReducer, defaultState);
+const store = createStore(rootReducer, defaultState, window.devToolsExtension && window.devToolsExtension());
 
 export const history = syncHistoryWithStore(browserHistory, store);
 
