@@ -5,7 +5,7 @@ import {
   GET_DATA_FAIL
 } from '../actions/tmdb';
 
-function movies(state = [], action) {
+function tmdb(state = [], action) {
   switch(action.type) {
     case GET_DATA_SUCCESS: {
       return state.concat(action.data.results);
@@ -19,4 +19,4 @@ function movies(state = [], action) {
   }
 }
 
-export default movies;
+export default tmdb;
