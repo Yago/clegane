@@ -6,18 +6,27 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { increment } from '../../actions/items';
+import { getTmdbItems } from '../../actions/tmdb';
 
 class Main extends React.Component {
-  buttonGO(event) {
-    this.props.increment(2);
+  componentWillMount() {
+    this.props.getTmdbItems('movie/popular', 1);
   }
 
   render() {
+    const movies = this.props.tmdb.map((movie, key) => {
+      return (
+        <div key={key}>
+          <h3>{movie.title}</h3>
+          <em>{movie.release_date}</em>
+        </div>
+      );
+    });
+
     return (
       <div>
-        <h1>Hello World !</h1>
-        <button onClick={this.buttonGO.bind(this)}>click</button>
+        <h1>Popular movies</h1>
+        {movies}
       </div>
     );
   }
@@ -25,12 +34,12 @@ class Main extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    items: state.items
+    tmdb: state.tmdb
   };
 }
 
 function mapDispachToProps(dispatch) {
-  return bindActionCreators({increment}, dispatch);
+  return bindActionCreators({getTmdbItems}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispachToProps)(Main);

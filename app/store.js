@@ -1,4 +1,6 @@
-import { createStore, compose } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import createLogger from 'redux-logger';
 import { syncHistoryWithStore} from 'react-router-redux';
 import { browserHistory } from 'react-router';
 
@@ -6,12 +8,20 @@ import { browserHistory } from 'react-router';
 import rootReducer from './reducers/index';
 
 // create an object for the default data
-const defaultState = {
-  items: [{name:'world'}]
-};
+const defaultState = {};
+const loggerMiddleware = createLogger();
 
 // Set store
-const store = createStore(rootReducer, defaultState, window.devToolsExtension && window.devToolsExtension());
+const store = createStore(
+    rootReducer,
+    defaultState,
+    compose(
+      applyMiddleware(
+        thunkMiddleware
+      ),
+      window.devToolsExtension && window.devToolsExtension()
+    )
+  );
 
 export const history = syncHistoryWithStore(browserHistory, store);
 
