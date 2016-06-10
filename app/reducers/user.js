@@ -1,16 +1,24 @@
 import fetch from 'isomorphic-fetch';
 
 import {
+  IS_AUTH,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT_SUCCESS,
   LOGOUT_FAIL
 } from '../actions/user';
 
-function user(state = [], action) {
+function user(state = {}, action) {
   switch(action.type) {
+    case IS_AUTH: {
+      return Object.assign({}, state, {
+        isAuth: true,
+        displayName: action.data.displayName,
+        email: action.data.email,
+        photoURL: action.data.photoURL
+      });
+    }
     case LOGIN_SUCCESS: {
-      localStorage.cleganeUser = action.res.user.u;
       console.log('res : ', action.res);
       return state;
     }
@@ -19,9 +27,12 @@ function user(state = [], action) {
       return state;
     }
     case LOGOUT_SUCCESS: {
-      localStorage.clear('cleganeUser');
-      console.log('res : ', action.res);
-      return state;
+      return Object.assign({}, state, {
+        isAuth: false,
+        displayName: null,
+        email: null,
+        photoURL: null
+      });
     }
     case LOGOUT_FAIL: {
       console.log('err : ', action.err);

@@ -9,17 +9,12 @@ import { connect } from 'react-redux';
 import { isauth, user } from '../../firebase.js';
 
 import { getTmdbItems } from '../../actions/tmdb';
-import { login, logout } from '../../actions/user';
+import { isAuth, login, logout } from '../../actions/user';
 
 class Main extends React.Component {
   componentWillMount() {
     this.props.getTmdbItems('movie/popular', 1);
-    const localUser = `firebase:authUser:${localStorage.cleganeUser}:[DEFAULT]`;
-    if (localStorage.getItem(localUser)) {
-      console.log('Auth !');
-    } else {
-      console.log('No auth');
-    }
+    this.props.isAuth();
   }
 
   handleAuth() {
@@ -41,7 +36,7 @@ class Main extends React.Component {
     });
 
     let button = (<button onClick={this.handleAuth.bind(this)}>login</button>);
-    if (isauth) {
+    if (this.props.user.isAuth) {
       button = (<button onClick={this.handleLogout.bind(this)}>logout</button>);
     }
 
@@ -57,12 +52,13 @@ class Main extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    tmdb: state.tmdb
+    tmdb: state.tmdb,
+    user: state.user
   };
 }
 
 function mapDispachToProps(dispatch) {
-  return bindActionCreators({getTmdbItems, login, logout}, dispatch);
+  return bindActionCreators({getTmdbItems, isAuth, login, logout}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispachToProps)(Main);
