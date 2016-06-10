@@ -1,13 +1,15 @@
 'use strict';
 
-var gulp          = require('gulp'),
-    $             = require('gulp-load-plugins')(),
-    config        = require('../gulp_config.json'),
-    argv          = require('yargs').argv,
-    browserify    = require('browserify'),
-    babelify      = require('babelify'),
-    source        = require('vinyl-source-stream'),
-    path          = require('path');
+var gulp            = require('gulp'),
+    $               = require('gulp-load-plugins')(),
+    config          = require('../gulp_config.json'),
+    argv            = require('yargs').argv,
+    browserify      = require('browserify'),
+    babelify        = require('babelify'),
+    browserifyshim  = require('browserify-shim'),
+    source          = require('vinyl-source-stream'),
+    buffer          = require('vinyl-buffer'),
+    path            = require('path');
 
 
 module.exports = function() {
@@ -35,18 +37,47 @@ module.exports = function() {
    * And jshint check to highlight errors as we go.
    */
   gulp.task('scripts', ['scripts-lint'], function() {
-    return browserify(
-      {
-        entries: ['./' + config.assets + 'index.jsx'],
-        debug: true
-      })
-      .transform(babelify.configure({
-        presets: ['es2015', 'react']
-      }))
-      .bundle()
-      .on('error', handleErrors)
-      .pipe(source('bundle.js'))
-      .pipe(gulp.dest(config.build));
+    if (argv.local) {
+      return browserify(
+        {
+          entries: ['./' + config.assets + 'index.jsx'],
+          debug: true
+        })
+        .transform(babelify.configure({
+          presets: ['es2015', 'react'],
+          sourceMaps: true
+        }))
+        .bundle()
+        .on('error', handleErrors)
+        .pipe(source('bundle.js'))
+        .pipe(buffer())
+        .pipe($.sourcemaps.init({loadMaps: true}))
+            .pipe($.if(argv.production, $.uglify()))
+            .on('error', handleErrors)
+        .pipe(argv.production ? $.util.noop() : $.sourcemaps.write('./'))
+        .pipe(gulp.dest(config.build));
+    } else {
+      return browserify(
+        {
+          entries: ['./' + config.assets + 'index.jsx'],
+          debug: true
+        })
+        .transform(babelify.configure({
+          presets: ['es2015', 'react'],
+          sourceMaps: true
+        }))
+        .transform(browserifyshim)
+        .bundle()
+        .on('error', handleErrors)
+        .pipe(source('bundle.js'))
+        .pipe(buffer())
+        .pipe($.sourcemaps.init({loadMaps: true}))
+            .pipe($.if(argv.production, $.uglify()))
+            .on('error', handleErrors)
+        .pipe(argv.production ? $.util.noop() : $.sourcemaps.write('./'))
+        .pipe($.size({title: 'BUNDLE SIZE', showFiles: true}))
+        .pipe(gulp.dest(config.build));
+    }
   });
 
   /**
