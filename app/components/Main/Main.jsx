@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { isauth, user } from '../../firebase.js';
 
 import { getTmdbItems } from '../../actions/tmdb';
-import { isAuth, login, logout } from '../../actions/user';
+import { isAuth, login, logout, addMovie } from '../../actions/user';
 
 class Main extends React.Component {
   componentWillMount() {
@@ -22,11 +22,11 @@ class Main extends React.Component {
   }
 
   handleLogout() {
-    this.props.logout();
+    this.props.logout(this.props.user.uid);
   }
 
-  addMovie(id) {
-    console.log(id);
+  addMovieHandler(uid, title, tmdbId) {
+    this.props.addMovie(uid, title, tmdbId);
   }
 
   render() {
@@ -35,10 +35,22 @@ class Main extends React.Component {
         <div key={key}>
           <h3>{movie.title}</h3>
           <p><em>{movie.release_date}</em></p>
-          <button onClick={this.addMovie.bind(this, movie.id)}>Add to list</button>
+          <button onClick={this.addMovieHandler.bind(this, this.props.user.uid, movie.title, movie.id)}>Add to list</button>
         </div>
       );
     });
+
+    let userMovies = (<span>nothing here</span>);
+    if (this.props.user.movies) {
+      userMovies = Object.keys(this.props.user.movies).map((movie, key) => {
+        return (
+          <span key={key}>
+            <span>{this.props.user.movies[movie].title} - {this.props.user.movies[movie].id}</span>
+            <br/>
+          </span>
+        );
+      });
+    }
 
     let button = (<button onClick={this.handleAuth.bind(this)}>login</button>);
     if (this.props.user.isAuth) {
@@ -48,6 +60,7 @@ class Main extends React.Component {
     return (
       <div>
         <h1>Popular movies</h1>
+        <pre>{userMovies}</pre>
         {button}
         {movies}
       </div>
@@ -63,7 +76,13 @@ function mapStateToProps(state) {
 }
 
 function mapDispachToProps(dispatch) {
-  return bindActionCreators({getTmdbItems, isAuth, login, logout}, dispatch);
+  return bindActionCreators({
+    getTmdbItems,
+    isAuth,
+    login,
+    logout,
+    addMovie
+  }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispachToProps)(Main);

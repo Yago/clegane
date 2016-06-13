@@ -1,32 +1,25 @@
-import fetch from 'isomorphic-fetch';
+import firebase from '../firebase.js';
 
 import {
-  IS_AUTH,
+  AUTH_SUCCESS,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT_SUCCESS,
-  LOGOUT_FAIL
+  LOGOUT_FAIL,
+  ADD_MOVIE
 } from '../actions/user';
 
 function user(state = {}, action) {
   switch(action.type) {
-    case IS_AUTH: {
-      return Object.assign({}, state, {
-        isAuth: true,
-        uid: action.data.uid,
-        displayName: action.data.displayName,
-        email: action.data.email,
-        photoURL: action.data.photoURL
-      });
+    case AUTH_SUCCESS: {
+      return Object.assign({}, state, action.user);
     }
-    case LOGIN_SUCCESS: {
-      console.log('res : ', action.res);
-      return state;
-    }
+
     case LOGIN_FAIL: {
-      console.log('err : ', action.err);
+      console.error('ERROR @ login :', action.err); // eslint-disable-line no-console
       return state;
     }
+
     case LOGOUT_SUCCESS: {
       return Object.assign({}, state, {
         isAuth: false,
@@ -35,9 +28,27 @@ function user(state = {}, action) {
         photoURL: null
       });
     }
+
     case LOGOUT_FAIL: {
-      console.log('err : ', action.err);
+      console.error('ERROR @ logout :', action.err); // eslint-disable-line no-console
       return state;
+    }
+
+    case ADD_MOVIE: {
+      const movie = {
+        id: action.tmdbId,
+        title: action.title
+      };
+
+      // Update Firebase
+      let updates = {};
+      updates[`/movies/${action.tmdbId}`] = movie;
+      firebase.database().ref(`users/${action.uid}`).update(updates);
+
+      // Update State
+      const user = Object.assign({}, state);
+      user.movies[action.tmdbId] = movie;
+      return user;
     }
     default: {
       return state;

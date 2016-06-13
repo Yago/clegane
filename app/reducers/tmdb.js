@@ -1,5 +1,3 @@
-import fetch from 'isomorphic-fetch';
-
 import {
   GET_DATA_SUCCESS,
   GET_DATA_FAIL
