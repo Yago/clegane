@@ -13,6 +13,7 @@ function user(state = {}, action) {
     case IS_AUTH: {
       return Object.assign({}, state, {
         isAuth: true,
+        uid: action.data.uid,
         displayName: action.data.displayName,
         email: action.data.email,
         photoURL: action.data.photoURL

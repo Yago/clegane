@@ -25,12 +25,17 @@ class Main extends React.Component {
     this.props.logout();
   }
 
+  addMovie(id) {
+    console.log(id);
+  }
+
   render() {
     const movies = this.props.tmdb.map((movie, key) => {
       return (
         <div key={key}>
           <h3>{movie.title}</h3>
-          <em>{movie.release_date}</em>
+          <p><em>{movie.release_date}</em></p>
+          <button onClick={this.addMovie.bind(this, movie.id)}>Add to list</button>
         </div>
       );
     });
