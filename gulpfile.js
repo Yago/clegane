@@ -31,7 +31,7 @@ gulp.task('init', function() {
  * Copy index.html to public
  */
 gulp.task('html', function() {
-  return gulp.src(config.assets + 'index.html')
+  return gulp.src('app/index.html')
     .pipe(gulp.dest(config.build));
 });
 

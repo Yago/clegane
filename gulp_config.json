@@ -11,13 +11,13 @@
     ]
   },
   "images": [
-    "app/img/**/*"
+    "assets/img/**/*"
   ],
   "svg": [
-    "app/svg/**/*"
+    "assets/svg/**/*"
   ],
   "tasks":  "./tasks/",
-  "assets": "app/",
+  "assets": "assets/",
   "iconsFontName": "icons",
   "build": "public/",
   "browsers": ["last 2 versions", "safari 5", "ie 8", "ie 9", "ff 27", "opera 12.1"]

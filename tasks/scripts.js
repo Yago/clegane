@@ -40,7 +40,7 @@ module.exports = function() {
     if (argv.local) {
       return browserify(
         {
-          entries: ['./' + config.assets + 'index.jsx'],
+          entries: ['./app/index.jsx'],
           debug: true
         })
         .transform(babelify.configure({
@@ -59,7 +59,7 @@ module.exports = function() {
     } else {
       return browserify(
         {
-          entries: ['./' + config.assets + 'index.jsx'],
+          entries: ['./app/index.jsx'],
           debug: true
         })
         .transform(babelify.configure({
