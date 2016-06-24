@@ -23,16 +23,16 @@ module.exports = function() {
       open: false
     });
     gulp.watch([config.assets + 'sass/**/*.scss'], function() {
-      runSequence('styles', reload);
+      runSequence('styles', 'service-worker', reload);
     });
-    gulp.watch([config.assets + 'index.html'], function() {
-      runSequence('html', reload);
+    gulp.watch(['app/index.html'], function() {
+      runSequence('html', 'service-worker', reload);
     });
     gulp.watch([config.assets + 'img/**/*', config.assets + 'svg/**/*'], function() {
-      runSequence('img', reload);
+      runSequence('img', 'service-worker', reload);
     });
-    gulp.watch([config.assets + '**/*.{jsx,js}'], function() {
-      runSequence('scripts', reload);
+    gulp.watch(['app/**/*.{jsx,js}'], function() {
+      runSequence('scripts', 'service-worker', reload);
     });
   });
 

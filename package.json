@@ -76,6 +76,8 @@
     "run-sequence": "~1.2.1",
     "slug": "^0.9.1",
     "stylelint": "^6.2.2",
+    "sw-precache": "^3.2.0",
+    "sw-toolbox": "^3.2.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.7.0",
