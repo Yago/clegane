@@ -3,8 +3,8 @@
 */
 
 import React from 'react';
-import { Link } from 'react-router'
-import Search from './Search.jsx';
+import { Link } from 'react-router';
+import Search from '../Search';
 
 class Sidebar extends React.Component {
   render() {
