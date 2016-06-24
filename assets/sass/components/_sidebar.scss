@@ -1,0 +1,18 @@
+@charset 'UTF-8';
+
+.sidebar {
+  max-width: 275px;
+  height: 100vh;
+  background: $gallery;
+  overflow-y: auto;
+}
+
+.brand {
+  display: block;
+  height: 100px;
+  background: $supernova;
+  font-size: 4em;
+  text-align: center;
+  line-height: 117px;
+  color: $black;
+}

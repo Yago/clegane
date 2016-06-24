@@ -1,0 +1,58 @@
+@font-face {
+  font-family: "icon";
+  src: url('../fonts/icon.eot');
+  src: url('../fonts/icon.eot?#iefix') format('eot'),
+    url('../fonts/icon.woff') format('woff'),
+    url('../fonts/icon.ttf') format('truetype'),
+    url('../fonts/icon.svg#icon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.icon:before {
+  display: inline-block;
+  font-family: "icon";
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-lg {
+  font-size: 1.3333333333333333em;
+  line-height: 0.75em;
+  vertical-align: -15%;
+}
+.icon-2x { font-size: 2em; }
+.icon-3x { font-size: 3em; }
+.icon-4x { font-size: 4em; }
+.icon-5x { font-size: 5em; }
+.icon-fw {
+  width: 1.2857142857142858em;
+  text-align: center;
+}
+
+.icon-add:before { content: "\EA01" }
+.icon-angular:before { content: "\EA02" }
+.icon-binoculars:before { content: "\EA03" }
+.icon-clap:before { content: "\EA04" }
+.icon-clegane:before { content: "\EA05" }
+.icon-close:before { content: "\EA06" }
+.icon-cog:before { content: "\EA07" }
+.icon-edit:before { content: "\EA08" }
+.icon-express:before { content: "\EA09" }
+.icon-eye:before { content: "\EA0A" }
+.icon-film:before { content: "\EA0B" }
+.icon-fire:before { content: "\EA0C" }
+.icon-gauge:before { content: "\EA0D" }
+.icon-github:before { content: "\EA0E" }
+.icon-gulp:before { content: "\EA0F" }
+.icon-info:before { content: "\EA10" }
+.icon-mongodb:before { content: "\EA11" }
+.icon-node:before { content: "\EA12" }
+.icon-oscar:before { content: "\EA13" }
+.icon-out:before { content: "\EA14" }
+.icon-star:before { content: "\EA15" }
+.icon-television:before { content: "\EA16" }
+.icon-unwatched:before { content: "\EA17" }

@@ -2,3 +2,10 @@
 
 // init:
 @import 'main-variables';
+
+// Globals
+@import 'globals/layout';
+@import 'globals/typography';
+
+// Components
+@import 'components/sidebar';

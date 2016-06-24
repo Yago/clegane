@@ -5,7 +5,9 @@
     "ghpages": "public"
   },
   "vendors": {
-    "css": [],
+    "css": [
+      "node_modules/normalize.css/normalize.css"
+    ],
     "fonts": [
       "node_modules/bootstrap-sass/assets/fonts/bootstrap/*"
     ]
@@ -18,7 +20,7 @@
   ],
   "tasks":  "./tasks/",
   "assets": "assets/",
-  "iconsFontName": "icons",
+  "iconsFontName": "icon",
   "build": "public/",
   "browsers": ["last 2 versions", "safari 5", "ie 8", "ie 9", "ff 27", "opera 12.1"]
 }

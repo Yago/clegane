@@ -4,11 +4,14 @@
 
 import React from 'react';
 import Main from '../Main';
+import Sidebar from '../Sidebar';
 
 class App extends React.Component {
   render() {
     return (
-      <Main />
+      <div className="app">
+        <Sidebar />
+      </div>
     );
   }
 }

@@ -28,6 +28,9 @@ module.exports = function() {
     gulp.watch(['app/index.html'], function() {
       runSequence('html', 'service-worker', reload);
     });
+    gulp.watch([config.assets + 'icons/**/*'], function() {
+      runSequence('icons', 'styleguide', reload);
+    });
     gulp.watch([config.assets + 'img/**/*', config.assets + 'svg/**/*'], function() {
       runSequence('img', 'service-worker', reload);
     });
