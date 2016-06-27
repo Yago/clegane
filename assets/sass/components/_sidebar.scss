@@ -7,6 +7,16 @@
   overflow-y: auto;
 }
 
+.sidebar-nav {
+  padding: 0.5em * $gr;
+
+  h5 {
+    margin: 1em 0 0.3em;
+    font-weight: 300;
+    color: $scorpion;
+  }
+}
+
 .brand {
   display: block;
   height: 100px;
@@ -15,4 +25,39 @@
   text-align: center;
   line-height: 117px;
   color: $black;
+}
+
+.link-iconed {
+  display: block;
+  position: relative;
+  margin: 0.35em 0;
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
+  padding-left: 2.2em;
+  font-size: 0.9em;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  color: $cod-gray;
+  transition: color 0.3s;
+  &:hover { color: $electric-violet; }
+
+  .icon {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    top: -0.05em;
+    left: 0;
+    height: 100%;
+    font-size: 1em;
+
+    &:before {
+      display: block;
+      width: 1.5em;
+      text-align: center;
+    }
+  }
 }
