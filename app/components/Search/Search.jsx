@@ -71,14 +71,6 @@ class Search extends React.Component {
   }
 
   render() {
-    let results = '';
-    if (this.props.tmdb.results) {
-      results = Object.keys(this.props.tmdb.results).map((id, key) => {
-        const result = this.props.tmdb.results[id];
-        return (<li key={key}>{result.title}</li>);
-      });
-    }
-
     return (
       <div>
         <div className="search">
