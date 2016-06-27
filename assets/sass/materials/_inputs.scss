@@ -1,0 +1,37 @@
+@charset 'UTF-8';
+
+input[type='text'] {
+  padding: 0.8em 0.9em;
+  border: 0;
+  font-size: 0.9em;
+  font-weight: 300;
+  &:focus { outline: none; }
+}
+
+/* stylelint-disable */
+/* Need some hack for placeholder styles */
+::-webkit-input-placeholder {
+  color: $silver-chalice;
+  opacity: 1;
+  font-style: italic;
+  //line-height: 2em;
+}
+:-moz-placeholder {
+  color: $silver-chalice;
+  opacity: 1;
+  font-style: italic;
+  line-height: 2em;
+}
+::-moz-placeholder {
+  color: $silver-chalice;
+  opacity: 1;
+  font-style: italic;
+  line-height: 2em;
+}
+:-ms-input-placeholder {
+  color: $silver-chalice;
+  opacity: 1;
+  font-style: italic;
+  line-height: 2em;
+}
+/* stylelint-enable */

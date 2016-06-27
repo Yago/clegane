@@ -11,9 +11,11 @@ class Search extends React.Component {
     return (
       <div className="search">
         <input type="text" placeholder="Movie, TV Show, People,..." />
-        <Link to={'/'} className="button button-main">
-          <i className="icon icon-search"></i>
-        </Link>
+        <span className="search-btn">
+          <Link to={'/'} className="btn btn-main">
+            <i className="icon icon-search"></i>
+          </Link>
+        </span>
       </div>
     );
   }

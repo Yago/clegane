@@ -1,2 +1,22 @@
 @charset 'UTF-8';
 
+.btn {
+  display: inline-block;
+  padding: 0.5em 1em;
+  border: 0;
+  transition:
+    color 0.3s,
+    background 0.3s;
+
+  .icon {
+    position: relative;
+    top: 0.08em;
+    left: 0.08em;
+  }
+}
+
+.btn-main {
+  background: $electric-violet;
+  color: $white;
+  &:hover { background: darken($electric-violet, 10%); }
+}
