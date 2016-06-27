@@ -11,7 +11,7 @@ class App extends React.Component {
     return (
       <div className="app">
         <Sidebar />
-        <Main />
+        {React.cloneElement(this.props.children)}
       </div>
     );
   }

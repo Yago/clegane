@@ -7,6 +7,7 @@
     "react-dom": "global:ReactDOM"
   },
   "dependencies": {
+    "awesomplete": "^1.1.1",
     "bootstrap-sass": "~3.3.5",
     "es6-promise": "^3.2.1",
     "firebase": "^3.0.3",

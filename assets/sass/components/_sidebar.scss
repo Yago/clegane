@@ -10,6 +10,11 @@
   overflow-y: auto;
 }
 
+.sidebar-inner {
+  overflow: hidden;
+  min-height: 100vh;
+}
+
 .sidebar-nav {
   padding: 0.5em * $gr;
 

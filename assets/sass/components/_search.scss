@@ -7,9 +7,10 @@
   background: $mercury;
   border-collapse: separate;
 
-  input {
+  input,
+  .awesomplete {
     display: table-cell;
-    position: relative;
+    // position: relative;
     z-index: 2;
     float: left;
     width: 100%;
@@ -28,5 +29,44 @@
     padding: 0.28em 0.4em;
     font-size: 1.5em;
     line-height: 1em;
+  }
+}
+
+div.awesomplete {
+  position: static;
+
+  &.awesomplete > ul:empty,
+  &.awesomplete > ul[hidden] {
+    transform: scale(1);
+  }
+}
+
+div.awesomplete > ul {
+  z-index: 10;
+  top: 100%;
+  margin-top: 0;
+  background: $gallery;
+  box-shadow: none;
+  border-radius: 0;
+  border: 0;
+  overflow: hidden;
+  &:before { content: none; }
+
+  > li {
+    padding: 0.4em 0.5em * $gr;
+    font-size: 0.85em;
+    i { display: none; }
+  }
+
+  > li[aria-selected='true'],
+  > li:hover {
+    background: $supernova;
+    color: $black;
+  }
+
+  li mark,
+  > li:hover mark,
+  > li[aria-selected='true'] mark {
+    background: transparent;
   }
 }

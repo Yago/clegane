@@ -6,7 +6,8 @@
   },
   "vendors": {
     "css": [
-      "node_modules/normalize.css/normalize.css"
+      "node_modules/normalize.css/normalize.css",
+      "node_modules/awesomplete/awesomplete.css"
     ],
     "fonts": [
       "node_modules/bootstrap-sass/assets/fonts/bootstrap/*"
