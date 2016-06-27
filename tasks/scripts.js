@@ -45,6 +45,7 @@ module.exports = function() {
         })
         .transform(babelify.configure({
           presets: ['es2015', 'react'],
+          plugins: ['transform-object-rest-spread'],
           sourceMaps: true
         }))
         .bundle()
@@ -64,6 +65,7 @@ module.exports = function() {
         })
         .transform(babelify.configure({
           presets: ['es2015', 'react'],
+          plugins: ['transform-object-rest-spread'],
           sourceMaps: true
         }))
         .transform(browserifyshim)

@@ -1,6 +1,9 @@
 @charset 'UTF-8';
 
 .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
   max-width: 275px;
   height: 100vh;
   background: $gallery;

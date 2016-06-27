@@ -1,14 +1,14 @@
 import {
-  GET_DATA_SUCCESS,
-  GET_DATA_FAIL
+  GET_ITEMS_SUCCESS,
+  GET_ITEMS_FAIL
 } from '../actions/tmdb';
 
-function tmdb(state = [], action) {
+function tmdb(state = {}, action) {
   switch(action.type) {
-    case GET_DATA_SUCCESS: {
-      return state.concat(action.data.results);
+    case GET_ITEMS_SUCCESS: {
+      return {...state, items: action.data.results};
     }
-    case GET_DATA_FAIL: {
+    case GET_ITEMS_FAIL: {
       return state;
     }
     default: {

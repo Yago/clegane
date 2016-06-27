@@ -5,6 +5,11 @@ import items from './items';
 import tmdb from './tmdb';
 import user from './user';
 
-const rootReducer = combineReducers({items, tmdb, user, routing: routerReducer });
+const rootReducer = combineReducers({
+  items,
+  tmdb,
+  user,
+  routing: routerReducer
+});
 
 export default rootReducer;

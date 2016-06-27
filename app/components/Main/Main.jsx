@@ -30,22 +30,27 @@ class Main extends React.Component {
   }
 
   render() {
-    const movies = this.props.tmdb.map((movie, key) => {
-      return (
-        <div key={key}>
-          <h3>{movie.title}</h3>
-          <p><em>{movie.release_date}</em></p>
-          <button onClick={this.addMovieHandler.bind(this, this.props.user.uid, movie.title, movie.id)}>Add to list</button>
-        </div>
-      );
-    });
+    let movies = (<span>nothing here</span>);
+    if (this.props.tmdb.items) {
+      movies = Object.keys(this.props.tmdb.items).map((id, key) => {
+        const movie = this.props.tmdb.items[id];
+        return (
+          <div key={key}>
+            <h3>{movie.title}</h3>
+            <p><em>{movie.release_date}</em></p>
+            <button onClick={this.addMovieHandler.bind(this, this.props.user.uid, movie.title, movie.id)}>Add to list</button>
+          </div>
+        );
+      });
+    }
 
     let userMovies = (<span>nothing here</span>);
     if (this.props.user.movies) {
-      userMovies = Object.keys(this.props.user.movies).map((movie, key) => {
+      userMovies = Object.keys(this.props.user.movies).map((id, key) => {
+        const movie = this.props.user.movies[id];
         return (
           <span key={key}>
-            <span>{this.props.user.movies[movie].title} - {this.props.user.movies[movie].id}</span>
+            <span>{movie.title} - {movie.id}</span>
             <br/>
           </span>
         );
@@ -58,7 +63,7 @@ class Main extends React.Component {
     }
 
     return (
-      <div>
+      <div className="main-container">
         <h1>Popular movies</h1>
         <pre>{userMovies}</pre>
         {button}
