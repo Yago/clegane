@@ -6,6 +6,8 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import MediaTeaser from '../../components/MediaTeaser';
+
 import { getTmdbItems } from '../../actions/tmdb';
 
 class Main extends React.Component {
@@ -17,12 +19,7 @@ class Main extends React.Component {
     if (this.props.tmdb.items) {
       return Object.keys(this.props.tmdb.items).map((id, key) => {
         const movie = this.props.tmdb.items[id];
-        return (
-          <div key={key}>
-            <h3>{movie.title}</h3>
-            <p><em>{movie.release_date}</em></p>
-          </div>
-        );
+        return (<MediaTeaser key={key} media={movie} />);
       });
     }
   }
