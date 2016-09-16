@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 
 // Import Components
 import App from './components/App';
-import Main from './views/Main';
+import Discover from './views/Discover';
 import Details from './views/Details';
 
 // import react router deps
@@ -15,7 +15,13 @@ const router = (
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={App}>
-        <IndexRoute component={Main}></IndexRoute>
+        <IndexRoute component={Discover}></IndexRoute>
+
+        {/* Discover */}
+        <Route path="movie/popular/:page" component={Discover}></Route>
+        <Route path="movie/now_playing/:page" component={Discover}></Route>
+        <Route path="movie/upcoming/:page" component={Discover}></Route>
+
         <Route path="movie/:id" component={Details}></Route>
         <Route path="tv/:id" component={Details}></Route>
         <Route path="person/:id" component={Details}></Route>

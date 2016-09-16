@@ -23,7 +23,7 @@ class Sidebar extends React.Component {
             </Link>
 
             <h5>Discover</h5>
-            <Link to={'#'} className="link-iconed">
+            <Link to={'/movie/popular/1'} className="link-iconed">
               <i className="icon icon-film"></i> Movies
             </Link>
             <Link to={'#'} className="link-iconed">

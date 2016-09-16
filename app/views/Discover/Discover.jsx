@@ -1,5 +1,5 @@
 /*
-  Main
+  Discover
 */
 
 import React from 'react';
@@ -10,9 +10,36 @@ import MediaTeaser from '../../components/MediaTeaser';
 
 import { getTmdbItems } from '../../actions/tmdb';
 
-class Main extends React.Component {
+class Discover extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      current_path: '',
+      current_page: '',
+      current_query: ''
+    };
+  }
+
+  handleTmdbItemsCall() {
+    const currentPath = this.props.location.pathname.split('/'),
+          query = `${currentPath[1]}/${currentPath[2]}`,
+          page = this.props.params.page;
+    // Store current path
+    this.setState({ current_path: this.props.location.pathname });
+    // Call for tmdb items
+    this.props.getTmdbItems(query, page);
+  }
+
   componentWillMount() {
-    this.props.getTmdbItems('movie/popular', 1);
+    this.handleTmdbItemsCall();
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    // New tmdb items call if the url change
+    if (nextProps.location.pathname != this.state.current_path) {
+      this.handleTmdbItemsCall();
+    }
   }
 
   renderMovies() {
@@ -48,4 +75,4 @@ function mapDispachToProps(dispatch) {
   }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispachToProps)(Main);
+export default connect(mapStateToProps, mapDispachToProps)(Discover);

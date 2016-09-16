@@ -16,8 +16,6 @@ class MediaTeaser extends React.Component {
   render() {
     const media = this.props.media;
 
-    // console.log(media);
-
     return (
       <Link to={`movie/${media.id}`} className="media-teaser">
         <Image
