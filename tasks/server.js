@@ -34,10 +34,10 @@ module.exports = function() {
               colors: true,
             }
           }),
-          webpackHotMiddleware(bundler)
+          webpackHotMiddleware(bundler),
+          historyApiFallback()
         ]
       },
-      // middleware : [ historyApiFallback() ],
       open: false
     });
 
