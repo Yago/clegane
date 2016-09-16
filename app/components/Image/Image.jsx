@@ -68,7 +68,7 @@ class Image extends React.Component {
     const src = this.props.src,
           size = this.props.size,
           ratio = this.props.ratio,
-          className = this.props.className,
+          className = this.props.class,
           alt = this.props.alt;
 
     return (

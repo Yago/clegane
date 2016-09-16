@@ -1,7 +1,13 @@
 @charset 'UTF-8';
 
-$base:  18px;
-$gr:    1.61803398875;
+$base:                 18px;
+$gr:                   1.61803398875;
+$gutter-width:         10px;
+$sidebar-width:        275px;
+$mobile-header-height: 60px;
+
+$tablet:              1200px;
+$mobile:               767px;
 
 $white:               #fff;
 $gallery:             #ededed;
@@ -22,6 +28,3 @@ $trinidad:            #f05600;
 $electric-violet:     #9013fe;
 
 $main-font:           "ratio", Helvetica Neue, Helvetica, Arial, sans-serif;
-
-$sidebar-width:        275px;
-$mobile-header-height: 60px;

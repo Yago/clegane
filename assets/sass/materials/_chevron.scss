@@ -1,0 +1,31 @@
+@charset 'UTF-8';
+
+.chevron {
+  display: inline-block;
+  position: relative;
+  top: -0.15em;
+  width: 8px;
+  height: 8px;
+  border-width: 2px 2px 0 0;
+  border-style: solid;
+  border-color: currentColor;
+  transform: rotate(45deg);
+  // transition: transform 0.3s;
+
+  &.chevron-up { transform: rotate(-45deg); }
+  &.chevron-right { transform: rotate(45deg); }
+  &.chevron-down { transform: rotate(135deg); }
+  &.chevron-left { transform: rotate(-135deg); }
+
+  &.pull-right { top: 0.4em; }
+
+  [data-toggle='collapse'][aria-expanded='false'] &,
+  [data-toggle='dropdown'][aria-expanded='false'] & {
+    transform: rotate(135deg);
+  }
+
+  [data-toggle='collapse'][aria-expanded='true'] &,
+  [data-toggle='dropdown'][aria-expanded='true'] & {
+    transform: rotate(-45deg);
+  }
+}

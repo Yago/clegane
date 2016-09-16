@@ -28,7 +28,9 @@ class Main extends React.Component {
     return (
       <div className="main-container">
         <h1>Popular movies</h1>
-        {this.renderMovies()}
+        <div className="media-grid">
+          {this.renderMovies()}
+        </div>
       </div>
     );
   }

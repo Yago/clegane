@@ -3,6 +3,8 @@
 */
 
 import React from 'react';
+import { Link } from 'react-router';
+import Moment from 'moment';
 
 import Image from '../Image';
 
@@ -17,16 +19,19 @@ class MediaTeaser extends React.Component {
     // console.log(media);
 
     return (
-      <div className="media-teaser">
+      <Link to={`movie/${media.id}`} className="media-teaser">
         <Image
           src={media.poster_path}
           size="1"
           ratio="0.66"
-          class="coucou"
+          class="img-responsive"
           alt={media.title} />
-        <h3>{media.title}</h3>
-        <p><em>{media.release_date}</em></p>
-      </div>
+        <div className="media-teaser-inner">
+          <h3>{media.title}</h3>
+          <h5>{Moment(media.release_date).format('Y')}</h5>
+        </div>
+        <div className="chevron chevron-right visible-mobile"></div>
+      </Link>
     );
   }
 }

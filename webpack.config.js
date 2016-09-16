@@ -25,7 +25,8 @@ module.exports = {
       'redux',
       'redux-thunk',
       'redux-logger',
-      'isomorphic-fetch'
+      'isomorphic-fetch',
+      'moment'
     ]
   },
   output: {

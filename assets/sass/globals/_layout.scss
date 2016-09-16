@@ -10,3 +10,11 @@ body {
   padding-left: 275px;
   color: $white;
 }
+
+.visible-mobile {
+  /* stylelint-disable declaration-no-important */
+  /* It has to be immutable */
+  display: none !important;
+  @media screen and (max-width: $mobile) { display: block !important; }
+  /* stylelint-enable declaration-no-important */
+}
