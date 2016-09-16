@@ -53,9 +53,7 @@ module.exports = function() {
     gulp.watch([config.assets + 'img/**/*', config.assets + 'svg/**/*'], function() {
       runSequence('img', 'service-worker', reload);
     });
-    // gulp.watch(['app/**/*.{jsx,js}'], function() {
-    //   runSequence('scripts', 'service-worker', reload);
-    // });
+    gulp.watch(['app/**/*.{jsx,js}'], reload);
   });
 
 }
