@@ -1,0 +1,21 @@
+@charset 'UTF-8';
+
+.spacer {
+  height: 4.0625em;
+
+  &.spacer-xl { height: 7.5em; }
+  &.spacer-lg { height: 5.625em; }
+  &.spacer-md { height: 2.5em; }
+  &.spacer-sm { height: 1.875em; }
+  &.spacer-xs { height: 0.625em; }
+
+  @media screen and (max-width: $mobile) {
+    height: 1.875em;
+
+    &.spacer-xl { height: 3.125em; }
+    &.spacer-lg { height: 3.125em; }
+    &.spacer-md { height: 1.55em; }
+    &.spacer-sm { height: 1.25em; }
+    &.spacer-xs { height: 0.625em; }
+  }
+}

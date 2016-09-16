@@ -65,9 +65,11 @@ class Discover extends React.Component {
         <div className="media-grid">
           {this.renderMovies()}
         </div>
+        <div className="spacer"></div>
         <div className="text-center">
           <Pagination page={this.state.page} query={this.state.query} total={this.props.tmdb.total_pages} />
         </div>
+        <div className="spacer"></div>
       </div>
     );
   }
