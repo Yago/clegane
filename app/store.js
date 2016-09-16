@@ -18,8 +18,7 @@ const store = createStore(
     compose(
       applyMiddleware(
         thunkMiddleware
-      ),
-      window.devToolsExtension && window.devToolsExtension()
+      )
     )
   );
 
