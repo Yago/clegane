@@ -65,6 +65,9 @@
     "gulp-uglify": "~2.0.0",
     "gulp-util": "^3.0.7",
     "imagemin-pngquant": "^5.0.0",
+    "json-loader": "^0.5.4",
+    "lodash": "^4.15.0",
+    "react-hot-loader": "^3.0.0-beta.4",
     "run-sequence": "~1.2.2",
     "slug": "^0.9.1",
     "stylelint": "^7.2.0",
@@ -74,6 +77,11 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.7.0",
+    "webpack": "^2.1.0-beta.22",
+    "webpack-dev-middleware": "^1.7.0",
+    "webpack-hot-middleware": "^2.12.2",
+    "webpack-module-hot-accept": "^1.0.4",
+    "webpack-stream": "^3.2.0",
     "yargs": "^5.0.0"
   }
 }
