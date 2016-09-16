@@ -3,8 +3,8 @@ import { render } from 'react-dom';
 
 // Import Components
 import App from './components/App';
-import Main from './components/Main';
-import Details from './components/Details';
+import Main from './views/Main';
+import Details from './views/Details';
 
 // import react router deps
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
