@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import MediaTeaser from '../../components/MediaTeaser';
+import Pagination from '../../components/Pagination';
 
 import { getTmdbItems } from '../../actions/tmdb';
 
@@ -16,8 +17,8 @@ class Discover extends React.Component {
 
     this.state = {
       current_path: '',
-      current_page: '',
-      current_query: ''
+      query: '',
+      page: ''
     };
   }
 
@@ -25,8 +26,14 @@ class Discover extends React.Component {
     const currentPath = this.props.location.pathname.split('/'),
           query = `${currentPath[1]}/${currentPath[2]}`,
           page = this.props.params.page;
-    // Store current path
-    this.setState({ current_path: this.props.location.pathname });
+
+    // Update state
+    this.setState({
+      current_path: this.props.location.pathname,
+      query,
+      page
+    });
+
     // Call for tmdb items
     this.props.getTmdbItems(query, page);
   }
@@ -57,6 +64,9 @@ class Discover extends React.Component {
         <h1>Popular movies</h1>
         <div className="media-grid">
           {this.renderMovies()}
+        </div>
+        <div className="text-center">
+          <Pagination page={this.state.page} query={this.state.query} total={this.props.tmdb.total_pages} />
         </div>
       </div>
     );
