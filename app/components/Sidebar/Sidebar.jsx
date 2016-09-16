@@ -26,7 +26,7 @@ class Sidebar extends React.Component {
             <Link to={'/movie/popular/1'} className="link-iconed">
               <i className="icon icon-film"></i> Movies
             </Link>
-            <Link to={'#'} className="link-iconed">
+            <Link to={'/tv/popular/1'} className="link-iconed">
               <i className="icon icon-television"></i> TV Shows
             </Link>
             <Link to={'#'} className="link-iconed">
