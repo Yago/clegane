@@ -8,7 +8,7 @@
 @import 'globals/typography';
 @import 'globals/spacers';
 
-// Components
+// Materials
 @import 'materials/buttons';
 @import 'materials/inputs';
 @import 'materials/chevron';
@@ -18,4 +18,6 @@
 @import 'components/sidebar';
 @import 'components/search';
 @import 'components/pagination';
+@import 'components/header-buttons';
+@import 'components/header-grid';
 @import 'components/media-teaser';

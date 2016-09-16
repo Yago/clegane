@@ -6,6 +6,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import HeaderButtons from '../../components/HeaderButtons';
 import MediaTeaser from '../../components/MediaTeaser';
 import Pagination from '../../components/Pagination';
 
@@ -22,6 +23,7 @@ class Discover extends React.Component {
     };
   }
 
+  // Handle tmdb item call
   handleTmdbItemsCall() {
     const currentPath = this.props.location.pathname.split('/'),
           query = `${currentPath[1]}/${currentPath[2]}`,
@@ -43,7 +45,7 @@ class Discover extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    // New tmdb items call if the url change
+    // Call new tmdb items call if the url change
     if (nextProps.location.pathname != this.state.current_path) {
       this.handleTmdbItemsCall();
     }
@@ -61,10 +63,23 @@ class Discover extends React.Component {
   render() {
     return (
       <div className="main-container">
-        <h1>Popular movies</h1>
+        <div className="header-grid">
+          <div className="pull-right">
+            <h3>
+              {this.props.tmdb.total_results} Results - {this.state.page}/{this.props.tmdb.total_pages}
+            </h3>
+            <h1>{this.props.route.title}</h1>
+          </div>
+
+          <div className="pull-right text-right">
+            <HeaderButtons query={this.state.query} />
+          </div>
+        </div>
+
         <div className="media-grid">
           {this.renderMovies()}
         </div>
+
         <div className="spacer"></div>
         <div className="text-center">
           <Pagination page={this.state.page} query={this.state.query} total={this.props.tmdb.total_pages} />

@@ -4,9 +4,11 @@
   display: inline-block;
   padding: 0.5em 1em;
   border: 0;
+  text-decoration: none;
   transition:
     color 0.3s,
-    background 0.3s;
+    background 0.3s,
+    border-color 0.3s;
 
   .icon {
     position: relative;
@@ -19,4 +21,15 @@
   background: $electric-violet;
   color: $white;
   &:hover { background: darken($electric-violet, 10%); }
+}
+
+.btn-default {
+  border: 1px solid $supernova;
+  color: $white;
+
+  &.active,
+  &:hover {
+    border-color: $tangerine;
+    color: $supernova;
+  }
 }

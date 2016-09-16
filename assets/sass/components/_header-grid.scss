@@ -1,0 +1,44 @@
+@charset 'UTF-8';
+
+.header-grid {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100px;
+  padding: $gutter-width * 2;
+  border-bottom: 1px solid $tundora;
+
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+
+  h3,
+  h1 {
+    margin: 0;
+  }
+
+  h3 {
+    font-size: 1.25em;
+    color: $silver-chalice;
+  }
+
+  h1 {
+    font-size: 2.4em;
+  }
+
+  .pull-right {
+    flex: 1 0 auto;
+    align-self: center;
+  }
+
+  @media screen and (max-width: $mobile) {
+    height: auto;
+  }
+}
+
+.header-grid-headings {
+  max-width: 60%;
+  flex: 1 0 auto;
+  float: left;
+}
