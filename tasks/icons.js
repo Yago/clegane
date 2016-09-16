@@ -1,13 +1,13 @@
-'use strict';
+/* globals require, module */
 
-var gulp          = require('gulp'),
-    $             = require('gulp-load-plugins')(),
-    config        = require('../gulp_config.json'),
-    slug          = require('slug');
+const gulp          = require('gulp'),
+      $             = require('gulp-load-plugins')(),
+      config        = require('../gulp_config.json'),
+      slug          = require('slug');
 
 module.exports = function() {
 
-  var name = slug(config.iconsFontName).toLowerCase();
+  const name = slug(config.iconsFontName).toLowerCase();
 
  /*
   * Build icons font and stylesheets
@@ -24,7 +24,7 @@ module.exports = function() {
         gulp.src('node_modules/toolbox-utils/templates/_icons.scss')
           .pipe($.consolidate('lodash', {
             glyphs: glyphs.map(function(glyph) {
-              return { name: glyph.name, codepoint: glyph.unicode[0].charCodeAt(0) }
+              return { name: glyph.name, codepoint: glyph.unicode[0].charCodeAt(0) };
             }),
             fontName: name,
             fontPath: '../fonts/',

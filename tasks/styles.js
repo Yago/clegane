@@ -1,22 +1,22 @@
-'use strict';
+/* globals require, module */
 
-var gulp          = require('gulp'),
-    $             = require('gulp-load-plugins')(),
-    config        = require('../gulp_config.json'),
-    argv          = require('yargs').argv,
-    slug          = require('slug');
+const gulp          = require('gulp'),
+      $             = require('gulp-load-plugins')(),
+      config        = require('../gulp_config.json'),
+      argv          = require('yargs').argv,
+      slug          = require('slug');
 
 module.exports = function() {
 
-  var iconFontName = slug(config.iconsFontName).toLowerCase();
+  const iconFontName = slug(config.iconsFontName).toLowerCase();
 
   function errorAlert(error){
     if (!argv.production) {
-      $.notify.onError({title: "SCSS Error", message: "Check your terminal", sound: "Sosumi"})(error);
+      $.notify.onError({title: 'SCSS Error', message: 'Check your terminal', sound: 'Sosumi'})(error);
       $.util.log(error.messageFormatted);
     }
-    this.emit("end");
-  };
+    this.emit('end');
+  }
 
   /**
    * Build styles from SCSS files

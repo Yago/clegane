@@ -1,11 +1,11 @@
-'use strict';
+/* globals require, module */
 
-var gulp          = require('gulp'),
-    $             = require('gulp-load-plugins')(),
-    config        = require('../gulp_config.json'),
-    del           = require('del'),
-    path          = require('path'),
-    swPrecache    = require('sw-precache');
+const gulp          = require('gulp'),
+      $             = require('gulp-load-plugins')(),
+      config        = require('../gulp_config.json'),
+      del           = require('del'),
+      path          = require('path'),
+      swPrecache    = require('sw-precache');
 
 module.exports = function() {
 

@@ -1,15 +1,15 @@
-'use strict';
+/* globals require, module */
 
-var gulp                  = require('gulp'),
-    $                     = require('gulp-load-plugins')(),
-    config                = require('../gulp_config.json'),
-    browserSync           = require('browser-sync'),
-    runSequence           = require('run-sequence'),
-    historyApiFallback    = require('connect-history-api-fallback');
+const gulp                  = require('gulp'),
+      $                     = require('gulp-load-plugins')(),
+      config                = require('../gulp_config.json'),
+      browserSync           = require('browser-sync'),
+      runSequence           = require('run-sequence'),
+      historyApiFallback    = require('connect-history-api-fallback');
 
 module.exports = function() {
 
-  var reload = browserSync.reload;
+  const reload = browserSync.reload;
 
  /**
   * Serve

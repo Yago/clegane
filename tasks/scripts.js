@@ -1,15 +1,15 @@
-'use strict';
+/* globals require, module */
 
-var gulp            = require('gulp'),
-    $               = require('gulp-load-plugins')(),
-    config          = require('../gulp_config.json'),
-    argv            = require('yargs').argv,
-    browserify      = require('browserify'),
-    babelify        = require('babelify'),
-    browserifyshim  = require('browserify-shim'),
-    source          = require('vinyl-source-stream'),
-    buffer          = require('vinyl-buffer'),
-    path            = require('path');
+const gulp            = require('gulp'),
+      $               = require('gulp-load-plugins')(),
+      config          = require('../gulp_config.json'),
+      argv            = require('yargs').argv,
+      browserify      = require('browserify'),
+      babelify        = require('babelify'),
+      browserifyshim  = require('browserify-shim'),
+      source          = require('vinyl-source-stream'),
+      buffer          = require('vinyl-buffer'),
+      path            = require('path');
 
 
 module.exports = function() {
@@ -23,7 +23,7 @@ module.exports = function() {
   };
 
   function handleErrors() {
-    var args = Array.prototype.slice.call(arguments);
+    const args = Array.prototype.slice.call(arguments);
     $.notify.onError({
       title: 'Compile Error',
       message: '<%= error.message %>'
