@@ -21,7 +21,7 @@ module.exports = function() {
  /**
   * Serve
   */
-  gulp.task('serve', function () {
+  gulp.task('serve', ['default'], function () {
 
     browserSync({
       server: {

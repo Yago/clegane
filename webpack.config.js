@@ -40,7 +40,7 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         loaders: [
           'react-hot-loader/webpack',
-          'babel?presets[]=react,presets[]=es2015,plugins[]=transform-object-rest-spread,plugins[]=transform-es2015-spread',
+          'babel?presets[]=es2015,presets[]=react,plugins[]=transform-object-rest-spread,plugins[]=transform-es2015-spread',
           'webpack-module-hot-accept'
         ]
       },
@@ -60,7 +60,7 @@ module.exports = {
   plugins: isProd ? [
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendors',
-      minChunks: 2,
+      minChunks: 1,
       filename: 'vendors.bundle.js'
     }),
     new webpack.optimize.DedupePlugin(),
@@ -68,7 +68,7 @@ module.exports = {
   ] : [
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendors',
-      minChunks: 2,
+      minChunks: 1,
       filename: 'vendors.bundle.js'
     }),
     // new webpack.optimize.OccurenceOrderPlugin(),
