@@ -14,10 +14,11 @@ class MediaTeaser extends React.Component {
   }
 
   render() {
-    const media = this.props.media;
+    const media = this.props.media,
+          type = this.props.query.split('/')[0];
 
     return (
-      <Link to={`movie/${media.id}`} className="media-teaser">
+      <Link to={`/${type}/${media.id}`} className="media-teaser">
         {(() => {
           if (media.poster_path || media.profile_path) {
             return (

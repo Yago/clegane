@@ -55,7 +55,7 @@ class Discover extends React.Component {
     if (this.props.tmdb.items) {
       return Object.keys(this.props.tmdb.items).map((id, key) => {
         const item = this.props.tmdb.items[id];
-        return (<MediaTeaser key={item.id} media={item} />);
+        return (<MediaTeaser key={item.id} media={item} query={this.state.query} />);
       });
     }
   }
