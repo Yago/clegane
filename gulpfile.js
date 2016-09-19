@@ -39,15 +39,23 @@ gulp.task('html', function() {
 });
 
 /**
+ * Copy default-skin to css
+ */
+gulp.task('default-skin', function() {
+  return gulp.src('node_modules/photoswipe/dist/default-skin/default-skin.png')
+    .pipe(gulp.dest(`${config.build}/css/`));
+});
+
+/**
  * Task to build assets on production server
  */
 gulp.task('build',['clean'], function() {
-  return gulp.start('vendors', 'styles', 'img', 'icons', 'favicons', 'service-worker', 'html');
+  return gulp.start('vendors', 'styles', 'img', 'icons', 'favicons', 'service-worker', 'html', 'default-skin');
 });
 
 /**
  * Default task
  */
 gulp.task('default', ['clean'], function(done){
-  runSequence(['css-vendors', 'fonts-vendors', 'img', 'styles'], 'icons', 'favicons', 'html', 'service-worker', done);
+  runSequence(['css-vendors', 'fonts-vendors', 'img', 'styles'], 'icons', 'favicons', 'html', 'default-skin', 'service-worker', done);
 });

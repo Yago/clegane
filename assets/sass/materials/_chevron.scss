@@ -17,6 +17,12 @@
   &.chevron-down { transform: rotate(135deg); }
   &.chevron-left { transform: rotate(-135deg); }
 
+  &.chevron-lg {
+    width: 16px;
+    height: 16px;
+    border-width: 3px 3px 0 0;
+  }
+
   &.pull-right { top: 0.4em; }
 
   [data-toggle='collapse'][aria-expanded='false'] &,

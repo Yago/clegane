@@ -3,7 +3,8 @@
 */
 
 import React from 'react';
-import PhotoSwipe, { PhotoSwipeUI_Default } from 'photoswipe';
+import PhotoSwipe from '../../../node_modules/photoswipe/dist/photoswipe';
+import PhotoSwipeUI_Default from '../../../node_modules/photoswipe/dist/photoswipe-ui-default';
 import config from '../../config/config.json';
 
 import Image from '../Image';
@@ -39,7 +40,6 @@ class Gallery extends React.Component {
           };
 
     const gallery = new PhotoSwipe(pswp, PhotoSwipeUI_Default, this.state.galleryContainer, options);
-    console.log(gallery);
     gallery.init();
   }
 

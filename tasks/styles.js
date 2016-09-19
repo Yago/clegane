@@ -26,7 +26,7 @@ module.exports = function() {
     if (argv.production) { $.util.log('[styles] Production mode' ); }
     else { $.util.log('[styles] Dev mode'); }
 
-    return gulp.src([config.assets + 'sass/' + iconFontName + '.scss', config.assets + 'sass/main.scss'])
+    return gulp.src([config.assets + 'sass/main.scss'])
       .pipe($.plumber({errorHandler: errorAlert}))
       .pipe(argv.production ? $.util.noop() : $.sourcemaps.init())
       .pipe($.sass({

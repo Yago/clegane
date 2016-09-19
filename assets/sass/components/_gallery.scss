@@ -16,7 +16,102 @@
     width: 33.33%;
     margin: 0;
     padding: $gutter-width / 2 $gutter-width;
-
     > div:hover { cursor: pointer; }
   }
+
+  figure:nth-child(9) > div {
+    position: relative;
+
+    &:after {
+      content: '\002b';
+      position: absolute;
+      z-index: 20;
+      top: 50%;
+      left: 50%;
+      margin-left: -15px;
+      margin-top: -30px;
+      text-align: center;
+      font-size: 60px;
+      line-height: 60px;
+      color: $white;
+      opacity: 0.6;
+      transition: opacity 0.3s;
+    }
+
+    picture:after {
+      content: '\00a0';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 8px;
+      left: 0;
+      z-index: 19;
+      background: rgba(0, 0, 0, 0.4);
+      transition: background 0.3s;
+    }
+
+    &:hover {
+      &:after { opacity: 1; }
+      picture:after { background: rgba(0, 0, 0, 0.5); }
+    }
+  }
 }
+
+.pswp__caption__center {
+  font-size: $base;
+  text-align: center;
+
+  a {
+    color: $white;
+    text-decoration: underline;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: $supernova;
+    }
+  }
+}
+
+.pswp__ui--fit .pswp__top-bar,
+.pswp__button--arrow--left:before,
+.pswp__button--arrow--right:before {
+  background-color: transparent;
+}
+
+.pswp__counter { color: $white; }
+.pswp__button { background-image: none; }
+
+.pswp__button--close:before,
+.pswp__button--share:before,
+.pswp__button--fs:before,
+.pswp__button--zoom:before,
+.pswp__button--arrow--left:before,
+.pswp__button--arrow--right:before {
+  display: inline-block;
+  position: relative;
+  top: 1px;
+  background-image: none;
+  font-family: 'icon';
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 400;
+  font-style: normal;
+  color: $white;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  -webkit-font-smoothing: antialiased;
+}
+
+.pswp__button--arrow--left:before,
+.pswp__button--arrow--right:before {
+  font-size: 20px;
+  @extend .chevron;
+  @extend .chevron-lg;
+}
+
+.pswp__button--close:before { @extend .icon-close:before; }
+.pswp__button--share:before { @extend .icon-share:before; }
+.pswp__button--fs:before { @extend .icon-fullscreen:before; }
+.pswp__button--zoom:before { @extend .icon-zoom:before; }
+.pswp__button--arrow--left:before { @extend .chevron-left; }
+.pswp__button--arrow--right:before { @extend .chevron-right; }
