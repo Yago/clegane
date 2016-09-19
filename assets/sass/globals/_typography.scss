@@ -7,6 +7,22 @@ html {
 
 body {
   font-weight: 300;
+  font-smoothing: antialiased;
+  word-wrap: break-word;
+  font-style: inherit;
+  font-variant-ligatures: inherit;
+  font-variant-caps: inherit;
+  font-variant-numeric: inherit;
+  font-stretch: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
 }
 
 h1 { font-size: 2em; }

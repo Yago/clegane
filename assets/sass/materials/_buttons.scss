@@ -1,5 +1,14 @@
 @charset 'UTF-8';
 
+button {
+  &:hover { cursor: pointer; }
+
+  &:focus {
+    box-shadow: none;
+    outline: none;
+  }
+}
+
 .btn {
   display: inline-block;
   padding: 0.5em 1em;

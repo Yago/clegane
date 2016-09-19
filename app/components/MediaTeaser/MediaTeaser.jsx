@@ -25,7 +25,6 @@ class MediaTeaser extends React.Component {
               <Image
                 src={media.poster_path ? media.poster_path : media.profile_path}
                 size="1"
-                ratio="0.66"
                 class="img-responsive"
                 alt={media.title ? media.title : media.name} />
             );
