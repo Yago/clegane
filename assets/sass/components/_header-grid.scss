@@ -3,8 +3,8 @@
 .header-grid {
   display: flex;
   flex-wrap: wrap;
-  height: 100px;
-  padding: $gutter-width * 2;
+  min-height: 100px;
+  padding: $gutter-width * 1.3 $gutter-width * 2;
   border-bottom: 1px solid $tundora;
 
   &:after {
