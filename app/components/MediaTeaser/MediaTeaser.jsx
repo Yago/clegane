@@ -14,8 +14,7 @@ class MediaTeaser extends React.Component {
   }
 
   render() {
-    const media = this.props.media,
-          title = media.title ? media.title : media.name;
+    const media = this.props.media;
 
     return (
       <Link to={`movie/${media.id}`} className="media-teaser">
@@ -24,9 +23,9 @@ class MediaTeaser extends React.Component {
           size="1"
           ratio="0.66"
           class="img-responsive"
-          alt={title} />
+          alt={media.title ? media.title : media.name} />
         <div className="media-teaser-inner">
-          <h3>{title}</h3>
+          <h3>{media.title ? media.title : media.name}</h3>
           {(() => {
             if (!media.profile_path) {
               return (<h5>{Moment(media.release_date).format('Y')}</h5>);

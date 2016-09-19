@@ -44,7 +44,7 @@ class Discover extends React.Component {
     this.handleTmdbItemsCall();
   }
 
-  componentWillUpdate(nextProps, nextState) {
+  componentWillReceiveProps(nextProps) {
     // Call new tmdb items call if the url change
     if (nextProps.location.pathname != this.state.current_path) {
       this.handleTmdbItemsCall();
@@ -55,7 +55,7 @@ class Discover extends React.Component {
     if (this.props.tmdb.items) {
       return Object.keys(this.props.tmdb.items).map((id, key) => {
         const item = this.props.tmdb.items[id];
-        return (<MediaTeaser key={key} media={item} />);
+        return (<MediaTeaser key={item.id} media={item} />);
       });
     }
   }
