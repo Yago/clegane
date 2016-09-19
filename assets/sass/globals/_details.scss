@@ -14,9 +14,11 @@
 .cover-container {
   position: relative;
 
-  .picture-wrapper {
+  > .picture-wrapper {
     max-height: 650px;
     overflow: hidden;
+    margin-bottom: -8px;
+    padding: 0;
   }
 }
 
@@ -52,6 +54,7 @@
 .detail-heading {
   width: 75%;
   padding-bottom: 1em;
+  box-sizing: border-box;
 
   h1 { font-size: 2.72em; }
 
@@ -75,4 +78,12 @@
     transition: color 0.3s;
     &:hover { color: $tangerine; }
   }
+}
+
+.detail-content {
+  width: 75%;
+  margin-left: $gutter-width * 1.5;
+  padding: 0 $gutter-width * 1.5;
+  padding-left: 25%;
+  box-sizing: content-box;
 }

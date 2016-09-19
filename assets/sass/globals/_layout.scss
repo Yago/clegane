@@ -11,6 +11,14 @@ body {
   color: $white;
 }
 
+.bg-white {
+  padding: $gutter-width * 2;
+  background: $white;
+  color: $cod-gray;
+
+  > p:first-child { margin-top: 0; }
+}
+
 .visible-mobile {
   /* stylelint-disable declaration-no-important */
   /* It has to be immutable */

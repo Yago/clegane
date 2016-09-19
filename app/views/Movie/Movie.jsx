@@ -111,6 +111,14 @@ class Movie extends React.Component {
               </div>
             </div>
           </div>
+
+          <div className="detail-container">
+            <div className="detail-content">
+              <div className="bg-white">
+                <p>“{movie.tagline}”</p>
+              </div>
+            </div>
+          </div>
         </div>
       );
     } else {return (<span></span>);}
