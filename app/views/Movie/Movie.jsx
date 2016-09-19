@@ -19,23 +19,38 @@ class Movie extends React.Component {
     super();
 
     this.state = {
-      watched: false
+      watched: false,
+      current_path: ''
     }
   }
 
   componentWillMount() {
+    this.handleTmdbCalls()
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // Call new tmdb data if the url change
+    if (nextProps.location.pathname != this.state.current_path) {
+      this.handleTmdbCalls();
+    }
+  }
+
+  componentWillUnmount() {
+    this.props.cleanTmdbData();
+  }
+
+  handleTmdbCalls() {
     const type = this.props.location.pathname.split('/')[1],
           currentId = this.props.params.id;
+
+    // Update state
+    this.setState({ current_path: this.props.location.pathname });
 
     this.props.getTmdbItemData(type, currentId);
     this.props.getTmdbItemData(type, currentId, 'keywords');
     this.props.getTmdbItemData(type, currentId, 'images');
     this.props.getTmdbItemData(type, currentId, 'videos');
     this.props.getTmdbItemData(type, currentId, 'credits');
-  }
-
-  componentWillUnmount() {
-    this.props.cleanTmdbData();
   }
 
   handleWatch() {

@@ -31,6 +31,22 @@ class Gallery extends React.Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    // Call new tmdb data if the url change
+    if (nextProps.items && nextProps.items.length > 0) {
+      this.setState({
+        galleryContainer: nextProps.items.reduce((acc, value) => {
+          acc.push({
+            src: `${config.tmdb.images}original${value.file_path}`,
+            w: value.width,
+            h: value.height
+          });
+          return acc;
+        }, [])
+      });
+    }
+  }
+
   handleOpenLarge(item) {
     const pswp = document.querySelectorAll('.pswp')[0],
           options = {

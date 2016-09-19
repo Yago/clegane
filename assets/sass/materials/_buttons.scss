@@ -29,7 +29,11 @@ button {
 .btn-main {
   background: $electric-violet;
   color: $white;
-  &:hover { background: darken($electric-violet, 10%); }
+
+  &:hover {
+    background: darken($electric-violet, 10%);
+    color: $white;
+  }
 }
 
 .btn-default {

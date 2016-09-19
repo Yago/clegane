@@ -6,6 +6,7 @@
   padding: 0.5em 0;
   background: $mercury;
   border-collapse: separate;
+  input { padding: 0.5em 0.9em; }
 
   input,
   .awesomplete {
@@ -21,6 +22,7 @@
     width: 1%;
     white-space: nowrap;
     vertical-align: middle;
+    .icon { padding-right: 0; }
   }
 
   .btn {
@@ -55,6 +57,7 @@ div.awesomplete > ul {
   > li {
     padding: 0.4em 0.5em * $gr;
     font-size: 0.85em;
+    line-height: 1.1em;
     i { display: none; }
   }
 
