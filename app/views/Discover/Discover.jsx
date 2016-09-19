@@ -51,11 +51,11 @@ class Discover extends React.Component {
     }
   }
 
-  renderMovies() {
+  renderTeasers() {
     if (this.props.tmdb.items) {
       return Object.keys(this.props.tmdb.items).map((id, key) => {
-        const movie = this.props.tmdb.items[id];
-        return (<MediaTeaser key={key} media={movie} />);
+        const item = this.props.tmdb.items[id];
+        return (<MediaTeaser key={key} media={item} />);
       });
     }
   }
@@ -77,7 +77,7 @@ class Discover extends React.Component {
         </div>
 
         <div className="media-grid">
-          {this.renderMovies()}
+          {this.renderTeasers()}
         </div>
 
         <div className="spacer"></div>

@@ -24,6 +24,7 @@ const router = (
         <Route path="tv/popular/:page" component={Discover} title="Popular TV Shows"></Route>
         <Route path="tv/airing_today/:page" component={Discover} title="Airing today TV Shows"></Route>
         <Route path="tv/on_the_air/:page" component={Discover} title="On the Air TV Shows"></Route>
+        <Route path="person/popular/:page" component={Discover} title="Popular people"></Route>
 
 
         <Route path="movie/:id" component={Details}></Route>
