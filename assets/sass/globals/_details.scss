@@ -41,6 +41,12 @@
   left: 0;
   width: 100%;
   padding: 0 $gutter-width * 1.5;
+
+  a {
+    color: $supernova;
+    text-decoration: none;
+    &:hover { color: $tangerine; }
+  }
 }
 
 .detail-heading {
@@ -50,7 +56,8 @@
   h1 { font-size: 2.72em; }
 
   h1,
-  h3 {
+  h3,
+  button {
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
     margin: 0;
   }
@@ -61,10 +68,11 @@
   }
 
   button {
-    padding-right: 0.7em;
+    padding: 0;
     background: transparent;
     border: 0;
-    font-size: 0.7em;
     color: $mercury;
+    transition: color 0.3s;
+    &:hover { color: $tangerine; }
   }
 }

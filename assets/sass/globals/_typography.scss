@@ -6,6 +6,7 @@ html {
 }
 
 body {
+  line-height: 1em * $gr;
   font-weight: 300;
   font-smoothing: antialiased;
   word-wrap: break-word;
@@ -22,6 +23,8 @@ h3,
 h4,
 h5,
 h6 {
+  margin: 0.4em 0 0.3em;
+  line-height: 1.1em;
   font-weight: 500;
 }
 
@@ -38,8 +41,20 @@ strong { font-weight: 700; }
 a {
   color: $electric-violet;
   text-decoration: underline;
+  transition: color 0.3s;
+}
+
+ul.list-unstyled {
+  padding: 0;
+  li { list-style-type: none; }
+  h4 { margin: 1em 0 0.1em; }
 }
 
 .text-center { text-align: center; }
 .text-left { text-align: left; }
 .text-right { text-align: right; }
+
+.icon {
+  padding-right: 0.6em;
+  font-size: 0.8em;
+}

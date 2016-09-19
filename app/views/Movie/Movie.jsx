@@ -3,8 +3,10 @@
 */
 
 import React from 'react';
+import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import Moment from 'moment';
 
 import { getTmdbItemData, cleanTmdbData } from '../../actions/tmdb';
 
@@ -24,6 +26,7 @@ class Movie extends React.Component {
           currentId = this.props.params.id;
 
     this.props.getTmdbItemData(type, currentId);
+    this.props.getTmdbItemData(type, currentId, 'keywords');
   }
 
   componentWillUnmount() {
@@ -55,6 +58,45 @@ class Movie extends React.Component {
                       size="1"
                       class="img-responsive"
                       alt={movie.title} />
+
+                    <ul className="list-unstyled">
+                      <li>
+                        <h4>Releases</h4>
+                        {Moment(movie.release_date).format('LL')}
+                      </li>
+
+                      <li>
+                        <h4>Countries</h4>
+                        {movie.production_countries.map((country, key) => {
+                          const separator = (key + 1) == movie.production_countries.length ? '' : ', ';
+                          return (<span key={key}>{country.name}{separator}</span>);
+                        })}
+                      </li>
+
+                      <li>
+                        <h4>Keywords</h4>
+                        {(() => {
+                          if (this.props.tmdb.movie_keywords && this.props.tmdb.movie_keywords.keywords.length > 0) {
+                            const keywords = this.props.tmdb.movie_keywords.keywords;
+                            return keywords.map((keyword, key) => {
+                              const separator = (key + 1) == keywords.length ? '' : ', ';
+                              return (<span key={key}><Link to={'here'}>{keyword.name}</Link>{separator}</span>);
+                            });
+                          }
+                        })()}
+                      </li>
+
+                      <li>
+                        <h4>Links</h4>
+                        <a href={`http://www.imdb.com/title/${movie.imdb_id}`} target="_blank">IMDB</a>
+                      </li>
+
+                      <li>
+                        <h4>TMBD</h4>
+                        <span className="icon icon-edit"></span>
+                        <a href={`https://www.themoviedb.org/movie/${movie.id}`} target="_blank">Edit</a>
+                      </li>
+                    </ul>
                   </div>
                 </div>
                 <div className="detail-heading">
