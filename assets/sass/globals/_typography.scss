@@ -39,9 +39,15 @@ b,
 strong { font-weight: 700; }
 
 a {
+  font-weight: 400;
   color: $electric-violet;
-  text-decoration: underline;
   transition: color 0.3s;
+  text-decoration: none;
+  &:hover { color: darken($electric-violet, 15%); }
+}
+
+p {
+  margin: 0.8em 0;
 }
 
 ul.list-unstyled {

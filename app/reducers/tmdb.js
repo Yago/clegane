@@ -23,7 +23,7 @@ function tmdb(state = {}, action) {
       return {...state, [action.slot]: action.data};
     }
     case GET_REQUEST_FAIL: {
-      return {state};
+      return state;
     }
     case CLEAN_SUCCESS: {
       return {};

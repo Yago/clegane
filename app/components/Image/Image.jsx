@@ -68,7 +68,7 @@ class Image extends React.Component {
     const src = this.props.src,
           size = this.props.size,
           className = this.props.class,
-          alt = this.props.alt;
+          alt = this.props.alt ? this.props.alt : '';
 
     return (
       <div className="picture-wrapper">

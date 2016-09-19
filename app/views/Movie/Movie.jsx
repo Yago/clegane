@@ -11,6 +11,7 @@ import Moment from 'moment';
 import { getTmdbItemData, cleanTmdbData } from '../../actions/tmdb';
 
 import Image from '../../components/Image';
+import Gallery from '../../components/Gallery';
 
 class Movie extends React.Component {
   constructor() {
@@ -27,6 +28,8 @@ class Movie extends React.Component {
 
     this.props.getTmdbItemData(type, currentId);
     this.props.getTmdbItemData(type, currentId, 'keywords');
+    this.props.getTmdbItemData(type, currentId, 'images');
+    this.props.getTmdbItemData(type, currentId, 'videos');
   }
 
   componentWillUnmount() {
@@ -38,7 +41,8 @@ class Movie extends React.Component {
   }
 
   render() {
-    const movie = this.props.tmdb.movie;
+    const movie = this.props.tmdb.movie,
+          trailer = this.props.tmdb.movie_videos ? this.props.tmdb.movie_videos.results.find(video => video.site === 'YouTube') : '';
 
     if (movie) {
       return (
@@ -80,7 +84,7 @@ class Movie extends React.Component {
                             const keywords = this.props.tmdb.movie_keywords.keywords;
                             return keywords.map((keyword, key) => {
                               const separator = (key + 1) == keywords.length ? '' : ', ';
-                              return (<span key={key}><Link to={'here'}>{keyword.name}</Link>{separator}</span>);
+                              return (<span key={key}><Link to={`/tag/${keyword.id}/1`}>{keyword.name}</Link>{separator}</span>);
                             });
                           }
                         })()}
@@ -116,6 +120,37 @@ class Movie extends React.Component {
             <div className="detail-content">
               <div className="bg-white">
                 <p>“{movie.tagline}”</p>
+                <p>
+                  {movie.genres.map((genre, key) => {
+                    const separator = (key + 1) == movie.genres.length ? '' : ' | ';
+                    return (
+                      <span key={key}>
+                        <Link to={`/genre/${genre.id}/1`}>{genre.name}</Link>
+                        {separator}
+                      </span>
+                    );
+                  })}
+                </p>
+                <p>{movie.overview}</p>
+              </div>
+              {(() => {
+                if (false && this.props.tmdb.movie_videos && this.props.tmdb.movie_videos.results.length > 0) {
+                  return (
+                    <div className="embed-responsive">
+                      <iframe
+                        type="text/html"
+                        width="533"
+                        height="300"
+                        src={`http://www.youtube.com/embed/${trailer.key}?enablejsapi=1&amp;autoplay=0&amp;fs=1`}
+                        frameBorder="0"
+                        allowFullScreen=""></iframe>
+                    </div>
+                  );
+                }
+              })()}
+              <div className="bg-white">
+                <h3>Gallery</h3>
+                <Gallery items={this.props.tmdb.movie_images.backdrops} />
               </div>
             </div>
           </div>

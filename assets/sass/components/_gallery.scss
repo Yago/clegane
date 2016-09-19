@@ -1,0 +1,22 @@
+@charset 'UTF-8';
+
+.gallery {
+  margin: 0 $gutter-width / -1;
+
+  &:before,
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+
+  figure {
+    display: block;
+    float: left;
+    width: 33.33%;
+    margin: 0;
+    padding: $gutter-width / 2 $gutter-width;
+
+    > div:hover { cursor: pointer; }
+  }
+}
