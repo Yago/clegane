@@ -1,8 +1,9 @@
 import {
   GET_ITEMS_SUCCESS,
-  GET_ITEMS_FAIL,
+  GET_ITEM_DATA_SUCCESS,
   GET_RESULTS_SUCCESS,
-  GET_RESULTS_FAIL
+  GET_REQUEST_FAIL,
+  CLEAN_SUCCESS
 } from '../actions/tmdb';
 
 function tmdb(state = {}, action) {
@@ -15,14 +16,17 @@ function tmdb(state = {}, action) {
         total_results: action.data.total_results
       };
     }
-    case GET_ITEMS_FAIL: {
-      return state;
-    }
     case GET_RESULTS_SUCCESS: {
       return {...state, results: action.data.results};
     }
-    case GET_RESULTS_FAIL: {
+    case GET_ITEM_DATA_SUCCESS: {
+      return {...state, [action.slot]: action.data};
+    }
+    case GET_REQUEST_FAIL: {
       return state;
+    }
+    case CLEAN_SUCCESS: {
+      return {};
     }
     default: {
       return state;
