@@ -54,7 +54,8 @@
     width: 100%;
     border-top: 1px solid darken($tundora, 6%);
 
-    .picture-wrapper {
+    .picture-wrapper,
+    .media-teaser-placeholder {
       flex: 0 0 12%;
       width: 12%;
     }
@@ -76,4 +77,17 @@
   border-width: 3px 3px 0 0;
   border-color: $silver-chalice;
   align-self: center;
+}
+
+.media-teaser-placeholder {
+  width: 100%;
+  margin-bottom: 0.4em;
+  padding-top: 148%;
+  background-image: url('/img/placeholder.png');
+  background-size: cover;
+  background-position: center center;
+
+  @media screen and (max-width: $mobile) {
+    padding-top: 18%;
+  }
 }

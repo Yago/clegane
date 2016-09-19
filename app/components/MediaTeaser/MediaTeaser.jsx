@@ -18,12 +18,20 @@ class MediaTeaser extends React.Component {
 
     return (
       <Link to={`movie/${media.id}`} className="media-teaser">
-        <Image
-          src={media.poster_path ? media.poster_path : media.profile_path}
-          size="1"
-          ratio="0.66"
-          class="img-responsive"
-          alt={media.title ? media.title : media.name} />
+        {(() => {
+          if (media.poster_path || media.profile_path) {
+            return (
+              <Image
+                src={media.poster_path ? media.poster_path : media.profile_path}
+                size="1"
+                ratio="0.66"
+                class="img-responsive"
+                alt={media.title ? media.title : media.name} />
+            );
+          } else {
+            return (<div className="media-teaser-placeholder"></div>);
+          }
+        })()}
         <div className="media-teaser-inner">
           <h3>{media.title ? media.title : media.name}</h3>
           {(() => {
