@@ -12,6 +12,7 @@ import { getTmdbItemData, cleanTmdbData } from '../../actions/tmdb';
 
 import Image from '../../components/Image';
 import Gallery from '../../components/Gallery';
+import MediaTeaser from '../../components/MediaTeaser';
 
 class Movie extends React.Component {
   constructor() {
@@ -30,6 +31,7 @@ class Movie extends React.Component {
     this.props.getTmdbItemData(type, currentId, 'keywords');
     this.props.getTmdbItemData(type, currentId, 'images');
     this.props.getTmdbItemData(type, currentId, 'videos');
+    this.props.getTmdbItemData(type, currentId, 'credits');
   }
 
   componentWillUnmount() {
@@ -38,6 +40,18 @@ class Movie extends React.Component {
 
   handleWatch() {
     this.setState({watched: !this.state.watched});
+  }
+
+  renderCast() {
+    if (this.props.tmdb.movie_credits && this.props.tmdb.movie_credits.cast.length > 0) {
+      return this.props.tmdb.movie_credits.cast.map((cast, key) => {
+        if (key <= 3) {
+          return (
+            <MediaTeaser key={cast.id} media={cast} query={this.props.location.pathname} />
+          );
+        }
+      });
+    }
   }
 
   render() {
@@ -151,9 +165,14 @@ class Movie extends React.Component {
               <div className="bg-white">
                 <h3>Gallery</h3>
                 <Gallery items={this.props.tmdb.movie_images.backdrops} />
+                <h3>Cast</h3>
+                <div className="cast-grid">
+                  {this.renderCast()}
+                </div>
               </div>
             </div>
           </div>
+          <div className="spacer spacer-xl"></div>
         </div>
       );
     } else {return (<span></span>);}
