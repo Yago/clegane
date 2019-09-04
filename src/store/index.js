@@ -4,9 +4,11 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import rootReducer from './reducers';
 
-const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(thunk))
-);
+const makeStore = initialState =>
+  createStore(
+    rootReducer,
+    initialState,
+    composeWithDevTools(applyMiddleware(thunk))
+  );
 
-export default store;
+export default makeStore;

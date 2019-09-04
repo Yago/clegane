@@ -1,5 +1,7 @@
-import { css } from '@emotion/core';
+import css from 'styled-jsx/css'
 
 export default css`
-  color: orange;
+  div {
+    background: black;
+  }
 `;

@@ -3,24 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@emotion/core": "^10.0.15",
-    "@emotion/styled": "^10.0.15",
     "@storybook/react": "^5.1.10",
     "@storybook/theming": "^5.1.10",
     "axios": "^0.19.0",
+    "next": "^9.0.5",
+    "next-redux-wrapper": "^3.0.0",
+    "prop-types": "^15.7.2",
     "ramda": "^0.26.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",
-    "react-scripts": "3.0.1",
     "redux": "^4.0.4",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "styled-jsx": "^3.2.2"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
+    "start": "next ./src",
+    "build": "next build ./src",
+    "dev": "next start ./src"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -50,7 +50,6 @@
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-react-hooks": "^1.3.0",
     "prettier": "^1.16.4",
-    "react-app-rewired": "^2.1.3",
     "redux-devtools-extension": "^2.13.8"
   }
 }
