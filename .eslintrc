@@ -1,13 +1,40 @@
 {
   "extends": [
-    "wesbos"
+    "wesbos",
+    "plugin:import/errors",
+    "plugin:import/warnings"
   ],
+  "plugins": ["import"],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      }
+    }
+  },
   "rules": {
-    "import/no-unresolved": 0,
+    "react-hooks/exhaustive-deps": 0,
+    "react/jsx-props-no-spreading": 0,
     "import/no-extraneous-dependencies": [
       "error",
       {
         "packageDir": "./"
+      }
+    ],
+    "import/no-named-as-default": 0,
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "index",
+          "parent",
+          "sibling",
+          "unknown"
+        ],
+        "newlines-between": "always"
       }
     ]
   }
