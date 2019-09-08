@@ -1,10 +1,15 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 
 import { fetchTV } from 'services/tmdb';
+import Blank from 'components/Blank';
 
-const IndexPage = ({ show }) => <div>{show && show.name}</div>;
+const IndexPage = ({ show }) => (
+  <div>
+    {show && show.name}
+    <Blank />
+  </div>
+);
 
 IndexPage.propTypes = {
   show: PropTypes.object,

@@ -2,7 +2,7 @@
   "ignoreFiles": [
     "assets/components/base.scss",
     "assets/config/bootstrap.scss",
-    "assets/config/bootstrap-variables.scss"
+    "src/components/Bootstrap/Bootstrap.variables.scss"
   ],
   "plugins": [
     "stylelint-order"

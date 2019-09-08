@@ -1,20 +1,24 @@
-import React, {} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './Blank.styles';
+import './Blank.scss';
 
-const Blank = ({  }) => {
+const Blank = ({ prop }) => {
+  const [test, setTest] = useState(true);
+
   return (
     <>
-      <style jsx>{styles}</style>
-      <div>
-        sup
-      </div>
+      <h1>Hello {prop}</h1>
+      <button type="button" onClick={() => setTest(!test)}>
+        {test}
+      </button>
     </>
   );
 };
 
-Blank.propTypes = {};
+Blank.propTypes = {
+  prop: PropTypes.string,
+};
 Blank.defaultProps = {};
 
 export default Blank;

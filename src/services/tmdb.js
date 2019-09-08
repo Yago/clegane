@@ -2,7 +2,7 @@ import axios from 'axios';
 import { pipe } from 'ramda';
 
 // Append key to API URL
-const useKey = key => url =>
+const withKey = key => url =>
   `${url}${url.includes('?') ? '&' : '?'}api_key=${key}`;
 
 // Axios fetch wrapper
@@ -14,7 +14,7 @@ const fetch = url =>
 
 // Based on URL, execute required tasks to fetch data
 const composeApi = pipe(
-  useKey('6d83177ea3e67b870ab80fa72f06cbbd'),
+  withKey('6d83177ea3e67b870ab80fa72f06cbbd'),
   fetch
 );
 

@@ -5,6 +5,7 @@ import App, { Container } from 'next/app';
 import withRedux from 'next-redux-wrapper';
 
 import makeStore from 'store/index';
+import Bootstrap from 'components/Bootstrap';
 
 class CustomApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -20,7 +21,9 @@ class CustomApp extends App {
     return (
       <Container>
         <Provider store={store}>
-          <Component {...pageProps} />
+          <Bootstrap>
+            <Component {...pageProps} />
+          </Bootstrap>
         </Provider>
       </Container>
     );

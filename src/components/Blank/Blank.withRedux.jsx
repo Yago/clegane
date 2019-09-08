@@ -1,30 +1,34 @@
-/** @jsx jsx */
-import React, {} from 'react';
+/* eslint-disable */
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { jsx } from '@emotion/core'; // eslint-disable-line
 
-import styles from './Blank.styles';
-import { actions as mystoreActions } from '../../store/mystore';
+import './Blank.scss';
+import { actions as uiActions } from 'store/ui';
 
-const Blank = ({ mystore, doSomething }) => {
+const Blank = ({ ui, doSomething }) => {
+  const [test, setTest] = useState(true);
+
   return (
-    <div css={styles}>
-      Sup
-    </div>
+    <>
+      <h1>Hello {ui}</h1>
+      <button type="button" onClick={() => setTest(!test)}>
+        {test}
+      </button>
+    </>
   );
 };
 
 Blank.propTypes = {
-  mystore: PropTypes.object.isRequired,
+  ui: PropTypes.object.isRequired,
   doSomething: PropTypes.func.isRequired,
 };
 Blank.defaultProps = {};
 
 const mapState = ({ mystore }) => ({ mystore });
 const mapDispatch = dispatch => {
-  const { doSomething } = mystoreActions;
+  const { doSomething } = uiActions;
   return bindActionCreators({ doSomething }, dispatch);
 };
 
