@@ -79,7 +79,7 @@
     "jsonwebtoken": "^5.4.1",
     "lodash": "^3.10.1",
     "mocha": "^2.3.4",
-    "mongoose": "^4.2.8",
+    "mongoose": "^5.7.7",
     "morgan": "^1.6.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
