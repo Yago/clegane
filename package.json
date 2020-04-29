@@ -72,7 +72,7 @@
     "imgur": "^0.1.7",
     "ion-autocomplete": "^0.3.1",
     "isotope-layout": "^2.2.2",
-    "jquery": "^2.1.4",
+    "jquery": "^3.5.0",
     "jsdom": "^7.1.0",
     "jshint": "^2.8.0",
     "jshint-stylish": "^2.1.0",
